@@ -1,0 +1,65 @@
+ R←Test_HTML_006(stopFlag batchFlag);⎕TRAP;md;ns;l;this
+⍝ Test all tags there are in the HTML5 standard.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+⍝ Not an HTML block; trailing empty line is missing:
+ md←'This is a para.' '' '<div class="foo">' 'That''s embraced by a div' '</div>' 'Another para'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ →PassesIf∨/''⍷∊ns.html
+
+⍝ Not an HTML block; leading empty line is missing:
+ md←'This is a para.' '<div class="foo">' '' 'That''s embraced by a div' '' '</div>' '' 'Another para'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ →PassesIf∨/''⍷∊ns.html
+
+⍝ Not an HTML block; no empty lines at all:
+ md←'This is a para.' '<div class="foo">' '' 'That''s embraced by a div' '' '</div>' 'Another para'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ →PassesIf∨/''⍷∊ns.html
+
+⍝ From here we really have HTML blocks:
+ md←'This is a para.' '' '<div class="foo">' '' 'That''s embraced by a div' '' '</div>' '' 'Another para'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ →PassesIf ns.html≡'<p>This is a para.</p>' '' '<div class="foo">' '' '<p>That''s embraced by a div</p>' '' '</div>' '' '<p>Another para</p>'
+
+ md←'That''s embraced by a div' '' '</div>' '' 'Another para'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ →PassesIf ns.html≡'<p>That''s embraced by a div</p>' '' '</div>' '' '<p>Another para</p>'
+
+⍝ According to the CommonMarkspec thus ↓↓↓ should work. MarkAPL does not support this however
+ :If 0
+     md←'This is a para.' '' '<div' '>' 'That''s embraced by a div' '' '</div>' '' 'Another para'
+     ns←##.MarkAPL.Init''md
+     ns←##.MarkAPL.Process ns
+     →PassesIf'<![CDATA['{⍺≡(⍴⍺)↑⍵}1⊃ns.html
+     →PassesIf∨/']]>'⍷1⊃ns.html
+     →PassesIf'<p>Another para</p>'{⍺≡(-⍴⍺)↑⍵}↑¯1↑ns.html
+ :EndIf
+
+ l←'div' 'h1' 'h2' 'h3' 'h4' 'h5' 'h6' 'li' 'ol' 'p' 'table' 'tbody' 'td' 'tfoot' 'th' 'thead' 'tr' 'ul'
+ l,←'address' 'article' 'aside' 'base' 'basefont' 'blockquote' 'body' 'caption' 'center' 'colgroup' 'col'
+ l,←'dd' 'details' 'dialog' 'dir' 'dl' 'dt' 'fieldset' 'figcaption' 'figure' 'footer' 'form' 'frame'
+ l,←'frameset' 'head' 'header' 'hr' 'html' 'iframe' 'legend' 'link' 'main' 'menu' 'menuitem' 'meta' 'nav'
+ l,←'noframes' 'optgroup' 'option' 'param' 'section' 'source' 'summary' 'title' 'track'
+
+ :For this :In l
+     md←''('<',this,'>')''
+     ns←##.MarkAPL.Init''md
+     ns←##.MarkAPL.Process ns
+     →PassesIf 1=⍴ns.html~⊂''
+     →PassesIf('<',this,'>')≡0⊃ns.html~⊂''
+
+     md←''('</',this,'>')''
+     ns←##.MarkAPL.Init''md
+     ns←##.MarkAPL.Process ns
+     →PassesIf 1=⍴ns.html~⊂''
+     →PassesIf(,⊂'</',this,'>')≡ns.html~⊂''
+ :EndFor
+
+ R←∆OK

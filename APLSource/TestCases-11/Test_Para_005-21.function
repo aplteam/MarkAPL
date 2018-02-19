@@ -1,0 +1,15 @@
+ R←Test_Para_005(stopFlag batchFlag);⎕TRAP;ns;md
+⍝ Test a paragraph that contains some "***" which should not be converted into <strong>
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←''
+ md,←⊂'*** This is a paragraph ***'
+
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+
+ →PassesIf 0=+/'<strong>'⍷∊ns.html
+ →PassesIf 0=+/'<em>'⍷∊ns.html
+
+ R←∆OK

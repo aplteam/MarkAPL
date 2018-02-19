@@ -1,0 +1,27 @@
+ R←Test_SpecialAttrs_027(stopFlag batchFlag);⎕TRAP;md;ns;parms
+⍝ Test special attributes for a paragraph aand a code block that belong to a list item.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←''
+ md,←⊂'* This'
+ md,←⊂''
+ md,←⊂'  ~~~ {#mylicode}'
+ md,←⊂'  {+/⍳⍴⍵}'
+ md,←⊂'  ~~~'
+ md,←⊂''
+ md,←⊂'  This is a sub-paragraph {#mylipara}'
+ md,←⊂''
+ md,←⊂''
+ md,←⊂'Some text'
+
+ parms←##.MarkAPL.CreateParms
+ parms.verbose←0
+
+ ns←##.MarkAPL.Init parms md
+ ns←##.MarkAPL.Process ns
+
+ →PassesIf(⊂'<pre><code id="mylicode">{+/⍳⍴⍵}</code></pre>')∊ns.html
+ →PassesIf(⊂'<p id="mylipara">This is a sub-paragraph</p></li>')∊ns.html
+
+ R←∆OK

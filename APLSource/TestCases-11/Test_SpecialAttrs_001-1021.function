@@ -1,0 +1,18 @@
+ R←Test_SpecialAttrs_001(stopFlag batchFlag);⎕TRAP;md;ns;expected
+⍝ Test {}-syntax for a table without columns (assigning ID, class, attributes)
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←''
+ md,←⊂'|Col A|Col B|  {.class1 #foo .class2 font-family="APL385   Unicode" foo=123}'
+ md,←⊂'|Row 1/Col A|Row 1/Col B|'
+ md,←⊂'|Row 1/Col A|Row 1/Col B|'
+ md,←⊂'|Row 1/Col A|Row 1/Col B|'
+
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+
+ expected←'<table class="class1 class2" id="foo" font-family="APL385 Unicode" foo="123">'
+ →PassesIf expected≡↑ns.html
+
+ R←∆OK

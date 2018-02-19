@@ -1,0 +1,14 @@
+ R←Test_SpecialAttrs_011(stopFlag batchFlag);⎕TRAP;ns;md;fn
+⍝ Test  {}-syntax for a link
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←''
+ md,←⊂'Link [to the APL wiki](http://aplwiki.com{id="foo"}).'
+
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+
+ →PassesIf∨/'<a href="http://aplwiki.com" class="external_link" id="foo">'⍷∊ns.html
+
+ R←∆OK

@@ -1,0 +1,17 @@
+We want this:
+
+| Col 1 | Col2 ||  Col 4|
+| AA    | BB   | CC | DD|
+
+to result in this table:
+
+| Col 1 | Col 2         | Col 4 | 
+| AA    | BB    | CC    | DD    |
+
+In other words: two consequtive || define a ColSpan=3
+while ||| define ColSpan=3 etc.
+
+We have a test case ready for this:
+#._MarkAPL.TestCases.Test_Table_023
+
+... but no idea (yet) for how to implement it.

@@ -1,0 +1,24 @@
+ R←Test_Data_005(stopFlag batchFlag);⎕TRAP;ns;md;parms
+⍝ Test a [data]: definition with a leading quote only and with other (illegal) stuff as well
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←''
+ md,←⊂'[data]:val1=1'
+ md,←⊂'[data]:val2=2'
+ md,←⊂'[data]:author=''Kai Jaeger; abc=123'
+ md,←⊂'[data]:val3=3'
+ md,←⊂''
+ md,←⊂'This is a para.'
+
+ parms←##.MarkAPL.CreateParms
+ parms.verbose←0
+
+ ns←##.MarkAPL.Init parms md
+ ns←##.MarkAPL.Process ns
+
+ →FailsIf 4≠⊃⍴ns.data
+ →FailsIf'val1' 'val2' 'author' 'val3'≢0⊃¨ns.data
+ →FailsIf'Data value definition for line 3 is invalid'≢↑ns.report
+
+ R←∆OK

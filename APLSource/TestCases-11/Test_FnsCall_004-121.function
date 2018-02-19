@@ -1,0 +1,42 @@
+ R←Test_FnsCall_004(stopFlag batchFlag);⎕TRAP;md;ns
+⍝ Test function call with an argument in a cell in both a table with and without column header
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ #.⎕SHADOW'TEMP'
+ 'TEMP'#.⎕NS''
+ #.TEMP.MyFns1←{
+     ns←⍵
+     '::',⍺,'::'
+ }
+ #.TEMP.MyFns2←{
+     ns←⍵
+     '::',(⍕+/⊃(//)⎕VFI ⍺),'::'
+ }
+
+ md←''
+ md,←⊂'Col 1 |Col 2'
+ md,←⊂'-|-'
+ md,←⊂'⍎⍎#.TEMP.MyFns1''abc''⍎⍎|⍎⍎#.TEMP.MyFns2 1 2 3⍎⍎'
+ md,←⊂' 2/a|2/B'
+
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+
+ →PassesIf∨/'::''abc''::'⍷9⊃ns.html
+ →PassesIf∨/'::6::'⍷10⊃ns.html
+
+⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝
+
+ md←''
+ md,←⊂'-|-'
+ md,←⊂'⍎⍎#.TEMP.MyFns1 ''abc''⍎⍎|⍎⍎#.TEMP.MyFns2 1 2 3⍎⍎'
+ md,←⊂' 2/a|2/B'
+
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+
+ →PassesIf∨/'::''abc''::'⍷3⊃ns.html
+ →PassesIf∨/'::6::'⍷4⊃ns.html
+
+ R←∆OK

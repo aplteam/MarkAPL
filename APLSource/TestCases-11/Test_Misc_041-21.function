@@ -1,0 +1,12 @@
+ R←Test_Misc_041(stopFlag batchFlag);⎕TRAP;ps
+⍝ Exercise the `Reference` method.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ ps←##.MarkAPL.CreateHelpParms
+ ps.viewInBrowser←0
+ ps.verbose←0
+ ps ##.MarkAPL.Reference 0
+ ps ##.MarkAPL.Reference 1
+
+ R←∆OK

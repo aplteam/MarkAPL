@@ -1,0 +1,54 @@
+ R←Test_HTML_004(stopFlag batchFlag);⎕TRAP;md;ns
+⍝ Test <! !>  tags.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+⍝ No HTML block; trailing empty line missing:
+ md←'This is a para.' '' '<!This!>' 'Another para'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ →PassesIf∨/'<p>This is a para.</p>'⍷∊ns.html
+
+⍝ No HTML block; leading empty line missing:
+ md←'This is a para.' '<!' 'This' 'That' '!>' '' 'Another para'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ →PassesIf(,⊂'<p>This is a para. &lt;! This That !&gt;</p>')∊ns.html
+
+⍝ No HTML block; no empty lines at all:
+ md←'This is a para.' '<!' 'This' 'That' '!> This will be ignored' 'Another para'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ →PassesIf(,⊂'<p>This is a para. &lt;! This That !&gt; This will be ignored Another para</p>')≡ns.html
+
+⍝ From here we really have HTML blocks
+
+ md←'This is a para.' '' '<!This!>' '' 'Another para'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ →PassesIf'<!'{⍺≡(⍴⍺)↑⍵}1⊃ns.html
+ →PassesIf∨/'!>'⍷1⊃ns.html
+ →PassesIf'<p>Another para</p>'{⍺≡(-⍴⍺)↑⍵}↑¯1↑ns.html
+
+ md←'This is a para.' '' '<!' 'This' 'That' '!>' '' 'Another para'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ →PassesIf'<!'≡1⊃ns.html
+ →PassesIf'!>'≡4⊃ns.html
+ →PassesIf'<p>Another para</p>'≡↑¯1↑ns.html
+
+ md←'This is a para.' '' '<!' 'This' 'That' '!> This will be ignored' '' 'Another para'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ →PassesIf'<!'≡1⊃ns.html
+ →PassesIf'!>'≡4⊃ns.html
+ →PassesIf'<p>Another para</p>'≡↑¯1↑ns.html
+
+ md←'This is a para.' '' '<!' 'This' 'That' 'Third and final comment !>' '' 'Another para'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ →PassesIf'<!'≡1⊃ns.html
+ →PassesIf'Third and final comment !>'≡4⊃ns.html
+ →PassesIf'<p>Another para</p>'≡↑¯1↑ns.html
+
+ R←∆OK

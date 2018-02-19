@@ -1,0 +1,41 @@
+ R←Test_Misc_002(stopFlag batchFlag);⎕TRAP;ns;md;expected;parms
+⍝ Test  an internal auto-link to a non-existing header: should be reported.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←''
+ md,←⊂'This is a paragraph'
+ md,←⊂''
+ md,←⊂'This [doesnotexist](#)'
+
+ parms←##.MarkAPL.CreateParms
+ parms.verbose←0
+ ns←##.MarkAPL.Init parms md
+ ns←##.MarkAPL.Process ns
+
+ →PassesIf'Invalid internal link: [doesnotexist]'≡0⊃ns.report
+
+ md←''
+ md,←⊂'This is a paragraph'
+ md,←⊂''
+ md,←⊂'This [doesnotexist](#).'
+ md,←⊂'And this [doesnotexist](#) either.'
+
+ ns←##.MarkAPL.Init parms md
+ ns←##.MarkAPL.Process ns
+
+ →PassesIf('Invalid internal link: [doesnotexist]' 'Invalid internal link: [doesnotexist]')≡ns.report
+
+ md←''
+ md,←⊂'This is a paragraph'
+ md,←⊂''
+ md,←⊂'This [doesnotexist](#).'
+ md,←⊂'And this [doesnotexisteither](#) either.'
+
+ ns←##.MarkAPL.Init parms md
+ ns←##.MarkAPL.Process ns
+
+ expected←'Invalid internal link: [doesnotexist]' 'Invalid internal link: [doesnotexisteither]'
+ →PassesIf expected≡ns.report
+
+ R←∆OK

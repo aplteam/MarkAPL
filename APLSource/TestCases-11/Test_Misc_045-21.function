@@ -1,0 +1,25 @@
+ R←Test_Misc_045(stopFlag batchFlag);⎕TRAP;md;ns;parms;buff
+⍝ Test whether line number in ns.report are correct. Complicated by a blockquote: recursive call to MarkAPL!
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←''
+ md,←⊂'Paragraph 1.'
+ md,←⊂''
+ md,←⊂'Another paragraph.'
+ md,←⊂''
+ md,←⊂'> A simple "paragraph"" with odd number of double quotes.'
+ md,←⊂''
+ md,←⊂'Ultimate para.'
+
+ parms←##.MarkAPL.CreateParms
+ parms.verbose←0
+
+ ns←##.MarkAPL.Init parms md
+ ns←##.MarkAPL.Process ns
+
+ →PassesIf 1=⍴ns.report
+ buff←↑(//)⎕VFI(↑ns.report)~⎕A,' ().:',#.APLTreeUtils.Lowercase ⎕A
+ →PassesIf 5=buff
+
+ R←∆OK

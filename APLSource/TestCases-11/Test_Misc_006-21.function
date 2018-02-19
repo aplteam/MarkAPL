@@ -1,0 +1,23 @@
+ R←Test_Misc_006(stopFlag batchFlag);⎕TRAP;md;parms;html
+⍝ Test the `Markdown2HTML` method.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←⊂'Sentence 1 of a paragraph.'
+ md,←⊂' Sentence 2 of a paragraph.'
+ md,←⊂' Sentence 3 of a paragraph.'
+ md,←⊂''
+ md,←⊂'<p>This is <span class="foo">inline HTML</span></p>'
+ md,←⊂''
+ md,←⊂'Another paragraph.'
+
+ parms←##.MarkAPL.CreateParms
+ parms.outputFilename←{(¯4↓⍵),'.html'}#.FilesAndDirs.GetTempFilename''
+ →FailsIf ⎕NEXISTS parms.outputFilename
+
+ parms ##.MarkAPL.Markdown2HTML md
+ →FailsIf 0=⎕NEXISTS parms.outputFilename
+
+ html←#.APLTreeUtils.ReadUtf8File parms.outputFilename
+
+ R←∆OK

@@ -1,0 +1,16 @@
+ R←Test_Misc_026(stopFlag batchFlag);⎕TRAP;md;parms;ns;buff
+⍝ Converts the MarkAPL.md document and checks `report` afterwards.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ parms←##.MarkAPL.CreateHelpParms
+ parms.viewInBrowser←0
+ parms.bookmarkLink←2
+ parms.toc←0
+ parms.verbose←0
+
+ ns←parms ##.MarkAPL.Reference 1
+
+ buff←(~↑∧/∨/¨'warning' 'ambiguous'⍷¨⊂#.APLTreeUtils.Lowercase⊃ns.report)/ns.report
+
+ R←∆OK

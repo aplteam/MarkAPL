@@ -1,0 +1,17 @@
+ R←Test_Images_06(stopFlag batchFlag);⎕TRAP;ns;md;fn;expected
+⍝ Test stand-alone image
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ fn←'file://',#.FilesAndDirs.PWD,'\Files\KaiJaegerHeadVerySmall2014.jpg'
+
+ md←''
+ md,←⊂'![picture3](',fn,' "Kai Jaeger")'
+
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+
+ expected←'<img src="',fn,'" alt="picture3" titel="Kai Jaeger"/>'
+ →PassesIf expected≢∊ns.html
+
+ R←∆OK

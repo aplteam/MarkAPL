@@ -1,0 +1,20 @@
+ R←Test_FnsCall_012(stopFlag batchFlag);⎕TRAP;md;ns;html
+⍝ Test function call that returns something that is NOT an HTML  block (missing empty lines!)
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ #.⎕SHADOW'TEMP'
+ 'TEMP'#.⎕NS''
+ #.TEMP.MyFns←{'<p>**bold** --- </p>' '<p>*italic* --- </p>'}
+
+ md←''
+ md,←⊂'⍎⍎#.TEMP.MyFns⍎⍎'
+
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ html←1↓↑,/(⎕UCS 13),¨ns.html
+
+ →PassesIf 1=+/'&lt;p&gt;<strong>'⍷html
+ →PassesIf 1=+/'&lt;p&gt;<em>'⍷html
+
+ R←∆OK

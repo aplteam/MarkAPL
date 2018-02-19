@@ -1,0 +1,14 @@
+ R←Test_SpecialAttrs_022(stopFlag batchFlag);⎕TRAP;ns;md;fn
+⍝ Test ordinary link with target=_blank
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←''
+ md,←⊂'[Link to the APL wiki](http://aplwiki.com{target="_blank"})'
+
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+
+ →PassesIf 1=+/'target="_blank"'⍷∊ns.html
+
+ R←∆OK

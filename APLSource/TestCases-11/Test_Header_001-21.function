@@ -1,0 +1,40 @@
+ R←Test_Header_001(stopFlag batchFlag);⎕TRAP;m;parms;ns;buffer
+⍝ Test headers ("#" syntax only).
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ parms←##.MarkAPL.CreateParms
+ m←'# Level 1' '## Level 2' '### Level 3' '#### Level 4' '##### Level 5' '###### Level 6'
+ ns←##.MarkAPL.Init parms m
+ ns←##.MarkAPL.Process ns
+ →FailsIf({⍵{'<h',⍵,'>',({⍵↓⍨1+⍵⍳' '}⍺),'</h',⍵,'>'}¨⍕¨1+⍳⍴⍵}m)≢ns.html/⍨'<h'∘{⍺≡(⍴,⍺)↑⍵}¨ns.html
+ buffer←ns.html/⍨'<a '∘{⍺≡(⍴,⍺)↑⍵}¨ns.html
+ →FailsIf parms.bookmarkLink≠⍴buffer
+ →FailsIf({{'<a href="#Level-',⍵,'" id="Level-',⍵,'" class="autoheader_anchor">'}¨⍕¨1+⍳⍴⍵}buffer)≢buffer
+
+ parms←##.MarkAPL.CreateParms
+ m←'# Level 1' ' ## Level 2' '  ### Level 3' '   #### Level 4' '    ##### Level 5' ⍝ Last one is more than 3 blanks: not a header
+ ns←##.MarkAPL.Init parms m
+ ns←##.MarkAPL.Process ns
+ →FailsIf 4≠⍴'>Level [0-9]<'⎕S 0⊣ns.html
+ →FailsIf 2 7 12 17≢'>Level [0-9]<'⎕S 2⊣ns.html
+
+ m←'# Level 1 #' '## Level 2 ##' '### Level 3  #' '#### Level 4         ##############' '##### Level 5' '###### Level 6'
+ ns←##.MarkAPL.Init parms m
+ ns←##.MarkAPL.Process ns
+ →FailsIf({⍵{'<h',⍵,'>',({⍵↓⍨-+/∧\(⌽⍵)∊' #'}{⍵↓⍨1+⍵⍳' '}⍺),'</h',⍵,'>'}¨⍕¨1+⍳⍴⍵}m)≢ns.html/⍨'<h'∘{⍺≡(⍴,⍺)↑⍵}¨ns.html
+ →FailsIf({{'<a href="#Level-',⍵,'" id="Level-',⍵,'" class="autoheader_anchor">'}¨⍕¨1+⍳⍴⍵}buffer)≢buffer
+
+ m←⊂'# em `<em>` <em>'
+ ns←##.MarkAPL.Init parms m
+ ns←##.MarkAPL.Process ns
+ →PassesIf'<h1>em <code>&lt;em&gt;</code> &lt;em&gt;</h1>'≡2⊃ns.html
+
+ m←'# Level 1 #' '## Level 2 ##' '### Level 3  #' '#### Level 4         ##############' '##### Level 5' '###### Level 6'
+ parms←##.MarkAPL.CreateParms
+ parms.bookmarkLink←0
+ ns←##.MarkAPL.Init parms m
+ ns←##.MarkAPL.Process ns
+ →FailsIf 18≠⍴ns.html
+
+ R←∆OK

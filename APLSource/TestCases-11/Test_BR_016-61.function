@@ -1,0 +1,14 @@
+ R←Test_BR_016(stopFlag batchFlag);⎕TRAP;md;ns;parms;html;buff
+⍝ Test weather `<<br>>` within code is ignored.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←''
+ md,←⊂'First para`<<br>>`with a line break in between'
+
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+
+ →PassesIf∨/'<code>&lt;&lt;br&gt;&gt;</code>'⍷0⊃ns.html
+
+ R←∆OK

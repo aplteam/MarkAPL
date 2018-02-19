@@ -1,0 +1,17 @@
+ R←Test_Images_02(stopFlag batchFlag);⎕TRAP;ns;md;fn;expected
+⍝ Test image with Alt text
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ fn←#.FilesAndDirs.EnforceSlash'file://',#.FilesAndDirs.PWD,'\Files\KaiJaegerHeadVerySmall2014.jpg'
+
+ md←''
+ md,←⊂'This is a para with an embedded ![This is a picture](',fn,') in it.'
+
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+
+ expected←'<p>This is a para with an embedded <img src="',fn,'" alt="This is a picture" title="This is a picture"> in it.</p>'
+ →PassesIf(⊂expected)∊ns.html
+
+ R←∆OK

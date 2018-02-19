@@ -1,0 +1,15 @@
+ R←Test_SpecialAttrs_013(stopFlag batchFlag);⎕TRAP;ns;md;fn
+⍝ Test a muli-line paragraph
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←''
+ md,←⊂'Simple but very long'
+ md,←⊂'paragraph {#author}'
+
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+
+ →PassesIf∨/'<p id="author">Simple but very long paragraph</p>'⍷∊ns.html
+
+ R←∆OK

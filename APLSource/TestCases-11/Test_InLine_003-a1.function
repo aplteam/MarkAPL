@@ -1,0 +1,26 @@
+ R←Test_InLine_003(stopFlag batchFlag);⎕TRAP;ns
+⍝ Test in-line mark-up; here _ <==> <em>
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ #.⎕SHADOW'TEMP'
+ 'TEMP'#.⎕NS''
+ #.TEMP.m←'This is a simple paragraph'
+ →FailsIf #.TEMP.m≢##.MarkAPL.Execute'ProcessUnderscores #.TEMP.m'
+
+ #.TEMP.m←'This is a simple _paragraph_!'
+ →FailsIf'This is a simple <em>paragraph</em>!'≢##.MarkAPL.Execute'ProcessUnderscores #.TEMP.m'
+
+ #.TEMP.m←'This is a simple _paragraph_.'
+ →FailsIf'This is a simple <em>paragraph</em>.'≢##.MarkAPL.Execute'ProcessUnderscores #.TEMP.m'
+
+ #.TEMP.m←'This is a simple _paragraph_ that h_a_s APL in it: `(_a←2*5)÷0.5'
+ →FailsIf'This is a simple <em>paragraph</em> that h_a_s APL in it: `(_a←2*5)÷0.5'≢##.MarkAPL.Execute'ProcessUnderscores #.TEMP.m'
+
+ #.TEMP.m←'A_B; This is a simple _paragraph_ that h_a_s APL in it: `(_a←2*5)÷0.5'
+ →FailsIf'A_B; This is a simple <em>paragraph</em> that h_a_s APL in it: `(_a←2*5)÷0.5'≢##.MarkAPL.Execute'ProcessUnderscores #.TEMP.m'
+
+ #.TEMP.m←'This is _ really _ a good example'
+ →FailsIf'This is _ really _ a good example'≢##.MarkAPL.Execute'ProcessUnderscores #.TEMP.m'
+
+ R←∆OK

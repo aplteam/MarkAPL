@@ -1,0 +1,11 @@
+ R←Test_Header_008(stopFlag batchFlag);⎕TRAP;m;ns
+⍝ Test headers with "=" and "-" syntax
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ m←'Level 1' '=' 'Level 2' '-'
+ ns←##.MarkAPL.Init''m
+ ns←##.MarkAPL.Process ns
+ →FailsIf~∧/('12'{'<h',⍺,'>',⍵,'</h',⍺,'>'}¨m[0 2])∊ns.html
+
+ R←∆OK

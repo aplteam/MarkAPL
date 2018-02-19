@@ -1,0 +1,24 @@
+ R←Test_SpecialAttrs_009(stopFlag batchFlag);⎕TRAP;m;ns;html
+⍝ Test  {}-syntax for code blocks with special attributes
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ m←'~~~ {id="foo" class="myclass" style="color:red;"}' '<code>' '      {`{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵``}' '' '~~~'
+ ns←##.MarkAPL.Init''m
+ ns←##.MarkAPL.Process ns
+ html←1↓↑,/(⎕UCS 13),¨ns.html
+
+ →PassesIf∨/'<code id="foo" class="myclass" style="color:red;">'∊html
+ →PassesIf∨/'&lt;code&gt;'⍷html
+ →PassesIf∨/'{`{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵``}'⍷html
+
+ m←'```{id="foo" class="myclass" style="color:red;"}' '<code>' '      {`{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵``}' '' '```'
+ ns←##.MarkAPL.Init''m
+ ns←##.MarkAPL.Process ns
+ html←1↓↑,/(⎕UCS 13),¨ns.html
+
+ →PassesIf∨/'<code id="foo" class="myclass" style="color:red;">'∊html
+ →PassesIf∨/'&lt;code&gt;'⍷html
+ →PassesIf∨/'{`{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵``}'⍷html
+
+ R←∆OK

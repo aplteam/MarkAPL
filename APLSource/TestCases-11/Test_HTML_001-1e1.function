@@ -1,0 +1,82 @@
+ R←Test_HTML_001(stopFlag batchFlag);⎕TRAP;md;ns
+⍝ Test <script> tags in all flavours.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←''
+ md,←⊂'This is a para.'
+ md,←⊂''
+ md,←⊂'<scriPt>Some Javascript</Script>'
+ md,←⊂'Another para'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ →PassesIf'<scriPt>'{⍺≡(⍴⍺)↑⍵}1⊃ns.html
+ →PassesIf∨/'</Script>'⍷1⊃ns.html
+ →PassesIf'<p>Another para</p>'≡↑¯1↑ns.html
+
+ md←''
+ md,←⊂'This is a para.'
+ md,←⊂''
+ md,←⊂'<scriPt lang="en" type="this and that">'
+ md,←⊂'id="fo0" class="red code right">'
+ md,←⊂'Some Javascript'
+ md,←⊂'More Javascript'
+ md,←⊂'</Script>'
+ md,←⊂'Another para'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ →PassesIf'<scriPt lang="en" type="this and that">'≡1⊃ns.html
+ →PassesIf'</Script>'≡5⊃ns.html
+ →PassesIf'<p>Another para</p>'≡↑¯1↑ns.html
+
+ md←''
+ md,←⊂'This is a para.'
+ md,←⊂''
+ md,←⊂'<script>'
+ md,←⊂'Some Javascript'
+ md,←⊂'More Javascript</Script>'
+ md,←⊂'Another para'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ →PassesIf'<script>'≡1⊃ns.html
+ →PassesIf'More Javascript</Script>'≡3⊃ns.html
+
+ md←''
+ md,←⊂'This is a para.'
+ md,←⊂''
+ md,←⊂'<script>'
+ md,←⊂'Some Javascript'
+ md,←⊂'More Javascript</Script> This will be ignored'
+ md,←⊂'Another para'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ →PassesIf'<script>'≡1⊃ns.html
+ →PassesIf'More Javascript</Script>'≡3⊃ns.html
+
+ md←''
+ md,←⊂'This is a para.'
+ md,←⊂''
+ md,←⊂'<script lang="apl">'
+ md,←⊂'Some Javascript'
+ md,←⊂'More Javascript'
+ md,←⊂'</Script>'
+ md,←⊂'Another para'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ →PassesIf'<script lang="apl">'≡1⊃ns.html
+ →PassesIf'</Script>'≡4⊃ns.html
+
+ md←''
+ md,←⊂'This is a para.'
+ md,←⊂''
+ md,←⊂'<scriPt>'
+ md,←⊂'Some Javascript'
+ md,←⊂'More Javascript'
+ md,←⊂'</Script>'
+ md,←⊂'Another para'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ →PassesIf'<scriPt>'≡1⊃ns.html
+ →PassesIf'</Script>'≡4⊃ns.html
+
+ R←∆OK

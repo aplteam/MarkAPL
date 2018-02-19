@@ -1,0 +1,14 @@
+ R←Test_Lists_042(stopFlag batchFlag);⎕TRAP;md;ns;parms;noOfListItems;html
+⍝ Test that " ** " does not start a list.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←''
+ md,←⊂'** This is not a list.'
+
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+
+ →PassesIf 0=+/'<ol>'⍷∊ns.html
+
+ R←∆OK

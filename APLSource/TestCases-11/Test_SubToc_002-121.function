@@ -1,0 +1,24 @@
+ R←Test_SubToc_002(stopFlag batchFlag);⎕TRAP;md;ns
+⍝ Test <<SubTOC>> when there is just one header to be reported.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←''
+ md,←⊂'[parm]:verbose=0'
+ md,←⊂'# Level 1'
+ md,←⊂'<<SubTOC>>'
+ md,←⊂'## Level 2'
+ md,←⊂'This is a para'
+ md,←⊂''
+
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+
+ →PassesIf 1=+/'<h1>'⍷∊ns.html
+ →PassesIf 1=+/'<h2>'⍷∊ns.html
+ →PassesIf 1=+/'<p>'⍷∊ns.html
+ →PassesIf 0=+/'<<SubTOC>>>'⍷∊ns.html
+ →PassesIf 0=+/'<nav>'⍷∊ns.html
+ →PassesIf 12=⍴ns.html
+
+ R←∆OK

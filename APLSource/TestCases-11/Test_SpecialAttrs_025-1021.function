@@ -1,0 +1,22 @@
+ R←Test_SpecialAttrs_025(stopFlag batchFlag);⎕TRAP;md;ns;parms
+⍝ Test special attributes for definition lists
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←''
+ md,←⊂'Term 1 {.foo ##goo style="color:red;"}'
+ md,←⊂': Explenation'
+ md,←⊂''
+ md,←⊂'Term 2'
+ md,←⊂': More information'
+ md,←⊂''
+
+ parms←##.MarkAPL.CreateParms
+ parms.verbose←0
+
+ ns←##.MarkAPL.Init parms md
+ ns←##.MarkAPL.Process ns
+
+ →PassesIf∨/'<dt class="foo" id="#goo" style="color:red;">'⍷∊ns.html
+
+ R←∆OK

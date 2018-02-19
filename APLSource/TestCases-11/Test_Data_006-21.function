@@ -1,0 +1,21 @@
+ R←Test_Data_006(stopFlag batchFlag);⎕TRAP;ns;md;parms
+⍝ Test a [data]: definition with trailing blanks (was once a bug)
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←''
+ md,←⊂'[data]:author=''Kai Jaeger''    '
+ md,←⊂'[data]:dob=19491203    '
+ md,←⊂''
+ md,←⊂'This is a para.'
+
+ parms←##.MarkAPL.CreateParms
+ parms.verbose←0
+
+ ns←##.MarkAPL.Init parms md
+ ns←##.MarkAPL.Process ns
+
+ →FailsIf'Kai Jaeger'≢0 1⊃ns.data
+ →FailsIf 19491203≢1 1⊃ns.data
+
+ R←∆OK

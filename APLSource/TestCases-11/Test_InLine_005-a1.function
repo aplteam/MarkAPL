@@ -1,0 +1,71 @@
+ R←Test_InLine_005(stopFlag batchFlag);⎕TRAP;ns;m;expected;res
+⍝ Test in-line mark-up; here `` <==> in-line code
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ m←'This: ```` is a back-tick'
+ res←##.MarkAPL.Execute'MarkUpInlineCode ''',m,''''
+ expected←'This: <code>`</code> is a back-tick'
+ →PassesIf expected≡res
+
+ m←'This is a paragraph with `{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}` APL code in it.'
+ res←##.MarkAPL.Execute'MarkUpInlineCode ''',m,''''
+ expected←'This is a paragraph with <code>{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}</code> APL code in it.'
+ →PassesIf expected≡res
+
+ m←'Enclose in-line code with two ``` (back-tick) characters'
+ res←##.MarkAPL.Execute'MarkUpInlineCode ''',m,''''
+ expected←'Enclose in-line code with two <code>` (back-tick) characters</code>'
+ →PassesIf expected≡res
+
+ m←'This:`` `⍴⍴array` ``is code and `(+/)÷⍴,⍵`'
+ res←##.MarkAPL.Execute'MarkUpInlineCode ''',m,''''
+ expected←'This:<code></code> <code>⍴⍴array</code> <code></code>is code and <code>(+/)÷⍴,⍵</code>'
+ →PassesIf expected≡res
+
+ m←'This:`` `⍴⍴array` ``is code and this: `(+/)÷⍴,⍵` as well.'
+ res←##.MarkAPL.Execute'MarkUpInlineCode ''',m,''''
+ expected←'This:<code></code> <code>⍴⍴array</code> <code></code>is code and this: <code>(+/)÷⍴,⍵</code> as well.'
+ →PassesIf expected≡res
+
+ m←'``⊃⍉↓``'
+ res←##.MarkAPL.Execute'MarkUpInlineCode ''',m,''''
+ expected←'<code></code>⊃⍉↓<code></code>'
+ →PassesIf expected≡res
+
+ m←'`` ` ``'
+ res←##.MarkAPL.Execute'MarkUpInlineCode ''',m,''''
+ expected←'<code></code> <code> `</code>'
+ →PassesIf expected≡res
+
+ m←'`` ` ``.'
+ res←##.MarkAPL.Execute'MarkUpInlineCode ''',m,''''
+ expected←'<code></code> <code> `.</code>'
+ →PassesIf expected≡res
+
+ m←'```'
+ res←##.MarkAPL.Execute'MarkUpInlineCode ''',m,''''
+ expected←'<code>`</code>'
+ →PassesIf expected≡res
+
+ m←'```.'
+ res←##.MarkAPL.Execute'MarkUpInlineCode ''',m,''''
+ expected←'<code>`.</code>'
+ →PassesIf expected≡res
+
+ m←'This is a back-tick (\`) and this is code: `{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}`'
+ res←##.MarkAPL.Execute'MarkUpInlineCode ''',m,''''
+ expected←'This is a back-tick (`) and this is code: <code>{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}</code>'
+ →PassesIf expected≡res
+
+ m←'These are three back-ticks (\`\`\`) and this is code: `{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}` and one more:`'
+ res←##.MarkAPL.Execute'MarkUpInlineCode ''',m,''''
+ expected←'These are three back-ticks (```) and this is code: <code>{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}</code> and one more:<code></code>'
+ →PassesIf expected≡res
+
+ m←'This is a backslash between code: `\`.'
+ res←##.MarkAPL.Execute'MarkUpInlineCode ''',m,''''
+ expected←'This is a backslash between code: <code>\</code>.'
+ →PassesIf expected≡res
+
+ R←∆OK

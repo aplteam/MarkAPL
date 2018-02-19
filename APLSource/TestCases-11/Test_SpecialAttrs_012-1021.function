@@ -1,0 +1,14 @@
+ R←Test_SpecialAttrs_012(stopFlag batchFlag);⎕TRAP;ns;md;fn
+⍝ Test  escaping { and } - shall not be considered a special attribute then.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←''
+ md,←⊂'## Header level 2 \{author\}'
+
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+
+ →PassesIf∨/' {author}'⍷∊ns.html
+
+ R←∆OK

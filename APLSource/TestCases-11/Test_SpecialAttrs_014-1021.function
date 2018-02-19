@@ -1,0 +1,14 @@
+ R←Test_SpecialAttrs_014(stopFlag batchFlag);⎕TRAP;ns;md;fn
+⍝ Test a path that uses {} for symbolic names. The \ must be escaped here.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←''
+ md,←⊂'This is a path: C:\Users\\{yourname}'
+
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+
+ →PassesIf'<p>This is a path: C:\Users\{yourname}</p>'≡∊ns.html
+
+ R←∆OK

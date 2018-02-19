@@ -1,0 +1,24 @@
+ R←Test_Links_002(stopFlag batchFlag);⎕TRAP;ns;html;md;expected
+⍝ Test external auto-links (<http://aplwiki.com)
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←⊂'Link: <http://aplwiki.com>'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ expected←'<p>Link: <a href="http://aplwiki.com" class="external_link">http://aplwiki.com</a></p>'
+ →PassesIf expected≡↑ns.html
+
+ md←⊂'Link: <http://aplwiki.com{id="foo" style="color:red;"}>'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ expected←'<p>Link: <a href="http://aplwiki.com" class="external_link" id="foo" style="color:red;">http://aplwiki.com</a></p>'
+ →PassesIf expected≡↑ns.html
+
+ md←⊂'<http://aplwiki.com/UserCommands/Adoc>'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ expected←'<p><a href="http://aplwiki.com/UserCommands/Adoc" class="external_link">http://aplwiki.com/UserCommands/Adoc</a></p>'
+ →PassesIf expected≡↑ns.html
+
+ R←∆OK

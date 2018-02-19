@@ -1,0 +1,27 @@
+ R←Test_Misc_024(stopFlag batchFlag);⎕TRAP;md;parms;html
+⍝ Test whether "lang" attribute in <html>
+⍝ Defaults to "en" but can be set
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←'# Test' '' '* This' '* That' '* More'
+ parms←##.MarkAPL.CreateParms
+ parms.createFullHtmlPage←1
+ html←parms ##.MarkAPL.Markdown2HTML md
+ →PassesIf 1=+/'<html lang="en">'⍷∊html
+
+ md←'# Test' '' '* This' '* That' '* More'
+ parms←##.MarkAPL.CreateParms
+ parms.createFullHtmlPage←1
+ parms.lang←'en'
+ html←parms ##.MarkAPL.Markdown2HTML md
+ →PassesIf 1=+/'<html lang="en">'⍷∊html
+
+ parms←##.MarkAPL.CreateParms
+ parms.lang←'de'
+ parms.createFullHtmlPage←1
+
+ html←parms ##.MarkAPL.Markdown2HTML md
+ →PassesIf 1=+/'<html lang="de">'⍷∊html
+
+ R←∆OK

@@ -1,0 +1,28 @@
+ R←Test_InLine_009(stopFlag batchFlag);⎕TRAP;html
+⍝ Tests bookmark links
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ #.⎕SHADOW'TEMP'
+ 'TEMP'#.⎕NS''
+ #.TEMP.md←'This link: [Bookmark Link (really!)](#) points to...'
+ html←##.MarkAPL.Execute'ProcessLinks #.TEMP.md'
+ →FailsIf'This link: <a href="#Bookmark-Link" class="bookmark_link">Bookmark Link (really!)</a> points to...'≢html
+
+ #.TEMP.md←'This link: [Bookmark Link (really!)](#{id="MyID"}) points to...'
+ html←##.MarkAPL.Execute'ProcessLinks #.TEMP.md'
+ →FailsIf'This link: <a href="#Bookmark-Link" id="MyID" class="bookmark_link">Bookmark Link (really!)</a> points to...'≢html
+
+ #.TEMP.md←'This link: [Bookmark Link (really!)](# {id="MyID"}) points to...'
+ html←##.MarkAPL.Execute'ProcessLinks #.TEMP.md'
+ →FailsIf'This link: <a href="#Bookmark-Link" id="MyID" class="bookmark_link">Bookmark Link (really!)</a> points to...'≢html
+
+ #.TEMP.md←'This link: [Bookmark Link (really!)](#"MyTitle"{id="MyID"}) points to...'
+ html←##.MarkAPL.Execute'ProcessLinks #.TEMP.md'
+ →FailsIf'This link: <a href="#Bookmark-Link" id="MyID" class="bookmark_link">MyTitle</a> points to...'≢html
+
+ #.TEMP.md←'This link: [Bookmark Link (really!)](# "MyTitle"{id="MyID"}) points to...'
+ html←##.MarkAPL.Execute'ProcessLinks #.TEMP.md'
+ →FailsIf'This link: <a href="#Bookmark-Link" id="MyID" class="bookmark_link">MyTitle</a> points to...'≢html
+
+ R←∆OK

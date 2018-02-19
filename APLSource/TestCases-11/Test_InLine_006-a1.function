@@ -1,0 +1,14 @@
+ R←Test_InLine_006(stopFlag batchFlag);⎕TRAP;ns;html;expected
+⍝ Test in-line mark-up; here: external link with just a URL
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ #.⎕SHADOW'TEMP'
+ 'TEMP'#.⎕NS''
+ #.TEMP.m←'This link: [](http://aplteam.com) takes you straight to the APL wiki.'
+ html←##.MarkAPL.Execute'ProcessLinks #.TEMP.m'
+
+ expected←'This link: <a href="http://aplteam.com" class="external_link">http://aplteam.com</a> takes you straight to the APL wiki.'
+ →FailsIf html≢expected
+
+ R←∆OK

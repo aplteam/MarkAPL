@@ -1,0 +1,12 @@
+ R←Test_Misc_040(stopFlag batchFlag);⎕TRAP;ps
+⍝ Exercise the `Help` method.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ ps←##.MarkAPL.CreateHelpParms
+ ps.viewInBrowser←0
+ ps.verbose←0
+ ps ##.MarkAPL.Help 0
+ ps ##.MarkAPL.Help 1
+
+ R←∆OK

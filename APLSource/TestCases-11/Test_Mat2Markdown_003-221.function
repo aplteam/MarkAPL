@@ -1,0 +1,44 @@
+ R←Test_Mat2Markdown_003(stopFlag batchFlag);⎕TRAP;ns;m;md;ch
+⍝ Test the conversion of an APL matrix to markdown with column header definition
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ m←''
+ m,←⊂'APL' 99 'Really great'
+ m,←⊂'Python' 70 'Nice'
+ m,←⊂'Cobol' 1 'Oh dear'
+ ch←'Lang:' 'Prod:Rank' ':Comment:'
+
+ md←ch ##.MarkAPL.Matrix2MarkdownTable⊃m
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+
+ →FailsIf'<table>'≢0⊃ns.html
+ →FailsIf'<thead>'≢1⊃ns.html
+ →FailsIf 3≠+/∨/¨'<th '∘⍷¨ns.html
+ →FailsIf'</thead>'≢7⊃ns.html
+ →FailsIf'<tbody>'≢8⊃ns.html
+ →FailsIf 9≠+/∨/¨'<td '∘⍷¨ns.html
+ →FailsIf 9≠+/∨/¨'</td>'∘⍷¨ns.html
+ →FailsIf 4≠+/∨/¨'<tr>'∘⍷¨ns.html
+ →FailsIf 4≠+/∨/¨'</tr>'∘⍷¨ns.html
+ →FailsIf'</table>'≢↑¯1↑ns.html
+ →FailsIf'</tbody>'≢↑¯2↑ns.html
+
+ →FailsIf 1≠+/(⊂'<th style="text-align: right;">Lang</th>')≡¨ns.html
+ →FailsIf 1≠+/(⊂'<th style="text-align: right;">Prod:Rank</th>')≡¨ns.html
+ →FailsIf 1≠+/(⊂'<th style="text-align: center;">Comment</th>')≡¨ns.html
+
+ →FailsIf 1≠+/(⊂'<td style="text-align: right;">APL</td>')≡¨ns.html
+ →FailsIf 1≠+/(⊂'<td style="text-align: right;">99</td>')≡¨ns.html
+ →FailsIf 1≠+/(⊂'<td style="text-align: center;">Really great</td>')≡¨ns.html
+
+ →FailsIf 1≠+/(⊂'<td style="text-align: right;">Python</td>')≡¨ns.html
+ →FailsIf 1≠+/(⊂'<td style="text-align: right;">70</td>')≡¨ns.html
+ →FailsIf 1≠+/(⊂'<td style="text-align: center;">Nice</td>')≡¨ns.html
+
+ →FailsIf 1≠+/(⊂'<td style="text-align: right;">Cobol</td>')≡¨ns.html
+ →FailsIf 1≠+/(⊂'<td style="text-align: right;">1</td>')≡¨ns.html
+ →FailsIf 1≠+/(⊂'<td style="text-align: center;">Oh dear</td>')≡¨ns.html
+
+ R←∆OK

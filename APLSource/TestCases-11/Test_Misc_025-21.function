@@ -1,0 +1,24 @@
+ R←Test_Misc_025(stopFlag batchFlag);⎕TRAP;md;parms;html;start;end
+⍝ Test "compressCSS"
+⍝ Defaults to "en" but can be set
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←'# Test' '' '* This' '* That' '* More'
+ parms←##.MarkAPL.CreateParms
+ parms.createFullHtmlPage←1
+ parms.compressCSS←1
+ html←0⊃parms ##.MarkAPL.Markdown2HTML md
+ start←html∊'<style media="screen">' '<style media="print">'
+ end←html≡¨⊂'</style>'
+ →PassesIf 2=+/0 1 1 0⍷(+\start)-+\end
+
+ parms←##.MarkAPL.CreateParms
+ parms.createFullHtmlPage←1
+ parms.compressCSS←0
+ html←0⊃parms ##.MarkAPL.Markdown2HTML md
+ start←html∊'<style media="screen">' '<style media="print">'
+ end←html≡¨⊂'</style>'
+ →PassesIf 100<+/(+\start)-+\end  ⍝ At least 100 lines (probably MUCH more, but things might change in the future)
+
+ R←∆OK

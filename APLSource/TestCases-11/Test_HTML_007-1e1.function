@@ -1,0 +1,41 @@
+ R←Test_HTML_007(stopFlag batchFlag);⎕TRAP;md;ns;l;this
+⍝ Test for user-defined tags.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+⍝ No HTML block: leading empty line is missing:
+ md←'This is a para.' '<MyTag>' 'That''s embraced by `<MyTag>`' '</MyTag>' '' 'Another para'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ →PassesIf(,⊂'<p>This is a para. &lt;MyTag&gt; That''s embraced by <code>&lt;MyTag&gt;</code> &lt;/MyTag&gt;</p>')∊ns.html
+
+ ⍝ No HTML block: trailing empty line is missing:
+ md←'This is a para.' '' '<MyTag>' 'That''s embraced by `<MyTag>`' '</MyTag>' 'Another para'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ →PassesIf(,⊂'<p>&lt;MyTag&gt; That''s embraced by <code>&lt;MyTag&gt;</code> &lt;/MyTag&gt; Another para</p>')∊ns.html
+ →PassesIf(,⊂'<p>This is a para.</p>')∊ns.html
+
+ ⍝ No HTML block: no empty lines at all:
+ md←'This is a para.' '<MyTag>' 'That''s embraced by `<MyTag>`' '</MyTag>' 'Another para'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ →PassesIf∨/''⍷∊ns.html
+
+ md←'This is a para.' '' '<MyTag>' 'That''s embraced by `<MyTag>`' '</MyTag>' '' 'Another para'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ →PassesIf'<MyTag>'{⍺≡(⍴⍺)↑⍵}1⊃ns.html
+ →PassesIf'That''s embraced by `<MyTag>`'{⍺≡(⍴⍺)↑⍵}2⊃ns.html
+ →PassesIf'</MyTag>'≡3⊃ns.html
+ →PassesIf'<p>Another para</p>'{⍺≡(-⍴⍺)↑⍵}↑¯1↑ns.html
+
+ md←'This is a para.' '' '<MyTag>' '' 'That''s embraced by `<MyTag>`' '' '</MyTag>' '' 'Another para'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ →PassesIf'<MyTag>'{⍺≡(⍴⍺)↑⍵}1⊃ns.html
+ →PassesIf'<p>That''s embraced by <code>&lt;MyTag&gt;</code></p>'{⍺≡(⍴⍺)↑⍵}2⊃ns.html
+ →PassesIf'</MyTag>'≡3⊃ns.html
+ →PassesIf'<p>Another para</p>'{⍺≡(-⍴⍺)↑⍵}↑¯1↑ns.html
+
+ R←∆OK

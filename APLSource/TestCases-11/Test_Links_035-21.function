@@ -1,0 +1,20 @@
+ R←Test_Links_035(stopFlag batchFlag);⎕TRAP;ns;html;md
+⍝ Test link to an internal ID that was defined as special attribute.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←''
+ md,←⊂'Program files(x86){#x86}'
+ md,←⊂''
+ md,←⊂': A definition.'
+ md,←⊂''
+ md,←⊂'[Link](#x86) to the definition.'
+
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+
+ →PassesIf∨/'<dt id="x86">'⍷∊ns.html
+ →PassesIf∨/'<p><a href="#x86" class="bookmark_link">Link</a> to the definition.</p>'⍷∊ns.html
+ →PassesIf 0∊⍴ns.report
+
+ R←∆OK

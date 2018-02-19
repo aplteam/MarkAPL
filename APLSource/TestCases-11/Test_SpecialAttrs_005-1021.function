@@ -1,0 +1,18 @@
+ R←Test_SpecialAttrs_005(stopFlag batchFlag);⎕TRAP;md;ns
+⍝ Test {}-syntax for a table: invalid special attributes (will become data).
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←''
+ md,←⊂'|Col A|Col B|  {foo}'
+ md,←⊂'|===|===|'
+ md,←⊂'|Row 1/Col A|Row 1/Col B|'
+ md,←⊂'|Row 1/Col A|Row 1/Col B|'
+ md,←⊂'|Row 1/Col A|Row 1/Col B|'
+
+ ns←##.MarkAPL.Init''md
+
+ ns←##.MarkAPL.Process ns
+ →PassesIf 1=+/'<td>{foo}</td>'⍷∊ns.html
+
+ R←∆OK

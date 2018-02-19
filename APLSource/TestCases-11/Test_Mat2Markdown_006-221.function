@@ -1,0 +1,17 @@
+ R←Test_Mat2Markdown_006(stopFlag batchFlag);⎕TRAP;m;md
+⍝ Test escaping of `|` within cells when all data is NOT code.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ m←''
+ m,←⊂'text scalar' '|'
+ m,←⊂'text vector' '12|34'
+
+ md←##.MarkAPL.Matrix2MarkdownTable⊃m
+
+ →PassesIf 3=⍴md
+ →PassesIf':-|:-'≡0⊃md
+ →PassesIf'text scalar|\|'≡1⊃md
+ →PassesIf'text vector|12\|34'≡2⊃md
+
+ R←∆OK
