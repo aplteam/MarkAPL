@@ -5,10 +5,10 @@
 [parm]:width          = 1000
 [parm]:reportLinks    = 1
 [parm]:collapsibleTOC = 1
-[parm]:linkToCSS      = 1
-[parm]:cssURL         = ''
-[parm]:printCSS       = 'file://C:\T\Projects\APLTree\MarkAPL\BlackOnWhite_print.css'
-[parm]:screenCSS      = 'file://C:\T\Projects\APLTree\MarkAPL\BlackOnWhite_screen.css'
+⍝[parm]:linkToCSS      = 1
+⍝[parm]:cssURL         = ''
+⍝[parm]:printCSS       = 'file://C:\T\Projects\APLTree\MarkAPL\BlackOnWhite_print.css'
+⍝[parm]:screenCSS      = 'file://C:\T\Projects\APLTree\MarkAPL\BlackOnWhite_screen.css'
                               
 
 
