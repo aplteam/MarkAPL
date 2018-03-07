@@ -3,7 +3,9 @@
 [parm]:bookmarkLink   = 6                         
 [parm]:collapsibleTOC = 1                         
 [parm]:title          = 'MarkAPL CheatSheet'      
-[parm]:width          = 1000                      
+[parm]:width          = 1000 
+[parm]:printCSS       = 'BlackOnWhite_print.css'
+[parm]:screenCSS      = 'BlackOnWhite_screen.css'                     
 
 
 Cheatsheet
@@ -363,24 +365,24 @@ Since Markdown is a writing format it is easy to write about <html> & use tags.
 #### External links
 
 ~~~
-External links with [APL wiki](http://aplwiki.com) and without link text: <http://aplwiki.com>
+External links with [The APLTree library on GitHub](https://github.com/aplteam/apltree) and without link text: <https://github.com/aplteam/apltree>
 ~~~
 
 Result:
 
-External links with [APL wiki](http://aplwiki.com) and without link text: <http://aplwiki.com>
+External links with [The APLTree library](https://github.com/aplteam/apltree) and without link text: <https://github.com/aplteam/apltree>
 
 Note that you **must** specify a protocol ("http://", "https://", "ftp://" etc), otherwise it is not going to be converted. Don't use this for "mailto:" links.
 
 You can add a title as well as [Special attributes](#) to an external link:
 
 ~~~
-[APL wiki](http://aplwiki.com"This link brings you to the APL wiki"{target="_blank"})
+[The APLTree project on GitHub](https://github.com/aplteam/apltree "This link brings you to the APL wiki"{target="_blank"})
 ~~~
 
 This is the result:
 
-[APL wiki](http://aplwiki.com"This link brings you to the APL wiki"{target="_blank"})
+[The APLTree project on GitHub](https://github.com/aplteam/apltree "This link brings you to the APL wiki"{target="_blank"})
 
 The title is shown when you hover with your mouse over the link.
 
@@ -389,7 +391,7 @@ The title is shown when you hover with your mouse over the link.
 A special version of an external link is the so-called automated link. Such a link is suitable only in case the url as such is going to be the link text:
 
 ~~~
-<http://aplwiki.com
+<https://github.com/aplteam/apltree>
 ~~~
 
 Note that such a link **must** specify a protocol like "http://", "https://", "ftp://" etc. Do not use autolinks for "mailto:" links.
@@ -435,8 +437,8 @@ The definition of such a reference can go anywhere in the document but usually t
 Examples for definitions:
 
 ~~~
-[1]:      http://aplwiki.com
-[git]:    http://github.com "Linus' brain child"{target="_blank"}
+[1]:      https://aplwiki.com
+[git]:    https://github.com "Linus' brain child"{target="_blank"}
 [vector]: http://vector.co.uk "The well-respected Journal of the British APL Association"
 ~~~
 
@@ -576,6 +578,6 @@ This document refers to version 4.4.0 of **_MarkAPL_**.<<br>>
 Kai Jaeger ⋄ APL Team Ltd ⋄ 2018-02-19
 
 ⍝ The link references:
-[1]:      http://aplwiki.com
-[git]:    http://github.com "Linus' brain child"{target="_blank"}
+[1]:      https://aplwiki.com
+[git]:    https://github.com "Linus' brain child"{target="_blank"}
 [vector]: https://sites.google.com/site/baavector/ "The well-respected Journal of the British APL Association"

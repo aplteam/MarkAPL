@@ -1,18 +1,20 @@
-[parm]:toc            = 2 3                              
-[parm]:numberHeaders  = 2 3 4 5 6                        
-[parm]:bookmarkLink   = 6                                
-[parm]:title          = 'MarkAPL Reference'              
-[parm]:width          = 1000                             
-[parm]:reportLinks    = 1                                
-[parm]:collapsibleTOC = 1                                
-[parm]:linkToCSS      = 1                                
-[parm]:screenCSS      = 'MarkAPL_screen.css'             
-[parm]:printCSS       = 'MarkAPL_print.css'              
-[parm]:cssURL         = 'C:\T\Projects\APLTree\MarkAPL\' 
+[parm]:toc            = 2 3
+[parm]:numberHeaders  = 2 3 4 5 6
+[parm]:bookmarkLink   = 6
+[parm]:title          = 'MarkAPL Reference'
+[parm]:width          = 1000
+[parm]:reportLinks    = 1
+[parm]:collapsibleTOC = 1
+⍝[parm]:linkToCSS      = 1
+⍝[parm]:cssURL         = ''
+⍝[parm]:printCSS       = 'file://C:\T\Projects\APLTree\MarkAPL\BlackOnWhite_print.css'
+⍝[parm]:screenCSS      = 'file://C:\T\Projects\APLTree\MarkAPL\BlackOnWhite_screen.css'
+                              
 
 
 MarkAPL Reference
 =================
+
 
 Overview
 --------
@@ -213,7 +215,7 @@ Compatibility, features, bugs
 
 ### Known bugs
 
-See <http://aplwiki.com/MarkAPL/ProjectPage>
+See <https://github.com/aplteam/MarkAPL>
 
 Reference
 ------------
@@ -275,14 +277,14 @@ This is true for any line that is not part of a code block, including lines that
 Example:
 
 ~~~
-Start of a para that contains a
+Start of a para that contains
 ⍝ Ignored
-a commented line.
+a comment line.
 ~~~
 
 This is the resulting HTML:
 
-     <p>Start of a para that contains a commented line.</p>
+     <p>Start of a para that contains a comment line.</p>
 
 
 #### Abbreviations
@@ -680,7 +682,9 @@ The names of the bookmarks are constructed automatically according to this set o
 * Remove the back-ticks around code.
 * Remove HTML entities (recursive calls to **_MarkAPL_**!)
 * Replace all spaces and newlines with hyphens.
-* Convert all alphabetic characters to lower case.
+* ~~Convert all alphabetic characters to lower case.~~
+
+  With version 3.9 this was changed. The reason is that although CSS selectors are case insensitive, HTML attributes **are not**!
 * Remove everything from the left until the first digit or ASCII letter or `∆` 
   or `⍙` is found (identifiers may not begin with a hyphen).
 * If nothing is left by then, use the identifier `section`.
@@ -890,6 +894,8 @@ Be aware that this is a special case: normally you can have special attributes o
 
 First of all, all in-line mark up does **not** touch code (in-line code as well as code blocks) and to some extend links since they can be marked as code.
 
+Note that you cannot assign [Special attributes](#) to any in-line mark-up.
+
 <<SubTOC>>
 
 
@@ -1011,10 +1017,10 @@ Since the missing back-tick is added to the **end** of the **paragraph** the dot
 Generally an external link looks like this:
 
 ~~~
-[The APL wiki](http://aplwiki.com "Link to the APL wiki")
+[MarkAPL on GitHub](https://github.com/aplteam/MarkAPL "Link to MarkAPL on GitHub")
 ~~~
 
-The result is a link like this one: [The APL wiki](http://aplwiki.com "Link to the APL wiki") which brings you to the APL wiki.
+The result is a link like this one: [MarkAPL on GitHub](https://github.com/aplteam/MarkAPL "Link to MarkAPL on GitHub")
 
 When you hover with the mouse over the link the title (that's the stuff within the double-quotes) is displayed.
 
@@ -1026,16 +1032,16 @@ Notes
 The title is optional, therefore the link can also be written as:
 
 ~~~
-[The APL wiki](http://aplwiki.com)
+[MarkAPL on GitHub](https://github.com/aplteam/MarkAPL)
 ~~~
 
 If you want the URL to become the link text then this would suffice:
 
 ~~~
-[](http://aplwiki.com)
+[](https://github.com/aplteam/MarkAPL)
 ~~~
 
-That would result in [](http://aplwiki.com).
+That would result in [](https://github.com/aplteam/MarkAPL)
 
 However, see the next topic (AutoLinks) as well. 
 
@@ -1045,10 +1051,10 @@ However, see the next topic (AutoLinks) as well.
 Because external links are often injected "as is" --- meaning that they actually have no link text and no link title --- you can also specify a link as:
 
 ~~~
-<http://aplwiki.com>
+<https://github.com/aplteam/MarkAPL>
 ~~~
 
-That results is this link: <http://aplwiki.com>: the link text and the URL are identical.
+That results is this link: <https://github.com/aplteam/MarkAPL>: the link text and the URL are identical.
 
 Note that you **must** specify a protocol (http://, https://, ftp://...), here, otherwise it is **not** treated as an automated link. Do **not** use this for `mailto:` links.
 
@@ -1131,13 +1137,13 @@ If the alt text is specified and not empty then any link that makes use of this 
 First example:
 
 ~~~
-[aplwiki]: http://aplwiki.com
+[markapl_on_github]: https://github.com/aplteam/MarkAPL
 ~~~
 
 In the document you can refer to this link reference with:
 
 ~~~
-[The APL wiki][aplwiki]
+[MarkAPL on GitHub][markapl_on_github]
 ~~~
 
 The text between the first pair of square brackets is the link text, the text between the second pair of square brackets is the ID of the link reference.
@@ -1145,15 +1151,15 @@ The text between the first pair of square brackets is the link text, the text be
 This would suffice however:
 
 ~~~
-[][aplwiki]
+[][markapl_on_github]
 ~~~
 
-In the former case "The APL wiki" would become the link text while in the latter case it would be "http://aplwiki.com" because the link reference has no alt text.
+In the former case "MarkAPL on GitHub" would become the link text while in the latter case it would be "https://github.com/aplteam/MarkAPL" because the link reference has no alt text.
 
 Second example:
 
 ~~~
-[fire]: http://aplwiki.com/Fire "Fire's home page on the APL wiki"
+[fire]: https://github.com/aplteam/Fire "Fire's home page on GitHub"
 ~~~
 
 If we refer to this definition with:
@@ -1162,7 +1168,7 @@ If we refer to this definition with:
 [][fire]
 ~~~
 
-then "Fire's home page on the APL wiki" would become the link text.
+then ""Fire's home page on GitHub" would become the link text.
 
 Notes: 
 
@@ -1198,10 +1204,10 @@ The reason is simple:
 
 [Special attributes](#) can be assigned to all links but references to link references:
 
-* `<http://aplwiki.com{#foo1}>`    `⍝` Note: **no** white-space allowed here!
+* `<https://github.com/aplteam/MarkAPL{#foo1}>`    `⍝` Note: **no** white-space allowed here!
 * `[BookMark Link](# {#foo2})`
-* `[APL wiki](http://aplwiki.com {#foo3})`
-* `[](http://aplwiki.com {target="_blank"})`
+* `[MarkAPL on GitHub](https://github.com/aplteam/MarkAPL {#foo3})`
+* `[](https://github.com/aplteam/MarkAPL {target="_blank"})`
 
 Note that special attributes for links are different from other special attributes: normally special attributes are recognized as such only at the end of a line. A link might or might not occur at the end of a line; if it doesn't then there would be no way to assign special attributes to a link. That's probably the reason that other Markdown dialects do not support special attributes for links.
 
@@ -1514,6 +1520,21 @@ A table must be separated from other stuff by empty lines.
 
 Note that table rows are defined by having at least one un-escaped pipe symbol. You may however add a leading as well as a trailing pipe symbol if you wish so. Many consider this to be more readable. 
 
+Note that this is a **_MarkAPL_** enhancement. In ordinary MarkAPL the definition of a table also requires a header and a devider between the header and the data rows. Therefore this is a minimum data table in ordinary Markdowndown:
+
+```
+Col a   | Col b
+--------|--------
+data 1a | data 1b
+```
+
+This is a minimum table in **_MarkAPL**_:
+
+```
+--------|--------
+data 1a | data 1b
+```
+
 However, a one-column table can only be constructed with either a leading or a trailing un-escape pipe symbol, or both.
 
 **_MarkAPL_** goes beyond the standard:
@@ -1653,7 +1674,7 @@ Cells can use in-line mark-up as shown here:
 |:---------------------|:-----------|-------:|:----------------------:|
 |Kai                   | Jaeger     | 1      |`{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}` |
 | Johann-Wolfgang      | von Goethe | 1923   |`{(⍴,⍵)÷+/,⍵}`         |
-| <http://aplwiki.com> | **bold**   | 123.23 |  `fns ⍣a=b⊣123`       |
+| <https://aplwiki.com>| **bold**   | 123.23 |  `fns ⍣a=b⊣123`       |
 | _Italic_             | ~~Strike~~ |        |   \|                  |
 | line<<br>>break             | |        |          |
 | Last line |
@@ -1665,7 +1686,7 @@ This is the result:
 |:---------------------|:-----------|-------:|:------------:|
 |Kai                   | Jaeger     | 1      |`{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}` |
 | Johann-Wolfgang      | von Goethe | 1923   |`{(⍴,⍵)÷+/,⍵}`|
-| <http://aplwiki.com> | **bold**   | 123.23 |  `fns ⍣a=b⊣123` |
+| <https://aplwiki.com>| **bold**   | 123.23 |  `fns ⍣a=b⊣123` |
 | _Italic_             | ~~Strike~~ |        |  \|            |
 | line<<br>>break             | |        |          |
 | Last line |
@@ -1866,7 +1887,7 @@ You can inject key-value pairs of data into a Markdown document.
 
 **_MarkAPL_** itself does not make use of such variables. It is up to other applications to take advantage of these pieces of data. 
 
-See <http://aplwiki.com/PresentAPL> for an example: This is software that generates a slide show from a single Markdown document.
+See <https://github.com/aplteam/PresentAPL> for an example: This is software that generates a slide show from a single Markdown document.
 
 It uses this feature to allow the author to set variables like "author", "company" and "title" which are then used to populate slides and meta tags.  
   
@@ -1956,6 +1977,8 @@ This can be useful to create an HTML file from a Markdown file with **_MarkAPL_*
 
 <<SubTOC>>
 
+Note that all [helpers](#Helpers) are discussed separately.
+
 
 #### ConvertMarkdownFile
 
@@ -2037,14 +2060,6 @@ Finally one can also set the `inputFilename` parameter. This trumps the right ar
 
 Internally it calls `Init` & `Process` & `MakeHTML_Doc`. 
 
-#### Matrix2MarkdownList
-
-This is a helper method that creates a Markdown list definition from an APL matrix; see [Helpers](#) for details.
-
-#### Matrix2MarkdownTable
-
-This is a helper method that creates a Markdown table definition from an APL matrix; see [Helpers](#) for details.
-
 
 #### Process          
 
@@ -2101,6 +2116,7 @@ In order to specify parameters follow these steps:
  lang                                                         "en"
  leanpubExtensions                                               0
  leanpubIconsUrl    'https://download.aplwiki.com/LeanPub/Images/'
+ lineNumberOffset                                                0
  linkToCSS                                                       0 
  markdownStrict                                                  0 
  noCSS                                                           0
@@ -2110,7 +2126,6 @@ In order to specify parameters follow these steps:
  reportLinks                                                     0
  reportLinksCaption                                  'Link report'
  screenCSS                                      MarkAPL_screen.css
- showHide                                              'Show;Hide' 
  subTocs                                                         1 
  syntaxSugar                                                     1
  title                                                     MarkAPL 
@@ -2311,6 +2326,11 @@ Flag that defaults to 0. In case this is 1 certain shortcuts like `A>` are recog
 URL that defaults to `https://download.aplwiki.com/LeanPub/Images/`. That's where **_MarkAPL_** will try to find the icons used by the LeanPub extensions. If you want to use the LeanPub extensions and make it independent from an Internet connection you need to download the icons and put them somewhere local and then point with `leanpubIconsUrl` to that local folder.
 
 
+##### lineNumberOffset
+
+Defaults to 0. Set this only in case **_MarkAPL_** is called recursively. Allows **_MarkAPL_** to adjust line number to be reproted as having a problem.
+
+
 ##### linkToCSS
 
 Boolean that defaults to 0. This means that CSS for screen and print is injected into the resulting HTML page. If this is 1 a <link> tag for the CSS file(s) is added to the header. Naturally `cssURL` must be set accordingly then.
@@ -2396,11 +2416,13 @@ The name of the CSS file (or several CSS files separated by commata) for the scr
 
 ##### showHide
 
-This is ignored in case `collapsibleTOC` is 0. It defaults to "Show;Hide". The `;` acts as a separator. If `collapsibleTOC` is 1 then the header of the TOC is compiled initially from `tocHeader` followed by ` (` and "Show". After that `)` is added.
+~~This is ignored in case `collapsibleTOC` is 0. It defaults to "Show;Hide". The `;` acts as a separator. If `collapsibleTOC` is 1 then the header of the TOC is compiled initially from `tocHeader` followed by ` (` and "Show". After that `)` is added.~~
 
-When the user clicks on this "Show" (left to the `;`) is replaced by "Hide" (right to `;`) in the TOC header.
+~~When the user clicks on this "Show" (left to the `;`) is replaced by "Hide" (right to `;`) in the TOC header.~~
 
-Note that this parameter has an effect only when the CSS is injected. Linked-to CSS must be prepared properly.
+~~Note that this parameter has an effect only when the CSS is injected. Linked-to CSS must be prepared properly.~~
+
+With version 4.3 this parameter is ignored. Instead of text triangles (`▼` and `▲`) are used mimiking combo boxes. Note that this change requires a change in the CSS as well.
 
 
 ##### subTocs
@@ -2450,7 +2472,7 @@ You can change this by setting the parameter `toc` to ...
 
 Note that `bookmarkLink`must have at least the same value as `toc`.
 
-You can influence the toc in several ways; see the parameters [collapsibleTOC](#), [tocCaption](#), [showHide](#).
+You can influence the toc in several ways; see the parameters [collapsibleTOC](#) and [tocCaption](#).
 
 Note that the <nav> the toc is embraced by gets an ID `main_nav` or `main_nav_no_collape` assigned to it depending on the setting if `collapsibleTOC`.
 
@@ -2567,9 +2589,11 @@ After having created the `ns` namespace by calling `Init` this variable contains
 
 ##### lineNumbers
 
-After having created the `ns` namespace by calling `Init` this variable contains a vector of integers representing line numbers in `markdown`. This allows the line number to be reported. Also, [Function calls](# "Embedded APL function calls") can access the line number as well.
+After having created the `ns` namespace by calling `Init` this variable contains a vector of integers representing line numbers in `markdown`. This allows the current line number to be reported in case there is a problem like odd number of double quotes, invalid internal links etc. Note that [Function calls](# "Embedded APL function calls") can access the line numbers as well.
 
 Note that line numbers refer to the MarkDown rather than the HTML.  
+
+See also [`lineNumberOffset`](#).
   
 
 ##### linkRefs
@@ -2617,7 +2641,7 @@ This is a vector of two-item vectors:
 2. The caption of the header as displayed.
 
 
-##### toc
+##### toc{#ns_toc}
 
 This is a vector of ~~four~~ three-item vectors:
 
@@ -2787,8 +2811,9 @@ Before reporting a bug please check carefully your Markdown. More often than not
 
 If you cannot work out why it goes wrong report it to me -- see the previous topic for how to report a problem.
 
-This document refers to version 3.9.0 of **_MarkAPL_**.<<br>>
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2017-12-11
+This document refers to version 4.4.0 of **_MarkAPL_**.
+
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2018-02-19
 
 [^abandon]: Wikipedia definition of abandonware: <https://www.wikiwand.com/en/Abandonware>
 [^commonmark]: The CommonMark specification: <http://spec.commonmark.org/> 

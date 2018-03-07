@@ -5,10 +5,8 @@
 [parm]:width          = 1000
 [parm]:reportLinks    = 1
 [parm]:collapsibleTOC = 1
-⍝[parm]:linkToCSS      = 1
-⍝[parm]:cssURL         = ''
-⍝[parm]:printCSS       = 'file://C:\T\Projects\APLTree\MarkAPL\BlackOnWhite_print.css'
-⍝[parm]:screenCSS      = 'file://C:\T\Projects\APLTree\MarkAPL\BlackOnWhite_screen.css'
+[parm]:printCSS       = 'BlackOnWhite_print.css'
+[parm]:screenCSS      = 'BlackOnWhite_screen.css'
                               
 
 
@@ -215,7 +213,7 @@ Compatibility, features, bugs
 
 ### Known bugs
 
-See <http://aplwiki.com/MarkAPL/ProjectPage>
+See <https://github.com/aplteam/MarkAPL>
 
 Reference
 ------------
@@ -1017,10 +1015,10 @@ Since the missing back-tick is added to the **end** of the **paragraph** the dot
 Generally an external link looks like this:
 
 ~~~
-[The APL wiki](http://aplwiki.com "Link to the APL wiki")
+[MarkAPL on GitHub](https://github.com/aplteam/MarkAPL "Link to MarkAPL on GitHub")
 ~~~
 
-The result is a link like this one: [The APL wiki](http://aplwiki.com "Link to the APL wiki") which brings you to the APL wiki.
+The result is a link like this one: [MarkAPL on GitHub](https://github.com/aplteam/MarkAPL "Link to MarkAPL on GitHub")
 
 When you hover with the mouse over the link the title (that's the stuff within the double-quotes) is displayed.
 
@@ -1032,16 +1030,16 @@ Notes
 The title is optional, therefore the link can also be written as:
 
 ~~~
-[The APL wiki](http://aplwiki.com)
+[MarkAPL on GitHub](https://github.com/aplteam/MarkAPL)
 ~~~
 
 If you want the URL to become the link text then this would suffice:
 
 ~~~
-[](http://aplwiki.com)
+[](https://github.com/aplteam/MarkAPL)
 ~~~
 
-That would result in [](http://aplwiki.com).
+That would result in [](https://github.com/aplteam/MarkAPL)
 
 However, see the next topic (AutoLinks) as well. 
 
@@ -1051,10 +1049,10 @@ However, see the next topic (AutoLinks) as well.
 Because external links are often injected "as is" --- meaning that they actually have no link text and no link title --- you can also specify a link as:
 
 ~~~
-<http://aplwiki.com>
+<https://github.com/aplteam/MarkAPL>
 ~~~
 
-That results is this link: <http://aplwiki.com>: the link text and the URL are identical.
+That results is this link: <https://github.com/aplteam/MarkAPL>: the link text and the URL are identical.
 
 Note that you **must** specify a protocol (http://, https://, ftp://...), here, otherwise it is **not** treated as an automated link. Do **not** use this for `mailto:` links.
 
@@ -1137,13 +1135,13 @@ If the alt text is specified and not empty then any link that makes use of this 
 First example:
 
 ~~~
-[aplwiki]: http://aplwiki.com
+[markapl_on_github]: https://github.com/aplteam/MarkAPL
 ~~~
 
 In the document you can refer to this link reference with:
 
 ~~~
-[The APL wiki][aplwiki]
+[MarkAPL on GitHub][markapl_on_github]
 ~~~
 
 The text between the first pair of square brackets is the link text, the text between the second pair of square brackets is the ID of the link reference.
@@ -1151,15 +1149,15 @@ The text between the first pair of square brackets is the link text, the text be
 This would suffice however:
 
 ~~~
-[][aplwiki]
+[][markapl_on_github]
 ~~~
 
-In the former case "The APL wiki" would become the link text while in the latter case it would be "http://aplwiki.com" because the link reference has no alt text.
+In the former case "MarkAPL on GitHub" would become the link text while in the latter case it would be "https://github.com/aplteam/MarkAPL" because the link reference has no alt text.
 
 Second example:
 
 ~~~
-[fire]: http://aplwiki.com/Fire "Fire's home page on the APL wiki"
+[fire]: https://github.com/aplteam/Fire "Fire's home page on GitHub"
 ~~~
 
 If we refer to this definition with:
@@ -1168,7 +1166,7 @@ If we refer to this definition with:
 [][fire]
 ~~~
 
-then "Fire's home page on the APL wiki" would become the link text.
+then ""Fire's home page on GitHub" would become the link text.
 
 Notes: 
 
@@ -1204,10 +1202,10 @@ The reason is simple:
 
 [Special attributes](#) can be assigned to all links but references to link references:
 
-* `<http://aplwiki.com{#foo1}>`    `⍝` Note: **no** white-space allowed here!
+* `<https://github.com/aplteam/MarkAPL{#foo1}>`    `⍝` Note: **no** white-space allowed here!
 * `[BookMark Link](# {#foo2})`
-* `[APL wiki](http://aplwiki.com {#foo3})`
-* `[](http://aplwiki.com {target="_blank"})`
+* `[MarkAPL on GitHub](https://github.com/aplteam/MarkAPL {#foo3})`
+* `[](https://github.com/aplteam/MarkAPL {target="_blank"})`
 
 Note that special attributes for links are different from other special attributes: normally special attributes are recognized as such only at the end of a line. A link might or might not occur at the end of a line; if it doesn't then there would be no way to assign special attributes to a link. That's probably the reason that other Markdown dialects do not support special attributes for links.
 
@@ -1674,7 +1672,7 @@ Cells can use in-line mark-up as shown here:
 |:---------------------|:-----------|-------:|:----------------------:|
 |Kai                   | Jaeger     | 1      |`{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}` |
 | Johann-Wolfgang      | von Goethe | 1923   |`{(⍴,⍵)÷+/,⍵}`         |
-| <http://aplwiki.com> | **bold**   | 123.23 |  `fns ⍣a=b⊣123`       |
+| <https://aplwiki.com>| **bold**   | 123.23 |  `fns ⍣a=b⊣123`       |
 | _Italic_             | ~~Strike~~ |        |   \|                  |
 | line<<br>>break             | |        |          |
 | Last line |
@@ -1686,7 +1684,7 @@ This is the result:
 |:---------------------|:-----------|-------:|:------------:|
 |Kai                   | Jaeger     | 1      |`{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}` |
 | Johann-Wolfgang      | von Goethe | 1923   |`{(⍴,⍵)÷+/,⍵}`|
-| <http://aplwiki.com> | **bold**   | 123.23 |  `fns ⍣a=b⊣123` |
+| <https://aplwiki.com>| **bold**   | 123.23 |  `fns ⍣a=b⊣123` |
 | _Italic_             | ~~Strike~~ |        |  \|            |
 | line<<br>>break             | |        |          |
 | Last line |
@@ -1887,7 +1885,7 @@ You can inject key-value pairs of data into a Markdown document.
 
 **_MarkAPL_** itself does not make use of such variables. It is up to other applications to take advantage of these pieces of data. 
 
-See <http://aplwiki.com/PresentAPL> for an example: This is software that generates a slide show from a single Markdown document.
+See <https://github.com/aplteam/PresentAPL> for an example: This is software that generates a slide show from a single Markdown document.
 
 It uses this feature to allow the author to set variables like "author", "company" and "title" which are then used to populate slides and meta tags.  
   
@@ -2813,7 +2811,7 @@ If you cannot work out why it goes wrong report it to me -- see the previous top
 
 This document refers to version 4.4.0 of **_MarkAPL_**.
 
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2018-02-19
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2018-03-06
 
 [^abandon]: Wikipedia definition of abandonware: <https://www.wikiwand.com/en/Abandonware>
 [^commonmark]: The CommonMark specification: <http://spec.commonmark.org/> 
