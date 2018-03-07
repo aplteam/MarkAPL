@@ -26,7 +26,7 @@
  html←parms ##.MarkAPL.MakeHTML_Doc ns.html
 
  expected←''
- home←#.FilesAndDirs.EnforceSlash↑#.APLTreeUtils.SplitPath ⎕WSID
+ home←#.FilesAndDirs.EnforceSlash #.FilesAndDirs.PWD,'/'
  expected,←⊂'<link href="file:///',home,'Dark_Screen.css" rel="stylesheet" media="screen">'
  expected,←⊂'<link href="file:///',home,'Dark_Print.css" rel="stylesheet" media="print">'
  →PassesIf∧/expected∊html

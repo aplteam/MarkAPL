@@ -3,7 +3,7 @@
 
 ## Overview
 
-MarkAPL is a converter that converts [Markdown ](https://daringfireball.net/projects/markdown/) into valid HTML5. It is written in Dyalog.
+MarkAPL is a converter that converts [Markdown ](https://daringfireball.net/projects/markdown/ "The original Markdown specification") into valid HTML5. It is written in Dyalog.
 
 Markdown aims to make the process of writing for the web much easier by improving readability and, as a consequence, maintainability.
 
@@ -42,7 +42,7 @@ The following table highlights the features supported in MarkAPL:
 |Links                     |    X           |    X      |    X       |    X       |
 |Link references           |    X           |    X      |    X       |    X       |
 |Lists                     |    X           |    X      |    X       |    X       |
-| "loose"/"tight" lists    |    X           |    X      |    X       |            |
+|"loose" / "tight" lists   |    X           |    X      |    X       |            |
 |Markdown inside HTML      |                |    X      |    X       |            |
 |Paragraphs                |    X           |    X      |    X       |    X       |
 |Tables                    |    X           |    X      |    X       |    X       |
@@ -52,7 +52,6 @@ The following table highlights the features supported in MarkAPL:
 |Smart typography          |                |           |    X       |    X       |
 |Special attributes        |                |   X       |    X       |    X       |
 |LeanPub extensions        |                |           |            |    X       |
-|Git's check boxes         |                |           |            |            |
 
 Note that marking up code blocks by indenting was deliberately not implemented in MarkAPL.
 
@@ -66,6 +65,6 @@ There is also a [cheat sheet](http://download.aplteam.com/MarkAPL_CheatSheet.htm
 
 ## Markdown editor "Meddy"
 
-Note that there is an editor available that uses MarkAPL as converter: [Meddy](https://github.com/aplteam/Meddy). 
+Note that there is an editor available that uses MarkAPL as converter: [Meddy](https://github.com/aplteam/Meddy "Meddy on GitHub"). 
 
-Although the editor is quite basic (but comes with Undo/Redo and a powerful Search/Replace) it supports all MarkAPL features.
+The editor is quite basic (but comes with Undo/Redo and a powerful Search/Replace) it supports all MarkAPL features.

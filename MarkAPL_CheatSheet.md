@@ -574,8 +574,8 @@ For details refer to the [**_MarkAPL_** reference document](http://download.aplt
 
 ## Version
 
-This document refers to version 4.4.0 of **_MarkAPL_**.<<br>>
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2018-02-19
+This document refers to version 4.4.1 of **_MarkAPL_**.<<br>>
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2018-03-07
 
 ⍝ The link references:
 [1]:      https://aplwiki.com
