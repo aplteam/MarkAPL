@@ -62,11 +62,13 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'4.4.1' '2018-03-07'
+      r←(Last⍕⎕THIS)'4.4.2' '2018-??-??'
     ∇
 
     ∇ History
       :Access Public Shared
+      ⍝ * 4.4.2
+      ⍝   * Change to the CSS in order to make code better readable.
       ⍝ * 4.4.1                    
       ⍝   * The MarkAPL.html document had a problem with it's CSS files.
       ⍝   * Documentation improved.

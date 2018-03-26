@@ -1,4 +1,4 @@
-/* MarkAPL's default screen CSS version 2.3 from 2018-02-26 */
+/* MarkAPL's default screen CSS version 2.4 from 2018-03-26 */
 
 /* Note that there are some variables embedded as comments which will be replaced
    by MarkAPL. The names are embraced by "<<", so for a variable "foo" it is
@@ -468,6 +468,8 @@ body  {
     max-width: 900px; /* <<maxwidth>> */
     padding: 0.83em;
     color: #505050;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 h1, h2, h3, h4, h5, h6 {
     padding-left: 0;
@@ -567,7 +569,6 @@ li p {
     text-indent: 0;
 }
 pre {
-    overflow: scroll;
     padding: 0.55em 0.27em;
     margin: 1.11em 0 1.11em 0;
     background-color: black;
@@ -575,6 +576,7 @@ pre {
     border: 1px Silver solid;
     display: block;
     font-family: APLFont, monospace;
+    white-space: pre-wrap;
 }
 pre > code {
     line-height: 1.2;
@@ -583,6 +585,7 @@ pre > code {
     margin: 0;
     background-color: inherit;
     color: inherit;
+    white-space: pre-wrap;
 }
 a code {
     padding: 0;
