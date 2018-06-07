@@ -1101,7 +1101,7 @@ This is an _ordinary_ paragraph.</code></pre>
 <pre><code>[fire]: https://github.com/aplteam/Fire "Fire's home page on GitHub"</code></pre>
 <p>If we refer to this definition with:</p>
 <pre><code>[][fire]</code></pre>
-<p>then “”Fire's home page on GitHub" would become the link text.</p>
+<p>then “Fire's home page on GitHub” would become the link text.</p>
 <p>Notes:</p>
 <ul>
 <li>In case of a typo in the link definition — meaning that <strong><em>MarkAPL</em></strong> cannot find a corresponding link reference — the text will appear “as is” in the final document but the failing reference will also be reported on <a href="#report" class="bookmark_link"><code>ns.report</code></a>.</li>
@@ -2434,8 +2434,12 @@ This is a paragraph with curlies at the end: \{\}.
 </ul>
 <p>Note that <code>bookmarkLink</code>must have at least the same value as <code>toc</code>.</p>
 <p>You can influence the toc in several ways; see the parameters <a href="#collapsibleTOC" class="bookmark_link">collapsibleTOC</a> and <a href="#tocCaption" class="bookmark_link">tocCaption</a>.</p>
-<p>Note that the &lt;nav&gt; the toc is embraced by gets an ID <code>main_nav</code> or <code>main_nav_no_collape</code> assigned to it depending on the setting if <code>collapsibleTOC</code>.</p>
-<p>Note that you can insert <a href="#subTocs" class="bookmark_link">sub topics</a> only if <code>toc</code> is not 0.</p>
+<p>Notes:</p>
+<ul>
+<li>The &lt;nav&gt; the toc is embraced by &lt;div&gt;s and gets an ID <code>main_nav</code> or <code>main_nav_no_collape</code> assigned to it depending on the setting if <code>collapsibleTOC</code>.</li>
+<li>You can insert <a href="#subTocs" class="bookmark_link">sub topics</a> only if <code>toc</code> is not 0.</li>
+<li>In order to have just one level in your TOC (say level 2) you cannot just specify <code>toc=2</code>  because that is interpreted as “all levels up to two” — it has to be a vector. Specify <code>toc=2 2</code> instead; that does the trick.</li>
+</ul>
 <div class="h_tag">
 <a href="#tocCaption" id="tocCaption" class="autoheader_anchor">
 <h5>3.4.2.37. tocCaption</h5>

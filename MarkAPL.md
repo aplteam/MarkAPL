@@ -1166,7 +1166,7 @@ If we refer to this definition with:
 [][fire]
 ~~~
 
-then ""Fire's home page on GitHub" would become the link text.
+then "Fire's home page on GitHub" would become the link text.
 
 Notes: 
 
@@ -2472,9 +2472,13 @@ Note that `bookmarkLink`must have at least the same value as `toc`.
 
 You can influence the toc in several ways; see the parameters [collapsibleTOC](#) and [tocCaption](#).
 
-Note that the <nav> the toc is embraced by gets an ID `main_nav` or `main_nav_no_collape` assigned to it depending on the setting if `collapsibleTOC`.
+Notes:
 
-Note that you can insert [subTocs](# "sub topics") only if `toc` is not 0.
+* The <nav> the toc is embraced by <div>s and gets an ID `main_nav` or `main_nav_no_collape` assigned to it depending on the setting if `collapsibleTOC`.
+
+* You can insert [subTocs](# "sub topics") only if `toc` is not 0.
+
+* In order to have just one level in your TOC (say level 2) you cannot just specify `toc=2`  because that is interpreted as "all levels up to two" --- it has to be a vector. Specify `toc=2 2` instead; that does the trick.
 
 
 ##### tocCaption
