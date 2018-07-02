@@ -15,11 +15,11 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- expected←⊂''
+ expected←''
  expected,←⊂'<div class="leanpub_A">'
  expected,←⊂'<h3>A Discussion!</h3>'
  expected,←⊂'<p>…</p>'
  expected,←⊂'</div>'
- →PassesIf expected≡ns.html
+ →PassesIf expected≡ns.html~⊂''
 
  R←∆OK

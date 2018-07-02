@@ -62,14 +62,17 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'4.4.2' '2018-??-??'
+      r←(Last⍕⎕THIS)'4.4.2.4' '2018-07-02'
     ∇
 
     ∇ History
       :Access Public Shared
       ⍝ * 4.4.2
-      ⍝   * Change to the CSS in order to make code better readable.
-      ⍝ * 4.4.1                    
+      ⍝   * CSS got changes in order to make code better readable.
+      ⍝     * Bug fixes:
+      ⍝       * An abbreviation title that contained itself an abbreviation led to mutilated HTML.
+      ⍝       * Abbreviations did not honour word boundaries.
+      ⍝ * 4.4.1
       ⍝   * The MarkAPL.html document had a problem with it's CSS files.
       ⍝   * Documentation improved.
       ⍝ * 4.4.0
@@ -998,7 +1001,7 @@
                   (b/align)←⊂'left'
               :EndIf
           :EndIf
-
+     
           :If 2=drop
               ns.html,←('th'∘{⍺,⍵}¨1 AddAlignStyle¨align)Tag¨(⍴align)↑head,(⍴align)⍴⊂''
               ns.html,←⊂'</tr>'
@@ -2437,7 +2440,8 @@
               tag2←'<abbr title="',comment,'">',abbr,'</abbr>'
               match2←{0=+/b←'&'=w←⍵:w ⋄ (b/w)←⊂'&amp;' ⋄ ⊃,/w}abbr
               match1←'"',match2,'"'
-              ignore←'<img.*>' '<a .*>.*</a>' '<code>.*</code>' '<code .*>.*</code>'
+              match2←'\b',match2,'\b'
+              ignore←'<img.*>' '<a .*>.*</a>' '<code>.*</code>' '<code .*>.*</code>' '<abbr .*>.*</abbr>'
               html←(ignore,match1 match2)⎕R((,¨(⍴ignore)⍴'&'),tag1 tag2)⍠('Mode' 'D')('DotAll' 1)('Greedy' 0)⊣html
           :EndFor
           ns.html←html
@@ -3126,7 +3130,7 @@
           title←''
       :EndIf
       :If 0=+/'://'⍷url         ⍝ Protocol
-
+     
       :AndIf 'mailto:'{⍺≢(⍴,⍺)↑⍵}url ⍝ Is not a "mailto" link
       :AndIf '#'≠1⍴url          ⍝ Bookmark
       :AndIf ':/'≢2⍴1↓url,'  '  ⍝ Absolute Windows path
@@ -3466,7 +3470,7 @@
           b2←Between b2
           bool←b1∨b2
           :Return
-
+     
           fences←'~`'
           first←>/⌊/¨Where¨b1 b2,¨1     ⍝ 0=~, 1=`
           :If 0<+/b1
