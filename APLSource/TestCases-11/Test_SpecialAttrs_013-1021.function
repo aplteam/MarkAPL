@@ -1,5 +1,5 @@
  R←Test_SpecialAttrs_013(stopFlag batchFlag);⎕TRAP;ns;md;fn
-⍝ Test a muli-line paragraph
+⍝ Muli-line paragraph: assign ID.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

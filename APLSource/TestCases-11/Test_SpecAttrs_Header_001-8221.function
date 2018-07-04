@@ -1,5 +1,5 @@
- R←Test_SpecialAttrs_012(stopFlag batchFlag);⎕TRAP;ns;md;fn
-⍝ Test  escaping { and } - shall not be considered a special attribute then.
+ R←Test_SpecAttrs_Header_001(stopFlag batchFlag);⎕TRAP;ns;md;fn
+⍝ Header: escaping { and } with \; shall not be considered a special attribute then.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

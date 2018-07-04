@@ -1,5 +1,5 @@
  R←Test_SpecialAttrs_014(stopFlag batchFlag);⎕TRAP;ns;md;fn
-⍝ Test a path that uses {} for symbolic names. The \ must be escaped here.
+⍝ Test a path that uses {} for symbolic names. The \ must be escaped here. Must NOT be treated as special attribute.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

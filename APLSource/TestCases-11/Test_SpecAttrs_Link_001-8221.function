@@ -1,5 +1,5 @@
- R←Test_SpecialAttrs_011(stopFlag batchFlag);⎕TRAP;ns;md;fn
-⍝ Test  {}-syntax for a link
+ R←Test_SpecAttrs_Link_001(stopFlag batchFlag);⎕TRAP;ns;md;fn
+⍝ Link: assign an ID.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

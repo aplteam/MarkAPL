@@ -1,5 +1,5 @@
- R←Test_SpecialAttrs_001(stopFlag batchFlag);⎕TRAP;md;ns;expected
-⍝ Test {}-syntax for a table without columns (assigning ID, class, attributes)
+ R←Test_SpecAttrs_Table_001(stopFlag batchFlag);⎕TRAP;md;ns;expected
+⍝ Table without columns: assigning ID, class, attributes
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

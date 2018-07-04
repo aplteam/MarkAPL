@@ -1,5 +1,5 @@
- R←Test_SpecialAttrs_030(stopFlag batchFlag);⎕TRAP;md;ns;parms
-⍝ Test {}-syntax for headers with `bookmarkLink` set to 2. Same as 029 but with ATX headers
+ R←Test_SpecAttrs_Header_004(stopFlag batchFlag);⎕TRAP;md;ns;parms
+⍝ Headers: several assignments for ATX headers with `bookmarkLink←2`
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

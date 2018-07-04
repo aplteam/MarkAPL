@@ -1,5 +1,5 @@
- R←Test_SpecialAttrs_025(stopFlag batchFlag);⎕TRAP;md;ns;parms
-⍝ Test special attributes for definition lists
+ R←Test_SpecAttrs_DefLists_001(stopFlag batchFlag);⎕TRAP;md;ns;parms
+⍝ Definition list: several assignments.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 
@@ -7,9 +7,7 @@
  md,←⊂'Term 1 {.foo ##goo style="color:red;"}'
  md,←⊂': Explenation'
  md,←⊂''
- md,←⊂'Term 2'
- md,←⊂': More information'
- md,←⊂''
+ md,←⊂': Explenation2'
 
  parms←##.MarkAPL.CreateParms
  parms.verbose←0

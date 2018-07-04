@@ -1,5 +1,5 @@
- R←Test_SpecialAttrs_023(stopFlag batchFlag);⎕TRAP;ns;md;fn
-⍝ Test bookmark link with target=_blank
+ R←Test_SpecAttrs_Link_004(stopFlag batchFlag);⎕TRAP;ns;md;fn
+⍝ Bookmark link: assign target=_blank
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

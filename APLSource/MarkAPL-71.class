@@ -62,11 +62,16 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'4.4.2.4' '2018-07-02'
+      r←(Last⍕⎕THIS)'4.4.3.7' '2018-07-03'
     ∇
 
     ∇ History
       :Access Public Shared
+      ⍝ * 4.4.3
+      ⍝   * Bug fixes
+      ⍝     * In a definition list the term should never become an <abbr> tag.
+      ⍝     * Assigning special attributes on multi-line SetText headers failed to work.
+      ⍝     * Special attributes assigned to the definition part of a def list (the <dd> tag) were ignored. 
       ⍝ * 4.4.2
       ⍝   * CSS got changes in order to make code better readable.
       ⍝     * Bug fixes:
@@ -672,12 +677,14 @@
                   bl2{v←⍺ ⋄ 0∊⍴⍵:v ⋄ ((¯1+⊃⍵)⊃v)←dmb((¯1+⊃⍵)⊃v),' ',(⊃⍵)⊃v ⋄ ((⊃⍵)⊃v)←'' ⋄ v ∇ 1↓⍵}←⌽Where':'≠⊃¨dlb¨bl2
                   bl2←(0<⊃∘⍴¨bl2)/bl2
                   bl2←{⍵↓⍨1+⍵⍳':'}¨bl2
+                  sa←GetSpecialAttributes¨bl2
+                  bl2←sa DropSpecialAttributes¨bl2
                   bl2←⊃¨ns ProcessInlineMarkUp¨bl2
                   :If 1=not
                   :AndIf 1=⍴bl2
-                      bl2←⊂'dd'Tag⊃bl2
+                      bl2←⊂('dd',⊃sa)Tag⊃bl2
                   :Else
-                      :If 1<⍴bl2←'dd'∘Tag¨Tag¨bl2
+                      :If 1<⍴bl2←((⊂'dd'),¨sa)Tag¨Tag¨bl2
                           (1⊃bl2)←'<p>'⎕R'<p class="first_dd">'⊣1⊃bl2
                       :EndIf
                   :EndIf
@@ -1119,7 +1126,7 @@
           ind←noOf+Where∊'-='IotaSetextHeader¨⊂(1+noOf)⌷¨ns.(withoutBlanks markdown emptyLines)
       :AndIf ~0∊⍴ind                             ⍝ It's not a Setext header
           ind←⊃ind
-          sa←GetSpecialAttributes⊃ns.markdown
+          sa←GetSpecialAttributes(ind-1)⊃ns.markdown
           l←1+'-'=⊃ind⊃ns.leadingChars
           c←CompilePara noOf↑ns.markdown
           c←sa DropSpecialAttributes c
@@ -2441,7 +2448,10 @@
               match2←{0=+/b←'&'=w←⍵:w ⋄ (b/w)←⊂'&amp;' ⋄ ⊃,/w}abbr
               match1←'"',match2,'"'
               match2←'\b',match2,'\b'
-              ignore←'<img.*>' '<a .*>.*</a>' '<code>.*</code>' '<code .*>.*</code>' '<abbr .*>.*</abbr>'
+              ignore←'<img.*>' '<a .*>.*</a>' '<code>.*</code>' '<code .*>.*</code>'
+              ignore,←⊂'<abbr .*>.*</abbr>'          ⍝ Abbreviations themselves should be left alone
+              ignore,←⊂'<dt>.*</dt>'                 ⍝ The keyword of a definition should not become an <abbr> tag.
+              ignore,←⊂'<dt .*>.*</dt>'              ⍝ Same in case of special attributes
               html←(ignore,match1 match2)⎕R((,¨(⍴ignore)⍴'&'),tag1 tag2)⍠('Mode' 'D')('DotAll' 1)('Greedy' 0)⊣html
           :EndFor
           ns.html←html

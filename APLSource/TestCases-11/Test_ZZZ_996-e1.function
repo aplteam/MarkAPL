@@ -5,7 +5,7 @@
 
  md←'flat'#.APLTreeUtils.ReadUtf8File'MarkAPL_CheatSheet.md'
  buff←'This document refers to version '
- buff,←↑{⍺,'.',⍵}/'.'#.APLTreeUtils.Split 1⊃##.MarkAPL.Version
+ buff,←↑{⍺,'.',⍵}/3↑'.'#.APLTreeUtils.Split 1⊃##.MarkAPL.Version
  buff,←' of **_MarkAPL_**.'
  →PassesIf 1=+/buff⍷md
 

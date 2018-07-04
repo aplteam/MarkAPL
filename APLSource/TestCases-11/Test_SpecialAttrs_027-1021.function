@@ -1,5 +1,5 @@
  R←Test_SpecialAttrs_027(stopFlag batchFlag);⎕TRAP;md;ns;parms
-⍝ Test special attributes for a paragraph aand a code block that belong to a list item.
+⍝ Paragraph and code block both belonging to a list item: assign ID.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

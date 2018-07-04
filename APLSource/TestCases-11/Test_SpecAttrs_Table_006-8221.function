@@ -1,5 +1,5 @@
- R←Test_SpecialAttrs_006(stopFlag batchFlag);⎕TRAP;md;ns
-⍝ Test {}-syntax for a table: invalid special attributes (will become data, and rightly so).
+ R←Test_SpecAttrs_Table_006(stopFlag batchFlag);⎕TRAP;md;ns
+⍝ Table: invalid special attributes (will become data, and rightly so).
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

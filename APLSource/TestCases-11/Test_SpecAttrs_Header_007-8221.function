@@ -1,5 +1,5 @@
- R←Test_SpecialAttrs_024(stopFlag batchFlag);⎕TRAP;md;ns;parms
-⍝ Test special attributes for header: ID should go in the bookmark anchor while the rest goes to the <h{n} tag.
+ R←Test_SpecAttrs_Header_007(stopFlag batchFlag);⎕TRAP;md;ns;parms
+⍝ Header: ID should go in the bookmark anchor while the rest goes to the <h{n} tag.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

@@ -1,5 +1,5 @@
- R←Test_SpecialAttrs_026(stopFlag batchFlag);⎕TRAP;md;ns;parms;expected
-⍝ Test special attributes for (nested) lists
+ R←Test_SpecAttrs_List_002(stopFlag batchFlag);⎕TRAP;md;ns;parms;expected
+⍝ Lists (nested): assign several attributes
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

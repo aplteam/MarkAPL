@@ -1,5 +1,5 @@
- R←Test_SpecialAttrs_020(stopFlag batchFlag);⎕TRAP;ns;md;fn
-⍝ Test all styling opportunities: ID, classes, styling including fonts.
+ R←Test_SpecAttrs_List_001(stopFlag batchFlag);⎕TRAP;ns;md;fn
+⍝ List: try all styling opportunities: ID, classes, styling including fonts.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

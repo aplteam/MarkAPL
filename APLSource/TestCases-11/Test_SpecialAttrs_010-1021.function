@@ -1,5 +1,5 @@
  R←Test_SpecialAttrs_010(stopFlag batchFlag);⎕TRAP;ns;md;fn
-⍝ Test  {}-syntax for images with special attributes
+⍝ Image: style it.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

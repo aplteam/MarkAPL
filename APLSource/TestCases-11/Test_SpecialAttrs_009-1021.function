@@ -1,5 +1,5 @@
  R←Test_SpecialAttrs_009(stopFlag batchFlag);⎕TRAP;m;ns;html
-⍝ Test  {}-syntax for code blocks with special attributes
+⍝ Code block: several assignments.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

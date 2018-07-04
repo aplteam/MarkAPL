@@ -1,10 +1,10 @@
- R←Test_SpecialAttrs_002(stopFlag batchFlag);⎕TRAP;md;ns;expected
-⍝ Test {}-syntax for a table with columns (assigning ID, class, attributes)
+ R←Test_SpecAttrs_Table_003(stopFlag batchFlag);⎕TRAP;md;ns;expected
+⍝ Table: empty special attributes
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 
  md←''
- md,←⊂'|Col A|Col B|  { #foo .class2 foo=123}'
+ md,←⊂'|Col A|Col B|  {}'
  md,←⊂'|===|===|'
  md,←⊂'|Row 1/Col A|Row 1/Col B|'
  md,←⊂'|Row 1/Col A|Row 1/Col B|'
@@ -13,7 +13,7 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- expected←'<table class="class2" id="foo" foo="123">'
+ expected←'<table>'
  →PassesIf expected≡↑ns.html
 
  R←∆OK

@@ -1,5 +1,5 @@
  R←Test_CSS_010(stopFlag batchFlag);⎕TRAP;md;b;ns;html;expected;parms
-⍝ Assign empty vector to `cssURL` and set `screenCSS` and `printCSS` to absolute paths and `linkToCSS` to 1 but with embedded parms
+⍝ Assign ⍬ to `cssURL` and set `screenCSS` & `printCSS` to absolute paths & `linkToCSS` to 1 but with embedded parms
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

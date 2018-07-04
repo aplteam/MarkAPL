@@ -1,5 +1,5 @@
- R←Test_SpecialAttrs_029(stopFlag batchFlag);⎕TRAP;md;ns;parms
-⍝ Test {}-syntax for headers with `bookmarkLink` set to 2 with SeText headers for level one and two.
+ R←Test_SpecAttrs_Header_003(stopFlag batchFlag);⎕TRAP;md;ns;parms
+⍝ Headers: several assignments for SeText headers for level one and two with `bookmarkLink←2`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

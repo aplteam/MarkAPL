@@ -9,13 +9,14 @@
  (n v d)←rf.Version
  f1←n≢##.APLTreeUtils.Last⍕rf
  f1∨←~5≤⍴v
- f1∨←2≠'.'+.=v
+ f1∨←3≠'.'+.=v
  f1∨←~∧/⎕D∊⍨v~'.'
 
  f1∨←10≠⍴d
  f1∨←d[4 7]∨.≠'-'
  f1∨←~∧/⎕D∊⍨d~'-'
 
+ v←↑{⍺,'.',⍵}/⍕¨3↑'.'#.APLTreeUtils.Split v
 ⍝ publish.config must be in line with what "Version" returns of course:
  xml←⎕XML'flat'#.APLTreeUtils.ReadUtf8File'publish.config'
  f2←v≢2⊃xml[xml[;1]⍳⊂'version';]

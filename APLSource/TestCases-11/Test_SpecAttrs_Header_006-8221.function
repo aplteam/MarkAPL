@@ -1,5 +1,5 @@
- R←Test_SpecialAttrs_007(stopFlag batchFlag);⎕TRAP;md;ns
-⍝ Test {}-syntax for headers: special attributes. Specified id must overwrite automatically created one.
+ R←Test_SpecAttrs_Header_006(stopFlag batchFlag);⎕TRAP;md;ns
+⍝ Headers: specified id must overwrite created one.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

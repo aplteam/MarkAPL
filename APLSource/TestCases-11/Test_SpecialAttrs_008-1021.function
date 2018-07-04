@@ -1,5 +1,5 @@
  R←Test_SpecialAttrs_008(stopFlag batchFlag);⎕TRAP;md;ns
-⍝ Test {}-syntax for horizontal rulers: special attributes.
+⍝ Horizontal rulers: assign ID.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

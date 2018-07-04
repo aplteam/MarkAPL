@@ -1,5 +1,5 @@
- R←Test_SpecialAttrs_028(stopFlag batchFlag);⎕TRAP;md;ns;parms
-⍝ Test {}-syntax for headers with `bookmarkLink` switched off.
+ R←Test_SpecAttrs_Header_002(stopFlag batchFlag);⎕TRAP;md;ns;parms
+⍝ Headers: several assignments with `bookmarkLink` switched off.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 
