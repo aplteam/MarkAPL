@@ -2813,9 +2813,9 @@ Before reporting a bug please check carefully your Markdown. More often than not
 
 If you cannot work out why it goes wrong report it to me -- see the previous topic for how to report a problem.
 
-This document refers to version 4.4.3 of **_MarkAPL_**.
+This document refers to version 4.4.4 of **_MarkAPL_**.
 
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2018-07-03
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2018-09-09
 
 [^abandon]: Wikipedia definition of abandonware: <https://www.wikiwand.com/en/Abandonware>
 [^commonmark]: The CommonMark specification: <http://spec.commonmark.org/> 

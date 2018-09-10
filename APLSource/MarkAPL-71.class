@@ -62,16 +62,18 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'4.4.3.7' '2018-07-03'
+      r←(Last⍕⎕THIS)'4.4.4.5' '2018-09-09'
     ∇
 
     ∇ History
       :Access Public Shared
+      ⍝ * 4.4.4
+      ⍝   * Bug fix: table cells with an odd number of ticks caused havoc (loss of text).
       ⍝ * 4.4.3
       ⍝   * Bug fixes
       ⍝     * In a definition list the term should never become an <abbr> tag.
       ⍝     * Assigning special attributes on multi-line SetText headers failed to work.
-      ⍝     * Special attributes assigned to the definition part of a def list (the <dd> tag) were ignored. 
+      ⍝     * Special attributes assigned to the definition part of a def list (the <dd> tag) were ignored.
       ⍝ * 4.4.2
       ⍝   * CSS got changes in order to make code better readable.
       ⍝     * Bug fixes:
@@ -92,54 +94,6 @@
       ⍝       as part of a menu did not.
       ⍝     * Some browsers insist on the cssUrl starting with "file:///" in case it is a local file.
       ⍝     * HTML blocks were not always recognized correctly.
-      ⍝ * 4.2.0
-      ⍝   * Style sheets massively improved. They carry only one px definition of the font size now (body), everything
-      ⍝     else is relative to that defininition (mostly em, very few rem).
-      ⍝   * Bug fix: the print style sheet "MarkAPL_print.css" printed way too big.\\
-      ⍝   Note that the code in the MarkAPL script has not changed at all.
-      ⍝ * 4.1.1
-      ⍝   * Bug fixes:
-      ⍝     * HTML blocks where not recognized correctly unless they were <div>s.
-      ⍝     * mailto links where not processed correctlly under some circumstances.
-      ⍝     * A line starting with `⍝` with a <pre> HTML block was removed from the markdown before processing it.
-      ⍝ * 4.1.0
-      ⍝   * Print style sheets improved: new class `page_break_before` introduced which can you used to force a page break.
-      ⍝   * Bug fixes
-      ⍝     * A link with "mailto" was not handled correctly.
-      ⍝     * A line starting with `⍝` within an HTML <pre> block was ignored.
-      ⍝ * 4.0.0
-      ⍝   * New parameter `lineNumberOffset` introduced. Allows adjusting line numbers in case of recursive calls.
-      ⍝   * Problem reports got lost in transit when MarkAPL called itself recursively.
-      ⍝   * Line numbers are now reported consistently and correctly throughout, with the exception of any LeanPub
-      ⍝     extensions: for those a range of line numbers is reported.
-      ⍝   * Bug fixes
-      ⍝     * Under some circumstances an abbreviation definition had no effect.
-      ⍝     * Headers were sometimes wrongly reported as invalid.
-      ⍝     * Line numbers were wrong when referring to lines **after** comment lines (= lines outside of code
-      ⍝       blocks that start with a `⍝`).
-      ⍝ * 3.9.0
-      ⍝   **Attention**: note that version 3.9 comes with potentially breaking changes: see first bug fix.
-      ⍝   * Headers are now enclosed with `<div class="h_tag">` to allow avoiding page breaks effectively. So far this
-      ⍝     did not work because the page break could too place after the <a> tag surrounding the <hn> tag.
-      ⍝   * New parameter `div_h_tag` introduced which defaults to 1. See above.
-      ⍝   * Bug fixes
-      ⍝     * So far attributes for "ID" and "Class" were converted to lowercase. Same for "ID" and "Class" generated
-      ⍝       as special attributes. Also, auto-generated <Hn>-anchors converted all characters to lowercase. All this
-      ⍝       was done under two assumptions:
-      ⍝       1. CSS selectors are case independent (correct).
-      ⍝       2. HTML attributes are case independent (**not** correct).
-      ⍝       That needed fixing, and that might break your code if you have specified special attributes that are not
-      ⍝       in line --- in terms of casing --- with the target HREF.
-      ⍝     * The <nav> contained an unclosed <div> under certain circumstances.
-      ⍝     * Some HTML blocks were wrongly identified.
-      ⍝     * When a LeanPub extension followed a definition list things went wrong.
-      ⍝     * Fully qualfied `screenCSS`/`printCSS` were not processed correctly when they carried `\` (should become `/`)
-      ⍝       or `"` (should be removed).
-      ⍝     * Links to IDs (bookmarks) that were defined as special attributes were sometimes wrongly reported as invalid.
-      ⍝     * Special attributes assigned to a definition term were wrongly assigned to the <dl> tag rather than <dt>.
-      ⍝     * References pointing to a footnote accidentally got an ID assigned.
-      ⍝     * A word that is part of an <Hn> tag **and** is defined as an abbreviation caused havoc.
-      ⍝     * A link was not correctly identified in case there were `[]` in front of them.
     ∇
 
     :Field Public Shared ReadOnly PartOfNames←⎕A,⎕D,'_∆⍙','qwertyuiopasdfghjklzxcvbnm'
@@ -2168,6 +2122,7 @@
           txt←dlb dtb ⍵
           txt←(('|'≠⊃txt)/'|'),txt
           txt,←{'|'/⍨('|'≠1↑1↓⍵)∧'\|'≢⊃⍵}¯2⌽txt
+          txt←{⍵,'`|'}⍣(1=2|+/txt='`')⊣txt           ⍝ Add trailing tick and pipe in case of odd number of ticks
           mask←~GetMaskForCode txt
           bool←mask\'|'=mask/txt
           bool[1~⍨Where bool]←'\'≠txt[¯1+1~⍨Where bool]
@@ -2321,7 +2276,7 @@
       }
 
       IsTableRow←{
-      ⍝ ⍵ qualifies as a table row it it contains at least 2 un-escaped pipes (`|`).
+      ⍝ ⍵ qualifies as a table row if it contains at least 2 un-escaped pipes (`|`).
           row←,⍵
           mask←~GetMaskForCode row
           0=+/b←'|'=mask/row:0
