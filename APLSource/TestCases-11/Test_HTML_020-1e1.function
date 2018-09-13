@@ -1,5 +1,6 @@
  R←Test_HTML_020(stopFlag batchFlag);⎕TRAP;md;ns;l;this;expected
-⍝ Test an HTML block that is just an image; was once a bug.
+⍝ Test an HTML block that is just an image.
+⍝ Was once a bug.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

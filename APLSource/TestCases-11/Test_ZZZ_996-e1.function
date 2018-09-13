@@ -9,8 +9,7 @@
  buff,←' of **_MarkAPL_**.'
  →PassesIf 1=+/buff⍷md
 
- buff←'Kai Jaeger ⋄ APL Team Ltd ⋄ '
- buff,←2⊃##.MarkAPL.Version
+ buff←2⊃##.MarkAPL.Version
  →PassesIf 1=+/buff⍷md
 
  R←∆OK

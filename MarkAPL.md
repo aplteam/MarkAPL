@@ -749,7 +749,7 @@ Please note that there are three different HTML blocks:
 
 * Everything else. 
 
-All HTML blocks but `<pre>`, `<script>` and `<style>` **must** be surrounded by blank lines.
+All HTML blocks but `<pre>`, `<script>` and `<style>` **must** be surrounded by blank lines excepts when an HTML block is placed at the top of a document.
 
 It is perfectly legal to have HTML blocks in a Markdown document, but be aware that this is way more complex a topic than it seemes to be at first glance. 
 
@@ -790,12 +790,12 @@ Notes:
 
    does not work because it is recognized and therefore processed as an HTML block! 
    
-   This can be solved be injecting a space character to the left; then it's not treated as an HTML block any more.
+   This can be solved be injecting a leading space: then it's not treated as an HTML block any more.
 
 1. Because `**foo**` is an ordinary paragraph located **between** two HTML 
    blocks it will be converted into `<strong>foo</strong>`.
 
-Without the two empty lines around the paragraph it would be just **one** HTML block. As a side effect the paragraph would show `**foo**` rather than **foo** because within an HTML block no in-line Markdown is recognized.
+   Without the two empty lines around the paragraph it would be just **one** HTML block. As a side effect the paragraph would show `**foo**` rather than **foo** because within an HTML block no in-line Markdown is recognized.
 
 The `<pre>` blocks are different in so far as there is no Markdown styling done to anything between `<pre>` and `</pre>` anyway; therefore you can have just one block without any disadvantages. 
 
@@ -1790,6 +1790,7 @@ Notes:
   otherwise you end up with a starting empty line.
 * If the embedded function returns something with a depth different from 0, 1 
   and 2 an error is thrown.
+* Anything that is supposed to be recognized as an HTML block **must not** carry any leading blanks: an HTML block starts by definition with a `<` char.
 
 
 #### Special attributes
@@ -2813,9 +2814,9 @@ Before reporting a bug please check carefully your Markdown. More often than not
 
 If you cannot work out why it goes wrong report it to me -- see the previous topic for how to report a problem.
 
-This document refers to version 4.4.4 of **_MarkAPL_**.
+This document refers to version 4.4.5 of **_MarkAPL_**.
 
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2018-09-09
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2018-09-13
 
 [^abandon]: Wikipedia definition of abandonware: <https://www.wikiwand.com/en/Abandonware>
 [^commonmark]: The CommonMark specification: <http://spec.commonmark.org/> 

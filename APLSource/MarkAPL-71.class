@@ -62,11 +62,13 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'4.4.4.5' '2018-09-09'
+      r←(Last⍕⎕THIS)'4.4.5.7' '2018-09-13'
     ∇
 
     ∇ History
       :Access Public Shared
+      ⍝ * 4.4.5
+      ⍝   * Bug fix: HTML blocks at the beginning of a document were not recognized.
       ⍝ * 4.4.4
       ⍝   * Bug fix: table cells with an odd number of ticks caused havoc (loss of text).
       ⍝ * 4.4.3
@@ -84,16 +86,6 @@
       ⍝   * Documentation improved.
       ⍝ * 4.4.0
       ⍝   * Converted from the APL wiki to GitHub.
-      ⍝ * 4.3.0
-      ⍝   * A <p> that is child of the first <dd> in a <dl> now always has the class "first_dd" assigned. Reason is that
-      ⍝     CSS does not provide a selection that would allow selecting the first one only.
-      ⍝   * The `showHide` parameter is now ignored. Instead triangles are used like the ones in combo boxes. Note that
-      ⍝     this change affects the CSS files as well.
-      ⍝   * Bug fixes:
-      ⍝     * Although the list items of any Markdown lists cam with an (optional) closing </li> tag, those injected
-      ⍝       as part of a menu did not.
-      ⍝     * Some browsers insist on the cssUrl starting with "file:///" in case it is a local file.
-      ⍝     * HTML blocks were not always recognized correctly.
     ∇
 
     :Field Public Shared ReadOnly PartOfNames←⎕A,⎕D,'_∆⍙','qwertyuiopasdfghjklzxcvbnm'
@@ -1164,7 +1156,7 @@
                   isEmpty←0=⊃∘⍴¨result~¨' '
                   result←(0⌈¯1++/∧\isEmpty)↓(-0⌈¯1++/∧\⌽isEmpty)↓result ⍝ Allow max 1 leading/trailing blank line
                   flag←⊃ns.parms.syntaxSugar
-                  isHtmlBlock←CheckForHtmlBlock result(0=⊃∘⍴¨' '~¨⍨result)
+                  isHtmlBlock←CheckForHtmlBlock result(0=⊃∘⍴¨' '~¨⍨result)ns.topOfDocument
                   :If 1=≡result
                       :If flag∧~isHtmlBlock
                           result←⊃ns ProcessInlineMarkUp result
@@ -1173,7 +1165,7 @@
                       'Embeded function returned invalid result'⎕SIGNAL 11/⍨(,1)≢∪≡¨,¨result
                       :If flag∧~isHtmlBlock
                           result←Nest result
-                          result←,⊃¨ns ProcessInlineMarkUp¨result
+                          result←,⊃¨ns ProcessInlineMarkUp¨dmb result
                       :EndIf
                   :EndIf
                   'Called function returned an HTML block but does not stand on its own'⎕SIGNAL 11/⍨isHtmlBlock∧0≠⍴html
@@ -1515,7 +1507,7 @@
 
     ∇ r←ProcessEmeddedHTML ns;tags;b;flag
       r←1
-      :If CheckForHtmlBlock ns.(markdown emptyLines)
+      :If CheckForHtmlBlock ns.(markdown emptyLines topOfDocument)
           ⍝ For details see regarding HTML block see http://spec.commonmark.org/0.24/#html-blocks
           ⍝ There's more to it then meets the eye at first glance.
           :If r←ProcessHtmlBlockType_1 ns
@@ -1625,10 +1617,10 @@
     ∇ r←ProcessHtmlBlockType_6 ns;start;t;f1;f2;buff;tag;noOfEmptyLines
     ⍝ Check for all possible (allowed and block) HTML5 tags.
     ⍝ This is different from others because it may start with a closing tag.
-    ⍝ ← is 0 when found and processed, otherwise 0.
+    ⍝ ← is 0 when found and processed, otherwise 1.
       r←1
       :If 1<⍴ns.markdown
-      :AndIf ∆LastLineWasEmpty∨⊃ns.emptyLines
+      :AndIf ns.topOfDocument∨∆LastLineWasEmpty∨⊃ns.emptyLines
           noOfEmptyLines←+/∧\ns.emptyLines
           :If f1←'</'≡2↑2⊃ns.leadingChars
           :OrIf '<'=⊃⊃noOfEmptyLines↓ns.leadingChars
@@ -1669,14 +1661,14 @@
     ⍝ ← is 0 when found and processed, otherwise 0.
       r←1
       :If 1<⍴ns.markdown
-      :AndIf ⊃ns.emptyLines
-          cl←2⊃ns.markdownLC
+      :AndIf ns.topOfDocument∨⊃ns.emptyLines
+          cl←⊃(+/∧\ns.emptyLines)↓ns.markdownLC
           :If ~0∊⍴'<[a-z]*\b[^>]*>' '</[a-z][^>]*>'⎕S 0⊣cl     ⍝ Look for any tag
           :AndIf 0∊⍴'<script\b[^>]*>' '<style\b[^>]*>' '<pre\b[^>]*>'⎕S 0⊣cl
           :AndIf 0∊⍴{⍵↓⍨⍵⍳'>'}(2⊃ns.markdown)~AllWhiteSpaceChars
               ns.noOf←(1↓ns.emptyLines)⍳1
-          :AndIf '>'=¯1↑dtb⊃¯1↑1↓ns.noOf↑ns.markdown
-              ns.html,←1↓ns.noOf↑ns.markdown
+          :AndIf '>'=¯1↑dtb⊃¯1↑(1-ns.topOfDocument)↓ns.noOf↑ns.markdown
+              ns.html,←(1-ns.topOfDocument)↓ns.noOf↑ns.markdown
               ns←Drop ns
               r←0
           :EndIf
@@ -2210,6 +2202,7 @@
 
     ∇ ns←ScanMarkdown ns;∆LastLineWasEmpty;isHtmlBlock;html
       ∆LastLineWasEmpty←0
+      ns.topOfDocument←1
       :Repeat
           :If ~0∊⍴'^⍎⍎[#_A-Za-z∆⍙].*⍎⍎$'⎕S 0⍠('Greedy' 0)⊣⊃ns.markdown ⍝  Does the line call an embedded function but nothing else?
           :AndIf 3=⎕NC{⍵↑⍨¯1+⍵⍳'⍎'}2↓⊃ns.markdown
@@ -2252,6 +2245,7 @@
                   :EndIf
               :EndIf
           :EndIf
+          ns.topOfDocument←0
       :Until 0∊⍴ns.leadingChars
       :If ~0∊⍴ns.html
           ns.html←{'&#96;'⎕R'`'⊣⍵}⊣,¨ns.html
@@ -2269,7 +2263,6 @@
 
       CompilePara←{
           para←⍵
-         ⍝0∊⍴para←{'  '≢¯2↑⍵:⍵ ⋄ (¯2↓⍵),⎕UCS 13}¨para:para  ⍝ Since version 1.3 we don't do this anymore
           para←('⍝'≠⊃¨para)/para  ⍝ Get rid of lines that start with a lamp symbol.
           para←{'\'≠¯1↑⍵:⍵ ⋄ (¯1↓⍵),⎕UCS 13}¨para
           dmb(1↓⊃,/' ',¨para)
@@ -3480,15 +3473,16 @@
           ⊃(//)⎕VFI value
       }
 
-    ∇ flag←CheckForHtmlBlock(markdown emptyLines);row
+    ∇ flag←CheckForHtmlBlock(markdown emptyLines topOfDocument);row
     ⍝ Returns 1 if `markdown` starts with an HTML block and 0 otherwise
       flag←0
-      :If ⊃⍴'^<pre.*>' '^<script.*>' '^<style.*>'⎕S 0⍠('Greedy' 0)⊣⊃markdown    ⍝ <pre>, <script>, <style> don't require empty lines around them.
+      :If topOfDocument
+      :OrIf ⊃⍴'^<pre.*>' '^<script.*>' '^<style.*>'⎕S 0⍠('Greedy' 0)⊣⊃markdown  ⍝ <pre>, <script>, <style> don't require empty lines around them.
       :OrIf ∆LastLineWasEmpty∨(⊃emptyLines)∧'<'=1↑⊃⊃1↓markdown                  ⍝ But it MAY have a blank leading line anyway!
           row←⊃(⊃emptyLines)↓markdown
           flag←'<'=1⍴row
           :If flag
-              flag←0∊⍴'<([a-zA-Z0-9]){3,5}://'⎕S 0⊣row                         ⍝ Tell implicit link (like <http://aplwiki.com>) from an HTML block!
+              flag←0∊⍴'<([a-zA-Z0-9]){3,5}://'⎕S 0⊣row                          ⍝ Tell implicit link (like <http://aplwiki.com>) from an HTML block!
           :EndIf
       :EndIf
     ∇
@@ -3507,3 +3501,4 @@
       }
 
 :EndClass
+

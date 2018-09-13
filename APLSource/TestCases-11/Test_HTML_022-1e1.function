@@ -1,20 +1,20 @@
- R←Test_HTML_021(stopFlag batchFlag);⎕TRAP;md;ns;l;this;expected
-⍝ Test an HTML block that is an anchor with an image.
-⍝ Was once a bug.
+ R←Test_HTML_022(stopFlag batchFlag);⎕TRAP;md;ns;l;this;expected
+⍝ Test an HTML block that is located at the beginning of the document.
+⍝ Was once a bug because two empty lines were ALWAYS requested.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 
- md←'This is a para.' ''
+ md←''
  md,←'<a href="http://aplwiki.com/KaiJaeger">' '<img src="http://aplteam.com/wp-content/uploads/2015/02/KaiJaegerHeadMedium75perc.png" title="logo">' '</a>'
- md,←'' 'Another para'
+ md,←'' '' 'A para'
 
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- expected←'<p>This is a para.</p>' ''
+ expected←''
  expected,←⊂'<a href="http://aplwiki.com/KaiJaeger">'
  expected,←⊂'<img src="http://aplteam.com/wp-content/uploads/2015/02/KaiJaegerHeadMedium75perc.png" title="logo">'
  expected,←'</a>' ''
- expected,←⊂'<p>Another para</p>'
+ expected,←⊂'<p>A para</p>'
  →PassesIf expected≡ns.html
 
  R←∆OK

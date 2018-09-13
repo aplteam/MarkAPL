@@ -844,7 +844,7 @@ header
 <p>This one preserves white space. The special features of <code>&lt;pre&gt;</code> blocks are discussed in detail at <a href="#Code-the--tag" class="bookmark_link">Code: the <code>&lt;pre&gt;</code> tag</a>.</p></li>
 <li>Everything else.</li>
 </ul>
-<p>All HTML blocks but <code>&lt;pre&gt;</code>, <code>&lt;script&gt;</code> and <code>&lt;style&gt;</code> <strong>must</strong> be surrounded by blank lines.</p>
+<p>All HTML blocks but <code>&lt;pre&gt;</code>, <code>&lt;script&gt;</code> and <code>&lt;style&gt;</code> <strong>must</strong> be surrounded by blank lines excepts when an HTML block is placed at the top of a document.</p>
 <p>It is perfectly legal to have HTML blocks in a Markdown document, but be aware that this is way more complex a topic than it seemes to be at first glance.</p>
 <p>For details refer to <a href="http://spec.commonmark.org/0.24/#html-blocks" class="external_link" title="Common mark on HTML blocks" target="_blank">Common mark on HTML blocks</a>.</p>
 <p>The most important syntax is when you want to have an opening tag like a <code>&lt;div&gt;</code> and a corresponding <code>&lt;/div&gt;</code> around some Markdown stuff. For simplicity let's assume that it is just a paragraph with a single word: “foo” in bold.</p>
@@ -866,10 +866,10 @@ Another paragraph.</code></pre>
 <li>Sometimes you want to avoid something being processed as HTML block. Imagine you want to actually write about the &lt;p&gt; tag. Starting a line with
 <pre><code>&lt;p id="My"&gt;My para&lt;/p&gt;</code></pre>
 <p>does not work because it is recognized and therefore processed as an HTML block!</p>
-<p>This can be solved be injecting a space character to the left; then it's not treated as an HTML block any more.</p></li>
-<li>Because <code>**foo**</code> is an ordinary paragraph located <strong>between</strong> two HTML blocks it will be converted into <code>&lt;strong&gt;foo&lt;/strong&gt;</code>.</li>
+<p>This can be solved be injecting a leading space: then it's not treated as an HTML block any more.</p></li>
+<li>Because <code>**foo**</code> is an ordinary paragraph located <strong>between</strong> two HTML blocks it will be converted into <code>&lt;strong&gt;foo&lt;/strong&gt;</code>.
+<p>Without the two empty lines around the paragraph it would be just <strong>one</strong> HTML block. As a side effect the paragraph would show <code>**foo**</code> rather than <strong>foo</strong> because within an HTML block no in-line Markdown is recognized.</p></li>
 </ol>
-<p>Without the two empty lines around the paragraph it would be just <strong>one</strong> HTML block. As a side effect the paragraph would show <code>**foo**</code> rather than <strong>foo</strong> because within an HTML block no in-line Markdown is recognized.</p>
 <p>The <code>&lt;pre&gt;</code> blocks are different in so far as there is no Markdown styling done to anything between <code>&lt;pre&gt;</code> and <code>&lt;/pre&gt;</code> anyway; therefore you can have just one block without any disadvantages.</p>
 <div class="h_tag">
 <a href="#Horizontal-rulers" id="Horizontal-rulers" class="autoheader_anchor">
@@ -1750,6 +1750,7 @@ Last line
 <li>If the function returns something that starts with a &lt; and ends with a corresponding tag then it is recognized as an HTML block. You can prevent that by adding leading white space.</li>
 <li>The <code>&lt;pre&gt;&lt;code&gt;</code> must go onto the same line as the first line of the code; otherwise you end up with a starting empty line.</li>
 <li>If the embedded function returns something with a depth different from 0, 1 and 2 an error is thrown.</li>
+<li>Anything that is supposed to be recognized as an HTML block <strong>must not</strong> carry any leading blanks: an HTML block starts by definition with a <code>&lt;</code> char.</li>
 </ul>
 <div class="h_tag">
 <a href="#Special-attributes" id="Special-attributes" class="autoheader_anchor">
@@ -2824,8 +2825,8 @@ This is a paragraph with curlies at the end: \{\}.
 </div>
 <p>Before reporting a bug please check carefully your Markdown. More often than not mistakes in the Markdown are causing the problem.</p>
 <p>If you cannot work out why it goes wrong report it to me – see the previous topic for how to report a problem.</p>
-<p>This document refers to version 4.4.4 of <strong><em>MarkAPL</em></strong>.</p>
-<p>Kai Jaeger ⋄ APL Team Ltd ⋄ 2018-09-09</p>
+<p>This document refers to version 4.4.5 of <strong><em>MarkAPL</em></strong>.</p>
+<p>Kai Jaeger ⋄ APL Team Ltd ⋄ 2018-09-13</p>
 <div id="external_link_report" class="print_only">
 <hr>
 <p><strong>Link report</strong></p>

@@ -5,10 +5,10 @@
 
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
- #.TEMP.MyFns←{'<p>This' '**is** a paragraph.</p>'}
+ #.TEMP.MyFns←{' <p>This' '**is** a paragraph.</p>'} ⍝ The leading blanks is intentional: without it it's an HTML block!!
 
  md←''
- md,←⊂' ⍎⍎#.TEMP.MyFns⍎⍎'    ⍝ The leading blanks is intentional: without it it's an HTML block!!
+ md,←⊂'⍎⍎#.TEMP.MyFns⍎⍎'
 
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns

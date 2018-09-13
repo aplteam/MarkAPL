@@ -38,4 +38,12 @@
  →PassesIf'</MyTag>'≡3⊃ns.html
  →PassesIf'<p>Another para</p>'{⍺≡(-⍴⍺)↑⍵}↑¯1↑ns.html
 
+ md←'<MyTag>' '' 'That''s embraced by `<MyTag>`' '' '</MyTag>' '' 'A para'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ →PassesIf 1=+/'<MyTag>'∘{⍺≡(⍴⍺)↑⍵}¨ns.html
+ →PassesIf 1=+/'<p>That''s embraced by <code>&lt;MyTag&gt;</code></p>'∘{⍺≡(⍴⍺)↑⍵}¨ns.html
+ →PassesIf 1=+/'</MyTag>'∘≡¨ns.html
+ →PassesIf 1=+/'<p>A para</p>'∘{⍺≡(-⍴⍺)↑⍵}¨ns.html
+
  R←∆OK
