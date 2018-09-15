@@ -56,7 +56,7 @@ dropLeadingBlanks←{(∨\' '≠⍵)/⍵}
 2. Asides or Text Boxes
 -----------------------
 
-Note that in the markdown asides need to be embraced by empty lines, otherwise they won't be recognized.
+Note that in the markdown asides need to be surrounded by empty lines, otherwise they won't be recognized.
 
 This is a very simple example for an aside or text box:
 
