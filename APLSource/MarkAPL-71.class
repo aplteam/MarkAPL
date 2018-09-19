@@ -62,7 +62,7 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'4.4.5.7' '2018-09-13'
+      r←(Last⍕⎕THIS)'4.4.5.8' '2018-09-13'
     ∇
 
     ∇ History
@@ -3088,7 +3088,6 @@
           title←''
       :EndIf
       :If 0=+/'://'⍷url         ⍝ Protocol
-     
       :AndIf 'mailto:'{⍺≢(⍴,⍺)↑⍵}url ⍝ Is not a "mailto" link
       :AndIf '#'≠1⍴url          ⍝ Bookmark
       :AndIf ':/'≢2⍴1↓url,'  '  ⍝ Absolute Windows path
