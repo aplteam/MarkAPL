@@ -737,7 +737,11 @@ No matter how you defines headers, they may have between zero and up to three le
 
 #### HTML blocks
 
-Please note that there are three different HTML blocks:
+It is perfectly legal to have HTML blocks in a Markdown document, but be aware that this is way more complex a topic than it seems to be at first glance. 
+
+For details refer to [][commonmark_on_html_blocks].
+
+Please note that there are four different HTML blocks:
 
 * `<script>` and `<style>`
   
@@ -747,13 +751,22 @@ Please note that there are three different HTML blocks:
   
   This one preserves white space. The special features of `<pre>` blocks are discussed in detail at [Code: the `<pre>` tag](#).
 
+* `<!--`
+
+  An HTML comment. Note that HTML comments _make it into the final document_, although they are only visible via the "View page source" context menu command.
+
 * Everything else. 
 
-All HTML blocks but `<pre>`, `<script>` and `<style>` **must** be surrounded by blank lines excepts when an HTML block is placed at the top of a document.
+All HTML blocks but `<pre>`, `<script>`, HTML comments and `<style>` **must** be surrounded by blank lines except when an HTML block is placed at the top of a document or ends at the bottom of the document.
 
-It is perfectly legal to have HTML blocks in a Markdown document, but be aware that this is way more complex a topic than it seemes to be at first glance. 
+An HTML comment must have a blank line before the opening tag (`<!--`) but no empty line is required after the closing tag. For that reason 
+```
+# Overview
 
-For details refer to [][commonmark_on_html_blocks].
+<!-- This is a comment --> will be ignored
+This is a paragraph
+```
+is a prefectly legal markdown document with an HTML comment. However, note that "will be ignored" will _not_ make it into the final document.
 
 The most important syntax is when you want to have an opening tag like a `<div>` and a corresponding `</div>` around some Markdown stuff. For simplicity let's assume that it is just a paragraph with a single word: "foo" in bold.
 
@@ -2814,9 +2827,9 @@ Before reporting a bug please check carefully your Markdown. More often than not
 
 If you cannot work out why it goes wrong report it to me -- see the previous topic for how to report a problem.
 
-This document refers to version 4.4.5 of **_MarkAPL_**.
+This document refers to version 4.4.6 of **_MarkAPL_**.
 
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2018-09-13
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2018-09-19
 
 [^abandon]: Wikipedia definition of abandonware: <https://www.wikiwand.com/en/Abandonware>
 [^commonmark]: The CommonMark specification: <http://spec.commonmark.org/> 

@@ -3,14 +3,6 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 
-⍝ Not an HTML block (trailing empty line missing)
- md←'This is a para.' '' '<!--comment-->' 'Another para'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
- →PassesIf(,⊂'<p>&lt;!–comment–&gt; Another para</p>')∊ns.html
- →PassesIf(⊂'<p>This is a para.</p>')∊ns.html
- →PassesIf 2=⍴ns.html
-
 ⍝ Not an HTML block (leading empty line missing)
  md←'This is a para.' '<!--comment-->' '' 'Another para'
  ns←##.MarkAPL.Init''md
@@ -24,6 +16,11 @@
  →PassesIf(,⊂'<p>This is a para. &lt;!–comment–&gt; Another para</p>')≡ns.html
 
 ⍝ From here we have real HTML blocks
+ md←'This is a para.' '' '<!--comment-->' 'Another para'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ →PassesIf'<p>This is a para.</p>' '<!--comment-->' '<p>Another para</p>'≡ns.html
+
  md←'This is a para.' '' '<!--comment-->' '' 'Another para'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
@@ -45,11 +42,11 @@
  →PassesIf'-->'≡4⊃ns.html
  →PassesIf'<p>Another para</p>'≡↑¯1↑ns.html
 
- md←'This is a para.' '' '<!--' 'comment 1' 'comment 2' '--> This will be ignored' '' 'Another para'
+ md←'This is a para.' '' '<!--' 'comment 1' '' 'comment 2' '--> This will be ignored' '' 'Another para'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
  →PassesIf'<!--'≡1⊃ns.html
- →PassesIf'-->'≡4⊃ns.html
+ →PassesIf'-->'≡5⊃ns.html
  →PassesIf'<p>Another para</p>'≡↑¯1↑ns.html
  →PassesIf~∨/'This will be ignored'⍷∊ns.html
 

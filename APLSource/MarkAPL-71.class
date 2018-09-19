@@ -62,11 +62,14 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'4.4.5.8' '2018-09-13'
+      r←(Last⍕⎕THIS)'4.4.6.9' '2018-09-19'
     ∇
 
     ∇ History
       :Access Public Shared
+      ⍝ * 4.4.6
+      ⍝   * HTML comments (stuff between <!-- and -->) was not always correctly identified and poorly
+      ⍝     defined in the documentation.
       ⍝ * 4.4.5
       ⍝   * Bug fix: HTML blocks at the beginning of a document were not recognized.
       ⍝ * 4.4.4
@@ -1550,22 +1553,21 @@
       :EndIf
     ∇
 
-    ∇ r←ProcessHtmlBlockType_2 ns;start;e;md
+    ∇ r←ProcessHtmlBlockType_2 ns;start;md;bool
     ⍝ <!-- and -->
     ⍝ ← is 0 when found and processed, otherwise 0.
       r←1
       :If 2<⍴ns.markdown
-      :AndIf 1∊e←1↓ns.emptyLines
-          md←(1+(1↓ns.emptyLines)⍳1)↑ns.markdown
-      :AndIf ∨/'<!--'⍷⊃1↓md
-          :If ∨/'-->'⍷⊃¯1↑¯1↓md
-              ns.noOf←¯1+⍴md
-              ns.html,←'-->'DropTailAfterClosingTag 1↓ns.noOf↑ns.markdown
-              ns←Drop ns
-              r←0
-          :Else
-              ns.noOf←⊃ns.emptyLines
-          :EndIf
+      :AndIf 1∊(1↓ns.emptyLines),1
+      :AndIf '<!--'{⍺≡(⍴⍺)↑⍵}⊃1↓ns.markdown
+      :AndIf 0<+/bool←(~∨/¨'-->'∘⍷¨ns.markdown)
+          ns.noOf←1++/∧\bool
+          md←1↓ns.noOf↑ns.markdown
+          ns.html,←'-->'DropTailAfterClosingTag md
+          ns←Drop ns
+          r←0
+      :Else
+          ns.noOf←⊃ns.emptyLines
       :EndIf
     ∇
 
@@ -3500,4 +3502,3 @@
       }
 
 :EndClass
-
