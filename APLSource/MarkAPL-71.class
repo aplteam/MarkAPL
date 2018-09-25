@@ -62,11 +62,17 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'4.4.6.9' '2018-09-19'
+      r←(Last⍕⎕THIS)'4.4.7.1.4' '2018-09-25'
     ∇
 
     ∇ History
       :Access Public Shared
+      ⍝ * 4.4.7
+      ⍝   * Smooth scrolling introduced for local (bookmark) links; see the new parameter `smoothScrolling`.
+      ⍝
+      ⍝     Note that by default `smoothScrolling` is 1. The user will normally consider this an improvement.
+      ⍝     However, with really large documents this will be different because scrolling from the top to
+      ⍝     the bottom will take too long. In such cases set the parameter to 0 to avoid this.
       ⍝ * 4.4.6
       ⍝   * HTML comments (stuff between <!-- and -->) was not always correctly identified and poorly
       ⍝     defined in the documentation.
@@ -131,7 +137,7 @@
     ⍝ <body>, <head> -- with <title> -- and <html> including the DocType. By default CSS is injected as well.
       :Access Public Shared
       r←⊂'<!DOCTYPE html>'
-      r,←⊂'<html',((~0∊⍴parms.lang)/' lang="',(parms.lang~'"'),'"'),'>'
+      r,←⊂'<html',((~0∊⍴parms.lang)/' lang="',(parms.lang~'"'),'"'),(parms.smoothScrolling/' style="scroll-behavior:smooth" '),'>'
       r,←⊂'<head>'
       :If parms.enforceEdge
           ⍝ ↓↓↓ https://blogs.msdn.microsoft.com/askie/2009/03/23/understanding-compatibility-modes-in-internet-explorer-8/
@@ -299,6 +305,7 @@
       'reportLinks'SetTo 0
       'reportLinksCaption'SetTo'Link report'
       'screenCSS'SetTo'MarkAPL_screen.css'
+      'smoothScrolling'SetTo 1
       'subTocs'SetTo 1
       'syntaxSugar'SetTo 1
       'title'SetTo ⎕NULL

@@ -1,13 +1,13 @@
-[parm]:toc            = 2 3
-[parm]:numberHeaders  = 2 3 4 5 6
-[parm]:bookmarkLink   = 6
-[parm]:title          = 'MarkAPL Reference'
-[parm]:width          = 1000
-[parm]:reportLinks    = 1
-[parm]:collapsibleTOC = 1
-[parm]:printCSS       = 'BlackOnWhite_print.css'
-[parm]:screenCSS      = 'BlackOnWhite_screen.css'
-                              
+[parm]:toc             = 2 3
+[parm]:numberHeaders   = 2 3 4 5 6
+[parm]:bookmarkLink    = 6
+[parm]:title           = 'MarkAPL Reference'
+[parm]:width           = 1000
+[parm]:reportLinks     = 1
+[parm]:collapsibleTOC  = 1
+[parm]:printCSS        = 'BlackOnWhite_print.css'
+[parm]:screenCSS       = 'BlackOnWhite_screen.css'
+[parm]:smoothScrolling = 0
 
 
 MarkAPL Reference
@@ -2827,9 +2827,9 @@ Before reporting a bug please check carefully your Markdown. More often than not
 
 If you cannot work out why it goes wrong report it to me -- see the previous topic for how to report a problem.
 
-This document refers to version 4.4.6 of **_MarkAPL_**.
+This document refers to version 4.4.7 of **_MarkAPL_**.
 
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2018-09-19
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2018-09-25
 
 [^abandon]: Wikipedia definition of abandonware: <https://www.wikiwand.com/en/Abandonware>
 [^commonmark]: The CommonMark specification: <http://spec.commonmark.org/> 

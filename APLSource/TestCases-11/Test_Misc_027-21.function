@@ -17,6 +17,6 @@
  ns←##.MarkAPL.Process ns
  html←parms ##.MarkAPL.MakeHTML_Doc ns.html
 
- →PassesIf 1=+/'<html lang="en">'⍷∊html
+ →PassesIf 1=+/'<html lang="en"'⍷∊html
 
  R←∆OK

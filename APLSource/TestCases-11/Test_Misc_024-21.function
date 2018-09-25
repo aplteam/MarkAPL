@@ -8,20 +8,20 @@
  parms←##.MarkAPL.CreateParms
  parms.createFullHtmlPage←1
  html←parms ##.MarkAPL.Markdown2HTML md
- →PassesIf 1=+/'<html lang="en">'⍷∊html
+ →PassesIf 1=+/'<html lang="en"'⍷∊html
 
  md←'# Test' '' '* This' '* That' '* More'
  parms←##.MarkAPL.CreateParms
  parms.createFullHtmlPage←1
  parms.lang←'en'
  html←parms ##.MarkAPL.Markdown2HTML md
- →PassesIf 1=+/'<html lang="en">'⍷∊html
+ →PassesIf 1=+/'<html lang="en"'⍷∊html
 
  parms←##.MarkAPL.CreateParms
  parms.lang←'de'
  parms.createFullHtmlPage←1
 
  html←parms ##.MarkAPL.Markdown2HTML md
- →PassesIf 1=+/'<html lang="de">'⍷∊html
+ →PassesIf 1=+/'<html lang="de"'⍷∊html
 
  R←∆OK

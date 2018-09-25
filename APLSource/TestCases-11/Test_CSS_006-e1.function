@@ -11,6 +11,7 @@
  md←,⊂'A paragraph.'
 
  ns←##.MarkAPL.Init parms md
+ →PassesIf 0∊≢ns.report
  ns←##.MarkAPL.Process ns
  ns.html←parms ##.MarkAPL.MakeHTML_Doc ns.html
 

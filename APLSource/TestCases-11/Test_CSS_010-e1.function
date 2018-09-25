@@ -14,6 +14,7 @@
  parms←##.MarkAPL.CreateParms
 
  ns←##.MarkAPL.Init''md
+ →PassesIf 0∊≢ns.report
  ns←##.MarkAPL.Process ns
  ns.html←ns.parms ##.MarkAPL.MakeHTML_Doc ns.html
 
