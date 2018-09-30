@@ -1981,6 +1981,7 @@ Notes:
   therefore they cannot be overwritten unless you set the [ignoreEmbeddedParms](#"`ignoreEmbeddedParms`") parameter to 1.
 * The `[parm]` part is case insensitive.
 * All embedded parameters are collected on `ns.embeddedParms`.
+* You cannot have comments on a line defining an embedded parameter.
 
 This can be useful to create an HTML file from a Markdown file with **_MarkAPL_** without setting any parameters because the document itself "knows" what parameters are best for it.
 
