@@ -1,4 +1,4 @@
-/* MarkAPL's default scree CSS version 2.4 from 2018-93-26 */
+/* MarkAPL's default scree CSS version 2.5 from 2018-10-17 */
 
 /* Note that there are some variables embedded as comments which will be replaced
    by MarkAPL. The names are embraced by "<<", so for a variable "foo" it is
@@ -576,6 +576,7 @@ p, ul, ol {
     margin: 0;
 }
 pre {
+    overflow: scroll;
     padding: 0.55em 0.27em;
     margin: 0.55em 0 0.55em 0 !important;
     background-color: #faebd7;
@@ -862,7 +863,9 @@ div.leanpub p {
     display:block;
     padding: 0.44em 0 0 0;
 }
-
 div.leanpub > div {
     margin-left: 2.27em;  /* margin (20px) plus width of icon (21px) */
+}
+.print_only {
+    display: none;
 }

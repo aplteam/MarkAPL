@@ -62,43 +62,62 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'4.4.7.20' '2018-09-30'
+      r←(Last⍕⎕THIS)'5.0.0.34' '2018-10-17'
     ∇
 
     ∇ History
       :Access Public Shared
+      ⍝ * 5.0.0
+      ⍝   * For bookmark links special attributes were required to be defined within the "()" parenthesis
+      ⍝     while for ordinary links it had to be specified outside the parenthesis. This inconistency
+      ⍝     needed to be fixed.\\
+      ⍝     This version requires all special attributes assigned to images and links (auto, bookmark and
+      ⍝     ordinary ones) to be specified **within** the image or link definition, meaning with `<>` or
+      ⍝     `()`. This is incompatible with MarkdownExtra but makes way more sense because `{` and `}` do never
+      ⍝     need escaping in connection with links and images.\\
+      ⍝     However, the fix potentially breaks old markdown, therefore the change of the major version number.\\
+      ⍝     Examples:\\
+      ⍝     Old (and now invalid) definitions:
+      ⍝     ```
+      ⍝     [linkText](url) {style="color:red;"}
+      ⍝     <https://aplwiki.com> {style="color:red;"}
+      ⍝     ```
+      ⍝     Correct definitions:
+      ⍝     ```
+      ⍝     [linkText](#url{style="color:red;"})
+      ⍝     [linkText](#url "My title" {style="color:red;"})
+      ⍝     <kai@aplteam.com {.email}>
+      ⍝     <https://aplwiki.com {.foo}>
+      ⍝     ```
+      ⍝    * Autolinks now create "mailto:" links.
+      ⍝    * Blockquotes now honour special attributes
+      ⍝    * Bug fixes:
+      ⍝      * Self-defined links are allowed in HTML5 but were not dealt correctly.
+      ⍝      * Any illegal attempt to define either an autolink or a self-defined HTML tag made the text
+      ⍝        disappear. Instead it should appear as ordinary text. An example is a self-defined tag that
+      ⍝        does not contain the (required) hyphen.
+      ⍝      * Self-defined HTML5 tags must contain a hyphen, start with an alphanumeric character and may
+      ⍝        consist of alphanumerics, digits and the two characters `-_`. MarkAPL did not honour this so far.
+      ⍝      * Nested HTML blocks were sometimes not processed correctly.
+      ⍝      * Special attributes assigned to any list item but the first disappeared. Should appear as
+      ⍝        ordinary test instead.
+      ⍝      * Special attributes assigned to a horizontal ruler were only recognized up to a certain length.
+      ⍝      * Tables without headers  were incorrectly constructed and marked up in case they had no column
+      ⍝        titles but special attributes assigned to them.
+      ⍝      * When the hierarchy of headers was completely wrong MarkAPL was likely to crash.
       ⍝ * 4.4.7
       ⍝   * Smooth scrolling introduced for local (bookmark) links; see the new parameter `smoothScrolling`.
       ⍝
       ⍝     Note that by default `smoothScrolling` is 1. The user will normally consider this an improvement.
       ⍝     However, with really large documents this will be different because scrolling from the top to
       ⍝     the bottom will take too long. In such cases set the parameter to 0 to avoid this.
-      ⍝ * 4.4.6
-      ⍝   * HTML comments (stuff between <!-- and -->) was not always correctly identified and poorly
-      ⍝     defined in the documentation.
-      ⍝ * 4.4.5
-      ⍝   * Bug fix: HTML blocks at the beginning of a document were not recognized.
-      ⍝ * 4.4.4
-      ⍝   * Bug fix: table cells with an odd number of ticks caused havoc (loss of text).
-      ⍝ * 4.4.3
-      ⍝   * Bug fixes
-      ⍝     * In a definition list the term should never become an <abbr> tag.
-      ⍝     * Assigning special attributes on multi-line SetText headers failed to work.
-      ⍝     * Special attributes assigned to the definition part of a def list (the <dd> tag) were ignored.
-      ⍝ * 4.4.2
-      ⍝   * CSS got changes in order to make code better readable.
-      ⍝     * Bug fixes:
-      ⍝       * An abbreviation title that contained itself an abbreviation led to mutilated HTML.
-      ⍝       * Abbreviations did not honour word boundaries.
-      ⍝ * 4.4.1
-      ⍝   * The MarkAPL.html document had a problem with it's CSS files.
-      ⍝   * Documentation improved.
-      ⍝ * 4.4.0
-      ⍝   * Converted from the APL wiki to GitHub.
     ∇
 
     :Field Public Shared ReadOnly PartOfNames←⎕A,⎕D,'_∆⍙','qwertyuiopasdfghjklzxcvbnm'
     :Field Public Shared ReadOnly AllWhiteSpaceChars←⎕ucs 32 9 10 11 13
+    :Field Public Shared ReadOnly HtmlTags←,¨'div' 'h1' 'h2' 'h3' 'h4' 'h5' 'h6' 'li' 'ol' 'p' 'table' 'tbody' 'td' 'tfoot' 'th' 'thead' 'tr' 'ul' 'address' 'article' 'aside' 'base' 'basefont' 'blockquote' 'caption' 'center' 'colgroup' 'col' 'dd' 'details' 'dialog' 'dir' 'dl' 'dt' 'fieldset' 'figcaption' 'figure' 'footer' 'form' 'frame' 'frameset' 'head' 'header' 'hr' 'html' 'iframe' 'legend' 'link' 'main' 'menu' 'menuitem' 'meta' 'nav' 'noframes' 'optgroup' 'option' 'param' 'section' 'source' 'summary' 'title' 'track' 'pre' 'a' 'img' 'body' 'span'
+    AllAllowedCharsInTag←⎕A,'abcdefghijklmnopqrstuvwxyz-_',⎕D
+    TagMustStartWith←⎕A,'abcdefghijklmnopqrstuvwxyz'
 
     ⎕IO←1 ⋄ ⎕ML←1
 
@@ -659,7 +678,7 @@
       :EndIf
     ∇
 
-    ∇ r←ProcessBlockQuotes ns;parms;md;ns2
+    ∇ r←ProcessBlockQuotes ns;parms;md;ns2;sa
     ⍝ Processes any blockquotes recursively. That way they can contain **everything**, including blockquotes.
       r←0
       :If '> '≡2↑⊃ns.leadingChars
@@ -676,9 +695,11 @@
           md←ns.noOf↑ns.markdown
           (1⊃md)←2↓1⊃md
           (1↓md)←(2×'> '∘≡¨2↑¨1↓md)↓¨1↓md
+          sa←GetSpecialAttributes⊃md
+          (⊃md)←sa DropSpecialAttributes⊃md
           ns2←Init parms md
           ns2←Process ns2
-          ns.html,←(⊂'<blockquote>'),ns2.html,⊂'</blockquote>'
+          ns.html,←(⊂'<blockquote',((0<≢sa)/' ',dlb sa),'>'),ns2.html,⊂'</blockquote>'
           ns.report,←ns2.report
           ns←Drop ns
           r←1
@@ -758,9 +779,9 @@
                   :If IsHtmlList dlb⊃bl
                       (drop item)←CollectItem bl
                       :If ~0∊⍴sa←GetSpecialAttributes⊃bl
-                          item←dlb dtb sa DropSpecialAttributes item
                           :If (⊂3↑(⍴html)⊃html)∊'<ul' '<ol'
                               ((⍴html)⊃html)←(¯1↓((⍴html)⊃html)),sa,'>'
+                              item←dlb dtb sa DropSpecialAttributes item
                           :EndIf
                       :Else
                           item←dlb dtb item
@@ -896,9 +917,9 @@
           ns←⍵
           3<+/∧\' '=⊃ns.markdown:0              ⍝ Zero to a maximum of three leading white space characters are allowed.
           sa←GetSpecialAttributes⊃ns.markdown
-          0=+/∧/¨(⊂sa DropSpecialAttributes' '~⍨⊃ns.leadingChars)='*-_':0
           line←dlb⊃ns.markdown
           line←sa DropSpecialAttributes line
+          0=+/∧/¨(⊂line~⎕UCS 9 10 11 12 13 32 133 160)='*-_':0
           3>line+.=⊃line:0
           ~0∊⍴line~' ',⊃line:0
           ns.html,←⊂'<hr',sa,'>'
@@ -912,7 +933,7 @@
           max←+/∧\∨/'|'=↑ns.withoutBlanks
           ns.noOf←+/∧\IsTableRow¨max↑ns.markdown
           :If 1<ns.noOf
-          :AndIf ∨/{∧/'-'='|: '~⍨⍵}¨2↑ns.markdown
+          :AndIf ∨/{∧/'-'='|: '~⍨⍵}¨{⍵↑⍨¯1+⍵⍳'{'}¨2↑ns.markdown
               r←ProcessTable_ ns
           :Else
               r←ProcessTableWithoutColTitles ns
@@ -1005,8 +1026,11 @@
       cells←SplitTableRowButMaskCode¨{(⊂specialAttrs DropSpecialAttributes⊃⍵),1↓⍵}ns.noOf↑ns.markdown
       cells←{dlb∘dtb ⍵}¨¨cells
       cells←ns{⍺ CheckOddNumberOfDoubleQuotes ⍵'header'}¨¨cells
-      cells←⊃¨¨ns ProcessInlineMarkUp¨¨cells
       align←('left' 'right')[1+{∧/⊃⎕VFI∊' ',¨⍵}¨↓⍉↑cells]
+      :If {(∧/⍵∊' -:')∧('-'∊⍵)}↑,/1⊃cells
+          cells←1↓cells
+      :EndIf
+      cells←⊃¨¨ns ProcessInlineMarkUp¨¨cells
       (footer cells)←ns.parms.markdownStrict GetFooter cells
       :If ~0∊⍴footer
           ns.html,←⊂'<tfoot>'
@@ -1520,13 +1544,10 @@
       :If CheckForHtmlBlock ns.(markdown emptyLines topOfDocument)
           ⍝ For details see regarding HTML block see http://spec.commonmark.org/0.24/#html-blocks
           ⍝ There's more to it then meets the eye at first glance.
-          :If r←ProcessHtmlBlockType_1 ns
-          :AndIf r←ProcessHtmlBlockType_2 ns
-          :AndIf r←ProcessHtmlBlockType_3 ns
-          :AndIf r←ProcessHtmlBlockType_5 ns   ⍝ 5 must be executed ...
-          :AndIf r←ProcessHtmlBlockType_4 ns   ⍝ ... before 4!
-          :AndIf r←ProcessHtmlBlockType_6 ns
-          :AndIf r←ProcessHtmlBlockType_7 ns
+          :If r←ProcessHtmlBlock_ScriptStylePre ns
+          :AndIf r←ProcessHtmlBlock_HtmlComments ns
+          :AndIf r←ProcessHtmlBlockType_CDATA ns
+          :AndIf r←ProcessHtmlBlockType_Tags ns
           :AndIf ⊃ns.emptyLines
               ns.noOf←1
               ns←Drop ns
@@ -1534,7 +1555,7 @@
       :EndIf
     ∇
 
-    ∇ r←ProcessHtmlBlockType_1 ns;start
+    ∇ r←ProcessHtmlBlock_ScriptStylePre ns;start
     ⍝ <script>, <style> or <pre>.
     ⍝ These are special because the first two can never be nested while the last one
     ⍝ preserves white space by definition.
@@ -1560,7 +1581,7 @@
       :EndIf
     ∇
 
-    ∇ r←ProcessHtmlBlockType_2 ns;start;md;bool
+    ∇ r←ProcessHtmlBlock_HtmlComments ns;start;md;bool
     ⍝ <!-- and -->
     ⍝ ← is 0 when found and processed, otherwise 0.
       r←1
@@ -1578,38 +1599,7 @@
       :EndIf
     ∇
 
-    ∇ r←ProcessHtmlBlockType_3 ns;start;b;md
-    ⍝ <? and ?>
-    ⍝ ← is 0 when found and processed, otherwise 0.
-      r←1
-      :If 2<⍴ns.markdown
-      :AndIf ⊃ns.emptyLines
-      :AndIf '<?'{⍺≡(⍴⍺)↑⍵}2⊃ns.leadingChars
-          :If 0<+/b←1↓ns.emptyLines
-              md←(b⍳1)↑ns.markdown
-          :AndIf 0<ns.noOf←DetectClosingTagBeforeEmptyLine ns.markdown'?>'
-              ns.html,←'?>'DropTailAfterClosingTag 1↓ns.noOf↑ns.markdown
-              ns←Drop ns
-              r←0
-          :EndIf
-      :EndIf
-    ∇
-
-    ∇ r←ProcessHtmlBlockType_4 ns;start
-    ⍝ "<!",⎕A
-    ⍝ ← is 0 when found and processed, otherwise 0.
-      r←1
-      :If 2<⍴ns.markdown
-      :AndIf 0∊⍴⊃ns.markdown
-      :AndIf '<!'{⍺≡(⍴⍺)↑⍵}2⊃ns.leadingChars
-      :AndIf 0<ns.noOf←DetectClosingTagBeforeEmptyLine ns.markdown'!>'
-          ns.html,←'!>'DropTailAfterClosingTag 1↓ns.noOf↑ns.markdown
-          ns←Drop ns
-          r←0
-      :EndIf
-    ∇
-
-    ∇ r←ProcessHtmlBlockType_5 ns;start
+    ∇ r←ProcessHtmlBlockType_CDATA ns;start
     ⍝ <![CDATA[ and ]]
     ⍝ ← is 0 when found and processed, otherwise 0.
       r←1
@@ -1623,75 +1613,36 @@
       :EndIf
     ∇
 
-    ∇ r←ProcessHtmlBlockType_6 ns;start;t;f1;f2;buff;tag;noOfEmptyLines
-    ⍝ Check for all possible (allowed and block) HTML5 tags.
-    ⍝ This is different from others because it may start with a closing tag.
+    ∇ r←ProcessHtmlBlockType_Tags ns;start;t;f2;tag;noOfEmptyLines
+    ⍝ Check for all HTML5 tags as well as self-defined tags.
+    ⍝ Note that self-defined tags must contain a hyphen by definition
+    ⍝ Note also that an HTML block MUST START with a < in the first column, and will
+    ⍝ end at the first empty line to be found
     ⍝ ← is 0 when found and processed, otherwise 1.
       r←1
-      :If 1<⍴ns.markdown
-      :AndIf ns.topOfDocument∨∆LastLineWasEmpty∨⊃ns.emptyLines
-          noOfEmptyLines←+/∧\ns.emptyLines
-          :If f1←'</'≡2↑2⊃ns.leadingChars
-          :OrIf '<'=⊃⊃noOfEmptyLines↓ns.leadingChars
-              :If 1∊(1+noOfEmptyLines)↓ns.emptyLines ⍝ Without a closing empty line it cannot be an HTML block
-                  buff←dlb(f1+1)↓⊃noOfEmptyLines↓ns.markdownLC
-                  buff←(buff⍳'>')↑buff               ⍝ Drop all behind the closing ">" or a blank
-                  :If '/'∊buff
-                      tag←⊂buff←buff~'<>/'
-                  :Else
-                      tag←⊂,'<'~⍨(¯1+⌊/buff⍳AllWhiteSpaceChars,'/>')↑buff
-                  :EndIf
-                  tag←{⍵↑⍨¯1+⍵⍳' '}¨tag
-                ⍝ Most frequently used tags first:
-                  :If tag∊,¨'div' 'h1' 'h2' 'h3' 'h4' 'h5' 'h6' 'li' 'ol' 'p' 'table' 'tbody' 'td' 'tfoot' 'th' 'thead' 'tr' 'ul'
-                  :OrIf tag∊,¨'address' 'article' 'aside' 'basefont' 'blockquote' 'caption' 'center' 'colgroup' 'col'
-                  :OrIf tag∊,¨'dd' 'details' 'dialog' 'dir' 'dl' 'dt' 'fieldset' 'figcaption' 'figure' 'footer' 'form' 'frame'
-                  :OrIf tag∊,¨'frameset' 'head' 'header' 'hr' 'html' 'iframe' 'legend' 'link' 'main' 'menu' 'menuitem' 'meta' 'nav'
-                  :OrIf tag∊,¨'noframes' 'optgroup' 'option' 'param' 'section' 'source' 'summary' 'title' 'track' 'pre' 'a' 'img'
-                      buff←(⍴↑tag)↓buff
-                      :If 0∊⍴buff
-                      :OrIf '>'=¯1↑buff
-                      :OrIf '/>'≡2⍴buff
-                      :OrIf (1⍴buff)∊AllWhiteSpaceChars
-                          ns.noOf←CalcNumberOfLinesOfHtmlBlock(⊃tag)ns.markdown
-                          ∆LastLineWasEmpty←1
-                          ns.html,←ns.noOf↑ns.markdown
-                          ns←Drop ns
-                          r←0
-                      :EndIf
-                  :EndIf
-              :EndIf
+      :If ns.topOfDocument∨∆LastLineWasEmpty∨⊃ns.emptyLines
+          :If 0<ns.noOf←+/∧\ns.emptyLines           ⍝ Let's get rid...
+              ns←Drop ns                            ⍝ ...of any empty lines first.
           :EndIf
-      :EndIf
-    ∇
-
-    ∇ r←ProcessHtmlBlockType_7 ns;start;cl
-    ⍝ Free-style (= user defined) tags.
-    ⍝ ← is 0 when found and processed, otherwise 0.
-      r←1
-      :If 1<⍴ns.markdown
-      :AndIf ns.topOfDocument∨⊃ns.emptyLines
-          cl←⊃(+/∧\ns.emptyLines)↓ns.markdownLC
-          :If ~0∊⍴'<[a-z]*\b[^>]*>' '</[a-z][^>]*>'⎕S 0⊣cl     ⍝ Look for any tag
-          :AndIf 0∊⍴'<script\b[^>]*>' '<style\b[^>]*>' '<pre\b[^>]*>'⎕S 0⊣cl
-          :AndIf 0∊⍴{⍵↓⍨⍵⍳'>'}(2⊃ns.markdown)~AllWhiteSpaceChars
-              ns.noOf←(1↓ns.emptyLines)⍳1
-          :AndIf '>'=¯1↑dtb⊃¯1↑(1-ns.topOfDocument)↓ns.noOf↑ns.markdown
-              ns.html,←(1-ns.topOfDocument)↓ns.noOf↑ns.markdown
+          tag←'/'~⍨{⍵↑⍨¯1+⌊/⍵⍳'> '}1↓⊃ns.markdownLC ⍝ Just the tag name, no matter whether closing or opening
+          :If (⊂tag)∊HtmlTags
+          :OrIf IsSelfDefinedHtmlTag tag
+              ns.noOf←(⍴ns.markdown)⌊ns.emptyLines⍳1
+              ns.html,←ns.noOf↑ns.markdown
               ns←Drop ns
+              ∆LastLineWasEmpty←1
               r←0
+          :ElseIf '@'∊∊tag
+              r←1
           :EndIf
       :EndIf
     ∇
 
-    ∇ noOf←CalcNumberOfLinesOfHtmlBlock(tag markdown);open;close
-      :If 0∊⍴⊃2↓markdown
-          noOf←3            ⍝ The tag stands on its own (=is followed by an empty line)
-      :Else
-          open←1↓+\{⊃⍴('<',tag,'[^>]*>')⎕S 0⍠('Greedy' 0)('Mode' 'L')('IC' 1)⊣⍵}¨markdown
-          close←{⊃⍴('</',tag,'>')⎕S 0⍠('Greedy' 0)('Mode' 'L')('IC' 1)⊣⍵}¨1↓markdown
-          noOf←1+{+/∧\0<⍵}open-+\close
-          noOf+←2                               ⍝ One for the empty line and 1 for ⎕IO (⎕S is ⎕IO←0!)
+    ∇ flag←IsSelfDefinedHtmlTag tag
+      flag←0
+      :If '-'∊tag                                   ⍝ A self-defined tag MUST contain a hyphen
+      :AndIf ∧/tag∊AllAllowedCharsInTag             ⍝ Check for allowed characters
+          flag←(⊃tag)∊TagMustStartWith              ⍝ The first char after the `<` must be a char
       :EndIf
     ∇
 
@@ -1707,11 +1658,11 @@
       :Else
           (first last)←md[1,⍴md]
           :If 0∊⍴'<code\b[^>]*>'⎕S 0⊣first
-          :AndIf 0∊⍴'<code\b[^>]*>'⎕S 0⊣⊃1↓md ⍝ '<cod'{⍺≢(⍴,⍺)↑⍵}⊃1↓md
+          :AndIf 0∊⍴'<code\b[^>]*>'⎕S 0⊣⊃1↓md
               first,←'<code>'
           :EndIf
           :If 0=+/'</code'⍷last
-          :AndIf '</cod'{⍺≢(⍴,⍺)↑⍵}⊃¯2↑md
+          :AndIf '</code'{⍺≢(⍴,⍺)↑⍵}⊃¯2↑md
               :If 0∊⍴{⍵↓⍨⍵⍳'>'}last
                   last,⍨←'</code>'
               :Else
@@ -1984,10 +1935,10 @@
           alt←2↓¯1↓{⍵↑⍨⍵⍳']'}txt
           txt←{⍵↓⍨⍵⍳']'}txt
           buff←1↓¯1↓txt↑⍨0⍳⍨(+\'('=txt)>+\')'=txt
-          specialAttributes←GetSpecialAttributes{'{'≠⊃⍵:'' ⋄ {⍵↑⍨⍵⍳'}'}⍵}(2+⍴buff)↓txt
-          txt←specialAttributes DropSpecialImageAttributes txt
-          title←{dlb ¯1↓dtb{⍵↑⍨⍵⍳'"'}⍵↓⍨⍵⍳'"'}buff
-          url←{dlb dtb ⍵↑⍨¯1+⌊/⍵⍳'"{'}buff
+          specialAttributes←GetSpecialAttributes'.*\(' '\).*'⎕R'' ''⍠('Greedy' 0)⊣buff
+          buff2←specialAttributes DropSpecialImageAttributes buff
+          title←{dlb ¯1↓dtb{⍵↑⍨⍵⍳'"'}⍵↓⍨⍵⍳'"'}buff2
+          url←{dlb dtb ⍵↑⍨¯1+⌊/⍵⍳'"{'}buff2
           ((url='\')/url)←'/'
           url←url ProcessImageUrl ns.parms.imageURL
           insert←'<img src="',url,'"'
@@ -2020,13 +1971,14 @@
           (⍴txt)<l←txt⍳'>':(-i1[1])⌽txt
           link←¯1↓1↓l↑txt
           sa←GetSpecialAttributes{'{'∊⍵:{⍵↑⍨⍵⍳'}'}{⍵↓⍨¯1+⍵⍳'{'}⍵ ⋄ ⍵}link
-          link←{⍵/⍨~Between ⍵∊'{}'}link
+          link←dtb{⍵/⍨~Between ⍵∊'{}'}link
           ∨/link∊AllWhiteSpaceChars:⍵                       ⍝ The link text must not contain any white space
           0={(∨/'://'⍷⍵)∨'@'∊⍵}link:⍵                       ⍝ We need to catch URLs and email addresses
           link,⍨←(0={(∨/'://'⍷⍵)∨'@'∊⍵}link)/'http://'
           link←'\_' '\*' '\~\~'⎕R'\\_' '\\*' '\\~\\~'⍠('Greedy' 0)⊣link
           pbo←'&pointybracket_open;'                        ⍝ Later converted ...
           pbc←'&pointybracket_close;'                       ⍝ ... back to < and >.
+          link,⍨←(('@'∊link)∧'mailto:'{⍺≢Lowercase(⍴⍺)↑⍵}link)/'mailto:'
           class←' class="',((1+'mailto'{⍺≡(⍴⍺)↑⍵}link)⊃'external_link' 'mailto_link'),'"'
           linkText←sa DropSpecialAttributes'mailto:'{⍵↓⍨(⍴⍺)×⍺≡(⍴⍺)↑⍵}1↓¯1↓l↑txt
           linkText←'\_' '\*' '\~\~'⎕R'\\_' '\\*' '\\~\\~'⍠('Greedy' 0)⊣linkText
@@ -2248,9 +2200,9 @@
                   :EndIf
               :Else
                   :If ⊃ns.emptyLines
-                  :AndIf '<'≠⊃⊃1↑1↓ns.leadingChars
                       ns.noOf←1
                       ns←Drop ns
+                      ∆LastLineWasEmpty←1
                   :EndIf
               :EndIf
           :EndIf
@@ -2632,6 +2584,7 @@
     ∇ {ns}←InjectNumberedHeaders ns;html;no;header;new;level;searchFor;ind;length;levelsToBeNumbered
       :If ~0∊⍴ns.headers  ⍝ Are their any headers at all?
           levelsToBeNumbered←{1≠⍴,⍵:⍵ ⋄ ⍳⍵}ns.parms.numberHeaders
+      :AndIf 4=2⊃⍴ns.headers    ⍝ This might not be the case when the headers are ill-formed.
       :AndIf ∨/levelsToBeNumbered∊ns.headers[;1] ⍝ Right levels?!
           html←FlattenHTML ns.html
           :For level header no :In ↓ns.headers[;1 3 4]
@@ -2649,24 +2602,35 @@
 
     ∇ ns←CalculateHeaderNumbers ns;nos;current;level;lastLevel;i;bool;headers
       current←6⍴0
-      bool←ns.headers[;1]∊{1=⍴,⍵:⍳⍵ ⋄ ⍵}ns.parms.numberHeaders
-      :If ~0∊⍴headers←bool⌿ns.headers
-          headers[;1]-←(⊃headers)-1
-          nos←(⊃⍴headers)⍴0
-          lastLevel←1
-          :For i :In ⍳⊃⍴headers
-              level←headers[i;1]
-              :If lastLevel>level
-                  (level↓current)←0
-              :EndIf
-              current[level]+←1
-              nos[i]←⊂level↑current
-              lastLevel←level
-          :EndFor
-          ns.headers,←⊂''
-          (bool⌿ns.headers)[;4]←{⊃,/(⍕¨⍵),¨'.'}¨nos
+      :If CheckHeaders ns
+          bool←ns.headers[;1]∊{1=⍴,⍵:⍳⍵ ⋄ ⍵}ns.parms.numberHeaders
+          :If ~0∊⍴headers←bool⌿ns.headers
+              headers[;1]-←(⊃headers)-1
+              nos←(⊃⍴headers)⍴0
+              lastLevel←1
+              :For i :In ⍳⊃⍴headers
+                  level←headers[i;1]
+                  :If lastLevel>level
+                      (level↓current)←0
+                  :EndIf
+                  current[level]+←1
+                  nos[i]←⊂level↑current
+                  lastLevel←level
+              :EndFor
+              ns.headers,←⊂''
+              (bool⌿ns.headers)[;4]←{⊃,/(⍕¨⍵),¨'.'}¨nos
+          :EndIf
+      :Else
+          ns.report,←⊂'Headers are ill-nested and need correction!'
       :EndIf
     ∇
+
+      CheckHeaders←{
+          ns←⍵
+          bool←({1=⍴,⍵:⍳⍵ ⋄ ⍵}ns.parms.numberHeaders)∊ns.headers[;1]
+          bool←(-+/∧\~⌽bool)↓bool   ⍝ The highest levels might not be in use, so we need to drop them
+          ∧/bool
+      }
 
       GetSpecialAttributes←{
       ⍝ Checks whether ⍵ (a single line of Markdown) carries a "special attributes" definition.
@@ -2769,10 +2733,10 @@
           '\'=1↑¯2↑⍵:⍵
           buff←(⎕UCS 13)Split ⍵     ⍝ In case of <<BR>>!
           tx←dtb⊃buff
-          b←('){')⍷tx
-          0=+/b:⍵
-          tx←(b⍳1)⌽⍵
-          (-b⍳1)⌽{⍵↓⍨⍵⍳'}'}tx
+          ~'{'∊tx:⍵
+          no←¯1+tx⍳'{'
+          tx←no⌽⍵
+          (-no)⌽{⍵↓⍨⍵⍳'}'}tx
       }
 
       ExecExternalFns←{
@@ -3102,7 +3066,11 @@
       :AndIf ':/'≢2⍴1↓url,'  '  ⍝ Absolute Windows path
       :AndIf './'≢2⍴url,'  '    ⍝ Relative path
       :AndIf '/'≠1⍴url          ⍝ Absolute UNIX path
-          url←'http://',url
+          :If '@'∊url
+              url←'mailto:',url
+          :Else
+              url←'http://',url
+          :EndIf
       :EndIf
     ∇
 

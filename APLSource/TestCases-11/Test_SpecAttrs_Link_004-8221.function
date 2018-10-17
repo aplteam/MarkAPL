@@ -6,17 +6,17 @@
  md←''
  md,←⊂'[parm]:verbose=0'
  md,←⊂'# Level 1 header'
- md,←⊂'[Level 1 header](#{target="_blank"})'
+ md,←⊂'[Level 1 header](# {target="_blank"})'
  md,←⊂''
  md,←⊂'Level 2 header'
  md,←⊂'-'
  md,←⊂''
- md,←⊂'[Link to level-2-header](#lEvel-2-header{target="_blank"})'
+ md,←⊂'[Link to level-2-header](#Level-2-header{target="_blank"})'
 
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
  →PassesIf 1=+/'<a href="#Level-1-header" target="_blank" class="bookmark_link">'⍷∊ns.html
- →PassesIf 1=+/'<a href="#lEvel-2-header" target="_blank" class="bookmark_link">'⍷∊ns.html
+ →PassesIf 1=+/'<a href="#Level-2-header" target="_blank" class="bookmark_link">'⍷∊ns.html
 
  R←∆OK

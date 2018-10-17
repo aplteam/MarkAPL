@@ -108,7 +108,11 @@ A> > Asides are great.
 A>
 A> In-line mark-up is available, too: **bold**, _italic_, `code`, whatever.
 
-Note that in case you specify a level-1 (<h1>) or a level-2 (<h2>) header in an Aside it will be converted to a level-3 header (<h3>) anyway. The reason is that many screenreaders read out all <h1> and all <h2> tags. Therefore the W3C recommends to not use headers of the levels 1 and 2 except they really are such headers.
+Notes:
+
+* In case you specify a level-1 (<h1>) or a level-2 (<h2>) header in an Aside it will be converted to a level-3 header (<h3>) anyway. The reason is that many screenreaders read out all <h1> and all <h2> tags. Therefore the W3C recommends to not use headers of the levels 1 and 2 except they really are such headers.
+
+* Headers defined in an Aside to not make it into the table-of-contents, and therefore they don't show in Meddy's tree view --- representing the TOC --- either.
 
 
 3. Specialties
@@ -127,7 +131,7 @@ LeanPub offers special mark-up for several purposes:
 
 We will discuss them in this order.
 
-A word of warning: making use of the specialties prevents any HTML document created by MarkAPL of being stand-alone; the icons have to come from somewhere. However, by default they are referred to as a URL pointing to a web address (see MarkAPL's `leanpubIconsUrl` parameter), so when you have an Internet connection it will work fine.
+A word of warning: making use of the specialties prevents any HTML document created by MarkAPL from being stand-alone; the icons have to come from somewhere. However, by default they are referred to as a URL pointing to a web address (see MarkAPL's `leanpubIconsUrl` parameter), so when you have an Internet connection it will work fine.
 
 If you like the general idea but not the icons used you can specify a different location and put your favourite icons there. Note that you can **not** change the names of the LeanPub extension icons.
 
@@ -220,7 +224,7 @@ W> Warnings: don't use the LeanPub extension too often.
 More complex:
 
 W> # A word of warning
-W> Using the LeanPub extensions too heavily it unlikely to be a good idea.
+W> Using the LeanPub extensions heavily it unlikely to be a good idea.
 
 ### Questions
 
@@ -231,17 +235,17 @@ Q> Any questions?!
 More complex:
 
 Q> # Question can be asked.
-Q> However, time is a scarce resource, so don't waste it on asking question that will advertise you as a moron!
+Q> However, time is a scarce resource, so don't waste it on asking questions that will advertise you as a moron!
 
 
 ## Behind the scenes
 
-All Leanpub extensions are converted into HTML independently. The resulting HTML then replaces the markdown defining them as a one-line HTML block. If necessary additional empty lines are inserted in order to keep the rows in line with the original one. 
+All Leanpub extensions are converted into HTML independently from processing the main document. The resulting HTML then replaces the markdown defining them as a one-line HTML block. If necessary additional empty lines are inserted in order to keep the rows in line with the original one. 
 
 As a side effect of this techniqe multi-line code blocks loose their newline characters because the HTML is converted into a single line. For that reason `<br>` tags are inserted to preserve those newlines.
 
-This document refers to version 4.3.0 of **_MarkAPL_**.<<br>>
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2018-02-09
+This document refers to version 5.5.0 of **_MarkAPL_**.<<br>>
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2018-10-14
 
 
 [^leanPub]: <http://LeanPub.com>

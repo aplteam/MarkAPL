@@ -10,11 +10,11 @@
 
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- expected←'<p>This is a para.</p>' ''
+ expected←⊂'<p>This is a para.</p>'
  expected,←⊂'<a href="http://aplwiki.com/KaiJaeger">'
  expected,←⊂'<img src="http://aplteam.com/wp-content/uploads/2015/02/KaiJaegerHeadMedium75perc.png" title="logo">'
- expected,←'</a>' ''
+ expected,←⊂'</a>'
  expected,←⊂'<p>Another para</p>'
- →PassesIf expected≡ns.html
+ →PassesIf expected≡ns.html~⊂''
 
  R←∆OK

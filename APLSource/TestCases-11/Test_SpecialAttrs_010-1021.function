@@ -6,7 +6,7 @@
  md←''
  md,←⊂'An ordinary paragraph.'
  fn←(#.FilesAndDirs.PWD,'\Files\KaiJaegerHeadVerySmall2014.jpg')
- md,←⊂'This: ![Kai Jaeger in 2014](',fn,' "Kai Jaeger in 2014"){style="margin-left:auto;margin-right:auto;"} is me in 2014.'
+ md,←⊂'This: ![Kai Jaeger in 2014](',fn,' "Kai Jaeger in 2014"{style="margin-left:auto;margin-right:auto;"}) is me in 2014.'
 
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns

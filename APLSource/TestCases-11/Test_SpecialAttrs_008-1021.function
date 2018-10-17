@@ -9,7 +9,7 @@
  md,←⊂'* * * {#foo1}'
  md,←⊂'This is a para. This is a para. This is a para. This is a para. This is a para. This is a para. '
  md,←⊂'This is a para. This is a para. This is a para. This is a para. This is a para. This is a para. '
- md,←⊂'* * * {#Foo2}'
+ md,←⊂'   * * * {#Foo2}'
  md,←⊂'This is a para. This is a para. This is a para. This is a para. This is a para. This is a para. '
 
  ns←##.MarkAPL.Init''md

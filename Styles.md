@@ -33,11 +33,11 @@ Replace the MarkAPL style sheets
 If you want to have your own style sheets then you have a choice between two different approaches:
 
 * Take a copy of one of the two style sheet sets MarkAPL is coming with and then make changes to them as required.
-* Create a new style sheet and add changes or make amendments. Then ensure that both the main style sheet are define via `screenCSS` and `printCSS` as a comma-separated text vector. Ensure that your own style sheet is the last one because the last one wins.
+* Create a new style sheet and add changes or make amendments. Then ensure that both the main style sheet are define via `screenCSS` and `printCSS` as a comma-separated text vector. Ensure that your own style sheet is the last one because the last one wins in case of conflicts.
 
 The second step is the right choice if you just need some amendments and/or some additional definitions.
 
-If you need a completely different layout then the first option is your only chice, really. There are several ways how to do this but one is clearly the best, see the following topic.
+If you need a completely different layout then the first option is your only choice, really. There are several ways how to do this but one is clearly the best, see the following topic.
 
 
 Suggestions for how to develop a new style sheet
@@ -73,7 +73,7 @@ All modern browsers will give you access to their development tools, usually inv
 
 ### "Print" style sheets
 
-In case something is not going to your liking the development tools all modern browsers come with are of great help. When it comes to printing however they are pretty useless: even Chrome, the only browser which offers a "Print Preview" does not allow you to invoke them on the print preview, at least not in a useful way.
+In case something is not going to your liking the development tools all modern browsers come with are of great help. When it comes to printing however they are pretty useless: even Chrome, the only browser which offers a "Print Preview", does not allow you to invoke them on the print preview, at least not in a useful way.
 
 Having two different files for the CSS allows us to temporarily use the print style sheet for display purposes (screen) as shown here:
 
@@ -102,9 +102,9 @@ There are also some CSS classes available that can be used for common tasks by s
 |div#external_link_report |   
 |div#footnotes_div        |
 
-* All external (=non-bookmark) links in a document are printed at the end of the document --- but above any footnates --- as a list under the header "Link report". They are embraced by a div with the class `external_link_report`. That makes styling them easy.
+* All external (=non-bookmark) links in a document are printed at the end of the document --- but above any footnates --- as a list under the header "Link report". They are embraced by a <div> with the class `external_link_report`.
 
-* Footnots go to the very end of the dcoument. They are embraced by a div with the class `footnotes_div`.
+* Footnots go to the very end of a dcoument. They are embraced by a <div> with the class `footnotes_div`.
 
 MarkAPL's own style sheet set styles the contents of those <div>s, but you might have different ideas.
 
@@ -112,9 +112,9 @@ MarkAPL's own style sheet set styles the contents of those <div>s, but you might
 
 There are a few HTML elements that get a class name assigned by **_MarkAPL_** in order to make styling them easy:
 
-* All footnote links in the document are assigned the class "footnote_link". 
+* All footnote links in the document get the class "footnote_link" assigned . 
   These are the links somewhere in the document pointing to the footnotes at the very end of the document.
-* All footnote anchors are assigned the class "footnote_anchor". 
+* All footnote anchors get the class "footnote_anchor" assigned. 
   These are the footnotes positioned at the very end of the document.
 * All anchors generated automatically for headers get the class name "autoheader_anchor" assigned.
 * All bookmark links created by the user via the `[header](#)` syntax get a 
@@ -123,11 +123,11 @@ There are a few HTML elements that get a class name assigned by **_MarkAPL_** in
 * All "mailto" links get the class name "mailto_link" assigned.
 * If `reportLinks` is 1 all links are listed at the very end of the document 
   (but before any footnotes) with their URLs and link text. 
-  These are embraced by a <div> with the ID "external_link_collection". 
+  These are embraced by a single <div> with the ID "external_link_collection". 
 * The default screen CSS comes with a class `.print_only` that defines just 
   "display:none;". This is used to make the link report invisible on the screen for example. 
   You may use it for preventing certain elements from being printed by assigning the class name as a special attributes.
-* If `toc` is 1 then MarkAPL injects a table-of-contents into the HTML. The toc is embraced by a <nav> tag which, in order to make it style-able, gets the id "main_nav" assigned when `collapsibleTOC` is 1 and `main_nav_no_collapse` otherwise .
+* If `toc` is 1 then MarkAPL injects a table-of-contents into the HTML. The toc is embraced by a <nav> tag which, in order to make it styleable, gets the id "main_nav" assigned when `collapsibleTOC` is 1 and `main_nav_no_collapse` otherwise.
 
 Naturally you must not use these class names for different purposes when defining your own CSS.
 
@@ -190,4 +190,4 @@ Example:
 </dl>
 ~~~
 
-[^normalyze]:https://necolas.github.io/normalize.css/
+[^normalyze]:<https://necolas.github.io/normalize.css/>

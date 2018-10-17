@@ -1,5 +1,5 @@
- R←Test_HTML_008(stopFlag batchFlag);⎕TRAP;md;ns
-⍝ Test nested tags in an HTML block (obstacle is finding the closing tag).
+ R←Test_HTML_025(stopFlag batchFlag);⎕TRAP;md;ns
+⍝ Test nested tags in an HTML block including self-defined ones.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 
@@ -7,7 +7,7 @@
  md←''
  md,←⊂'This is a para.'
  md,←⊂''
- md,←⊂'<div id="abc">'
+ md,←⊂'<my-tag id="abc">'
  md,←⊂'    <span class="special">'
  md,←⊂'    Enclosed **para**'
  md,←⊂'    </span>'
@@ -16,24 +16,24 @@
  md,←⊂'        Another enclosed _para_'
  md,←⊂'        </span>'
  md,←⊂'    </div>'
- md,←⊂'</div>'
+ md,←⊂'</my-tag>'
  md,←⊂''
  md,←⊂'This is a second para.'
 
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 1=+/'<div id="abc">'⍷∊ns.html
+ →PassesIf 1=+/'<my-tag id="abc">'⍷∊ns.html
  →PassesIf 1=+/'<div id="xy">'⍷∊ns.html
  →PassesIf 1=+/'<span class="special">'⍷∊ns.html
  →PassesIf 1=+/'<span class="special2">'⍷∊ns.html
- →PassesIf 2=+/'</div>'⍷∊ns.html
+ →PassesIf 1=+/'</my-tag>'⍷∊ns.html
 
 ⍝ Two independent blocks
  md←''
  md,←⊂'This is a para.'
  md,←⊂''
- md,←⊂'<div id="abc">'
+ md,←⊂'<my-tag id="abc">'
  md,←⊂'    <span class="special">'
  md,←⊂'    Enclosed **para**'
  md,←⊂'    </span>'
@@ -45,17 +45,17 @@
  md,←⊂'        Another enclosed _para_'
  md,←⊂'        </span>'
  md,←⊂'    </div>'
- md,←⊂'</div>'
+ md,←⊂'</my-tag>'
  md,←⊂''
  md,←⊂'This is a second para.'
 
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 1=+/'<div id="abc">'⍷∊ns.html
+ →PassesIf 1=+/'<my-tag id="abc">'⍷∊ns.html
  →PassesIf 1=+/'<div id="xy">'⍷∊ns.html
  →PassesIf 1=+/'<span class="special">'⍷∊ns.html
  →PassesIf 1=+/'<span class="special2">'⍷∊ns.html
- →PassesIf 2=+/'</div>'⍷∊ns.html
+ →PassesIf 1=+/'</my-tag>'⍷∊ns.html
 
  R←∆OK

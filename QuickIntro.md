@@ -37,7 +37,7 @@ All you need to do is to call the `Markdown2HTML` method:
 <a id="markapl" class="autoheaderlink"><h1>MarkAPLstrong></p>
 ~~~
 
-Note that not only the HTML but also a namespace `ns` is returned which, among other stuff, has a variable `report` that might carry warnings and report errors. Ideally `report` is empty.
+Note that not only the HTML but also a namespace `ns` is returned which, among other stuff, has a variable `report` that might carry warnings and error reports. Ideally `report` is empty.
 
 This way of calling `Markdown2HTML` relies entirely on defaults. If you are not happy with those you must specify parameters in one of two ways:
 
@@ -85,7 +85,7 @@ Call `MarkAPL.Help 0` in order to view the cheat sheet.
 
 Call `MarkAPL.Reference 0` in order to view the comprehensive documentation.
 
-Note that this requires the files Markdown_CheatSheet.html and Markdown.html respectively to be found either in the the current directory or in a folder `Files\` in the current directory.
+Note that this requires the files Markdown_CheatSheet.html and Markdown.html respectively to be found either in the current directory or in a folder `Files\` in the current directory.
 
 If those assumptions don't work you must tell `Help` (or `Reference`) where to find the file in question:
 
@@ -111,4 +111,4 @@ Please send comments, suggestions and bug reports to kai@aplteam.com.
 
 Kai Jaeger ⋄ APL Team Ltd ⋄ 2016-02-17
 
-Last update: 2018-02-19
+Last update: 2018-10-14

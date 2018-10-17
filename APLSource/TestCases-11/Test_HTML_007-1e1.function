@@ -22,28 +22,28 @@
  ns←##.MarkAPL.Process ns
  →PassesIf∨/''⍷∊ns.html
 
- md←'This is a para.' '' '<MyTag>' 'That''s embraced by `<MyTag>`' '</MyTag>' '' 'Another para'
+ md←'This is a para.' '' '<My-Tag>' 'That''s embraced by `<My-Tag>`' '</My-Tag>' '' 'Another para'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- →PassesIf'<MyTag>'{⍺≡(⍴⍺)↑⍵}1⊃ns.html
- →PassesIf'That''s embraced by `<MyTag>`'{⍺≡(⍴⍺)↑⍵}2⊃ns.html
- →PassesIf'</MyTag>'≡3⊃ns.html
+ →PassesIf'<My-Tag>'{⍺≡(⍴⍺)↑⍵}1⊃ns.html
+ →PassesIf'That''s embraced by `<My-Tag>`'{⍺≡(⍴⍺)↑⍵}2⊃ns.html
+ →PassesIf'</My-Tag>'≡3⊃ns.html
  →PassesIf'<p>Another para</p>'{⍺≡(-⍴⍺)↑⍵}↑¯1↑ns.html
 
- md←'This is a para.' '' '<MyTag>' '' 'That''s embraced by `<MyTag>`' '' '</MyTag>' '' 'Another para'
+ md←'This is a para.' '' '<My-Tag>' '' 'That''s embraced by `<My-Tag>`' '' '</My-Tag>' '' 'Another para'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- →PassesIf'<MyTag>'{⍺≡(⍴⍺)↑⍵}1⊃ns.html
- →PassesIf'<p>That''s embraced by <code>&lt;MyTag&gt;</code></p>'{⍺≡(⍴⍺)↑⍵}2⊃ns.html
- →PassesIf'</MyTag>'≡3⊃ns.html
+ →PassesIf'<My-Tag>'{⍺≡(⍴⍺)↑⍵}1⊃ns.html
+ →PassesIf'<p>That''s embraced by <code>&lt;My-Tag&gt;</code></p>'{⍺≡(⍴⍺)↑⍵}2⊃ns.html~⊂''
+ →PassesIf'</My-Tag>'≡3⊃ns.html~⊂''
  →PassesIf'<p>Another para</p>'{⍺≡(-⍴⍺)↑⍵}↑¯1↑ns.html
 
- md←'<MyTag>' '' 'That''s embraced by `<MyTag>`' '' '</MyTag>' '' 'A para'
+ md←'<My-Tag>' '' 'That''s embraced by `<My-Tag>`' '' '</My-Tag>' '' 'A para'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- →PassesIf 1=+/'<MyTag>'∘{⍺≡(⍴⍺)↑⍵}¨ns.html
- →PassesIf 1=+/'<p>That''s embraced by <code>&lt;MyTag&gt;</code></p>'∘{⍺≡(⍴⍺)↑⍵}¨ns.html
- →PassesIf 1=+/'</MyTag>'∘≡¨ns.html
+ →PassesIf 1=+/'<My-Tag>'∘{⍺≡(⍴⍺)↑⍵}¨ns.html
+ →PassesIf 1=+/'<p>That''s embraced by <code>&lt;My-Tag&gt;</code></p>'∘{⍺≡(⍴⍺)↑⍵}¨ns.html
+ →PassesIf 1=+/'</My-Tag>'∘≡¨ns.html
  →PassesIf 1=+/'<p>A para</p>'∘{⍺≡(-⍴⍺)↑⍵}¨ns.html
 
  R←∆OK

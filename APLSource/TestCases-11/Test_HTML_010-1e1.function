@@ -1,5 +1,5 @@
  R←Test_HTML_010(stopFlag batchFlag);⎕TRAP;md;ns
-⍝ Test nested tags in an HTML block (obstacle is finding the closing tag).
+⍝ Test nested tags in an HTML block.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 
@@ -16,9 +16,7 @@
  md,←⊂'        <span class="special2">'
  md,←⊂'        Another enclosed _para_'
  md,←⊂'        </span>'
- md,←⊂''
  md,←⊂'        A third enclosed para!'
- md,←⊂''
  md,←⊂'    </div>'
  md,←⊂'</div>'
  md,←⊂''

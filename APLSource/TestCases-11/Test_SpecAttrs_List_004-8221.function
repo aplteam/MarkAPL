@@ -1,10 +1,12 @@
- R←Test_SpecAttrs_List_001(stopFlag batchFlag);⎕TRAP;ns;md;fn
-⍝ List: try all styling possibilities: ID, classes, styling including fonts.
+ R←Test_SpecAttrs_List_004(stopFlag batchFlag);⎕TRAP;ns;md;fn
+⍝ List item spread over several lines with the special attributes defined on the first line
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 
  md←''
- md,←⊂'* list item {#myid style="color:red; background-color:silver; font-family:''APL385 Unicode''" .class1 .class2}'
+ md,←⊂'* list item{#myid style="color:red; background-color:silver; font-family:''APL385 Unicode''" .class1 .class2}'
+ md,←⊂''
+ md,←⊂'  More'
 
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns

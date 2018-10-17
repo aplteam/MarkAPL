@@ -3,8 +3,26 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 
- md←''
- md,←⊂'Link [to the APL wiki](http://aplwiki.com{id="foo"}).'
+
+ md←,⊂'Link [to the APL wiki](http://aplwiki.com{id="foo"}).'               ⍝ No blank
+
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+
+ →PassesIf∨/'<a href="http://aplwiki.com" class="external_link" id="foo">'⍷∊ns.html
+
+
+
+ md←,⊂'Link [to the APL wiki](http://aplwiki.com {id="foo"}).'              ⍝ 1 blank
+
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+
+ →PassesIf∨/'<a href="http://aplwiki.com" class="external_link" id="foo">'⍷∊ns.html
+
+
+
+ md←,⊂'Link [to the APL wiki](http://aplwiki.com  {id="foo"}).'             ⍝ Several blanks
 
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns

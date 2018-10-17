@@ -19,7 +19,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←⊂'<p>A para</p>'
- expected,←⊂''
  expected,←⊂'<div class="leanpub">'
  expected,←⊂'<img src="https://download.aplwiki.com/LeanPub/Images/discussion.png" alt="Discussion">'
  expected,←⊂'<div>'
@@ -27,8 +26,7 @@
  expected,←⊂'<p>This is a discussion.</p>'
  expected,←⊂'</div>'
  expected,←⊂'</div>'
- expected,←⊂''
  expected,←⊂'<p>Another para</p>'
- →PassesIf≡/expected ns.html
+ →PassesIf expected≡ns.html~⊂''
 
  R←∆OK

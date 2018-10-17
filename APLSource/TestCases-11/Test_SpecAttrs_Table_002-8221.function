@@ -5,7 +5,7 @@
 
  md←''
  md,←⊂'|Col A|Col B|  { #foo .class2 foo=123}'
- md,←⊂'|===|===|'
+ md,←⊂'|---|---|'
  md,←⊂'|Row 1/Col A|Row 1/Col B|'
  md,←⊂'|Row 1/Col A|Row 1/Col B|'
  md,←⊂'|Row 1/Col A|Row 1/Col B|'

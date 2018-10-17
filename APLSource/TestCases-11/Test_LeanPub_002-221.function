@@ -17,7 +17,7 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- expected←'<p>A para</p>' '' '<div class="leanpub_A">' '<h3>An aside</h3>' '</div>' '' '<p>Another para</p>'
- →PassesIf≡/expected ns.html
+ expected←'<p>A para</p>' '<div class="leanpub_A">' '<h3>An aside</h3>' '</div>' '<p>Another para</p>'
+ →PassesIf expected≡ns.html~⊂''
 
  R←∆OK

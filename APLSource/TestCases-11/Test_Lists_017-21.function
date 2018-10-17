@@ -16,9 +16,9 @@
 
  →PassesIf'<ul class="increment">'≡0⊃ns.html
  →PassesIf'<li>item 1</li>'≡1⊃ns.html
- →PassesIf'<li>item 2</li>'≡2⊃ns.html
+ →PassesIf'<li>item 2 {#foo}</li>'≡2⊃ns.html
  →PassesIf'<li>item 3</li>'≡3⊃ns.html
- →PassesIf'<li>item 4</li>'≡4⊃ns.html
+ →PassesIf'<li>item 4 {color=“red”;}</li>'≡4⊃ns.html
  →PassesIf 6=⍴ns.html
 
  R←∆OK

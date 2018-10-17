@@ -3,14 +3,14 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 
- fn←#.FilesAndDirs.EnforceSlash'file://',#.FilesAndDirs.PWD,'\Files\KaiJaegerHeadVerySmall2014.jpg'
+ fn←#.FilesAndDirs.EnforceSlash'file://',#.FilesAndDirs.PWD,'\Files\KaiJaegerHeadVerySmall.png'
  md←''
- md,←⊂'|Kai Jaeger | ![picture3](',fn,' "Kai Jaeger"){height="100" width="120"}|'
+ md,←⊂'|Kai Jaeger | ![picture3](',fn,' "Kai Jaeger"{height="100" width="120"})|'
 
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
  →PassesIf∨/'<td><img src="file://'⍷∊ns.html
- →PassesIf∨/'Files/KaiJaegerHeadVerySmall2014.jpg" height="100" width="120" alt="picture3" title="Kai Jaeger"></td>'⍷∊ns.html
+ →PassesIf∨/'Files/KaiJaegerHeadVerySmall.png" height="100" width="120" alt="picture3" title="Kai Jaeger"></td>'⍷∊ns.html
 
  R←∆OK

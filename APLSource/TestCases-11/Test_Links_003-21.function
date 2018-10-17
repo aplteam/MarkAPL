@@ -27,4 +27,10 @@
  expected←'<p>Link to the <a href="http://aplwiki.com" class="external_link" target="_blank">APL wiki</a></p>'
  →PassesIf expected≡↑ns.html
 
+ md←⊂'Send me an [email](kai@aplteam.com)'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ expected←'<p>Send me an <a href="mailto:kai@aplteam.com" class="mailto_link">email</a></p>'
+ →PassesIf expected≡↑ns.html
+
  R←∆OK

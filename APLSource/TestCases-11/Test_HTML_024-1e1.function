@@ -9,9 +9,9 @@
 
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- expected←'<p>A paragraph.</p>' ''
- expected,←'<div id="foo">' 'Another paragraph.' '</div>' ''
+ expected←⊂'<p>A paragraph.</p>'
+ expected,←'<div id="foo">' 'Another paragraph.' '</div>'
 
- →PassesIf expected≡ns.html
+ →PassesIf expected≡ns.html~⊂''
 
  R←∆OK

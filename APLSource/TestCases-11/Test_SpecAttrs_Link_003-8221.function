@@ -4,11 +4,11 @@
  R←∆Failed
 
  md←''
- md,←⊂'<http://aplwiki.com{target="_blank"}>'
+ md,←⊂'<http://aplwiki.com {target="_blank"}>'
 
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 1=+/'target="_blank"'⍷∊ns.html
+ →PassesIf 1=+/'target="_blank">'⍷∊ns.html
 
  R←∆OK

@@ -13,7 +13,7 @@ Cheatsheet
 
 This document comes with examples for most of the features offered by **_MarkAPL_**. The documentation is however **not** comprehensive: it provides just enough information to get you going.  
 
-For a comprehensive documentation refer to <http://download.aplteam.com/MarkAPL.html> or call the function `MarkAPL.Reference 0`.
+For a comprehensive documentation refer to <http://download.aplteam.com/MarkAPL.html> or, if you use MarkAPL within an APL workspace, call the function `MarkAPL.Reference 0`.
 
 Note that all the features related to the so-called LeanPub extensions are discussed in its own document.
 
@@ -43,7 +43,7 @@ This is a level 2 header
 
 ~~~
 
-Note that before and after such a header a blank line is required.
+Note that before and after such a header a **blank line is required**.
 
 ## APL Code
 
@@ -77,14 +77,14 @@ A code block may have an info string or special attributes or both; see the full
 
 ~~~
 |Name     |Remark     |No. of users|
-|:-----|:---------:|------:|
-| APL     | Brilliant |   800 |
-| Cobol   |       Old | 14000 |
-| F#      |      Newer|  3400 |
-| Haskell |       New |  3400 |
-| Java    |       Just|    74 |
-|=========|===========|=======|
-|Total    |           | 21674 |
+|:--------|:---------:|-----------:|
+| APL     | Brilliant |        800 |
+| Cobol   |       Old |      14000 |
+| F#      |      Newer|       3400 |
+| Haskell |       New |       3400 |
+| Java    |       Just|         74 |
+|=========|===========|============|
+|Total    |           |      21674 |
 ~~~
 
 Result:
@@ -261,7 +261,7 @@ Everything that is not identified as something else is considered a paragraph.
 
 ## In-line mark-up
 
-In-line mark-up can be used in paragraphs, lists, tables, blockquotes, definition lists and headers.
+In-line mark-up can be used in paragraphs, lists, table cells, blockquotes, definition lists and headers.
 
 ### Bold and italic
 
@@ -289,20 +289,32 @@ This `{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}` is an example.
 
 Code blocks can be marked up in two different ways:
 
-#### "Git" style fencing
+#### Standard markdown fencing
 
-This requires 3 ticks as shown here:
+This requires 3 tilde characters:
 
-~~~
 ```
+~~~
 {{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}
-```
 ~~~
+```
 
 Result:
 ```
 {{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}
 ```
+
+#### "Git" style fencing
+
+This requires 3 ticks:
+
+~~~
+```
+{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}
+```
+~~~
+
+The result is the same as before.
 
 ### Strike-through
 
@@ -365,14 +377,21 @@ Since Markdown is a writing format it is easy to write about <html> & use tags.
 #### External links
 
 ~~~
-External links with [The APLTree library on GitHub](https://github.com/aplteam/apltree) and without link text: <https://github.com/aplteam/apltree>
+External links with 
+[The APLTree library on GitHub](https://github.com/aplteam/apltree)
+and without link text: 
+[](https://github.com/aplteam/apltree)
 ~~~
 
 Result:
 
-External links with [The APLTree library](https://github.com/aplteam/apltree) and without link text: <https://github.com/aplteam/apltree>
+External links with 
+[The APLTree library](https://github.com/aplteam/apltree)
+and without link text: 
+[](https://github.com/aplteam/apltree)
 
-Note that you **must** specify a protocol ("http://", "https://", "ftp://" etc), otherwise it is not going to be converted. Don't use this for "mailto:" links.
+Note that you must specify a protocol ("http://", "https://", "ftp://" etc), otherwise it is not going to be converted. However, if the link contains a `@` characters it is assumed
+to be an email address, and the link is converted to a "mailto:" link.
 
 You can add a title as well as [Special attributes](#) to an external link:
 
@@ -394,11 +413,11 @@ A special version of an external link is the so-called automated link. Such a li
 <https://github.com/aplteam/apltree>
 ~~~
 
-Note that such a link **must** specify a protocol like "http://", "https://", "ftp://" etc. Do not use autolinks for "mailto:" links.
+Note that such a link must specify a protocol like "http://", "https://", "ftp://" etc. The exception is when there is a `@` part of the link: in that case it is converted to a "mailto:" link in any case.
 
 #### Internal links
 
-Since **_MarkAPL_** assigns anchors to all headers you can establish a link with
+Since **_MarkAPL_** assigns automatically anchors to all headers you can establish a link with
 
 ~~~
 [{Link text}]({Caption})
@@ -417,7 +436,7 @@ Naturally it is important that every single header has a unique ID in order to m
 If **_MarkAPL_** encounters the same header again then it will add a number to it in order to tell them apart.  It will report this on 
 [`ns.report`](http://download.aplteam.com/MarkAPL.html#report{target="_blank"})
 
-In such cases --- which should be rare, really --- it is a better idea to assign a unique ID via [Special attributes](#). Of course you must then use this ID when linking to that header, so the simplified syntax is not on option in such cases.
+In such cases --- which should be rare, really --- it is a better idea to assign a unique ID via [Special attributes](#). Of course you must then use this ID when linking to that header, so the simplified syntax is not an option in such cases.
 
 Sometimes the header text does not really fit as link text. Overcome this by specifying:
 
@@ -442,7 +461,7 @@ Examples for definitions:
 [vector]: http://vector.co.uk "The well-respected Journal of the British APL Association"
 ~~~
 
-You can use the IDs then to inject the links into, say, a paragraph:
+You can use the IDs to inject the links into, say, a paragraph:
 
 ~~~
 This paragraph links to [][1], [][git] and [the APL Journal][vector].
@@ -462,25 +481,28 @@ Note that [Special attributes](#) can be defined in the definition part but not 
 
 ## Special attributes
 
-Sometimes one wants to assign special attributes to a certain element. Typical candidates are images and tables.
+Sometimes one wants to assign special attributes to a certain element. Typical candidates are images, links and tables, although special attributes can assigned to most tags.
 
 This can be achieved by specifying those attributes by putting them to the right of the object in question, enclosed by curly brackets.
 
 For example, in order to specify width and height for an image, add a description and center both, image and description:
 
 ~~~
-![](http://download.aplteam.com/APL_Team_Dots.png){height="70" width="60" style="display:block;margin:auto;"}
+![](http://download.aplteam.com/APL_Team_Dots.png {height="70" width="60" style="display:block;margin:auto;"})
 _The logo_ {style="text-align:center;font-size:70%;padding-top:0;margin-top:-5px;"}
 ~~~
 
-![](http://download.aplteam.com/APL_Team_Dots.png){height="70" width="70" style="display:block;margin:auto;"}
+![](http://download.aplteam.com/APL_Team_Dots.png {height="70" width="70" style="display:block;margin:auto;"})
 
 _The logo_ {style="text-align:center;font-size:60%;padding-top:0;margin-top:-5px;"}
+
+Note that the first set of special attributes is assigned to the image as such, while the second set is assigned to the paragraph that comprises "The logo".
 
 You can also assign class and ID to an object via this syntax:
 
 ~~~
-The logo {#logo .center .red}
+The logo 
+{#logo .center .red}
 ~~~
 
 This is how the resulting HTML code would look like:
@@ -489,7 +511,7 @@ This is how the resulting HTML code would look like:
 <p id="logo" class="center red">The logo</p>
 ~~~
 
-Noe that links are special: any special attributes must be part of the links definition. That means they must be specified to the left of the closing glyph, be it a `>` or a `)`.
+Note that with links any special attributes must be part of the link definition. That means they must be specified to the left of the closing glyph, be it a `>` or a `)`.
 
 ## Helpers
 
@@ -559,7 +581,7 @@ For details refer to the [**_MarkAPL_** reference document](http://download.aplt
 
 ## Inject parameters
 
-You can inject key/value pairs representing parameters into a Markdown document with this syntax:
+With this syntax you can inject key/value pairs into a Markdown document representing parameters:
 
 ~~~
 [parm]:toc=1 2 3
@@ -574,8 +596,8 @@ For details refer to the [**_MarkAPL_** reference document](http://download.aplt
 
 ## Version
 
-This document refers to version 4.4.7 of **_MarkAPL_**.<<br>>
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2018-09-25
+This document refers to version 5.0.0 of **_MarkAPL_**.<<br>>
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2018-10-17
 
 ⍝ The link references:
 [1]:      https://aplwiki.com

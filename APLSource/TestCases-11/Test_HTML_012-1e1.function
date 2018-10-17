@@ -8,22 +8,22 @@
  md←''
  md,←⊂'This is a para.'
  md,←⊂''
- md,←⊂'<special type="1">'
+ md,←⊂'<my-special type="1">'
  md,←⊂'    <span class="foo">'
  md,←⊂''
  md,←⊂'    Enclosed **para**'
  md,←⊂''
  md,←⊂'</span>'
- md,←⊂'</special>'
+ md,←⊂'</my-special>'
  md,←⊂''
  md,←⊂'This is a second para.'
 
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 1=+/'<special type="1">'⍷∊ns.html
+ →PassesIf 1=+/'<my-special type="1">'⍷∊ns.html
  →PassesIf 1=+/'<span class="foo">'⍷∊ns.html
  →PassesIf 1=+/'Enclosed <strong>para</strong>'⍷∊ns.html
- →PassesIf 1=+/'</special>'⍷∊ns.html
+ →PassesIf 1=+/'</my-special>'⍷∊ns.html
 
  R←∆OK
