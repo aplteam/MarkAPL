@@ -62,11 +62,13 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'5.0.0.34' '2018-10-17'
+      r←(Last⍕⎕THIS)'5.0.1.36' '2018-11-06'
     ∇
 
     ∇ History
       :Access Public Shared
+      ⍝ * 5.0.1
+      ⍝   * Bug fix: an ill-formed header structure could break MarkAPL under certain (rare) circumstances.
       ⍝ * 5.0.0
       ⍝   * For bookmark links special attributes were required to be defined within the "()" parenthesis
       ⍝     while for ordinary links it had to be specified outside the parenthesis. This inconsistency
@@ -2592,7 +2594,7 @@
                   searchFor←'>',header,'</h',(⍕level),'>'
                   ind←1⍳⍨searchFor⍷html
                   length←{¯1+⍵⍳'<'}{m←~GetMaskForCodeTags ⍵ ⋄ m\m/⍵}ind↓html
-                  new←no,' ',header
+                  new←no,((0<≢no)/' '),header
                   html←(-ind)⌽new,length↓ind⌽html
               :EndIf
           :EndFor
@@ -2622,6 +2624,7 @@
           :EndIf
       :Else
           ns.report,←⊂'Headers are ill-nested and need correction!'
+          ns.headers,←⊂''
       :EndIf
     ∇
 

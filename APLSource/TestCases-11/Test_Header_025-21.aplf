@@ -1,5 +1,5 @@
  R←Test_Header_025(stopFlag batchFlag);⎕TRAP;md;ns;parms
-⍝ Completely ill-form headers. Was once a bug (red: crashed MarkAPL).
+⍝ Completely ill-form headers. Was once a bug (read: crashed MarkAPL).
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 
