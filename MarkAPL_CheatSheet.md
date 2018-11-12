@@ -318,6 +318,10 @@ The result is the same as before.
 
 ### Strike-through
 
+~~~
+This feature ~~is not available~~ was introduced in version 9.0
+~~~
+
 This feature ~~is not available~~ was introduced in version 9.0
 
 ### Syntactical sugar
