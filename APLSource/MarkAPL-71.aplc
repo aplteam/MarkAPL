@@ -69,50 +69,8 @@
       :Access Public Shared
       ⍝ * 5.0.1
       ⍝   * Bug fix: an ill-formed header structure could break MarkAPL under certain (rare) circumstances.
-      ⍝ * 5.0.0
-      ⍝   * For bookmark links special attributes were required to be defined within the "()" parenthesis
-      ⍝     while for ordinary links it had to be specified outside the parenthesis. This inconsistency
-      ⍝     needed to be fixed.\\
-      ⍝     This version requires all special attributes assigned to images and links (auto, bookmark and
-      ⍝     ordinary ones) to be specified **within** the image or link definition, meaning with `<>` or
-      ⍝     `()`. This is incompatible with MarkdownExtra but makes way more sense because `{` and `}` do never
-      ⍝     need escaping in connection with links and images.\\
-      ⍝     However, the fix potentially breaks old markdown, therefore the change of the major version number.\\
-      ⍝     Examples:\\
-      ⍝     Old (and now invalid) definitions:
-      ⍝     ```
-      ⍝     [linkText](url) {style="color:red;"}
-      ⍝     <https://aplwiki.com> {style="color:red;"}
-      ⍝     ```
-      ⍝     Correct definitions:
-      ⍝     ```
-      ⍝     [linkText](#url{style="color:red;"})
-      ⍝     [linkText](#url "My title" {style="color:red;"})
-      ⍝     <kai@aplteam.com {.email}>
-      ⍝     <https://aplwiki.com {.foo}>
-      ⍝     ```
-      ⍝    * Autolinks now create "mailto:" links.
-      ⍝    * Blockquotes now honour special attributes
-      ⍝    * Bug fixes:
-      ⍝      * Self-defined links are allowed in HTML5 but were not dealt correctly.
-      ⍝      * Any illegal attempt to define either an autolink or a self-defined HTML tag made the text
-      ⍝        disappear. Instead it should appear as ordinary text. An example is a self-defined tag that
-      ⍝        does not contain the (required) hyphen.
-      ⍝      * Self-defined HTML5 tags must contain a hyphen, start with an alphanumeric character and may
-      ⍝        consist of alphanumerics, digits and the two characters `-_`. MarkAPL did not honour this so far.
-      ⍝      * Nested HTML blocks were sometimes not processed correctly.
-      ⍝      * Special attributes assigned to any list item but the first disappeared. Should appear as
-      ⍝        ordinary test instead.
-      ⍝      * Special attributes assigned to a horizontal ruler were only recognized up to a certain length.
-      ⍝      * Tables without headers  were incorrectly constructed and marked up in case they had no column
-      ⍝        titles but special attributes assigned to them.
-      ⍝      * When the hierarchy of headers was completely wrong MarkAPL was likely to crash.
-      ⍝ * 4.4.7
-      ⍝   * Smooth scrolling introduced for local (bookmark) links; see the new parameter `smoothScrolling`.
-      ⍝
-      ⍝     Note that by default `smoothScrolling` is 1. The user will normally consider this an improvement.
-      ⍝     However, with really large documents this will be different because scrolling from the top to
-      ⍝     the bottom will take too long. In such cases set the parameter to 0 to avoid this.
+      ⍝\\
+      ⍝ For information regarding older versions see <https://github.com/aplteam/MarkAPL/releases>
     ∇
 
     :Field Public Shared ReadOnly PartOfNames←⎕A,⎕D,'_∆⍙','qwertyuiopasdfghjklzxcvbnm'
