@@ -2418,9 +2418,9 @@ If you cannot work out why it goes wrong report it to me -- see the previous top
 Version information
 -------------------
 
-This document refers to version 5.0.1 of **_MarkAPL_**.
+This document refers to version 5.0.2 of **_MarkAPL_**.
 
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2018-11-06
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-02-18
 
 [^meddy]: The Markdown editor Meddy on GitHub: <https://github.com/aplteam/Meddy>
 [^abandon]: Wikipedia definition of abandonware: <https://www.wikiwand.com/en/Abandonware>

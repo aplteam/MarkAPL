@@ -1,0 +1,28 @@
+ R←Test_LeanPub_049(stopFlag batchFlag);⎕TRAP;ns;md;expected
+⍝ Test whether a particular A> is identified correcly. Was once a bug.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←''
+ md,←⊂'[parm]:leanpubExtensions = 1'
+ md,←⊂'# Main'
+ md,←⊂''
+ md,←⊂'A> # More about :Include'
+ md,←⊂'A> '
+ md,←⊂'A> ~~~'
+ md,←⊂'A> :Class Foo'
+ md,←⊂'A> :EndClass'
+ md,←⊂'A>'
+ md,←⊂'A> :Namespace Goo'
+ md,←⊂'A> :EndNamespace'
+ md,←⊂'A> ~~~'
+ md,←⊂''
+ md,←⊂'## Be careful with diamonds'
+
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+
+ .
+ →PassesIf expected≡ns.html
+
+ R←∆OK

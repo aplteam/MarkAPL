@@ -57,19 +57,18 @@
 
     ⎕IO←1 ⋄ ⎕ML←1
 
-    :Include ##.APLTreeUtils
+    :Include APLTreeUtils
 
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'5.0.1.4.3' '2018-11-06'
+      r←(Last⍕⎕THIS)'5.0.2.46' '2019-02-18'
     ∇
 
     ∇ History
       :Access Public Shared
-      ⍝ * 5.0.1
-      ⍝   * Bug fix: an ill-formed header structure could break MarkAPL under certain (rare) circumstances.
-      ⍝\\
+      ⍝ * 5.0.3
+      ⍝   * :Include APLTreeUtils fixed.\\
       ⍝ For information regarding older versions see <https://github.com/aplteam/MarkAPL/releases>
     ∇
 
@@ -3150,7 +3149,8 @@
       :EndIf
       fn←CorrectSlash parms.homeFolder,'/',filename
       :If 0∊⍴parms.inputFilename
-          parms.inputFilename←(¯4↓fn),'md'
+      :AndIf 0=##.FilesAndDirs.IsFile parms.inputFilename←(¯4↓fn),'md'
+          ('Could not find "',parms.inputFilename,'"')⎕SIGNAL 6
       :EndIf
       :If 0∊⍴parms.outputFilename
           parms.outputFilename←fn
@@ -3288,6 +3288,7 @@
                               img←'<img src="',(parms LeanPubImageFor extension),'" alt="',(LeanPubAltTextFor extension),'">'
                               html←img'<div>',html,⊂'</div>'
                           :EndIf
+                          html←{0=+/b←0=≢¨⍵:⍵ ⋄ w←⍵ ⋄ (b/w)←⊂'&nbsp;' ⋄ w}html  ⍝ Important: only this way "html" is later recognized as a single HTML block.
                           html←openDiv,html,⊂'</div>'
                           ns.markdown←(ind↑ns.markdown),html,(ind+noOf)↓ns.markdown
                           ns.lineNumbers←(ind↑ns.lineNumbers),((⍴html)⍴⊂(1+ind),ind+noOf),(ind+noOf)↓ns.lineNumbers
