@@ -62,13 +62,14 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'5.0.2.46' '2019-02-18'
+      r←(Last⍕⎕THIS)'5.0.2.51' '2019-02-20'
     ∇
 
     ∇ History
       :Access Public Shared
-      ⍝ * 5.0.3
-      ⍝   * :Include APLTreeUtils fixed.\\
+      ⍝ * 5.0.2
+      ⍝   * :Include APLTreeUtils fixed.
+      ⍝   * Bug fix regarding LeaPub extensions: code blocks carrying a blank line caused havoc.
       ⍝ For information regarding older versions see <https://github.com/aplteam/MarkAPL/releases>
     ∇
 

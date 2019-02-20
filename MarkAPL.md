@@ -212,7 +212,7 @@ Compatibility, features, bugs
   
   With version 3.6 **_MarkAPL_** recognizes and processes the so-called LeanPub extension which are discussed in a separate document. These extensions allow the author to inject asides and messages: errors, warnings, tips and more.
   
-  The CSS style sheet sets **_MarkAPL_** is coming with contains rules for these extensions, but this can of course be changed to your liking by using a tailor made style sheet set that matches your needs. 
+  The set of CSS style sheets **_MarkAPL_** is coming with contain rules for these extensions, but this can of course be changed to your liking by using a tailor made style sheets that match your needs. 
 
   Note that there is a separate document available that discusses style sheets in detail.
 
@@ -2420,7 +2420,7 @@ Version information
 
 This document refers to version 5.0.2 of **_MarkAPL_**.
 
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-02-18
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-02-20
 
 [^meddy]: The Markdown editor Meddy on GitHub: <https://github.com/aplteam/Meddy>
 [^abandon]: Wikipedia definition of abandonware: <https://www.wikiwand.com/en/Abandonware>

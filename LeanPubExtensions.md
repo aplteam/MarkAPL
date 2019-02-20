@@ -23,7 +23,7 @@ The input format for LeanPub is markdown. Now markdown does not have the feature
 
 3. Several flavours of a message combined with an icon and separated from the main text by some white space. We refer to this as "specialties".
 
-Since version 3.6 MarkAPL understands the LeanPub extensions and marks the markdown up accordingly. Both style sheets coming with MarkAPL have proper mark-up added.
+Since version 3.6 MarkAPL understands the LeanPub extensions and marks up the markdown accordingly. Both style sheets coming with MarkAPL have proper mark-up added.
 
 We are going to discuss all extensions in detail.
 
@@ -112,7 +112,7 @@ Notes:
 
 * In case you specify a level-1 (<h1>) or a level-2 (<h2>) header in an Aside it will be converted to a level-3 header (<h3>) anyway. The reason is that many screenreaders read out all <h1> and all <h2> tags. Therefore the W3C recommends to not use headers of the levels 1 and 2 except they really are such headers.
 
-* Headers defined in an Aside to not make it into the table-of-contents, and therefore they don't show in Meddy's tree view --- representing the TOC --- either.
+* Headers defined in an Aside do not make it into the table-of-contents, and therefore they don't show in Meddy's tree view --- representing the TOC --- either.
 
 
 3. Specialties
@@ -131,9 +131,9 @@ LeanPub offers special mark-up for several purposes:
 
 We will discuss them in this order.
 
-A word of warning: making use of the specialties prevents any HTML document created by MarkAPL from being stand-alone; the icons have to come from somewhere. However, by default they are referred to as a URL pointing to a web address (see MarkAPL's `leanpubIconsUrl` parameter), so when you have an Internet connection it will work fine.
+A word of warning: making use of the specialties prevents any HTML document created by MarkAPL from being truly stand-alone; the icons have to come from somewhere. However, by default they are referred to as a URL pointing to a web address (see MarkAPL's `leanpubIconsUrl` parameter), so when you have an Internet connection it will work fine.
 
-If you like the general idea but not the icons used you can specify a different location and put your favourite icons there. Note that you can **not** change the names of the LeanPub extension icons.
+If you like the general idea but not the icons used you can specify a different location and put your favourite icons there. However, you can **not** change the names of the LeanPub extension icons.
 
 Note that in case you specify a level-1 (<h1>) or a level-2 (<h2>) header in a specialty it will be converted to a level-3 header (<h3>) anyway. The reason is that many screenreaders read out all <h1> and all <h2> tags. Therefore the W3C recommends to not use headers of the levels 1 and 2 except they really are such headers.
 
@@ -211,6 +211,8 @@ Simple example:
 
 E> Errors exists only to be made. Off we go!
 
+More complex:
+
 E> # About Errors
 E>
 E>  There is so much more to say regarding errors...
@@ -240,7 +242,9 @@ Q> However, time is a scarce resource, so don't waste it on asking questions tha
 
 ## Behind the scenes
 
-All Leanpub extensions are converted into HTML independently from processing the main document. The resulting HTML then replaces the markdown defining them as a one-line HTML block. If necessary additional empty lines are inserted in order to keep the rows in line with the original one. 
+All Leanpub extensions are converted into HTML independently from processing the main document. The resulting HTML then replaces the markdown defining them as a one-line HTML block. If necessary additional empty lines are inserted in order to keep the rows in line with the original ones. 
+
+Because HTML blocks are left alone when the actual markdown is processed that works pretty well. There is one downside however: since empty lines define the end of an HTML block any empty lines within a LeanPub extension are converted into `&nbsp;` which in HTML speak is a space.
 
 As a side effect of this techniqe multi-line code blocks loose their newline characters because the HTML is converted into a single line. For that reason `<br>` tags are inserted to preserve those newlines.
 
