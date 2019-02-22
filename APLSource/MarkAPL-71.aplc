@@ -62,7 +62,7 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'5.0.2.52' '2019-02-20'
+      r←(Last⍕⎕THIS)'5.0.2.53' '2019-02-20'
     ∇
 
     ∇ History
