@@ -62,7 +62,7 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'5.0.2.51' '2019-02-20'
+      r←(Last⍕⎕THIS)'5.0.2.52' '2019-02-20'
     ∇
 
     ∇ History
@@ -1217,7 +1217,7 @@
       :AndIf 1≠noOf←+/∧\~(noOf↑⊃¨ns.leadingChars)∊'|#='                                       ⍝ header, tables?
       :AndIf 1≠noOf←+/∧\~(noOf↑⊃¨ns.leadingChars)∊'|#='                                       ⍝ HTML header, tables?
       :AndIf 1≠noOf←+/∧\~{⊃⍴'^\s{0,3}[-+\*]\s'⎕S 0⊣⍵}¨noOf↑ns.markdown                        ⍝ bulleted list
-      :AndIf 1≠noOf←+/∧\~{⊃⍴'^\s{0,3}[0-9]{1,9}[.)]'⎕S 0⊣⍵}¨noOf↑ns.markdown                  ⍝ Ordered lists?
+      :AndIf 1≠noOf←+/∧\~{⊃⍴'^\s{0,3}[0-9]{1,9}[.)] '⎕S 0⊣⍵}¨noOf↑ns.markdown                 ⍝ Ordered lists?
       :AndIf 1≠noOf←+/∧\~{∨/({⍵⍴⍨3⌊⍴⍵}⍵~' ')∘≡¨'***' '---' '___'}¨noOf↑ns.markdown            ⍝ Horizontal rulers?
       :AndIf 1≠noOf←+/∧\~'```'∘{⍺≡(⍴⍺)↑⍵}¨noOf↑ns.markdown                                    ⍝ Code block (``` syntax)
       :AndIf 1≠noOf←+/∧\~'~~~'∘{⍺≡(⍴⍺)↑⍵}¨noOf↑ns.markdown                                    ⍝ Code block (~~~ syntax)

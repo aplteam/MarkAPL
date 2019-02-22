@@ -65,4 +65,9 @@
  expected←'<p>This is a paragraph</p>' '<pre><code class="classname">APL code</code></pre>'
  →FailsIf expected≢2↑ns.html
 
+ m←'This and **_that' '3.1 and more_**' '' 'Foo'
+ ns←##.MarkAPL.Init''m
+ ns←##.MarkAPL.Process ns
+ expected←'<p>This and <strong><em>that 3.1 and more</em></strong></p>' '<p>Foo</p>'
+ →FailsIf expected≢2↑ns.html
  R←0                                                                   ⍝ OK
