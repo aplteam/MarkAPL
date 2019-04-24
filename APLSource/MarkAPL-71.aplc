@@ -62,14 +62,13 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'5.0.2.56' '2019-02-20'
+      r←(Last⍕⎕THIS)'5.1.0.58' '2019-04-24'
     ∇
 
     ∇ History
       :Access Public Shared
-      ⍝ * 5.0.2
-      ⍝   * :Include APLTreeUtils fixed.
-      ⍝   * Bug fix regarding LeaPub extensions: code blocks carrying a blank line caused havoc.
+      ⍝ * 5.1.0
+      ⍝   * New parameter `saveHTML` introduced which is ignored by MarkAPL but honoured by Meddy.
       ⍝ For information regarding older versions see <https://github.com/aplteam/MarkAPL/releases>
     ∇
 
@@ -283,6 +282,7 @@
       'printCSS'SetTo'MarkAPL_print.css'
       'reportLinks'SetTo 0
       'reportLinksCaption'SetTo'Link report'
+      'saveHTML'SetTo ¯1                            ⍝ Meddy parameter
       'screenCSS'SetTo'MarkAPL_screen.css'
       'smoothScrolling'SetTo 1
       'subTocs'SetTo 1

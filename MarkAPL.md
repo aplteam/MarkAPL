@@ -2283,6 +2283,24 @@ However, the user does not have the means to see the URL of any external link. `
 String that defaults to "Link report:". This is placed above the list of all links (see `reportLinks`).
 
 
+#### saveHTML
+
+Note that this parameter is special insofar as it is not a MarkAPL but a Meddy parameter, meaning that MarkAPL just ignored it.
+
+However, the Markdown editor [Meddy](https://github.com/aplteam/Meddy "Link to Meddy on GitHub") would take it into account if the value is **not** `¯1`.
+
+These are the possible values:
+
+|Value| Action | Comment |
+|----:|:--------------------------|:----------|
+|`¯1` |Meddy ignores the parameter| (default) |
+|`1`  |Save HTML whenever the markdown is saved | |
+|`0`  |**Do not** save HTML        | |
+|`2`  |Ask user whether the HTML should be saved or not| |
+
+If specified this parameter overwrites the user's preferences.
+
+
 #### screenCSS
 
 The name of the CSS file (or several CSS files separated by commata) for the screen. Defaults to `MarkAPL_screen.css`. If this is empty no CSS for viewing purposes is included or linked to.
@@ -2296,7 +2314,7 @@ The name of the CSS file (or several CSS files separated by commata) for the scr
 
 ~~Note that this parameter has an effect only when the CSS is injected. Linked-to CSS must be prepared properly.~~
 
-With version 4.3 this parameter is ignored. Instead of text triangles (`▼` and `▲`) are used mimiking combo boxes. Note that this change requires a change in the CSS as well.
+With version 4.3 this parameter is ignored. Instead of text triangles (`▼` and `▲`) are used mimicking combo boxes. Note that this change requires a change in the CSS as well.
 
 
 #### subTocs
@@ -2418,9 +2436,9 @@ If you cannot work out why it goes wrong report it to me -- see the previous top
 Version information
 -------------------
 
-This document refers to version 5.0.2 of **_MarkAPL_**.
+This document refers to version 5.1.0 of **_MarkAPL_**.
 
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-02-20
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-04-24
 
 [^meddy]: The Markdown editor Meddy on GitHub: <https://github.com/aplteam/Meddy>
 [^abandon]: Wikipedia definition of abandonware: <https://www.wikiwand.com/en/Abandonware>
