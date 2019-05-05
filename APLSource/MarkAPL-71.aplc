@@ -62,13 +62,15 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'5.1.0.61' '2019-04-24'
+      r←(Last⍕⎕THIS)'5.1.1.64' '2019-05-05'
     ∇
 
     ∇ History
       :Access Public Shared
-      ⍝ * 5.1.0
-      ⍝   * New parameter `saveHTML` introduced which is ignored by MarkAPL but honoured by Meddy.
+      ⍝ * 5.1.1
+      ⍝   * Bug fixes
+      ⍝     * [# title] was (wrongly) identified as a header; it is a linke!
+      ⍝     * In case of `[data]: name` the space became part of the name
       ⍝ For information regarding older versions see <https://github.com/aplteam/MarkAPL/releases>
     ∇
 
@@ -1008,7 +1010,6 @@
       ProcessHeaders←{
           ns←⍵
           '#'=1⍴⊃ns.leadingChars:ProcessATX_Header ns
-          ~0∊⍴' {0,3}\[#{1,6} [~_*a-zA-Z0-9].*] *\(.+\)'⎕S 0⍠('Greedy' 0)⊣1⍴ns.markdown:ProcessATX_HeaderLink ns
           ProcessSetextHeader ns
       }
 
@@ -1438,6 +1439,7 @@
               def←⊃ns.markdown
               :If '='∊def
                   (id value)←¯1 0↓¨7 0↓¨{i←⍵⍳'=' ⋄ (i↑⍵)(i↓⍵)}def
+                  id←dlb dtb id
                   value←dlb dtb value
                   :If ''''∊value
                       :If ''''''≡2⍴¯1⌽value
