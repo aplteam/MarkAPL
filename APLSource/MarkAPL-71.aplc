@@ -62,15 +62,13 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'5.1.1.64' '2019-05-05'
+      r←(Last⍕⎕THIS)'5.1.2.65' '2019-05-07'
     ∇
 
     ∇ History
       :Access Public Shared
-      ⍝ * 5.1.1
-      ⍝   * Bug fixes
-      ⍝     * [# title] was (wrongly) identified as a header; it is a linke!
-      ⍝     * In case of `[data]: name` the space became part of the name
+      ⍝ * 5.1.2
+      ⍝   * Bug fix: Auto-bookmark links started the link text wrongly with a `#` character.
       ⍝ For information regarding older versions see <https://github.com/aplteam/MarkAPL/releases>
     ∇
 
@@ -1974,7 +1972,7 @@
           url←linkText(bookmarkMayStartWithDigit∘CompileBookMarkName{(1<⍴⍵)∧'#'=1↑⍵:'#',⍺⍺ ⍵'' ⋄ (,'#')≡,⍵:'#',⍺⍺ ⍺'' ⋄ ⍵})url
           linkText{0∊⍴⍵:⍺ ⋄ ⍵}←(1+poundFlag)⊃linkText title
           linkText←ProcessInlineMarkupInLinkText linkText
-          linkText{0∊⍴⍺~' ':⍵ ⋄ ⍺}←url
+          linkText{0∊⍴⍺~' ':⍵ ⋄ ⍺}←poundFlag↓url
           tag←'a href="',url,'"'
           tag,←(~poundFlag)/' class="',((1+'mailto'{⍺≡(⍴⍺)↑⍵}url)⊃'external_link' 'mailto_link'),'"'
           tag,←AddBookmarkClassName⍣poundFlag⊣sa

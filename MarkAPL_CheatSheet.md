@@ -600,8 +600,8 @@ For details refer to the [**_MarkAPL_** reference document](http://download.aplt
 
 ## Version
 
-This document refers to version 5.1.1 of **_MarkAPL_**.<<br>>
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-05-05
+This document refers to version 5.1.2 of **_MarkAPL_**.<<br>>
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-05-07
 
 ⍝ The link references:
 [1]:      https://aplwiki.com
