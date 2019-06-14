@@ -62,11 +62,14 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'5.1.2.65' '2019-05-07'
+      r←(Last⍕⎕THIS)'5.2.0.67' '2019-06-14'
     ∇
 
     ∇ History
       :Access Public Shared
+      ⍝ * 5.2.0
+      ⍝   * A colon (`:`) in a footnote is exchanged against `:<br>`. This can now be prevented by
+      ⍝     setting `markdownStrict` to 1.
       ⍝ * 5.1.2
       ⍝   * Bug fix: Auto-bookmark links started the link text wrongly with a `#` character.
       ⍝ For information regarding older versions see <https://github.com/aplteam/MarkAPL/releases>
@@ -2434,7 +2437,9 @@
       html,←⊂'<p><strong>',ns.parms.footnotesCaption,'</strong></p>'
       html,←⊂'<ol>'
       :For i footnote :InEach {(⍳⍴⍵)⍵}ns.footnoteDefs[;2]
-          footnote←': '⎕R':<br>'⊣footnote
+          :If 0=ns.parms.markdownStrict
+              footnote←': '⎕R':<br>'⊣footnote
+          :EndIf
           html,←⊂'<li id="fnref',(⍕i),'">',(⊃,/Tag¨footnote),'<a href="#fnref',(⍕i),'" class="footnote_anchor"></a>'
       :EndFor
       html,←'</ol>' '</div>'

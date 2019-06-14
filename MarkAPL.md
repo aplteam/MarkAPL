@@ -113,6 +113,8 @@ Compatibility, features, bugs
   Note that there are other --- and better --- ways to achieve the same goal: see [Line breaks](#) for details.
 
 * [Special attributes](#) are partly implemented with a syntax that differs slightly from Markdown Extra, and with good reasons.
+
+* A colon (`:`) in a [footnote](#Footnotes) is replaced by `:<br>`. This can be switched off by setting [markdownStrict](#) to 1,
  
 
 #### Not implemented
@@ -2220,6 +2222,7 @@ Note: prior to version 3.4.0 this flag was associated with the processing of syn
 With 3.4 the meaning of the `markdownStrict` flag has changed: when set to 1 (default is 0) it now prevents **_MarkAPL_** from carrying out operations that are **_MarkAPL_** specific enhancements. This is a comprehensive list of what's involved:
 * Lists **must** start with an empty line.
 * Table footers are not recognized.
+* A colon (`:`) in a footnote is not replaces by `:<br>`.
 
 In short, if you want the Markdown to be interpreted according to the standard by any other parser then you should set this flag to 1. However, note that more and more parsers allow lists to start without a blank line.
 
@@ -2385,9 +2388,9 @@ Note that this parameter has an effect only when the CSS is injected. Linked CSS
 
 #### verbose
 
-This parameter is of interest on for APL programmers.
+This parameter is of interest only to APL programmers.
 
-Boolean that defaults to `debug`. If this is 1 then the `Process` method will print the contents off `ns.report` to the session.  
+Boolean that defaults to `debug`. If this is 1 then the `Process` method will print the content of `ns.report` to the session.  
 
 
 #### width

@@ -136,6 +136,7 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}b
 <p>However, more than once a bug was reported regarding unintentional line breaks which were accidentally caused by adding two spaces at the end of a paragraph or a list item. Therefore with version 1.3 this ill-designed feature was removed from <strong><em>MarkAPL</em></strong>.</p>
 <p>Note that there are other — and better — ways to achieve the same goal: see <a href="#Line-breaks" class="bookmark_link">Line breaks</a> for details.</p></li>
 <li><a href="#Special-attributes" class="bookmark_link">Special attributes</a> are partly implemented with a syntax that differs slightly from Markdown Extra, and with good reasons.</li>
+<li>A colon (<code>:</code>) in a <a href="#Footnotes" class="bookmark_link">footnote</a> is replaced by <code>:&lt;br&gt;</code>. This can be switched off by setting <a href="#markdownStrict" class="bookmark_link">markdownStrict</a> to 1,</li>
 </ul>
 <div class="h_tag">
 <a href="#Not-implemented" id="Not-implemented" class="autoheader_anchor">
@@ -2156,6 +2157,7 @@ This is a paragraph with curlies at the end: \{\}.
 <ul>
 <li>Lists <strong>must</strong> start with an empty line.</li>
 <li>Table footers are not recognized.</li>
+<li>A colon (<code>:</code>) in a footnote is not replaces by <code>:&lt;br&gt;</code>.</li>
 </ul>
 <p>In short, if you want the Markdown to be interpreted according to the standard by any other parser then you should set this flag to 1. However, note that more and more parsers allow lists to start without a blank line.</p>
 <p>However, enhancements that require specific code in the Markdown are <strong>not</strong> affected:</p>
@@ -2342,8 +2344,8 @@ This is a paragraph with curlies at the end: \{\}.
 <h4>3.3.39. verbose</h4>
 </a>
 </div>
-<p>This parameter is of interest on for APL programmers.</p>
-<p>Boolean that defaults to <code>debug</code>. If this is 1 then the <code>Process</code> method will print the contents off <code>ns.report</code> to the session.</p>
+<p>This parameter is of interest only to APL programmers.</p>
+<p>Boolean that defaults to <code>debug</code>. If this is 1 then the <code>Process</code> method will print the content of <code>ns.report</code> to the session.</p>
 <div class="h_tag">
 <a href="#width" id="width" class="autoheader_anchor">
 <h4>3.3.40. width</h4>
