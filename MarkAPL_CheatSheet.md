@@ -242,7 +242,9 @@ The format of the definition:
 Notes:
 
 * The footnote identifiers must be ASCII characters.
-* In case a footnote contains a `:` then `<<br>>` (new line) is inserted after the colon.
+* ~~In case a footnote contains a `:` then `<<br>>` (new line) is inserted after the colon.~~
+
+  This was a particularly bad idea. Removed from MarkAPL with version 6.0.0. Simply inject `<<br>>` if you need/want a line break.
 * You can refer to this footnote with `[^footnote]` in your document.
 
 ## Horizontal lines
@@ -600,8 +602,8 @@ For details refer to the [**_MarkAPL_** reference document](http://download.aplt
 
 ## Version
 
-This document refers to version 5.1.2 of **_MarkAPL_**.<<br>>
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-05-07
+This document refers to version 6.0.0 of **_MarkAPL_**.<<br>>
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-06-27
 
 ⍝ The link references:
 [1]:      https://aplwiki.com

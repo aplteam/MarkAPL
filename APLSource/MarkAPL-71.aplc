@@ -3,8 +3,7 @@
 ⍝ MarkAPL is a parser that converts Markdown to valid HTML5.\\
 ⍝ The Markdown can be specified in two ways:
 ⍝ * As a vector of text vectors.
-⍝ * As a filename.
-⍝
+⍝ * As a filename.\\
 ⍝ ## How to get help
 ⍝ In order to view MarkAPL's cheat sheet execute this:\\
 ⍝ ~~~
@@ -62,16 +61,20 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'5.2.0.67' '2019-06-14'
+      r←(Last⍕⎕THIS)'6.0.0.73' '2019-06-27'
     ∇
 
     ∇ History
       :Access Public Shared
-      ⍝ * 5.2.0
-      ⍝   * A colon (`:`) in a footnote is exchanged against `:<br>`. This can now be prevented by
-      ⍝     setting `markdownStrict` to 1.
-      ⍝ * 5.1.2
-      ⍝   * Bug fix: Auto-bookmark links started the link text wrongly with a `#` character.
+      ⍝ * 6.0.0
+      ⍝   * The special meaning of a `:` in a footnote was removed. Prior to version 6.0.0 the `:` was
+      ⍝     replaced by `:<br>`. Now no more action is taken any more, therefore you need to add `<<br>>`
+      ⍝     yourself if you need this.\\
+      ⍝     Note that this is potentially a BREAKING CHANGE!
+      ⍝   * The two sets of CSS style sheets MarkAPL is coming with got some new styles: `.center`, `.left` 
+      ⍝     and `.right`. Note that they work with both inline and block elements.
+      ⍝   * Bug fix: an embedded function that was a public method of a class was not recognized as such.\\
+      ⍝
       ⍝ For information regarding older versions see <https://github.com/aplteam/MarkAPL/releases>
     ∇
 
@@ -1141,14 +1144,15 @@
     ∇ (html isHtmlBlock)←ns ProcessFunctionCalls html;mask;ind;noOf;call;result;flag;isEmpty
       mask←~GetMaskForCodeTags html
       isHtmlBlock←0
-      :If ~0∊⍴ind←'[^⍎]⍎⍎[^⍎]'⎕S 0⊣' ',(mask/html),' '  ⍝ Two blanks for the ≠ to fit start and end. The first one also fixes ⎕io
-      :AndIf ~0∊⍴ind←(2×⌊0.5×⍴ind)↑ind
+      :If 0≠≢ind←'[^⍎]⍎⍎[^⍎]'⎕S 0⊣' ',(mask/html),' '  ⍝ Two blanks for the ≠ to fit start and end. The first one also fixes ⎕io
+      :AndIf 0≠≢ind←(2×⌊0.5×⍴ind)↑ind
           :Repeat
               html←(⊃ind)⌽html
               noOf←-/ind[2 1]
               call←dlb dtb 1↓(noOf-1)↑1↓html
               html←(2+noOf)↓html
-              :If ~0∊⍴result←ns ExecExternalFns call
+              result←ns ExecExternalFns call
+              :If 0≠≢result
                   isEmpty←0=⊃∘⍴¨result~¨' '
                   result←(0⌈¯1++/∧\isEmpty)↓(-0⌈¯1++/∧\⌽isEmpty)↓result ⍝ Allow max 1 leading/trailing blank line
                   flag←⊃ns.parms.syntaxSugar
@@ -1171,7 +1175,7 @@
                       html←(-ind[1])⌽(⊃⍣(1<≡html)⊣result),html
                   :EndIf
               :EndIf
-          :Until 0∊⍴ind←2↓ind
+          :Until 0=≢ind←2↓ind
       :EndIf
     ∇
 
@@ -1184,7 +1188,7 @@
       sa←GetSpecialAttributes para
       para←sa DropSpecialAttributes⍣(0<⊃⍴sa)⊣para
       (para isHtmlBlock)←ns ProcessInlineMarkUp para
-      :If ~0∊⍴para
+      :If 0≠≢para
           ns.html,←Nest sa{2=≡⍵:⍺∘∇¨⍵ ⋄ '<p',({0∊⍴⍵:'>' ⋄ ⍵,'>'}⍺),⍵,'</p>'}para
       :EndIf
       ns←Drop ns
@@ -2437,9 +2441,6 @@
       html,←⊂'<p><strong>',ns.parms.footnotesCaption,'</strong></p>'
       html,←⊂'<ol>'
       :For i footnote :InEach {(⍳⍴⍵)⍵}ns.footnoteDefs[;2]
-          :If 0=ns.parms.markdownStrict
-              footnote←': '⎕R':<br>'⊣footnote
-          :EndIf
           html,←⊂'<li id="fnref',(⍕i),'">',(⊃,/Tag¨footnote),'<a href="#fnref',(⍕i),'" class="footnote_anchor"></a>'
       :EndFor
       html,←'</ol>' '</div>'
@@ -2705,14 +2706,46 @@
           (-no)⌽{⍵↓⍨⍵⍳'}'}tx
       }
 
-      ExecExternalFns←{
-          ns←⍺
-          (fns __arg)←{∨/' '''∊⍵:(¯1+⌊/⍵⍳' '''){(⍺↑⍵)(dlb ⍺↓⍵)}⍵ ⋄ ⍵ ⍬}⍵
-          3≠⎕NC fns:''⊣ns.report,←⊂'Unknown external function: <',fns,'>'
-          0::''⊣ns.report,←⊂'External function <',fns,'> did crash'
-          1=2⊃1 ⎕AT fns:⍎fns,' ns'
-          ⍎'__arg ',fns,' ns'
-      }
+    ∇ result←ns ExecExternalFns y;fns;__arg;nc;dmx
+      result←''
+      (fns __arg)←{∨/' '''∊⍵:(¯1+⌊/⍵⍳' '''){(⍺↑⍵)(dlb ⍺↓⍵)}⍵ ⋄ ⍵ ⍬}y
+      nc←⎕NC⊂fns
+      :If 3≠⌊|nc
+          ns.report,←⊂'Unknown external function: <',fns,'>'
+      :Else
+          :If (1=×nc)∧0=2⊃1 ⎕AT fns
+              ns.report,←⊂'External function <',fns,'> is niladic but must not!'  ⍝ We cannot perform this check on class methods!
+          :Else
+              :Trap 0
+                  ⍎'result←',fns,' ns'
+                  :If ¯1=×≡result
+                      ns.report,←⊂'External function <',fns,'> is niladic but must not!'  ⍝ Only thiss can explain a negative result
+                      result←''
+                  :EndIf
+              :Case 2
+                  :Trap 0
+                      ⍎'result←__arg ',fns,' ns'
+                  :Else
+                      ns.report,←⊂'External function <',fns,'> did crash'
+                  :EndTrap
+              :Else
+                  dmx←⎕DMX
+                  ⍝ At this stage it might be a dfn that requires a left argument, meaning that we have a VALUE ERROR on `⍺`!
+                  :If 6=dmx.EN
+                  :AndIf {'⍺'∊⍵/⍨{~⍵∨≠\⍵}⍵=''''}2⊃dmx.DM
+                      :Trap 0
+                          ⍎'result←__arg ',fns,' ns'
+                      :Else
+                          result←''
+                          ns.report,←⊂'External function <',fns,'> did crash'
+                      :EndTrap
+                  :Else
+                      ns.report,←⊂'External function <',fns,'> did crash'
+                  :EndIf
+              :EndTrap
+          :EndIf
+      :EndIf
+    ∇
 
       GetCommandLineParms←{
           r←⎕NS''

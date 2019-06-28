@@ -233,15 +233,14 @@ Given a function `#.foo←{'FOO'}` this will be the result:
 This: FOO is the result.
 ~~~
 
-The main purpose of this feature is to either inject simple text or one or more HTML blocks.
+The purpose of this feature is to either inject simple text or one or more HTML blocks.
 
 Notes:
 
-* You cannot inject Markdown block elements like lists, code blocks, block quotes, etc: it won't be processed any more when the function 
-  is called. However, in-line mark-up (`**`, `_`, `~~` etc) **is** recognized and processed, and so is typographical sugar.
+* You cannot inject Markdown block elements like lists, code blocks, block quotes, etc: it won't be processed any more when the function is called. However, in-line mark-up (`**`, `_`, `~~` etc) **is** recognized and processed, and so is typographical sugar.
 * The function name must always be fully qualified; that means the function 
   cannot live in either a class instance or an unnamed namespace.
-* The `ns` namespace is **always** provided as right argument to the function. 
+* The `ns` namespace is **always** provided as right argument to the function, therefore the function must be either monadic or dyadic.
 
 You may specify something to the right as in this example:
 
@@ -257,7 +256,7 @@ The result of such an embedded function must be one of:
 * Markdown (simple string or nested vector of text vectors).
 * An HTML block (nested vector of text vectors).
 
-However, mixing Markdown and HTML blocks is **not permitted**. 
+Note that mixing Markdown and HTML blocks is **not permitted**. 
 
 In case the function returns an HTML block the function call must stand on its own on a line.
 
@@ -561,13 +560,13 @@ Before reporting a bug please check carefully your Markdown. More often than not
 
 If you cannot work out why it goes wrong report it to me -- see the previous topic for how to report a problem.
 
-This document refers to version 5.0.0 of **_MarkAPL_**.
+This document refers to version 6.0.0 of **_MarkAPL_**.
 
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2018-10-17
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-06-27
 
-[^meddy]: The Markdown editor Meddy on GitHub: <https://github.com/aplteam/Meddy>
-[^abandon]: Wikipedia definition of abandonware: <https://www.wikiwand.com/en/Abandonware>
-[^commonmark]: The CommonMark specification: <http://spec.commonmark.org/> 
+[^meddy]: The Markdown editor Meddy on GitHub:<<br>><https://github.com/aplteam/Meddy>
+[^abandon]: Wikipedia definition of abandonware:<<br>><https://www.wikiwand.com/en/Abandonware>
+[^commonmark]: The CommonMark specification:<<br>><http://spec.commonmark.org/> 
 
 *[Abbreviations]: Text is marked up with the <abbr> tag
 

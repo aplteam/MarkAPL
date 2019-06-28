@@ -1,5 +1,5 @@
  R←Test_Misc_024(stopFlag batchFlag);⎕TRAP;md;parms;html
-⍝ Test whether "lang" attribute in <html>
+⍝ Test whether "lang" attribute in <html> is honoured
 ⍝ Defaults to "en" but can be set
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed

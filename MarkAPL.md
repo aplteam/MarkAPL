@@ -114,7 +114,9 @@ Compatibility, features, bugs
 
 * [Special attributes](#) are partly implemented with a syntax that differs slightly from Markdown Extra, and with good reasons.
 
-* A colon (`:`) in a [footnote](#Footnotes) is replaced by `:<br>`. This can be switched off by setting [markdownStrict](#) to 1,
+* ~~A colon (`:`) in a [footnote](#Footnotes) is replaced by `:<br>`. This can be switched off by setting [markdownStrict](#) to 1.~~
+
+  This particularly bad idea was removed from MarkAPL with version 6.0.0. Simply use `<bbr>>` if you want/need a line break.
  
 
 #### Not implemented
@@ -585,7 +587,9 @@ Notes:
 * The footnotes (= the ordered list) are wrapped in a 
   `<div id="footnotes_div">` tag to make them easily styleable with CSS. 
 * Footnotes always go to the very end of the HTML document.
-* In case of footnote contains a `:` then `<<br>>` (new line) is inserted after the colon.
+* ~~In case of footnote contains a `:` then `<<br>>` (new line) is inserted after the colon.~~
+
+  This particularly bad idea was removed from MarkAPL with version 6.0.0. Simply use `<<br>>` where you need/want a line break.
 
 
 #### Headers
@@ -2002,7 +2006,9 @@ Notes:
 
 This document lists _all_ parameters available (read: honoured by **_Mark_APL_**). However, you cannot set all of them with the `[parm]:<name>=<value>` technqiue: some of them can only be specified programmatically.
 
-However, it is easy to find out what can be injected into the document by selecting the "Inject parameters..." command from the context menu of the markdown pane.
+If you use Meddy for editing a Markdown document it is easy to find out what can be injected into the document by selecting the "Inject parameters..." command from the context menu of the markdown pane.
+
+Note that parameters must **_go to the top of a document_** in order to be recognized.
 
  
 #### bookmarkLink
@@ -2222,7 +2228,6 @@ Note: prior to version 3.4.0 this flag was associated with the processing of syn
 With 3.4 the meaning of the `markdownStrict` flag has changed: when set to 1 (default is 0) it now prevents **_MarkAPL_** from carrying out operations that are **_MarkAPL_** specific enhancements. This is a comprehensive list of what's involved:
 * Lists **must** start with an empty line.
 * Table footers are not recognized.
-* A colon (`:`) in a footnote is not replaces by `:<br>`.
 
 In short, if you want the Markdown to be interpreted according to the standard by any other parser then you should set this flag to 1. However, note that more and more parsers allow lists to start without a blank line.
 
@@ -2439,13 +2444,13 @@ If you cannot work out why it goes wrong report it to me -- see the previous top
 Version information
 -------------------
 
-This document refers to version 5.1.2 of **_MarkAPL_**.
+This document refers to version 6.0.0 of **_MarkAPL_**.
 
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-05-07
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-06-27
 
-[^meddy]: The Markdown editor Meddy on GitHub: <https://github.com/aplteam/Meddy>
-[^abandon]: Wikipedia definition of abandonware: <https://www.wikiwand.com/en/Abandonware>
-[^commonmark]: The CommonMark specification: <http://spec.commonmark.org/> 
+[^meddy]: The Markdown editor Meddy on GitHub:<<br>><https://github.com/aplteam/Meddy>
+[^abandon]: Wikipedia definition of abandonware:<<br>><https://www.wikiwand.com/en/Abandonware>
+[^commonmark]: The CommonMark specification:<<br>><http://spec.commonmark.org/> 
 
 *[Abbreviations]: Text is marked up with the <abbr> tag
 

@@ -134,8 +134,11 @@ Naturally you must not use these class names for different purposes when definin
 
 ### CSS styles available for assigning as special attributes
 
-| Class name           | Domain | Meaning |
-|----------------------|--------|---------|
+| Class name           | Domain | Meaning                                                 |
+|----------------------|--------|---------------------------------------------------------|
+| `.center`            | both   | Centers text                                            |
+| `.left`              | both   | Aligns text to the left                                 |
+| `.right`             | both   | Aligns text to the right                                |
 | `.no_display`        | screen | Prevent the element from showing. It will print however |
 | `.no_print`          | print  | Prevent the element from printing. It will show however |
 | `.avoid_page_break`  | print  | Avoid page breaks if possible                           | 
@@ -151,10 +154,10 @@ I> It's therefore better to assign the class `avoid_page_break` when appropriate
 ### Examples
 
 Let's assume that there is a table in your markdown that should not show on screen but rather be 
-printed without a page break; this can be easily achieved:
+printed without a page break and the table should be centered; this can be easily achieved:
 
 ~~~
-| Language | Comment |{.no_display .avoid_page_break}
+| Language | Comment |{.no_display .avoid_page_break .center}
 |----------|---------|
 | APL      | Excellent choice |
 | COBOL    | Oh dear          |
@@ -162,12 +165,12 @@ printed without a page break; this can be easily achieved:
 
 This would do the trick.
 
-| Language | Comment |{.no_display .avoid_page_break}
+| Language | Comment |{.no_display .avoid_page_break .center}
 |----------|---------|
 | APL      | Excellent choice |
-| COBOL    | Oh dear
+| COBOL    | Oh dear          |
 
-You cannot see the table on screen but when you select "View HTML in default browser" from Meddy's "Edit" menu (or just press F11) in order to view this page and then do a print preview (Chrome only) you will actually see this table making an appearance.
+You cannot see the table on screen but when you select "View HTML in default browser" from Meddy's "Edit" menu (or just press F11) in order to view this page and then do a print preview (at the time of writing this is a Chrome-only feature) you will actually see this table making an appearance.
 
 
 ## Assigned classes

@@ -259,12 +259,12 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}b
 <pre><code>This: ⍎⍎#.foo⍎⍎ is the result.</code></pre>
 <p>Given a function <code>#.foo←{'FOO'}</code> this will be the result:</p>
 <pre><code>This: FOO is the result.</code></pre>
-<p>The main purpose of this feature is to either inject simple text or one or more HTML blocks.</p>
+<p>The purpose of this feature is to either inject simple text or one or more HTML blocks.</p>
 <p>Notes:</p>
 <ul>
 <li>You cannot inject Markdown block elements like lists, code blocks, block quotes, etc: it won't be processed any more when the function is called. However, in-line mark-up (<code>**</code>, <code>_</code>, <code>~~</code> etc) <strong>is</strong> recognized and processed, and so is typographical sugar.</li>
 <li>The function name must always be fully qualified; that means the function cannot live in either a class instance or an unnamed namespace.</li>
-<li>The <code>ns</code> namespace is <strong>always</strong> provided as right argument to the function.</li>
+<li>The <code>ns</code> namespace is <strong>always</strong> provided as right argument to the function, therefore the function must be either monadic or dyadic.</li>
 </ul>
 <p>You may specify something to the right as in this example:</p>
 <pre><code>This: ⍎⍎#.foo 1 2 'hello'⍎⍎ is the result.</code></pre>
@@ -275,7 +275,7 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}b
 <li>Markdown (simple string or nested vector of text vectors).</li>
 <li>An HTML block (nested vector of text vectors).</li>
 </ul>
-<p>However, mixing Markdown and HTML blocks is <strong>not permitted</strong>.</p>
+<p>Note that mixing Markdown and HTML blocks is <strong>not permitted</strong>.</p>
 <p>In case the function returns an HTML block the function call must stand on its own on a line.</p>
 <p>If an HTML block is returned then the function is responsible for the correct formatting. In particular a <code>&lt;pre&gt;</code> block <strong>must</strong> look like this otherwise you might not get the desired result:</p>
 <pre><code>&lt;pre&gt;&lt;code&gt;Line 1
@@ -628,15 +628,15 @@ Last line
 </div>
 <p>Before reporting a bug please check carefully your Markdown. More often than not mistakes in the Markdown are causing the problem.</p>
 <p>If you cannot work out why it goes wrong report it to me – see the previous topic for how to report a problem.</p>
-<p>This document refers to version 5.0.0 of <strong><em>MarkAPL</em></strong>.</p>
-<p>Kai Jaeger ⋄ APL Team Ltd ⋄ 2018-10-17</p>
+<p>This document refers to version 6.0.0 of <strong><em>MarkAPL</em></strong>.</p>
+<p>Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-06-27</p>
 <div id="footnotes_div">
 <hr>
 <p><strong>Footnotes</strong></p>
 <ol>
-<li id="fnref1"><p>The Markdown editor Meddy on GitHub:<br><a href="https://github.com/aplteam/Meddy" class="external_link">https://github.com/aplteam/Meddy</a></p><a href="#fnref1" class="footnote_anchor"></a>
-<li id="fnref2"><p>Wikipedia definition of abandonware:<br><a href="https://www.wikiwand.com/en/Abandonware" class="external_link">https://www.wikiwand.com/en/Abandonware</a></p><a href="#fnref2" class="footnote_anchor"></a>
-<li id="fnref3"><p>The CommonMark specification:<br><a href="http://spec.commonmark.org/" class="external_link">http://spec.commonmark.org/</a></p><a href="#fnref3" class="footnote_anchor"></a>
+<li id="fnref1"><p>The Markdown editor Meddy on GitHub: <br><a href="https://github.com/aplteam/Meddy" class="external_link">https://github.com/aplteam/Meddy</a></p><a href="#fnref1" class="footnote_anchor"></a>
+<li id="fnref2"><p>Wikipedia definition of abandonware: <br><a href="https://www.wikiwand.com/en/Abandonware" class="external_link">https://www.wikiwand.com/en/Abandonware</a></p><a href="#fnref2" class="footnote_anchor"></a>
+<li id="fnref3"><p>The CommonMark specification: <br><a href="http://spec.commonmark.org/" class="external_link">http://spec.commonmark.org/</a></p><a href="#fnref3" class="footnote_anchor"></a>
 </ol>
 </div>
 </body>

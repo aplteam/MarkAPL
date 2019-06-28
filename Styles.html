@@ -172,10 +172,25 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}b
 <tr>
 <th style="text-align: left;"> Class name           </th>
 <th style="text-align: left;"> Domain </th>
-<th style="text-align: left;"> Meaning </th>
+<th style="text-align: left;"> Meaning                                                 </th>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><code>.center</code></td>
+<td>both</td>
+<td>Centers text</td>
+</tr>
+<tr>
+<td><code>.left</code></td>
+<td>both</td>
+<td>Aligns text to the left</td>
+</tr>
+<tr>
+<td><code>.right</code></td>
+<td>both</td>
+<td>Aligns text to the right</td>
+</tr>
 <tr>
 <td><code>.no_display</code></td>
 <td>screen</td>
@@ -217,13 +232,13 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}b
 <h3>1.4.4. Examples</h3>
 </a>
 </div>
-<p>Let's assume that there is a table in your markdown that should not show on screen but rather be printed without a page break; this can be easily achieved:</p>
-<pre><code>| Language | Comment |{.no_display .avoid_page_break}
+<p>Let's assume that there is a table in your markdown that should not show on screen but rather be printed without a page break and the table should be centered; this can be easily achieved:</p>
+<pre><code>| Language | Comment |{.no_display .avoid_page_break .center}
 |----------|---------|
 | APL      | Excellent choice |
 | COBOL    | Oh dear          |</code></pre>
 <p>This would do the trick.</p>
-<table class="no_display avoid_page_break">
+<table class="no_display avoid_page_break center">
 <thead>
 <tr>
 <th style="text-align: left;"> Language </th>
@@ -241,7 +256,7 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}b
 </tr>
 </tbody>
 </table>
-<p>You cannot see the table on screen but when you select “View HTML in default browser” from Meddy's “Edit” menu (or just press F11) in order to view this page and then do a print preview (Chrome only) you will actually see this table making an appearance.</p>
+<p>You cannot see the table on screen but when you select “View HTML in default browser” from Meddy's “Edit” menu (or just press F11) in order to view this page and then do a print preview (at the time of writing this is a Chrome-only feature) you will actually see this table making an appearance.</p>
 <div class="h_tag">
 <a href="#Assigned-classes" id="Assigned-classes" class="autoheader_anchor">
 <h2>1.5. Assigned classes</h2>
