@@ -67,4 +67,4 @@ There is also a [cheat sheet](http://download.aplteam.com/MarkAPL_CheatSheet.htm
 
 Note that there is an editor available that uses MarkAPL as converter: [Meddy](https://github.com/aplteam/Meddy "Meddy on GitHub"). 
 
-The editor is quite basic (but comes with Undo/Redo and a powerful Search/Replace) but it supports all MarkAPL features.
+The editor is quite basic but it supports all MarkAPL features. It sports the most important features you would expect from any editor (Undo/Redo and a powerful Search/Replace) and also comes with a tree view for navigation that is auto-generated from the headers .

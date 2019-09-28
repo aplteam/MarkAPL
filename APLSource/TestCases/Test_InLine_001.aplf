@@ -1,0 +1,43 @@
+ R←Test_InLine_001(stopFlag batchFlag);⎕TRAP;m;ns;md;expected
+⍝ Test in-line mark-up; here * <==> <em>
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←⊂'This is a simple paragraph'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ expected←'<p>This is a simple paragraph</p>'
+ →FailsIf expected≢↑ns.html
+
+ md←⊂'This is a simple *paragraph*!'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ expected←'<p>This is a simple <em>paragraph</em>!</p>'
+ →FailsIf expected≢↑ns.html
+
+ md←⊂'This is a simple *paragraph* that h*as APL in it: `(2*5)÷0.5'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ expected←'<p>This is a simple <em>paragraph</em> that h<em>as APL in it: <code>(2*5)÷0.5</code></p>'
+ →FailsIf expected≢↑ns.html
+
+ md←⊂'In*s*ide a word'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ expected←'<p>In<em>s</em>ide a word</p>'
+ →FailsIf expected≢↑ns.html
+
+ md←⊂'*Full paragraph*.'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ expected←'<p><em>Full paragraph</em>.</p>'
+ →FailsIf expected≢↑ns.html
+
+ md←⊂'`* is italic *` survives: * is italic *'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ expected←'<p><code>* is italic *</code> survives: * is italic *</p>'
+ →FailsIf expected≢↑ns.html
+
+ R←∆OK
+⍝Done

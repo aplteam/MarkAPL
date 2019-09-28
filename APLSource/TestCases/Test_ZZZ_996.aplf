@@ -1,0 +1,15 @@
+ R←Test_ZZZ_996(stopFlag batchFlag);⎕TRAP;buff;md
+⍝ Test whether date and version number in document "MarkAPL_CheatSheet.md" are correct
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←'flat'#.APLTreeUtils.ReadUtf8File'Docs\MarkAPL_CheatSheet.md'
+ buff←'This document refers to version '
+ buff,←↑{⍺,'.',⍵}/3↑'.'#.APLTreeUtils.Split 1⊃##.MarkAPL.Version
+ buff,←' of **_MarkAPL_**.'
+ →PassesIf 1=+/buff⍷md
+
+ buff←2⊃##.MarkAPL.Version
+ →PassesIf 1=+/buff⍷md
+
+ R←∆OK
