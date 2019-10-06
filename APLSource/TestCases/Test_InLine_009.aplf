@@ -1,5 +1,5 @@
  R←Test_InLine_009(stopFlag batchFlag);⎕TRAP;html;md;ns;expected
-⍝ Tests bookmark links
+⍝ Test bookmark links
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

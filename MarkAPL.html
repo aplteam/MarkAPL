@@ -124,7 +124,7 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}b
 <li>Code blocks are identified as such <strong>just by fencing</strong>. Any lines indented by 4 characters <strong>do not</strong> define a code block in <strong><em>MarkAPL</em></strong>.</li>
 <li>In front of the fencing characters there might be zero or up to three white space characters. However, when a code block is part of a list item than those white space characters have special meaning, and there might also be more than just three of them.</li>
 <li>HTML blocks that must end with an end tag should <strong>not have</strong> anything after the end tag on that very line: it would be ignored.</li>
-<li>Note that <code>\</code> is considered an escape character <strong>only</strong> when there is something to escape to the right of the backslash character, otherwise the <code>\</code> will survive untouched.
+<li>Note that <code>\</code> is considered an escape character **only** when there is something to escape to the right of the backslash character, otherwise the <code>\</code> will survive untouched.
 <p>However, escaping is a more complex issue than you might expect; see <a href="#Escaping" class="bookmark_link">Escaping</a> for details</p></li>
 <li>For defining any attributes a pair of double quotes must be used. Single quotes have no effect. (This contradicts the original Markdown documentation but due to a bug it did not work with the original Markdown implementation either)</li>
 <li><strong><em>MarkAPL</em></strong> does not have the concept of “loose list items”. In CommonMark, the contents of any list item that is followed by a blank line is called a “loose” list item and wrapped into an additional <code>&lt;p&gt;</code> tag.
@@ -168,7 +168,7 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}b
 <li>Typographical sugar. This can be switched off by setting <a href="#syntaxSugar" class="bookmark_link"><code>syntaxSugar</code></a> to 0.
 <ul>
 <li>Pairs of double-quotes (<code>"</code>) are exchanged against their typographically correct equivalents “like here” while the <a href="#lang" class="bookmark_link"><code>lang</code></a> parameter decides what's going to be the opening and what's the closing one: Germany/Austria/Switzerland have different ideas in this respect from the rest of the world.
-<p>Note also that this means that mentioning a single double-quote requires it to be put between back-ticks or escaped with a <code>\</code> character when there are also pairs of double-quotes in the same paragraph, cell, list item, blockquote or header because otherwise <strong><em>MarkAPL</em></strong> has no idea what to do with it.</p>
+<p>Note also that this means that mentioning a single double-quote requires it to be put between back-ticks or escaped with a <code>\</code> character when there are also pairs of double-quotes in the same paragraph, cell, list item, blockquote or header because otherwise **_MarkAPL_** has no idea what to do with it.</p>
 <p>A single double quote (") however is simply shown as is.</p></li>
 <li>Three dots (<code>...</code>) are exchanged against an ellipses: …</li>
 <li>Three hyphens (<code>---</code>) are exchanged against —.
@@ -395,13 +395,8 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}b
 <td style="text-align: center;">X</td>
 <td style="text-align: center;"></td>
 </tr>
-<tr>
-<td>Line breaks    (<code>\</code>)</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">X</td>
-<td style="text-align: center;">X</td>
-</tr>
+</tbody>
+<tfoot>
 <tr>
 <td>Line breaks (<code>&lt;&lt;br&gt;&gt;</code>)</td>
 <td style="text-align: center;"></td>
@@ -500,7 +495,7 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}b
 <td style="text-align: center;"></td>
 <td style="text-align: center;">X</td>
 </tr>
-</tbody>
+</tfoot>
 </table>
 <p>Notes:</p>
 <ul>
@@ -981,7 +976,7 @@ _</code></pre>
 </ul>
 <p>Within a word, inline markup with <code>_</code> is ignored while <code>*</code> is honoured. This is because <code>_</code> may well appear in words but <code>*</code> won't. Therefore <code>Not i_tali_c</code> survives verbatim (Not i_tali_c) while <code>I*tali*c</code> results in Ii<em>tali</em>c. Same for <code>St__ro__ng</code> (St__ro__ng) and <code>St**ro**ng</code> (St<strong>ro</strong>ng).</p>
 <p>With the aforementioned exception all examples that use <code>*</code> are valid for <code>_</code> and <code>__</code> and <code>**</code> as well.</p>
-<p>Note that you can always escape either <code>*</code> or <code>_</code> with a backslash, therefore <code>\___Word__\_</code> results in ___Word<strong>_ (the underscores are not emphasized) while <code>__\_Word\___</code> would result in </strong>_Word___ (the underscores are both emphasized).</p>
+<p>Note that you can always escape either <code>*</code> or <code>_</code> with a backslash, therefore <code>\___Word__\_</code> results in _<strong>Word</strong>_ (the underscores are not emphasized) while <code>__\_Word\___</code> would result in <strong>_Word_</strong> (the underscores are both emphasized).</p>
 <div class="h_tag">
 <a href="#Emphasize-with" id="Emphasize-with" class="autoheader_anchor">
 <h6>3.1.12.1.1. Emphasize with <code>&lt;em&gt;</code></h6>

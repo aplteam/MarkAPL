@@ -1,5 +1,5 @@
  R←Test_InLine_010(stopFlag batchFlag);⎕TRAP;ns;md;expected
-⍝ Tests inline code that carries "<" and ">"
+⍝ Test inline code that carries "<" and ">"
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

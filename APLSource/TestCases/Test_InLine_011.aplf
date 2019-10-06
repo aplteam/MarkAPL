@@ -1,5 +1,5 @@
  R←Test_InLine_011(stopFlag batchFlag);⎕TRAP;ns;md;expected
-⍝ Tests text that carries HTML entities and special chars but also code (with special chars)
+⍝ Test text that carries HTML entities and special chars but also code (with special chars)
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

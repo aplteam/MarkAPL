@@ -71,8 +71,6 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}b
 <h2>2. How to</h2>
 </a>
 </div>
-<p>First of all, you can bring the document you are reading right now into view by executing <code>MarkAPL.Reference 0</code>. Viewing the file “MarkAPL.html” has the same effect.</p>
-<p>You can view the cheat sheet by calling <code>MarkAPL.Help 0</code>. Viewing the file “MarkAPL_CheatSheet.html” has the same effect.</p>
 <p>One way to study how to make use of <strong><em>MarkAPL</em></strong> is to trace through the method <code>MarkAPL.Help</code>. This should clarify the principles.</p>
 <p>Another way is to look at the test cases named <code>Test_Examples_01</code> etc. in <code>#.TestCases</code> in the workspace MarkAPL.DWS. You can execute them with:</p>
 <pre><code>TestCases.RunThese 'Examples'</code></pre>
@@ -284,10 +282,10 @@ Last line
 &lt;/code&gt;&lt;/pre&gt;</code></pre>
 <p>Notes:</p>
 <ul>
-<li>If the function returns something that starts with a &lt; and ends with a corresponding tag then it is recognized as an HTML block. You can prevent that by adding leading white space.</li>
+<li>If the function returns something that starts with a <code>&lt;</code> and ends with a corresponding tag then it is recognized as an HTML block. You can prevent that by adding leading white space.</li>
 <li>The <code>&lt;pre&gt;&lt;code&gt;</code> must go onto the same line as the first line of the code; otherwise you end up with a starting empty line.</li>
 <li>If the embedded function returns something with a depth different from 0, 1 and 2 an error is thrown.</li>
-<li>Anything that is supposed to be recognized as an HTML block <strong>must not</strong> carry any leading blanks: an HTML block starts by definition with a <code>&lt;</code> char.</li>
+<li>Anything that is supposed to be recognized as an HTML block <strong>must not</strong> carry any leading white space: an HTML block starts by definition with a <code>&lt;</code> char.</li>
 </ul>
 <div class="h_tag">
 <a href="#The-ns-namespace" id="The-ns-namespace" class="autoheader_anchor">
@@ -628,8 +626,8 @@ Last line
 </div>
 <p>Before reporting a bug please check carefully your Markdown. More often than not mistakes in the Markdown are causing the problem.</p>
 <p>If you cannot work out why it goes wrong report it to me – see the previous topic for how to report a problem.</p>
-<p>This document refers to version 6.0.0 of <strong><em>MarkAPL</em></strong>.</p>
-<p>Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-06-27</p>
+<p>This document refers to version 7.0.0 of <strong><em>MarkAPL</em></strong>.</p>
+<p>Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-09-28</p>
 <div id="footnotes_div">
 <hr>
 <p><strong>Footnotes</strong></p>

@@ -24,10 +24,6 @@ If you use it implicitly, say by editing a Markdown file with Meddy[^meddy], the
 How to
 ------
 
-First of all, you can bring the document you are reading right now into view by executing `MarkAPL.Reference 0`. Viewing the file "MarkAPL.html" has the same effect.
-
-You can view the cheat sheet by calling `MarkAPL.Help 0`. Viewing the file "MarkAPL_CheatSheet.html" has the same effect.
-
 One way to study how to make use of **_MarkAPL_** is to trace through the method `MarkAPL.Help`. This should clarify the principles.
 
 Another way is to look at the test cases named `Test_Examples_01` etc. in `#.TestCases` in the workspace MarkAPL.DWS. You can execute them with:
@@ -271,13 +267,13 @@ Last line
 
 Notes:
 
-* If the function returns something that starts with a < and ends with a 
+* If the function returns something that starts with a `<` and ends with a 
   corresponding tag then it is recognized as an HTML block. You can prevent that by adding leading white space.
 * The `<pre><code>` must go onto the same line as the first line of the code; 
   otherwise you end up with a starting empty line.
 * If the embedded function returns something with a depth different from 0, 1 
   and 2 an error is thrown.
-* Anything that is supposed to be recognized as an HTML block **must not** carry any leading blanks: an HTML block starts by definition with a `<` char.
+* Anything that is supposed to be recognized as an HTML block **must not** carry any leading white space: an HTML block starts by definition with a `<` char.
 
 
 The `ns` namespace.
@@ -560,9 +556,9 @@ Before reporting a bug please check carefully your Markdown. More often than not
 
 If you cannot work out why it goes wrong report it to me -- see the previous topic for how to report a problem.
 
-This document refers to version 6.0.0 of **_MarkAPL_**.
+This document refers to version 7.0.0 of **_MarkAPL_**.
 
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-06-27
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-09-28
 
 [^meddy]: The Markdown editor Meddy on GitHub:<<br>><https://github.com/aplteam/Meddy>
 [^abandon]: Wikipedia definition of abandonware:<<br>><https://www.wikiwand.com/en/Abandonware>

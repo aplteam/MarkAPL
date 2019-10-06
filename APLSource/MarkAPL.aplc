@@ -61,24 +61,17 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'7.0.0.89' '2019-09-28'
+      r←(Last⍕⎕THIS)'7.0.1.91' '2019-10-06'
     ∇
 
     ∇ History
       :Access Public Shared
-      ⍝ * 7.0.0
-      ⍝   * The way `*`, `**`, `_` and `__` are interpreted whas changed. While `*` and `**` can now be used _inside_ 
-      ⍝     a word, `_` and `__` cannot, and never will (unless escaped). See the documentation for details.
-      ⍝     This is a potentially **breaking change**.\\
-      ⍝   * Bug fixes
-      ⍝     * ` were not processed correctly under quite special circumstances. This could led to markdown that was 
-      ⍝       completely ignored or to a table where there was no table etc.
-      ⍝   * Public field `PartOfNames` removed. This is now handled for all Unicode characters that belong to the "letter"
-      ⍝     category. This is a potentially **breaking change**.\\
-      ⍝   * A couple of minor bug fixes related to `*`, `**`, `_` and `__`.\\
-      ⍝   * Internally:
-      ⍝     * Tally (`≢`) introduced. This became possible because now we do not support versions older than 15.0 any more.
-      ⍝     * All Markdown files with the exception of the Git-related Markdown.md were moved into `Docs\`
+      ⍝ * 7.0.1
+      ⍝   * A single `*` or a single `_` in a paragraph are now ignored
+      ⍝   * In case of an odd number of `*` or `_` the last one is ignored (=survives verbatim)
+      ⍝   * Documentation improved ("MarkAPL for APL programmers")
+      ⍝   * Tally (≢) introduced
+      ⍝   * Test case added for version number in Docs\MarkAPL_for_Programmers.md
       ⍝ For information regarding older versions see <https://github.com/aplteam/MarkAPL/releases>
     ∇
 
@@ -217,7 +210,7 @@
           0=≢lines:css
           bool←bool[lines]
           (tpd tpu)←⎕UCS 9660 9650   ⍝ Triangle Point Down, Triangle Pointing Up
-          (1=⍺)∨1=⍴,lines:css
+          (1=⍺)∨1=≢lines:css
           css[lines[2]]←⊂'content: ''',(parms.tocCaption,' ',tpu,''''),';'
           css
       }
@@ -329,16 +322,16 @@
       markdown←GetMarkdown markdown
       ns←Create_NS ⍬
       ns.markdown←dtb(Nest markdown),⊂''
-      ns.lineNumbers←⍳⍴ns.markdown                  ⍝ Useful for reporting problems
+      ns.lineNumbers←⍳≢ns.markdown                  ⍝ Useful for reporting problems
       ns←RemoveAllComments ns
       ns←parms ProcessLeanPubExtensions ns
-      :If 0<⍴'^ *{:: encoding=".*$'⎕S 0⊣⊃ns.markdown
+      :If 0<≢'^ *{:: encoding=".*$'⎕S 0⊣⊃ns.markdown
           ns.markdown←1↓ns.markdown
       :EndIf
       ns.markdownLC←Lowercase ns.markdown           ⍝ We need this often, so we do this ONCE
       buffer←dlb ns.markdown
       ns.emptyLines←GetEmptyLines buffer
-      ns.leadingChars←(16⌊⍴∘,¨ns.markdown)↑¨buffer
+      ns.leadingChars←(16⌊≢¨ns.markdown)↑¨buffer
       ns.withoutBlanks←ns.markdown~¨' '
       ns.parms←parms
       ns←ProcessEmbeddedParms⍣(~parms.ignoreEmbeddedParms)⊣ns
@@ -372,9 +365,9 @@
       markdown←,,¨markdown
       'Invalid Markdown (depth)'⎕SIGNAL 11/⍨2≠|≡markdown
       'Invalid Markdown (depth)'⎕SIGNAL 11/⍨(,1)≢∪≡¨markdown
-      length←⍴markdown
-      :If length>⍴markdown←'\t'⎕R(4⍴' ')⍠('Mode' 'M')⊣markdown              ⍝ Replace all <TAB> chars by 4 spaces
-          markdown,←(length-⍴markdown)⍴⊂''                                  ⍝ In order to overcome bug <01446>
+      length←≢markdown
+      :If length>≢markdown←'\t'⎕R(4⍴' ')⍠('Mode' 'M')⊣markdown              ⍝ Replace all <TAB> chars by 4 spaces
+          markdown,←(length-≢markdown)⍴⊂''                                  ⍝ In order to overcome bug <01446>
       :EndIf
       markdown←{0=+/b←(⎕UCS 0)=⍵:⍵ ⋄ w←⍵ ⋄ (b/w)←⎕UCS 65533 ⋄ w}¨markdown   ⍝ Replace U+0000 by U+FFFD for secutity reasons
      ⍝Done
@@ -482,7 +475,7 @@
       :If 0=⎕NC'colHeader'                          ⍝ If no left argument...
           colHeader←,[0.5](':-' '-:')[1+∧⌿dt]       ⍝ ... then we right-align numeric cols.
       :Else
-          'Left argument: length error'⎕SIGNAL 6/⍨(⍴colHeader)≠2⊃⍴mat
+          'Left argument: length error'⎕SIGNAL 6/⍨(≢colHeader)≠2⊃⍴mat
           'Left argument: depth error'⎕SIGNAL 11/⍨2≠≡colHeader
           colHeader←⍉↑(∧⌿dt)BuildColumnHeader¨colHeader
       :EndIf
@@ -512,7 +505,7 @@
       (type/md)←(type/md),¨⊂'* '
       type←~type
       (type/md)←(type/md),¨(⍕¨type/mat[;1]),¨⊂'. '
-      md←⊃,/md{(≡⍵)∊0 1:⊂⍺,⍵ ⋄ (⊂⍺,⊃⍵),(⊂(⍴⍺)⍴' '),¨1↓⍵}¨mat[;3]
+      md←⊃,/md{(≡⍵)∊0 1:⊂⍺,⍵ ⋄ (⊂⍺,⊃⍵),(⊂(≢⍺)⍴' '),¨1↓⍵}¨mat[;3]
       md←'' '',md,'' ''
      ⍝Done
     ∇
@@ -590,10 +583,10 @@
 
     ∇ r←ProcessDefinitionLists ns;noOf;bool;bl;html;nop;not2;buff;bl2;total;el;not;sa;colons
       r←0
-      :If 1<⍴ns.markdown                                ⍝ A definitions has at least two lines
+      :If 1<≢ns.markdown                                ⍝ A definitions has at least two lines
       :AndIf 1≤ScanForPara ns                           ⍝ Exactly one line for a term but there might be no empty line after it.
       :AndIf 0≠≢'^\s{0,3}:\s'⎕S 0⊣⊃(+/∧\1↓ns.emptyLines)↓1↓ns.markdown  ⍝ Is there ": " in the first non-empty line?
-          noOf←(⍴ns.markdown)⌊(1 1⍷ns.emptyLines)⍳1     ⍝ Maximum number of lines until the last `:` of this definition list
+          noOf←(≢ns.markdown)⌊(1 1⍷ns.emptyLines)⍳1     ⍝ Maximum number of lines until the last `:` of this definition list
           colons←': '∘≡¨2↑¨noOf↑ns.leadingChars         ⍝ Where are any leading colons followed by a space?
           total←0
       :AndIf 0<+/colons                                 ⍝ Any at all? If not it's not a definition list!
@@ -601,7 +594,7 @@
           html←⊂'<dl>'
           el←{0=≢¨⍵}bl~¨' '                           ⍝ Empty lines
           :Repeat
-              :If 1<⍴bl
+              :If 1<≢bl
               :AndIf 0≠≢∊1↓bl
               :AndIf 0≠≢'^\s{0,3}:\s'⎕S 0⊣{⍵⊃⍨1⍳⍨0<≢¨⍵}1↓bl
                   sa←GetSpecialAttributes⊃bl
@@ -615,8 +608,8 @@
               ⍝ * Starts with two spaces (plus any leading spaces before the ":")
               ⍝ * Is an empty line
                   nop←+/∧\el∨colons∨{⊃(' '=¯1↓⍵)∧' '≠¯1↑⍵}¨(3++/∧\' '=⊃bl)↑¨bl
-              :AndIf 0<⍴bl2←nop↑bl
-                  (bl colons el)←(⍴bl2)↓¨bl colons el
+              :AndIf 0<≢bl2←nop↑bl
+                  (bl colons el)←(≢bl2)↓¨bl colons el
               :AndIf 0≠≢bl2←(0<≢¨bl2~¨' ')/bl2
                   bl2{v←⍺ ⋄ 0=≢⍵:v ⋄ ((¯1+⊃⍵)⊃v)←dmb((¯1+⊃⍵)⊃v),' ',(⊃⍵)⊃v ⋄ ((⊃⍵)⊃v)←'' ⋄ v ∇ 1↓⍵}←⌽Where':'≠⊃¨dlb¨bl2
                   bl2←(0<≢¨bl2)/bl2
@@ -625,10 +618,10 @@
                   bl2←sa DropSpecialAttributes¨bl2
                   bl2←⊃¨ns ProcessInlineMarkUp¨bl2
                   :If 1=not
-                  :AndIf 1=⍴bl2
+                  :AndIf 1=≢bl2
                       bl2←⊂('dd',⊃sa)Tag⊃bl2
                   :Else
-                      :If 1<⍴bl2←((⊂'dd'),¨sa)Tag¨Tag¨bl2
+                      :If 1<≢bl2←((⊂'dd'),¨sa)Tag¨Tag¨bl2
                           (1⊃bl2)←'<p>'⎕R'<p class="first_dd">'⊣1⊃bl2
                       :EndIf
                   :EndIf
@@ -714,7 +707,7 @@
                   :If noOfBlanks≠¯1↑levels
                       :If noOfBlanks>¯1↑levels
                           type,←(1+(⊃i⊃ns.leadingChars)∊'*+-')⌷'ou'
-                          ((⍴html)⊃html)←'</li>'{⍵↓⍨(-⍴⍺)×⍺≡(-⍴⍺)↑⍵}(⍴html)⊃html
+                          ((≢html)⊃html)←'</li>'{⍵↓⍨(-≢⍺)×⍺≡(-≢⍺)↑⍵}(≢html)⊃html
                           :If 'u'=¯1↑type
                               html,←⊂'<ul>'
                           :Else
@@ -732,7 +725,7 @@
                   :ElseIf 0≠≢⊃bl
                   :AndIf (¯1↑lastType){~⍺∊'+-*':~⍵∊⎕D ⋄ ⍺≠⍵}⊃dlb⊃bl
                       html,←⊂'</',(¯1↑type),'l>'
-                      ((⍴type)⊃type)←(1+(⊃i⊃ns.leadingChars)∊'*+-')⌷'ou'
+                      ((≢type)⊃type)←(1+(⊃i⊃ns.leadingChars)∊'*+-')⌷'ou'
                       lastType,←⊃dlb⊃bl
                       :If 'u'=¯1↑type
                           html,←⊂'<ul>'
@@ -748,8 +741,8 @@
                   :If IsHtmlList dlb⊃bl
                       (drop item)←CollectItem bl
                       :If 0≠≢sa←GetSpecialAttributes⊃bl
-                          :If (⊂3↑(⍴html)⊃html)∊'<ul' '<ol'
-                              ((⍴html)⊃html)←(¯1↓((⍴html)⊃html)),sa,'>'
+                          :If (⊂3↑(≢html)⊃html)∊'<ul' '<ol'
+                              ((≢html)⊃html)←(¯1↓((≢html)⊃html)),sa,'>'
                               item←dlb dtb sa DropSpecialAttributes item
                           :EndIf
                       :Else
@@ -794,15 +787,15 @@
                                   cb←¯1↓1↓cb
                                   :If 0<+/≢¨cb~¨' '
                                       buff2←⊃¯1↑html
-                                      :If '</li>'{⍺≡(-⍴⍺)↑⍵}buff2
-                                          buff2←(-⍴'</li>')↓buff2
+                                      :If '</li>'{⍺≡(-≢⍺)↑⍵}buff2
+                                          buff2←(-≢'</li>')↓buff2
                                           (¯1↑html)←⊂buff2
                                       :EndIf
                                       html,←MarkUpAsCode(2 EscapeSpecialChars¨cb)sa infoString
                                       (¯1↑html)←⊂(⊃¯1↑html),'</li>'
                                   :EndIf
-                                  drop←2+⍴cb
-                                  i+←1+⍴cb
+                                  drop←2+≢cb
+                                  i+←1+≢cb
                               :EndIf
                           :ElseIf '|'=⊃dlb buff                             ⍝ Is it a table?
                           :AndIf (+/∧\' '=buff)≥⊃noOfBlanks                 ⍝ Max number of spaces is the indentation
@@ -814,12 +807,12 @@
                               ns2←Init parms(dlb buff)
                               ns2←Process ns2
                               report,←ns2.report
-                              ((⍴html)⊃html)←(-⍴'</li>')↓(⍴html)⊃html
+                              ((≢html)⊃html)←(-≢'</li>')↓(≢html)⊃html
                               html,←ns2.html
-                              ((⍴html)⊃html),←'</li>'
+                              ((≢html)⊃html),←'</li>'
                           :ElseIf '> '≡2⍴dlb buff                           ⍝ Is it a blockquote?
                               ns3←⎕NS''
-                              ns3.(markdown markdownLC leadingChars emptyLines withoutBlanks lineNumbers)←(ns.noOf-⍴bl)↓¨ns.noOf↑¨ns.(markdown markdownLC leadingChars emptyLines withoutBlanks lineNumbers)
+                              ns3.(markdown markdownLC leadingChars emptyLines withoutBlanks lineNumbers)←(ns.noOf-≢bl)↓¨ns.noOf↑¨ns.(markdown markdownLC leadingChars emptyLines withoutBlanks lineNumbers)
                               drop←ScanForBlockQuotes ns3
                               parms←CreateParms
                               parms.bookmarkLink←0
@@ -833,15 +826,15 @@
                               md←noOfBlanks↓¨drop↑ns3.markdown
                               ns2←Init parms md
                               ns2←Process ns2
-                              ((⍴html)⊃html)←(-⍴'</li>')↓(⍴html)⊃html
+                              ((≢html)⊃html)←(-≢'</li>')↓(≢html)⊃html
                               html,←ns2.html
-                              ((⍴html)⊃html),←'</li>'
+                              ((≢html)⊃html),←'</li>'
                               report,←ns2.report
                           :Else
                               (drop para)←CollectItemPara bl
                               i←i+drop-1
-                              :If '!['{⍺≡(⍴⍺)↑⍵}dlb buff
-                              :AndIf '![CDATA['{⍺≢(⍴⍺)↑⍵}dlb buff
+                              :If '!['{⍺≡(≢⍺)↑⍵}dlb buff
+                              :AndIf '![CDATA['{⍺≢(≢⍺)↑⍵}dlb buff
                               :AndIf 1
                               ⍝ Regular expression needed that catches the image.
                               ⍝ If nothing is left then any special attributes belong to the image rather than the paragraph.
@@ -854,7 +847,7 @@
                               para←dtb sa DropSpecialAttributes para
                               buff←⊃¯1↑html
                               :If '</li>'≡({{⌽⍵↑⍨⍵⍳'<'}⌽⍵}buff)
-                                  buff←(-⍴'</li>')↓buff
+                                  buff←(-≢'</li>')↓buff
                                   (¯1↑html)←⊂buff
                               :EndIf
                               buff3←⊃ns ProcessInlineMarkUp para
@@ -868,7 +861,7 @@
               :EndIf
               bl←drop↓bl
           :Until 0=≢bl
-          html,←({'</',(¯1↑⍵),'l>'}¨⌽type),¨((¯1+⍴type)⍴⊂'</li>'),⊂''
+          html,←({'</',(¯1↑⍵),'l>'}¨⌽type),¨((¯1+≢type)⍴⊂'</li>'),⊂''
           html←InjectBR¨html
           ns.html,←html
           ns←Drop ns
@@ -937,11 +930,11 @@
               cells←ns{⍺ CheckOddNumberOfDoubleQuotes ⍵'header'}¨¨cells
               cells←⊃¨¨ns ProcessInlineMarkUp¨¨cells
               :If ∨/b←∨/¨'?'=align
-                  noOfCols←⌈/(⍴align),≢¨cells
+                  noOfCols←⌈/(≢align),≢¨cells
                   b←noOfCols↑b
-                  :If (⍴align)>noOfCols
-                      cells←cells,¨((⍴align)-noOfCols)⍴(⊃⌈/≢¨cells)⍴⊂,' '
-                  :ElseIf (⍴align)<noOfCols
+                  :If (≢align)>noOfCols
+                      cells←cells,¨((≢align)-noOfCols)⍴(⊃⌈/≢¨cells)⍴⊂,' '
+                  :ElseIf (≢align)<noOfCols
                       align←noOfCols↑align,noOfCols⍴⊂'left'
                   :EndIf
                   :If noOfCols∨.≠≢¨cells
@@ -956,18 +949,18 @@
           :EndIf
      
           :If 2=drop
-              ns.html,←('th'∘{⍺,⍵}¨1 AddAlignStyle¨align)Tag¨(⍴align)↑head,(⍴align)⍴⊂''
+              ns.html,←('th'∘{⍺,⍵}¨1 AddAlignStyle¨align)Tag¨(≢align)↑head,(≢align)⍴⊂''
               ns.html,←⊂'</tr>'
               ns.html,←⊂'</thead>'
           :EndIf
           (footer cells)←ns.parms.markdownStrict GetFooter cells
           ns.html,←⊂'<tbody>'
-          rows←{('td'∘{⍺,⍵}¨2 AddAlignStyle¨align)Tag¨⍵}¨(⍴align)↑¨cells
+          rows←{('td'∘{⍺,⍵}¨2 AddAlignStyle¨align)Tag¨⍵}¨(≢align)↑¨cells
           ns.html,←⊃,/{(⊂'<tr>'),⍵,⊂'</tr>'}¨rows
           ns.html,←⊂'</tbody>'
           :If 0≠≢footer
               ns.html,←⊂'<tfoot>'
-              ns.html,←⊃,/{(⊂'<tr>'),⍵,⊂'</tr>'}¨{('td'∘{⍺,⍵}¨2 AddAlignStyle¨align)Tag¨⍵}¨(⍴align)↑¨footer
+              ns.html,←⊃,/{(⊂'<tr>'),⍵,⊂'</tr>'}¨{('td'∘{⍺,⍵}¨2 AddAlignStyle¨align)Tag¨⍵}¨(≢align)↑¨footer
               ns.html,←⊂'</tfoot>'
           :EndIf
           ns.html,←⊂'</table>'
@@ -1003,7 +996,7 @@
       (footer cells)←ns.parms.markdownStrict GetFooter cells
       :If 0≠≢footer
           ns.html,←⊂'<tfoot>'
-          ns.html,←⊃,/{(⊂'<tr>'),⍵,⊂'</tr>'}¨{('td'∘{⍺,⍵}¨2 AddAlignStyle¨align)Tag¨⍵}¨(⍴align)↑¨footer
+          ns.html,←⊃,/{(⊂'<tr>'),⍵,⊂'</tr>'}¨{('td'∘{⍺,⍵}¨2 AddAlignStyle¨align)Tag¨⍵}¨(≢align)↑¨footer
           ns.html,←⊂'</tfoot>'
       :EndIf
       ns.html,←⊂'<tbody>'
@@ -1060,7 +1053,7 @@
           header←dlb dtb header,sa
           (1⊃ns.markdown)←header
           (1⊃ns.markdownLC)←Lowercase header
-          (1⊃ns.leadingChars)←(16⌊⍴header)↑header
+          (1⊃ns.leadingChars)←(16⌊≢header)↑header
           (1⊃ns.withoutBlanks)←' '~⍨1⊃ns.withoutBlanks
           flag←ProcessATX_Header ns
       :EndIf
@@ -1127,7 +1120,7 @@
                   :EndIf
                   ns.html,←buff
               :EndIf
-              ns.noOf←2+⍴bl
+              ns.noOf←2+≢bl
           :ElseIf 2≠ns.noOf
           :OrIf 0≠≢(⊃ns.markdown)~'~` '
               ns.noOf←0
@@ -1149,7 +1142,7 @@
       mask←~GetMaskForCodeTags html
       isHtmlBlock←0
       :If 0≠≢ind←'[^⍎]⍎⍎[^⍎]'⎕S 0⊣' ',(mask/html),' '  ⍝ Two blanks for the ≠ to fit start and end. The first one also fixes ⎕io
-      :AndIf 0≠≢ind←(2×⌊0.5×⍴ind)↑ind
+      :AndIf 0≠≢ind←(2×⌊0.5×≢ind)↑ind
           :Repeat
               html←(⊃ind)⌽html
               noOf←-/ind[2 1]
@@ -1172,7 +1165,7 @@
                           result←,⊃¨ns ProcessInlineMarkUp¨dmb result
                       :EndIf
                   :EndIf
-                  'Called function returned an HTML block but does not stand on its own'⎕SIGNAL 11/⍨isHtmlBlock∧0≠⍴html
+                  'Called function returned an HTML block but does not stand on its own'⎕SIGNAL 11/⍨isHtmlBlock∧0≠≢html
                   :If 0=≢html
                       html←(-ind[1])⌽result,html
                   :Else
@@ -1228,9 +1221,9 @@
       :AndIf 1≠noOf←+/∧\~(noOf↑⊃¨ns.leadingChars)∊'|#='                                       ⍝ HTML header, tables?
       :AndIf 1≠noOf←+/∧\~{⊃⍴'^\s{0,3}[-+\*]\s'⎕S 0⊣⍵}¨noOf↑ns.markdown                        ⍝ bulleted list
       :AndIf 1≠noOf←+/∧\~{⊃⍴'^\s{0,3}[0-9]{1,9}[.)] '⎕S 0⊣⍵}¨noOf↑ns.markdown                 ⍝ Ordered lists?
-      :AndIf 1≠noOf←+/∧\~{∨/({⍵⍴⍨3⌊⍴⍵}⍵~' ')∘≡¨'***' '---' '___'}¨noOf↑ns.markdown            ⍝ Horizontal rulers?
-      :AndIf 1≠noOf←+/∧\~'```'∘{⍺≡(⍴⍺)↑⍵}¨noOf↑ns.markdown                                    ⍝ Code block (``` syntax)
-      :AndIf 1≠noOf←+/∧\~'~~~'∘{⍺≡(⍴⍺)↑⍵}¨noOf↑ns.markdown                                    ⍝ Code block (~~~ syntax)
+      :AndIf 1≠noOf←+/∧\~{∨/({⍵⍴⍨3⌊≢⍵}⍵~' ')∘≡¨'***' '---' '___'}¨noOf↑ns.markdown            ⍝ Horizontal rulers?
+      :AndIf 1≠noOf←+/∧\~'```'∘{⍺≡(≢⍺)↑⍵}¨noOf↑ns.markdown                                    ⍝ Code block (``` syntax)
+      :AndIf 1≠noOf←+/∧\~'~~~'∘{⍺≡(≢⍺)↑⍵}¨noOf↑ns.markdown                                    ⍝ Code block (~~~ syntax)
       :AndIf 1≠noOf←+/∧\'<<subtoc>>'∘≢¨Lowercase noOf↑ns.markdown                             ⍝ Sub TOCs
       :AndIf 1≠noOf←+/∧\{0=≢'<pre\b[^>]*>' '<style\b[^>]*>' '<script\b[^>]*>'⎕S 0⊣⍵}¨noOf↑ns.leadingChars               ⍝
       :AndIf ~dontCheckForBlockQuote
@@ -1255,7 +1248,7 @@
           code←Nest code
           st←'<pre',((0≠≢infoString)/' class="',infoString,'"'),'><code',({0=≢⍵:⍵ ⋄ ' ',⍵}dmb specialAttrs),'>'    ⍝ Start tag
           (1⊃code)←st,1⊃code
-          ((⍴code)⊃code),←'</code></pre>'
+          ((≢code)⊃code),←'</code></pre>'
           code
       }
 
@@ -1268,16 +1261,16 @@
           :Else
               ind2←⍬
           :EndIf
-      :AndIf 0<⍴ind
+      :AndIf 0<≢ind
           s←⊃ind                            ⍝ First one
-          even←(0 1⍴⍨⍴ind)/ind              ⍝ Only these can be closing ones,
+          even←(0 1⍴⍨≢ind)/ind              ⍝ Only these can be closing ones,
           :If 0=e←⊃('`'≠(tx,' ')[even+1])/even   ⍝ Only odd ` with no ` to their right can be a closing back-tick
-              e←1+⍴tx
+              e←1+≢tx
           :EndIf
           tx1←(s-1)⍴tx
-          tx2←(e-s-1)↑(⍴tx1)↓tx
+          tx2←(e-s-1)↑(≢tx1)↓tx
           :If 0≠≢ind2
-              tx1←tx1[(⍳⍴tx1)~ind2-1]
+              tx1←tx1[(⍳≢tx1)~ind2-1]
           :EndIf
           tx←e↓tx
           tx2←'<code>',(1↓¯1↓tx2),'</code>'
@@ -1322,9 +1315,9 @@
 
     ∇ r←ProcessSubTOC ns;header;level
       r←0
-      :If '<<subtoc>>'{⍺≡(⍴⍺)↑⍵}⊃ns.markdownLC
+      :If '<<subtoc>>'{⍺≡(≢⍺)↑⍵}⊃ns.markdownLC
           :If ns.parms.subTocs
-              (level header)←{'<h'{⍺≡(⍴⍺)↑⍵}⊃⍵:{({⍎⍵↑⍨¯1+⍵⍳'>'}2↓⍵)({⍵↑⍨¯1+⍵⍳'<'}⍵↓⍨⍵⍳'>')}⊃⍵ ⋄ ∇ 1↓⍵}⌽ns.html
+              (level header)←{'<h'{⍺≡(≢⍺)↑⍵}⊃⍵:{({⍎⍵↑⍨¯1+⍵⍳'>'}2↓⍵)({⍵↑⍨¯1+⍵⍳'<'}⍵↓⍨⍵⍳'>')}⊃⍵ ⋄ ∇ 1↓⍵}⌽ns.html
               ns.subToc,←⊂level header
               ns.html,←Lowercase 1↑ns.markdown
           :EndIf
@@ -1337,7 +1330,7 @@
       :If (,0)≢,ns.parms.toc
       :AndIf 0≠≢ns.subToc
           where←Where∨/¨'<<subtoc>>'∘⍷¨Lowercase ns.html
-          :For i :In ⍳⍴ns.subToc
+          :For i :In ⍳≢ns.subToc
               (level header)←i⊃ns.subToc
               ind←i⊃where
               from←1⍳⍨(ns.headers[;1]=level)∧(ns.headers[;3]≡¨⊂header)
@@ -1403,7 +1396,7 @@
     ⍝ embedded parameters with recursive calls anyway!
       :If 0<noOf←+/∧\'['=⊃¨ns.leadingChars
           buff←noOf↑ns.markdown
-          noOf←'[parm]:'{+/∧\⍺∘≡¨{(Lowercase 5↑¨⍵),¨5↓¨⍵}(⍴⍺)↑¨⍵}buff
+          noOf←'[parm]:'{+/∧\⍺∘≡¨{(Lowercase 5↑¨⍵),¨5↓¨⍵}(≢⍺)↑¨⍵}buff
           ns.noOf←noOf
           buff←noOf↑buff
           ns←Drop ns
@@ -1426,7 +1419,7 @@
                   :Else
                       (b v)←⎕VFI value
                       :If ∧/b
-                          value←{1=⍴⍵:⍬⍴⍵ ⋄ ⍵}v
+                          value←{1=≢⍵:⍬⍴⍵ ⋄ ⍵}v
                       :EndIf
                   :EndIf
                   ns.embeddedParms⍪←id value
@@ -1460,7 +1453,7 @@
                   :Else
                       (b v)←⎕VFI value
                       :If ∧/b
-                          value←{1=⍴⍵:⍬⍴⍵ ⋄ ⍵}v
+                          value←{1=≢⍵:⍬⍴⍵ ⋄ ⍵}v
                       :EndIf
                   :EndIf
                   ns.data,←⊂id value
@@ -1556,9 +1549,9 @@
     ⍝ <!-- and -->
     ⍝ ← is 0 when found and processed, otherwise 0.
       r←1
-      :If 2<⍴ns.markdown
+      :If 2<≢ns.markdown
       :AndIf 1∊(1↓ns.emptyLines),1
-      :AndIf '<!--'{⍺≡(⍴⍺)↑⍵}⊃1↓ns.markdown
+      :AndIf '<!--'{⍺≡(≢⍺)↑⍵}⊃1↓ns.markdown
       :AndIf 0<+/bool←(~∨/¨'-->'∘⍷¨ns.markdown)
           ns.noOf←1++/∧\bool
           md←1↓ns.noOf↑ns.markdown
@@ -1574,9 +1567,9 @@
     ⍝ <![CDATA[ and ]]
     ⍝ ← is 0 when found and processed, otherwise 0.
       r←1
-      :If 2<⍴ns.markdown
+      :If 2<≢ns.markdown
       :AndIf 0=≢⊃ns.markdown
-      :AndIf '<![CDATA['{⍺≡(⍴⍺)↑⍵}2⊃ns.leadingChars
+      :AndIf '<![CDATA['{⍺≡(≢⍺)↑⍵}2⊃ns.leadingChars
       :AndIf 0<ns.noOf←DetectClosingTagBeforeEmptyLine ns.markdown']]>'
           ns.html,←']]>'DropTailAfterClosingTag 1↓ns.noOf↑ns.markdown
           ns←Drop ns
@@ -1598,7 +1591,7 @@
           tag←'/'~⍨{⍵↑⍨¯1+⌊/⍵⍳'> '}1↓⊃ns.markdownLC ⍝ Just the tag name, no matter whether closing or opening
           :If (⊂tag)∊HtmlTags
           :OrIf IsSelfDefinedHtmlTag tag
-              ns.noOf←(⍴ns.markdown)⌊ns.emptyLines⍳1
+              ns.noOf←(≢ns.markdown)⌊ns.emptyLines⍳1
               ns.html,←ns.noOf↑ns.markdown
               ns←Drop ns
               ∆LastLineWasEmpty←1
@@ -1619,21 +1612,21 @@
 
     ∇ md←Process_PRE md;first;last
       md←,md
-      :If 1=⍴,md
-          :If 0=⍴'<code\b[^>]*>'⎕S 0⊣⊃md   ⍝ <code> missing?!
+      :If 1=≢md
+          :If 0=≢'<code\b[^>]*>'⎕S 0⊣⊃md   ⍝ <code> missing?!
               (⊃md)←'(<pre\b[^>]*>)'⎕R'\1<code>'⊣⊃md
           :EndIf
-          :If 0=⍴'</code>'⎕S 0⊣⊃md   ⍝ </code> missing?!
-              ((⍴md)⊃md)←'(</pre>)'⎕R'</code>\1'⊣(⍴md)⊃md
+          :If 0=≢'</code>'⎕S 0⊣⊃md   ⍝ </code> missing?!
+              ((≢md)⊃md)←'(</pre>)'⎕R'</code>\1'⊣(≢md)⊃md
           :EndIf
       :Else
-          (first last)←md[1,⍴md]
+          (first last)←md[1,≢md]
           :If 0=≢'<code\b[^>]*>'⎕S 0⊣first
           :AndIf 0=≢'<code\b[^>]*>'⎕S 0⊣⊃1↓md
               first,←'<code>'
           :EndIf
           :If 0=+/'</code'⍷last
-          :AndIf '</code'{⍺≢(⍴,⍺)↑⍵}⊃¯2↑md
+          :AndIf '</code'{⍺≢(≢⍺)↑⍵}⊃¯2↑md
               :If 0=≢{⍵↓⍨⍵⍳'>'}last
                   last,⍨←'</code>'
               :Else
@@ -1641,11 +1634,11 @@
               :EndIf
           :EndIf
           md[1]←⊂first
-          md[⍴md]←⊂last
-          :If {(⍴⍵)=+/∧\2≥+\⍵='>'}1⊃md  ⍝ Do <pre> and <code> stand on their own?
+          md[≢md]←⊂last
+          :If {(≢⍵)=+/∧\2≥+\⍵='>'}1⊃md  ⍝ Do <pre> and <code> stand on their own?
               md←(,/2↑md),2↓md
           :EndIf
-          :If {(⍴⍵)=+/∧\2≥+\⍵='>'}(⍴md)⊃md  ⍝ Do </pre> and </code> stand on their own?
+          :If {(≢⍵)=+/∧\2≥+\⍵='>'}(≡md)⊃md  ⍝ Do </pre> and </code> stand on their own?
               md←(¯2↓md),,/¯2↑md
           :EndIf
       :EndIf
@@ -1702,7 +1695,7 @@
     ⍝ * Lists might be nested.
     ⍝ Note that a single blank line between items is okay; only more than one empty line breaks a list definition.
     ⍝ We know already where two blank lines occur (max).
-      r←max←{0=+/⍵:⍴⍵ ⋄ ⍵⍳1}⍨1 1⍷ns.emptyLines      ⍝ Two empty lines stop a list dead in any case
+      r←max←{0=+/⍵:≢⍵ ⋄ ⍵⍳1}⍨1 1⍷ns.emptyLines      ⍝ Two empty lines stop a list dead in any case
       buff←max↑ns.markdown
       :If 0≠≢ind←(Where max↑ns.emptyLines)~max     ⍝ We are interested in the lines after any empty line
           b1←0=+/∧\' '=↑buff[ind+1]                 ⍝ If those are not indented they potentially break the list
@@ -1717,7 +1710,7 @@
     ⍝ Takes a vector of vectors and returns a 1 for those lines
     ⍝ that end either with \ of with <<br>>
           b←'\'=⊃¨¯1↑¨⍵
-          0,¯1↓b∨'<<br>>'∘{⍺≡(-⍴⍺)↑⍵}¨⍵
+          0,¯1↓b∨'<<br>>'∘{⍺≡(-≢⍺)↑⍵}¨⍵
       }
 
       IdentifyBulletedList←{
@@ -1738,7 +1731,7 @@
           (ns max type)←⍵
           nl←0,¯1↓'\'=⊃¨¯1↑¨max↑ns.markdown                                 ⍝ nl flags all lines that...
           nl∨←0,¯1↓(~max↑ns.emptyLines)∧'  '∘≡¨¯2↑¨max↑ns.markdown          ⍝ ... belong to the predecessor...
-          nl∨←0,¯1↓'<<br>>'{⍺∘≡¨(-⍴⍺)↑¨⍵}max↑ns.markdown                    ⍝ ... due to line breaks.
+          nl∨←0,¯1↓'<<br>>'{⍺∘≡¨(-≢⍺)↑¨⍵}max↑ns.markdown                    ⍝ ... due to line breaks.
           markers←(1+'*'=type)⊃'0123456789 ' '+-* '                         ⍝ "markers" depends on list type.
           max←+/∧\nl∨(⊃¨max↑ns.leadingChars)∊markers                        ⍝
           '*'≡type:+/∧\{(' '=⍵)∨~⊃∘IsOrderedHtmlList¨⍵}⊃¨max↑ns.markdown    ⍝ No mistake: we check for the ...
@@ -1787,13 +1780,15 @@
       txt2←'\\\*'⎕R'⌹⌹'⍠('Mode' 'D')⊣txt2
       ((GetMaskForCode txt2)/txt2)←' '
       :If 0<+/bool←'*'=txt2
+      :AndIf 1<+/bool
       :AndIf 0<+/bool∧bool\~∧/⍉txt2[¯1 1∘.+Where bool]∊AllWhiteSpaceChars
       :AndIf 0<+/bool∧bool\∧/⍉txt2[¯1 1∘.+Where bool]≠'*'
           mask←GetMaskForCode txt
           bool∧←~mask
       :AndIf 0≠≢ind←Where bool
-          start←((⍴ind)⍴1 0)/ind
-          end←((⍴ind)⍴0 1)/ind
+          ind←{⍵↑⍨(≢⍵)-2|≢⍵}ind
+          start←((≢ind)⍴1 0)/ind
+          end←((≢ind)⍴0 1)/ind
           txt[start]←⊂'<em>'
           txt[end]←⊂'</em>'
           txt←⊃,/txt
@@ -1812,8 +1807,8 @@
           mask←GetMaskForCode txt
           bool∧←~mask
       :AndIf 0≠≢ind←Where bool
-          start←((⍴ind)⍴1 0)/ind
-          end←((⍴ind)⍴0 1)/ind
+          start←((≢ind)⍴1 0)/ind
+          end←((≢ind)⍴0 1)/ind
           txt[start]←⊂'<strong>'
           txt[end]←⊂'</strong>'
           txt[1+start,end]←⊂''
@@ -1835,8 +1830,8 @@
       :AndIf 0<+/bool∧bool\~∧/⍉txt2[¯1 2∘.+Where bool]∊AllWhiteSpaceChars
       :AndIf 0≠≢ind←Where bool
       :AndIf 0≠≢ind←((txt 2∘NotWithinWord¨ind))/ind
-          start←((⍴ind)⍴1 0)/ind
-          end←((⍴ind)⍴0 1)/ind
+          start←((≢ind)⍴1 0)/ind
+          end←((≢ind)⍴0 1)/ind
           txt[start]←⊂'<strong>'
           txt[end]←⊂'</strong>'
           txt[1+start,end]←⊂''
@@ -1857,6 +1852,7 @@
       txt2←txt←'  ',txt_,'  '
       txt2←'\\_' '__'⎕R'⌹⌹' 'aa'⍠('Mode' 'D')⊣txt2
       :If 0<+/bool←'_'=txt2
+      :AndIf 1<+/bool
       :AndIf 0<+/bool∧bool\~∧/⍉txt2[¯1 1∘.+Where bool]∊AllWhiteSpaceChars
           bool∧←~GetMaskForCode txt
           :If ignoreURLs
@@ -1868,8 +1864,9 @@
           bool∧←~MaskFunctionCall txt
       :AndIf 0≠≢ind←Where bool
       :AndIf 0≠≢ind←(txt 1∘NotWithinWord¨ind)/ind
-          start←((⍴ind)⍴1 0)/ind
-          end←((⍴ind)⍴0 1)/ind
+          ind←{⍵↑⍨(≢⍵)-2|≢⍵}ind
+          start←((≢ind)⍴1 0)/ind
+          end←((≢ind)⍴0 1)/ind
           txt[start]←⊂'<em>'
           txt[end]←⊂'</em>'
           txt←⊃,/txt
@@ -1885,14 +1882,14 @@
       :If 0<+/bool←'~~'⍷txt
           ind←Where bool
       :AndIf 0<+/bool1←bool∧bool\~txt[¯1+ind]∊'\~'
-      :AndIf 0<+/bool2←bool∧bool\~txt[ind+⍴'~~']∊'~\'
+      :AndIf 0<+/bool2←bool∧bool\~txt[ind+≢'~~']∊'~\'
       :AndIf 0<+/bool←bool1∧bool2
           mask←GetMaskForCode txt
           bool∧←~mask
       :AndIf 0≠≢ind←Where bool
       :AndIf 0≠≢ind←((txt 2∘NotWithinWord¨ind))/ind
-          start←((⍴ind)⍴1 0)/ind
-          end←((⍴ind)⍴0 1)/ind
+          start←((≢ind)⍴1 0)/ind
+          end←((≢ind)⍴0 1)/ind
           txt[start]←⊂'<del>'
           txt[end]←⊂'</del>'
           txt[1+start,end]←⊂''
@@ -1906,7 +1903,7 @@
           mask←~GetMaskForCode txt
           0=≢i1←¯1+Where mask∧'!['⍷txt:txt
           i1←⊃i1
-          '![CDATA['{⍺≡(⍴⍺)↑⍵}i1↓txt:txt        ⍝ Invalid <![CDATA[ section (probably missing empty lines)
+          '![CDATA['{⍺≡(≢⍺)↑⍵}i1↓txt:txt        ⍝ Invalid <![CDATA[ section (probably missing empty lines)
           txt←i1⌽txt
           alt←2↓¯1↓{⍵↑⍨⍵⍳']'}txt
           txt←{⍵↓⍨⍵⍳']'}txt
@@ -1924,7 +1921,7 @@
           insert,←' alt="',alt,'"'
           insert,←(0≠≢title)/' title="',title,'"'
           insert,←'>'
-          txt←(-i1)⌽insert,(2+⍴buff)↓txt
+          txt←(-i1)⌽insert,(2+≢buff)↓txt
           ∇ txt
       }
 
@@ -1944,7 +1941,7 @@
           mask←~GetMaskForCode txt
           0=≢i1←¯1+Where'<'=mask\mask/txt:txt
           txt←i1[1]⌽txt
-          (⍴txt)<l←txt⍳'>':(-i1[1])⌽txt
+          (≢txt)<l←txt⍳'>':(-i1[1])⌽txt
           link←¯1↓1↓l↑txt
           sa←GetSpecialAttributes{'{'∊⍵:{⍵↑⍨⍵⍳'}'}{⍵↓⍨¯1+⍵⍳'{'}⍵ ⋄ ⍵}link
           link←dtb{⍵/⍨~Between ⍵∊'{}'}link
@@ -1954,9 +1951,9 @@
           link←'\_' '\*' '\~\~'⎕R'\\_' '\\*' '\\~\\~'⍠('Greedy' 0)⊣link
           pbo←'&pointybracket_open;'                        ⍝ Later converted ...
           pbc←'&pointybracket_close;'                       ⍝ ... back to < and >.
-          link,⍨←(('@'∊link)∧'mailto:'{⍺≢Lowercase(⍴⍺)↑⍵}link)/'mailto:'
-          class←' class="',((1+'mailto'{⍺≡(⍴⍺)↑⍵}link)⊃'external_link' 'mailto_link'),'"'
-          linkText←sa DropSpecialAttributes'mailto:'{⍵↓⍨(⍴⍺)×⍺≡(⍴⍺)↑⍵}1↓¯1↓l↑txt
+          link,⍨←(('@'∊link)∧'mailto:'{⍺≢Lowercase(≢⍺)↑⍵}link)/'mailto:'
+          class←' class="',((1+'mailto'{⍺≡(≢⍺)↑⍵}link)⊃'external_link' 'mailto_link'),'"'
+          linkText←sa DropSpecialAttributes'mailto:'{⍵↓⍨(≢⍺)×⍺≡(≢⍺)↑⍵}1↓¯1↓l↑txt
           linkText←'\_' '\*' '\~\~'⎕R'\\_' '\\*' '\\~\\~'⍠('Greedy' 0)⊣linkText
           txt←(pbo,'a href="',link,'"',class,sa,pbc,linkText,pbo,'/a',pbc),l↓txt
           txt←(-i1[1])⌽txt
@@ -1985,12 +1982,12 @@
           poundFlag←⊃'#'=1⍴url
           mask←~GetMaskForCode linkDef
           linkText←1↓dtb mask{⍵↑⍨¯1+1⍳⍨⍺\']('⍷⍺/⍵}linkDef
-          url←linkText(bookmarkMayStartWithDigit∘CompileBookMarkName{(1<⍴⍵)∧'#'=1↑⍵:'#',⍺⍺ ⍵'' ⋄ (,'#')≡,⍵:'#',⍺⍺ ⍺'' ⋄ ⍵})url
+          url←linkText(bookmarkMayStartWithDigit∘CompileBookMarkName{(1<≢⍵)∧'#'=1↑⍵:'#',⍺⍺ ⍵'' ⋄ (,'#')≡,⍵:'#',⍺⍺ ⍺'' ⋄ ⍵})url
           linkText{0=≢⍵:⍺ ⋄ ⍵}←(1+poundFlag)⊃linkText title
           linkText←ProcessInlineMarkupInLinkText linkText
           linkText{0=≢⍺~' ':⍵ ⋄ ⍺}←poundFlag↓url
           tag←'a href="',url,'"'
-          tag,←(~poundFlag)/' class="',((1+'mailto'{⍺≡(⍴⍺)↑⍵}url)⊃'external_link' 'mailto_link'),'"'
+          tag,←(~poundFlag)/' class="',((1+'mailto'{⍺≡(≢⍺)↑⍵}url)⊃'external_link' 'mailto_link'),'"'
           tag,←AddBookmarkClassName⍣poundFlag⊣sa
           tag,←((~poundFlag)∧0≠≢title)/' title="',title,'"'
           insert←tag Tag linkText
@@ -2026,7 +2023,7 @@
           :EndIf
           r←1↓r∨≠\r
       :Else
-          r←(⍴txt)⍴0
+          r←(≢txt)⍴0
       :EndIf
     ∇
 
@@ -2034,11 +2031,11 @@
     ⍝ Returns a mask for everything between <code*> and </code>.
     ⍝ We can savely assume valid HTML5 here.
           txt←⍵
-          r←(⍴txt)⍴0=1
+          r←(≢txt)⍴0=1
           0=+/b←'</code>'⍷txt:r         ⍝ No closing tag? Done!
-          r[(¯1+⍴'</code>')+Where b]←1
+          r[(¯1+≢'</code>')+Where b]←1
           ind←Where'<code'⍷txt
-          ind←(txt[ind+⍴'<code']∊'> ')/ind
+          ind←(txt[ind+≢'<code']∊'> ')/ind
           r[ind]←1
           Between r
       }
@@ -2120,7 +2117,7 @@
 
     ∇ ns←InjectTOC ns;param;levels;b;h;ns2;html;r;tocHtml;drop;parms;links;noOf;buff;toc
     ⍝ Inject a TOC in case the user has specified this
-      :If 1=⍴,ns.parms.toc
+      :If 1=≢ns.parms.toc
           levels←⍳ns.parms.toc
       :Else
           levels←ns.parms.toc
@@ -2136,7 +2133,7 @@
               tocHtml←ns CreateTOC(toc[;1 2],(⊂'')),links
           :EndIf
           :If '<a' '<h'≡2↑¨2↑ns.html                        ⍝ First two lines define a header?!
-              noOf←1⍳⍨'</a>'{⍺∘≡¨(⍴⍺)↑¨⍵}ns.html
+              noOf←1⍳⍨'</a>'{⍺∘≡¨(≢⍺)↑¨⍵}ns.html
               ns.html←(noOf↑ns.html),tocHtml,noOf↓ns.html   ⍝ Insert after the first header
           :Else
               ns.html←tocHtml,ns.html                       ⍝ Put TOC before anything else
@@ -2238,7 +2235,7 @@
       ⍝ ⍵ is a vector of Markdown vectors.
           pattern←⍺
           0≠≢noOf←1+(pattern,'\s{0,}$')⎕S 2⍠('Mode' 'L')⊣⍵:1+⊃noOf
-          1+⍴⍵            ⍝ To the end of the document!
+          1+≢⍵            ⍝ To the end of the document!
       }
 
       GetInfoString←{
@@ -2255,10 +2252,10 @@
 
       IsStyleBlockStart←{
           start←⍵
-          '<style'{⍺≢(⍴⍺)↑⍵}start:0
-          later←(⍴'<style')↓start
+          '<style'{⍺≢(≢⍺)↑⍵}start:0
+          later←(≢'<style')↓start
           '>'=⊃later:1
-          0=⍴later:1
+          0=≢later:1
       }
 
       DetectOpeningTag←{
@@ -2288,9 +2285,9 @@
       DropTailAfterClosingTag←{
           html←⍵
           tag←⍺
-          buff←(⍴html)⊃html
-          buff←((¯1+⍴tag)+1⍳⍨tag⍷Lowercase buff)↑buff
-          ((⍴html)⊃html)←buff
+          buff←(≢html)⊃html
+          buff←((¯1+≢tag)+1⍳⍨tag⍷Lowercase buff)↑buff
+          ((≢html)⊃html)←buff
           html
       }
 
@@ -2344,7 +2341,7 @@
               ignore,←⊂'<abbr .*>.*</abbr>'          ⍝ Abbreviations themselves should be left alone
               ignore,←⊂'<dt>.*</dt>'                 ⍝ The keyword of a definition should not become an <abbr> tag.
               ignore,←⊂'<dt .*>.*</dt>'              ⍝ Same in case of special attributes
-              html←(ignore,match1 match2)⎕R((,¨(⍴ignore)⍴'&'),tag1 tag2)⍠('Mode' 'D')('DotAll' 1)('Greedy' 0)⊣html
+              html←(ignore,match1 match2)⎕R((,¨(≢ignore)⍴'&'),tag1 tag2)⍠('Mode' 'D')('DotAll' 1)('Greedy' 0)⊣html
           :EndFor
           ns.html←html
       :EndIf
@@ -2374,9 +2371,9 @@
           html←FlattenHTML ns.html
           hits←'<a[^>]+class="external_link".*</a>'⎕S 0 1⍠('Greedy' 0)('Mode' 'D')⊣html
           0=≢hits:ns
-          anchors←(-⍴'</a>')↓¨hits{⍺[2]↑⍺[1]⌽⍵}¨⊂html
-          urls←'href="'∘{{⍵↑⍨¯1+⍵⍳'"'}⍵↓⍨(¯1+⍴⍺)+1⍳⍨⍺⍷⍵}¨anchors
-          b←(urls⍳urls)=⍳⍴urls  ⍝ For dropping doubles
+          anchors←(-≢'</a>')↓¨hits{⍺[2]↑⍺[1]⌽⍵}¨⊂html
+          urls←'href="'∘{{⍵↑⍨¯1+⍵⍳'"'}⍵↓⍨(¯1+≢⍺)+1⍳⍨⍺⍷⍵}¨anchors
+          b←(urls⍳urls)=⍳≢urls  ⍝ For dropping doubles
           (anchors urls)←b∘/¨anchors urls
           linkTexts←{⍵↓⍨⍵⍳'>'}¨anchors
           linkTexts←(,¨'<>')⎕R'\&amp;pointybracket_open;' '\&amp;pointybracket_close;'⊣linkTexts
@@ -2404,7 +2401,7 @@
     ∇
 
     ∇ html←InjectLinkTextIntoReportLink(html linkTexts);i;pattern;replaceBy;b1;b2;b3
-      :For i :In ⍳⍴linkTexts
+      :For i :In ⍳≢linkTexts
           pattern←'\{\{\{\{\{',(⍕i),'}}}}}'
           replaceBy←i⊃linkTexts
           b1←replaceBy='\'
@@ -2456,7 +2453,7 @@
       html,←⊂'<hr>'
       html,←⊂'<p><strong>',ns.parms.footnotesCaption,'</strong></p>'
       html,←⊂'<ol>'
-      :For i footnote :InEach {(⍳⍴⍵)⍵}ns.footnoteDefs[;2]
+      :For i footnote :InEach {(⍳≢⍵)⍵}ns.footnoteDefs[;2]
           html,←⊂'<li id="fnref',(⍕i),'">',(⊃,/Tag¨footnote),'<a href="#fnref',(⍕i),'" class="footnote_anchor"></a>'
       :EndFor
       html,←'</ol>' '</div>'
@@ -2565,7 +2562,7 @@
 
     ∇ {ns}←InjectNumberedHeaders ns;html;no;header;new;level;searchFor;ind;length;levelsToBeNumbered
       :If 0≠≢ns.headers  ⍝ Are their any headers at all?
-          levelsToBeNumbered←{1≠⍴,⍵:⍵ ⋄ ⍳⍵}ns.parms.numberHeaders
+          levelsToBeNumbered←{1≠≢⍵:⍵ ⋄ ⍳⍵}ns.parms.numberHeaders
       :AndIf 4=2⊃⍴ns.headers    ⍝ This might not be the case when the headers are ill-formed.
       :AndIf ∨/levelsToBeNumbered∊ns.headers[;1] ⍝ Right levels?!
           html←FlattenHTML ns.html
@@ -2585,12 +2582,12 @@
     ∇ ns←CalculateHeaderNumbers ns;nos;current;level;lastLevel;i;bool;headers
       current←6⍴0
       :If CheckHeaders ns
-          bool←ns.headers[;1]∊{1=⍴,⍵:⍳⍵ ⋄ ⍵}ns.parms.numberHeaders
+          bool←ns.headers[;1]∊{1=≢⍵:⍳⍵ ⋄ ⍵}ns.parms.numberHeaders
           :If 0≠≢headers←bool⌿ns.headers
               headers[;1]-←(⊃headers)-1
-              nos←(⊃⍴headers)⍴0
+              nos←(⊃≢headers)⍴0
               lastLevel←1
-              :For i :In ⍳⊃⍴headers
+              :For i :In ⍳⊃≢headers
                   level←headers[i;1]
                   :If lastLevel>level
                       (level↓current)←0
@@ -2610,7 +2607,7 @@
 
       CheckHeaders←{
           ns←⍵
-          bool←({1=⍴,⍵:⍳⍵ ⋄ ⍵}ns.parms.numberHeaders)∊ns.headers[;1]
+          bool←({1=≢⍵:⍳⍵ ⋄ ⍵}ns.parms.numberHeaders)∊ns.headers[;1]
           bool←(-+/∧\~⌽bool)↓bool   ⍝ The highest levels might not be in use, so we need to drop them
           ∧/bool
       }
@@ -2660,7 +2657,7 @@
           sp←⍺
           attrs←dmb ⍵
           attrs←CompileAttribute¨attrs
-          1=⍴attrs:sp⊣sp.r,←' ',⊃attrs
+          1=≢attrs:sp⊣sp.r,←' ',⊃attrs
           sp.r,←⊃{⍺,' ',⍵}/attrs
           sp
       }
@@ -2783,13 +2780,14 @@
       ⍝ but for stuff that potentially points elsewhere (like `cssUrl`) we don't want that:
       ⍝ We don't necessarily know the OS over there!
       ⍝ Default is normalization.
-      ⍝ Leave any kind of protocol alone like "http://" etc. but also stuff like "foo://"
-      ⍝ while "file://" and "file:///" is removed.
+      ⍝ Leave any kind of protocol alone like "http://" etc. but also stuff like "foo://".
           ⍺←1
           ss←'://' ⍝ Search string
           0=+/bool←ss⍷⍵:##.FilesAndDirs.NormalizePath⍣(⊃⍺)⊣⍵
-          length←(¯1+⍴ss)+bool⍳1
-          (length↑⍵),##.FilesAndDirs.NormalizePath⍣(⊃⍺)⊣length↓⍵
+          length←(¯1+≢ss)+bool⍳1
+          r←(length↑⍵),##.FilesAndDirs.NormalizePath⍣(⊃⍺)⊣length↓⍵
+          0='file://'{((⊃(≢⍺)↓⍵)∊'\/')∧⍺≡(≢⍺)↑⍵}r:r
+          'file:///',(1+≢'file://')↓r
       }
 
       InjectPointyBrackets←{
@@ -2828,7 +2826,7 @@
     ∇ {r}←ns ReplaceLinkID(linkText id searchFor);ind;url;title;sa;new
       r←⍬
       ind←(⊃¨ns.linkRefs)⍳⊂id
-      :If ind≤⍴ns.linkRefs
+      :If ind≤≢ns.linkRefs
           (url title sa)←1↓ind⊃ns.linkRefs
           :If 0=≢title
               :If 0=≢linkText
@@ -2873,13 +2871,13 @@
       mask←~GetMaskForCode r
       :If 0=≢ind←Where mask\'"'=mask/r                      ⍝ No double quotes at all? Done!
           r←txt
-      :ElseIf 1=⍴ind                                        ⍝ Just one double quote? Done!
+      :ElseIf 1=≢ind                                        ⍝ Just one double quote? Done!
           r←'`(.*?)`' '"'⎕R'&' '\\"'⊣txt                    ⍝ Escapes the " but ignores `code`
           msg←'Warning: single double quotes found in ',type
           ns.report,←⊂msg,' (line ',(⍕ns.parms.lineNumberOffset+⊃ns.lineNumbers),')'
       :Else
           :If '\'∧.≠r[ind-1]                                ⍝ Nothing escaped?
-              :If 0=2|⍴ind                                  ⍝ Even number of "?
+              :If 0=2|≢ind                                  ⍝ Even number of "?
                   r←txt
               :Else                                         ⍝ No, number is odd
                   (txt[¯1+¯1↑ind])←⊂'\"'                    ⍝ Escape the last one.
@@ -2955,7 +2953,7 @@
       :AndIf 0≠≢links←(∨/¨' href="'∘⍷¨buff)/buff
           links←{⍵{0=≢⍵:'' ⋄ {⍵↑⍨¯1+⍵⍳'"'}(+/⍵)↓⍺}⊃'href="'⎕S 0 1⊣⍵}¨links
 ⍝          links←(~∨/¨'://'∘⍷¨links)/links               ⍝ Drop all external links
-⍝          links←(('mailto:'∘{⍺≢(⍴⍺)↑⍵}¨links))/links    ⍝ Drop all "mailto:" links
+⍝          links←(('mailto:'∘{⍺≢(≢⍺)↑⍵}¨links))/links    ⍝ Drop all "mailto:" links
 ⍝          links←('#'=⊃¨links)↓¨links
           links←1↓¨('#'=⊃¨links)/links
       :EndIf
@@ -2975,17 +2973,17 @@
       ⍝ In some instances we need to mask whatever is between. This fns returns the mask.
       ⍝ Note that when called the "&" will be converted into "&amp;".
           txt←⍵
-          r←(⍴txt)⍴0
+          r←(≢txt)⍴0
           0=+/b←'&amp;pointybracket_open;'⍷txt:r
           start←¯1+Where b
-          end←('&amp;pointybracket_close;'{(⍴⍺)+Where ⍺⍷⍵}txt)-start+1
+          end←('&amp;pointybracket_close;'{(≢⍺)+Where ⍺⍷⍵}txt)-start+1
           ((,/start+¨⍳¨end)⌷r)←1
           r
       }
 
       MaskTagAttrs←{
           txt←⍵
-          r←(⍴txt)⍴0
+          r←(≢txt)⍴0
           ~'<'∊txt:r
           ind←∊{(⊃⍵)+⍳1↓⍵}¨'<[a-z]*\b[^>]*>'⎕S(0 1)⊣txt
           r[ind]←1
@@ -2994,10 +2992,10 @@
 
       MaskFunctionCall←{
           txt←,⍵
-          b←(⍴txt)⍴0
+          b←(≢txt)⍴0
           mask←~GetMaskForCodeTags txt
           0=≢ind←'[^⍎]⍎⍎[^⍎]'⎕S 0⊣' ',(mask/txt),' ':b
-          ind←{↑,/{⍵[1]+⍳⍵[2]-⍵[1]}¨↓(((⍴⍵)÷2),2)⍴⍵}ind
+          ind←{↑,/{⍵[1]+⍳⍵[2]-⍵[1]}¨↓(((≢⍵)÷2),2)⍴⍵}ind
           b[ind]←1
           b
       }
@@ -3043,8 +3041,8 @@
 
       GetListBlock←{
           bl←⍵
-          mask←~Between{⊃3>⍴⍵:0 ⋄ (⊂3⍴⍵)∊'```' '~~~'}¨bl~¨' '
-          bl←(⌊/(~(⍴bl)⍴ns.emptyLines)⌿+/∧\' '=↑bl)↓¨bl
+          mask←~Between{⊃3>≢⍵:0 ⋄ (⊂3⍴⍵)∊'```' '~~~'}¨bl~¨' '
+          bl←(⌊/(~(≢bl)⍴ns.emptyLines)⌿+/∧\' '=↑bl)↓¨bl
           (mask/bl)←HandleEscapedNewLines mask/bl
           leadingBlanks←+/∧\' '=↑bl
           drop←{⍵⌊⊃⍵}leadingBlanks
@@ -3053,7 +3051,7 @@
 
       FlattenNestedItem←{
           item←⍵
-          1=⍴,item:⊃item
+          1=≢item:⊃item
           1↓⊃,/' ',¨dlb item
       }
 
@@ -3076,7 +3074,7 @@
           title←''
       :EndIf
       :If 0=+/'://'⍷url         ⍝ Protocol
-      :AndIf 'mailto:'{⍺≢(⍴,⍺)↑⍵}url ⍝ Is not a "mailto" link
+      :AndIf 'mailto:'{⍺≢(≢⍺)↑⍵}url ⍝ Is not a "mailto" link
       :AndIf '#'≠1⍴url          ⍝ Bookmark
       :AndIf ':/'≢2⍴1↓url,'  '  ⍝ Absolute Windows path
       :AndIf './'≢2⍴url,'  '    ⍝ Relative path
@@ -3130,12 +3128,12 @@
               r,←⊂'<ul>'
               co+←1
           :ElseIf lastLevel>level
-              ((⍴r)⊃r),←'</li>'
+              ((≢r)⊃r),←'</li>'
               r,←(lastLevel-level)⍴⊂'</ul>',(co>1)/'</li>'
               co-←lastLevel-level
           :ElseIf lastLevel=level
           :AndIf ~ff
-              ((⍴r)⊃r),←'</li>'
+              ((≢r)⊃r),←'</li>'
           :EndIf
           caption←⊃ns ProcessInlineMarkUp caption
           r,←⊂'<li><a href="#',id,'">',(nf/no,' '),caption,'</a>'
@@ -3177,7 +3175,7 @@
           ind←1+'^\s{0,3}[~`]{3,}\s{0,}({.*?})?\s{0,}$'⎕S 0⍠('Mode' 'M')('DotAll' 1)('EOL' 'LF')⊣markdown
           ind,←1+'<pre\b' '</pre>'⎕S 0⍠('Mode' 'M')('DotAll' 1)⊣markdown
           ind←ind[⍋ind]
-          b←(⍴markdown)⍴0
+          b←(≢markdown)⍴0
           b[ind]←1
           b←Between b
           b∧←markdown≠⎕UCS 10
@@ -3256,9 +3254,9 @@
       toc←⍬
       :If 0≠≢ind←'<a .*href=".*" class="autoheader_anchor".*>'⎕S 2⍠('Greedy' 0)⊣ns.html
           level←{⍎1↑2↓⊃⍵∘GetHitsFromRegExSearch¨'<h[1-6].*>'⎕S 0 1⍠('Greedy' 0)⊣⍵}¨ns.html[2+ind]
-          caption←{1↓¨(-1+⍴'<hx>')↓¨⍵ GetHitsFromRegExSearch¨{⊃'\>.*\</h[1-6]>'⎕S 0 1⍠('Greedy' 0)⊣⍵}¨⍵}ns.html[2+ind]
+          caption←{1↓¨(-1+≢'<hx>')↓¨⍵ GetHitsFromRegExSearch¨{⊃'\>.*\</h[1-6]>'⎕S 0 1⍠('Greedy' 0)⊣⍵}¨⍵}ns.html[2+ind]
           caption←{0=≢⍵:⍵ ⋄ '&lt;' '&gt;' '&amp;' '<code.*>' '</code>'⎕R('<' '>' '\&' '`' '`')⍠('Greedy' 0)('Mode' 'L')⊣⍵}¨caption
-          IDs←{⍵{{⍵↑⍨¯1+⍵⍳'"'}((⍴'id="')+⍵)↓⍺}¨'id="(.*)"'⎕S 0⍠('Greedy' 0)⊣⍵}ns.html[1+ind]
+          IDs←{⍵{{⍵↑⍨¯1+⍵⍳'"'}((≢'id="')+⍵)↓⍺}¨'id="(.*)"'⎕S 0⍠('Greedy' 0)⊣⍵}ns.html[1+ind]
           toc←↓(level,[1.5]caption),IDs
       :EndIf
     ∇
@@ -3299,7 +3297,7 @@
       hits←↑'<span class="leanpub_code">' '</span>'⎕S 0 1 3⍠('Greedy' 0)('IC' 1)('Mode' 'M')⊣html
       :If 0≠≢hits
           ⍝ Here we remove the CR between `leanpup-*-insert` and the following line
-          bool←(⍴html)⍴1
+          bool←(≢html)⍴1
           bool[1++/hits[;1 2]]←0
           bool←(~bool)⍲(~bool)\(⎕UCS 13)=(~bool)/html  ⍝ Only when it's a CR: the last one does not have one!
           html←bool/html
@@ -3330,7 +3328,7 @@
           :If 0<+/bool←isNotCodeBlock\(3↑¨isNotCodeBlock/ns.markdown)≡¨⊂extension,'> '
           :AndIf 0≠≢start←Where 0 1⍷bool
               lengths←,+/¨bool{⎕ML←3 ⋄ ⍺⊂⍵}bool
-              :For i :In ⍳⍴start
+              :For i :In ⍳≢start
                   ind←i⊃start
                   :If 0=≢ind⊃ns.markdown            ⍝ The line before must be empty
                       noOf←i⊃lengths
@@ -3346,11 +3344,11 @@
                           html←{0=+/b←0=≢¨⍵:⍵ ⋄ w←⍵ ⋄ (b/w)←⊂'&nbsp;' ⋄ w}html  ⍝ Important: only this way "html" is later recognized as a single HTML block.
                           html←openDiv,html,⊂'</div>'
                           ns.markdown←(ind↑ns.markdown),html,(ind+noOf)↓ns.markdown
-                          ns.lineNumbers←(ind↑ns.lineNumbers),((⍴html)⍴⊂(1+ind),ind+noOf),(ind+noOf)↓ns.lineNumbers
+                          ns.lineNumbers←(ind↑ns.lineNumbers),((≢html)⍴⊂(1+ind),ind+noOf),(ind+noOf)↓ns.lineNumbers
                           :If 0≠≢report
-                              ns.report,←((ind+1)⊃ns.lineNumbers)∘{i←-(⌽⍵)⍳' ' ⋄ (i↓⍵),' ',({1=⍴,⍵:⍕⍵ ⋄ ⊃{⍺,'-',⍵}/⍕¨⍵}⍺),')'}¨report
+                              ns.report,←((ind+1)⊃ns.lineNumbers)∘{i←-(⌽⍵)⍳' ' ⋄ (i↓⍵),' ',({1=≢⍵:⍕⍵ ⋄ ⊃{⍺,'-',⍵}/⍕¨⍵}⍺),')'}¨report
                           :EndIf
-                          (i↓start)←(i↓start)+(⍴html)-noOf
+                          (i↓start)←(i↓start)+(≢html)-noOf
                       :EndIf
                   :EndIf
               :EndFor
@@ -3411,7 +3409,7 @@
       b1←'~'IsFence¨md
       b2←'`'IsFence¨md
       :If 0=+/b1+b2                     ⍝ No code blocks at all: done!
-          bool←(⍴md)⍴0
+          bool←(≢md)⍴0
       :Else
           :If >/b1 b2⍳¨1
               (b2 b1)←b1 b2
@@ -3456,12 +3454,12 @@
           markdown←⍵
           valueName←⍺
           searchFor←'[parm]:'
-          0=+/bool←searchFor∘≡¨(⍴searchFor)↑¨markdown:''
-          buff←(⍴searchFor)↓¨bool/markdown
-          0=+/bool←valueName∘≡¨(⍴valueName)↑¨buff:''
-          buff←(⍴searchFor)↓(bool⍳1)⊃markdown
-          valueName≢(⍴valueName)↑buff:''
-          value←(1+⍴valueName)↓buff
+          0=+/bool←searchFor∘≡¨(≢searchFor)↑¨markdown:''
+          buff←(≢searchFor)↓¨bool/markdown
+          0=+/bool←valueName∘≡¨(≢valueName)↑¨buff:''
+          buff←(≢searchFor)↓(bool⍳1)⊃markdown
+          valueName≢(≢valueName)↑buff:''
+          value←(1+≢valueName)↓buff
           ''''=1⍴value:1↓¯1↓value
           ⊃(//)⎕VFI value
       }
@@ -3490,7 +3488,7 @@
           mask←⍺
           0=+/b←']('⍷mask\mask/txt:⍬
           link←⌽(b⍳1)↑txt
-          (⍴link)-1++/∧\~(+\link='[')=+\link=']'
+          (≢link)-1++/∧\~(+\link='[')=+\link=']'
       }
 
       IsUnicodeCharacter←{

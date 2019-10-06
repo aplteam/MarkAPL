@@ -1,5 +1,5 @@
  R←Test_InLine_012(stopFlag batchFlag);⎕TRAP;ns;md
-⍝ Tests escaping * and _
+⍝ Test escaping * and _
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 
