@@ -14,9 +14,9 @@
 
  html←1↓∊(⎕UCS 13),¨ns.html
  →PassesIf'<p>para 1</p>'≡0⊃ns.html
- →PassesIf(⊂'<th style="text-align: left;">col 1</th>')∊ns.html
- →PassesIf(⊂'<th style="text-align: left;">col 2</th>')∊ns.html
- →PassesIf(⊂'<th style="text-align: left;">col 3</th>')∊ns.html
+ →PassesIf(⊂'<th>col 1</th>')∊ns.html
+ →PassesIf(⊂'<th>col 2</th>')∊ns.html
+ →PassesIf(⊂'<th>col 3</th>')∊ns.html
  →PassesIf 1=+/('<tbody>',(⎕UCS 13),'</tbody>')⍷html
  →PassesIf'<p>para 2</p>'≡↑¯1↑ns.html
 

@@ -17,7 +17,6 @@
  →PassesIf 1=+/'<h1>'⍷∊ns.html
  →PassesIf 1=+/'<h2>'⍷∊ns.html
  →PassesIf 1=+/'<p>'⍷∊ns.html
- →PassesIf 0=+/'<<SubTOC>>>'⍷∊ns.html
- →PassesIf 12=⍴ns.html
+ →PassesIf 0=+/'<<SubTOC>>'⍷∊ns.html
 
  R←∆OK

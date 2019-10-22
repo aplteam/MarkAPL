@@ -1,21 +1,25 @@
-[parm]:width              = 1000
-[parm]:lang               = en
-[parm]:leanpubExtensions  = 1
-[parm]:collapsibleTOC     = 1
-[parm]:title              = 'Styles'
-[parm]:toc                = 2 3 4 5 6
-[parm]:numberHeaders      = 6
-[parm]:printCSS           = 'BlackOnWhite_print.css'
-[parm]:screenCSS          = 'BlackOnWhite_screen.css'
+[parm]:width             = 1000
+[parm]:lang              = en
+[parm]:leanpubExtensions = 1
+[parm]:collapsibleTOC    = 1
+[parm]:title             = 'Styles'
+[parm]:toc               = 2 3 4 5 6
+[parm]:numberHeaders     = 6
+[parm]:printCSS          = 'BlackOnWhite_screen.css'
+[parm]:screenCSS         = 'BlackOnWhite_screen.css'
+[parm]:linkToCSS         = 1
+[parms]:saveHTML          = 0
+⍝[parm]:printCSS           = 'BlackOnWhite_print.css'
+⍝[parm]:screenCSS          = 'BlackOnWhite_screen.css'
 
 
-Styles
-======
+MarkAPL Styles
+==============
 
 Overview
 --------
 
-MarkAPL comes with two sets of style sheets:
+MarkAPL comes with two different sets of style sheets:
 
 * MarkAPL_screen.css and MarkAPL_print.css
 * BlackOnWhite_screen.css and BlackOnWhite_print.css
@@ -56,12 +60,22 @@ I> Just ensure that you save it with linked CSS files rather than embedding the 
 Set the following parameters in the first lines of the HTML document you want to use for the development:
 
 ~~~
-[parm]:linkToCSS=1
-[parm]:screenCSS='/pathToMyStyleSheetFolder/MySyles_screen.css'
-[parm]:printCSS='/pathToMyStyleSheetFolder/MySyles_print.css'
+[parm]:linkToCSS    = 1
+[parm]:screenCSS    = '/pathToMyStyleSheetFolder/MySyles_screen.css'
+[parm]:printCSS     = '/pathToMyStyleSheetFolder/MySyles_print.css'
 ~~~
 
-Don't forget that all `[parm]` lines must be defined at the top of the document in order to be recognized as a parameter definition, although lines starting with an APL lamp symbol (`⍝`) do not count.
+Note that `cssURL` is not defined and there for empty because that's the default.
+
+You can achieve the same _with_ `cssURL`:
+~~~
+[parm]:linkToCSS    = 1
+[parm]:cssURL       = 'file:///pathToMyStyleSheetFolder'
+[parm]:screenCSS    = 'MySyles_screen.css'
+[parm]:printCSS     = 'MySyles_print.css'
+~~~
+
+Don't forget that all `[parm]` lines must be defined at the top of the document in order to be recognized as a parameter definition, although any lines starting with an APL lamp symbol (`⍝`) do not count.
 
 When you now make changes to the CSS file then --- after pressing F5 --- the changes are reflected in the "Preview" area of Meddy, Microsoft's WebBrowser control --- which is used for the Preview --- but it does not offer access to the developer tools available in all modern browsers. To get around this follow these steps:
 
@@ -88,45 +102,49 @@ leanpub-end-insert
 Now you can check the impact of your print style sheet, and you can also take advantage of the browser's development tools.
 
 
-Adjustments
------------
+Styling
+-------
 
 There are a few <div>s injected into the HTML and CSS classes assigned to HTML tags which are not really necessary but make styling their contents much easier.
+
+Some HTML tags get class names or IDs assigned.
 
 There are also some CSS classes available that can be used for common tasks by simply assigning them as special attributes in your markdown.
 
 ### <div>s injected into the HTML by MarkAPL
+
+All <div>s that are injected into the HTML by MarkAPL get either a class names or an ID name assigned -- that's the whole purpose of those <div>s: being able to style them or any decendent.
+
+#### Footnotes
 
 | ID names                |
 |-------------------------|
 |div#external_link_report |   
 |div#footnotes_div        |
 
-* All external (=non-bookmark) links in a document are printed at the end of the document --- but above any footnates --- as a list under the header "Link report". They are embraced by a <div> with the class `external_link_report`.
+* All external (=non-bookmark) links in a document are printed at the end of the document --- but above any footnotes --- as a list under the header "Link report". They are embraced by a <div> with the class `external_link_report`.
 
-* Footnots go to the very end of a dcoument. They are embraced by a <div> with the class `footnotes_div`.
+* Footnotes go to the very end of a dcoument. They are embraced by a <div> with the class `footnotes_div`.
 
-MarkAPL's own style sheet set styles the contents of those <div>s, but you might have different ideas.
+#### Link report
 
-### Other classes
+If `reportLinks` is 1 all links are listed at the very end of the document (but before any footnotes) with their URLs and link text. These are embraced by a single <div> with the ID "external_link_collection". 
+
+MarkAPL's own style sheet sets both style the contents of those <div>s, but you might have different ideas.
+
+### Class names and IDs assigned by MarkAPL
 
 There are a few HTML elements that get a class name assigned by **_MarkAPL_** in order to make styling them easy:
 
 * All footnote links in the document get the class "footnote_link" assigned . 
-  These are the links somewhere in the document pointing to the footnotes at the very end of the document.
+  These are the links pointing to the list of footnotes at the very end of the document.
 * All footnote anchors get the class "footnote_anchor" assigned. 
-  These are the footnotes positioned at the very end of the document.
-* All anchors generated automatically for headers get the class name "autoheader_anchor" assigned.
+  These anchors are positioned at the very end of the document.
+* All anchors automatically injected around headers get the class name "autoheader_anchor" assigned.
 * All bookmark links created by the user via the `[header](#)` syntax get a 
   class name "bookmark_link" assigned.
 * All external links get the class name "external_link" assigned.
 * All "mailto" links get the class name "mailto_link" assigned.
-* If `reportLinks` is 1 all links are listed at the very end of the document 
-  (but before any footnotes) with their URLs and link text. 
-  These are embraced by a single <div> with the ID "external_link_collection". 
-* The default screen CSS comes with a class `.print_only` that defines just 
-  "display:none;". This is used to make the link report invisible on the screen for example. 
-  You may use it for preventing certain elements from being printed by assigning the class name as a special attributes.
 * If `toc` is 1 then MarkAPL injects a table-of-contents into the HTML. The toc is embraced by a <nav> tag which, in order to make it styleable, gets the id "main_nav" assigned when `collapsibleTOC` is 1 and `main_nav_no_collapse` otherwise.
 
 Naturally you must not use these class names for different purposes when defining your own CSS.
@@ -158,19 +176,34 @@ printed without a page break and the table should be centered; this can be easil
 
 ~~~
 | Language | Comment |{.no_display .avoid_page_break .center}
-|----------|---------|
+|----------|------------------|
 | APL      | Excellent choice |
 | COBOL    | Oh dear          |
 ~~~
 
-This would do the trick.
+This would do the trick. 
 
-| Language | Comment |{.no_display .avoid_page_break .center}
-|----------|---------|
+| Language | Comment          |{.avoid_page_break .center}
+|----------|------------------|
+| APL      | Excellent choice |
+| COBOL    | Oh dear          |
+
+
+| Language | Comment          |{.avoid_page_break .center}
+|----------|:----------------:|
 | APL      | Excellent choice |
 | COBOL    | Oh dear          |
 
 You cannot see the table on screen but when you select "View HTML in default browser" from Meddy's "Edit" menu (or just press F11) in order to view this page and then do a print preview (at the time of writing this is a Chrome-only feature) you will actually see this table making an appearance.
+
+Note that assigning `.center` to the table is inherited by the table cells, there cell content is centered as well. If you do not want this you need to specify it per column. Watch out for the `:` in the row after the column headers:
+
+~~~
+| Language | Comment |{.no_display .avoid_page_break .center}
+|:----------|:------------------|
+| APL      | Excellent choice |
+| COBOL    | Oh dear          |
+~~~
 
 
 ## Assigned classes

@@ -15,7 +15,7 @@
 
  →FailsIf'<table>'≢0⊃ns.html
  →FailsIf'<thead>'≢1⊃ns.html
- →FailsIf 3≠+/∨/¨'<th '∘⍷¨ns.html
+ →FailsIf 3≠≢'<th[ >]'⎕S 0⊣ns.html
  →FailsIf'</thead>'≢7⊃ns.html
  →FailsIf'<tbody>'≢8⊃ns.html
  →FailsIf 6≠+/∨/¨'<td>'∘⍷¨ns.html

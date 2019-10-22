@@ -22,7 +22,7 @@
  →PassesIf 1=+/'<h3>'⍷∊ns.html
  →PassesIf 2=+/'<h2>'⍷∊ns.html
  →PassesIf 3=+/'<p>'⍷∊ns.html   ⍝ Caption of sub-toc is a para as well!
- →PassesIf 0=+/'<<SubTOC>>>'⍷∊ns.html
+ →PassesIf 0=+/'<<SubTOC>>'⍷∊ns.html
  →PassesIf 2=⍴'<nav.*>'⎕S 0⍠('Greedy' 0)⊣ns.html
  →PassesIf 1=+/'<h1>1. Level 1</h1>'⍷∊ns.html
 

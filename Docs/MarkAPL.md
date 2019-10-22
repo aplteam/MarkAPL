@@ -5,11 +5,19 @@
 [parm]:width           = 1000
 [parm]:reportLinks     = 1
 [parm]:collapsibleTOC  = 1
-[parm]:printCSS        = 'BlackOnWhite_print.css'
-[parm]:screenCSS       = 'BlackOnWhite_screen.css'
-[parm]:smoothScrolling = 0
+⍝[parm]:printCSS        = 'BlackOnWhite_print.css'
+⍝[parm]:screenCSS       = 'BlackOnWhite_screen.css'
+[parm]:smoothScrolling = 1
 
-MarkAPL Reference----
+⍝[parm]:linkToCSS       = 1
+⍝[parm]:printCSS        = 'MarkAPL_print.css'
+⍝[parm]:screenCSS       = 'MarkAPL_print.css'
+
+
+
+
+
+MarkAPL Reference
 =================
 
 
@@ -17,8 +25,6 @@ Overview
 --------
 
 This document is a reference for those who use **_MarkAPL_** in one way or another, for example as a user of the Markdown editor Meddy[^meddy] or as an APL programmer integrating **_MarkAPL_** into your own application(s).
-
-However, as an APL progammer you also need to read the document "MarkAPL for Programmers".
 
 
 ### This document is too long for me!
@@ -79,11 +85,10 @@ Compatibility, features, bugs
 * Code blocks are identified as such **just by fencing**. Any lines indented
   by 4 characters **do not** define a code block in **_MarkAPL_**.
   
-* In front of the fencing characters there might be zero or up to three white
-  space characters. However, when a code block is part of a list item than those white space characters have special meaning, and there might also be more than just three of them.
+* In front of the fencing characters there might be zero or up to three space characters. However, when a code block is part of a list item then those space characters have special meaning, and there might also be more than just three of them.
 
-* HTML blocks that must end with an end tag should **not have** anything after 
-  the end tag on that very line: it would be ignored.
+* HTML blocks that must end with a closing tag should **not have** anything after 
+  the closing `>` on that very line: it would be ignored.
 
 * Note that `\` is considered an escape character **only** when there is 
   something to escape to the right of the backslash character, otherwise the `\` will survive untouched. 
@@ -94,7 +99,7 @@ Compatibility, features, bugs
   quotes have no effect. (This contradicts the original Markdown documentation but due to a bug it did not work with the original Markdown implementation either)
 
 * **_MarkAPL_** does not have the concept of "loose list items". In 
-  CommonMark, the contents of any list item that is followed by a blank line is called a "loose" list item and wrapped into an additional `<p>` tag. 
+  CommonMark, the contents of any list item that is followed by a space line is called a "loose" list item and wrapped into an additional `<p>` tag. 
 
   This is of little value and complicates matters enormously. Therefore **_MarkAPL_** simply ignores a single empty line between list items. 
 
@@ -106,7 +111,7 @@ Compatibility, features, bugs
   Experience has shown however that users are way more likely to wonder why a list they intended to start straight after the end of a paragraph doesn't. For that reason **_MarkAPL_** does **not** require a blank line between the end of a paragraph and the first list item of a list.
 
 * According to the original Markdown standard two spaces at the end of a line 
-  are converted into a line break by replacing the two blanks by `<br>`. This was actually implemented in version 1.0 of **_MarkAPL_**. 
+  are converted into a line break by replacing the two spaces by `<br>`. This was actually implemented in version 1.0 of **_MarkAPL_**. 
 
   However, more than once a bug was reported regarding unintentional line breaks which were accidentally caused by adding two spaces at the end of a paragraph or a list item. Therefore with version 1.3 this ill-designed feature was removed from **_MarkAPL_**.
 
@@ -116,7 +121,9 @@ Compatibility, features, bugs
 
 * ~~A colon (`:`) in a [footnote](#Footnotes) is replaced by `:<br>`. This can be switched off by setting [markdownStrict](#) to 1.~~
 
-  This particularly bad idea was removed from MarkAPL with version 6.0.0. Simply use `<bbr>>` if you want/need a line break.
+  This was a bad idea and got removed from MarkAPL with version 6.0.0. Simply use `<<br>>` if you want/need a line break.
+
+* An APLer is used to double any quotes inside a text vector. That does _not_ work for backticks! If you need to show backticks in in-line code see [In-line code (verbatim)](#) for details.
  
 
 #### Not implemented
@@ -145,7 +152,7 @@ Compatibility, features, bugs
 * Bookmark links have a special simplified syntax; see [Internal links (
   bookmarks)](#) for details.
 
-* **_MarkAPL_** can optionally insert a table of contents from the headers 
+* **_MarkAPL_** can optionally insert a table of contents generated from the headers 
   into a document. See [toc (table of contents)](#) for details.
 
 * With `<<SubTOC>>` one can insert sub-tables of contents anywhere in the 
@@ -160,30 +167,19 @@ Compatibility, features, bugs
 
   Something like `⍎⍎FnsName⍎⍎` calls an APL function `FnsName` which gets the `ns` namespace as right argument. See the document "MarkAPL for Programmers" for details.
 
-* Typographical sugar. This can be switched off by setting [`syntaxSugar`](#) to 0.
-   
-    * Pairs of double-quotes (`"`) are exchanged against their typographically
-      correct equivalents "like here" while the [`lang`](#) parameter decides what's going to be the opening and what's the closing one: Germany/Austria/Switzerland have different ideas in this respect from the rest of the world.     
-    
-      Note also that this means that mentioning a single double-quote requires it to be put between back-ticks or escaped with a `\` character when there are also pairs of double-quotes in the same paragraph, cell, list item, blockquote or header because otherwise **_MarkAPL_** has no idea what to do with it.          
+* Typographical sugar. This can be switched off by setting [`syntaxSugar`](#) to 0. For details see [Syntax sugar](#).
 
-      A single double quote (") however is simply shown as is.
-
-    * Three dots (`...`) are exchanged against an ellipses: ...
-    * Three hyphens (`---`) are exchanged against ---.
-    
-      This is called an em dash: a dash with the length of the character <<m>>.
-
-    * Two hyphens (`--`) are exchanged against --.
-    
-      This is called an en dash: a dash with the length of the character <<n>>.
-      
-    * `(c)` is exchanged against (c).
-    * `(tm)` is exchanged against (tm).
-    * `<<` and `>>` are converted into <<Guillemets>>. 
-    
-      Note that because of the special meaning of [`<<br>>`](#Line breaks) and [`<<SubTOC>>`](#subTocs) you cannot have those strings between Guillemets defined by `<<` and `>>`. You can still enter the appropriate characters by clicking at them in the "Special characters" bar.
-    * `==>`, `<==` and `<==>` are converted into arrows: ==>, <== and <==>.
+  * `(c)` becomes (c)
+  * `(tm) becomes (tm)
+  * `...` becomes ...
+  * `<<` becomes <<
+  * `>>` becomes >>
+  * `--` becomes --
+  * `---` becomes ---
+  * `==>` becomes ==>
+  * `<==` becomes <==
+  * `<==>` becomes <==>
+  * `""` becomes ""  (but depends on the "lang" parameter)    
 
 * Assigning ID names, class names and attributes to certain elements as in:\
   `{#foo .my_class .another_class style="display:none;" target="_blank"}`\
@@ -213,12 +209,20 @@ Compatibility, features, bugs
   parameters](#Embedding parameters with `[parm]:`) for details.
 
 * Using `*` and `**` inside words. While `_` and  `__` are ignored when part of a work, you can use `*` and `**` inside a word. This was introduced in version 7.0.0
+
+  Examples: `As*ter*isks` leads to As*ter*isks and `Un_der_scores` to Un_der_scores while `As**ter**isks` leads to As**ter**isks and `Un__der__scores` to Un__der__scores.
+
+* A LeanPub encoding directive like `{:: encoding="utf-8" /}` needs to go into the first line of any markdown document. MarkAPL ignores such a line, meaning that any `[parms]:` definitions (see [embedded parameters](#Embedding parameters with `[parm]:`)) are unaffected by this althouh they are expected to start at the top of any markdown document as well.
+
+  Note that this directive has nothing to do with the so-called LeanPub extensions which are discussed next. A encoding directive is useful only when you want to publish on the [LeanPub publishing platform](https://https://leanpub.com/) and need to specify the encoding explicitly.
   
 * LeanPub extensions
   
-  With version 3.6 **_MarkAPL_** recognizes and processes the so-called LeanPub extension which are discussed in a separate document. These extensions allow the author to inject asides and messages: errors, warnings, tips and more.
+  Since version 3.6 **_MarkAPL_** recognizes and processes the so-called LeanPub extension which are discussed in a separate document. These extensions allow the author to imphasize particular lines in code blocks and inject asides as well as messages: errors, warnings, tips and more.
   
-  The set of CSS style sheets **_MarkAPL_** is coming with contain rules for these extensions, but this can of course be changed to your liking by using a tailor made style sheets that match your needs. 
+  The set of CSS style sheets **_MarkAPL_** is coming with rules for these extensions, but this can of course be changed to your liking by using a tailor made style sheet. 
+
+  LeanPub extensions can be useful in a document whether you want to publish on the LeanPub platform or not.
 
   Note that there is a separate document available that discusses style sheets in detail.
 
@@ -226,20 +230,21 @@ Compatibility, features, bugs
 
 See <https://github.com/aplteam/MarkAPL>
 
-Reference
+
+Reference{.page_break_before}
 ------------
 
+<<SubTOC-1>>
 
 ### Mark-up
 
-<<SubTOC>>
-
+<<SubTOC-1>>
 
 #### Overview{#markup-overview}
  
-The following table categorizes the different mark-ups into "Original", "Extra", "Pandoc" and "MarkAPL". A single line might carry more than on X in case it got enhanced. 
+The following table categorizes the different mark-ups into "Original", "Extra", "Pandoc" and "MarkAPL". A single line might carry more than one X in case it got enhanced. 
 
-| Name                      | Original  | Extra   | Pandoc    | MarkAPL |
+| Name                      | Original  | Extra   | Pandoc    | MarkAPL |{.page_break_before}
 |:--------------------------|:---------:|:-------:|:---------:|:-------:|
 | Abbreviations             |           |         |    X      |    X    |
 | Automated links           |   X       |   X     |    X      |    X    |
@@ -253,7 +258,7 @@ The following table categorizes the different mark-ups into "Original", "Extra",
 | HTML blocks               |   X       |   X     |    X      |    X    |
 | HR                        |   X       |   X     |    X      |    X    |
 | Images                    |   X       |   X     |    X      |    X    |
-| Inline mark-up            |   X       |   X     |    X      |    X    |
+| In-line mark-up           |   X       |   X     |    X      |    X    |
 | Line breaks (two spaces)  |   X       |   X     |    X      |         |
 | Line breaks    (`\`)      |           |         |    X      |    X    |
 | Line breaks (`<<br>>`)    |           |         |           |    X    |
@@ -266,7 +271,7 @@ The following table categorizes the different mark-ups into "Original", "Extra",
 | Tables                    |   X       |   X     |    X      |    X    |
 | Tables footers            |           |         |           |    X    |
 | Table of contents (TOC)   |           |         |    X      |    X    |
-| Sub TOC                   |           |         |           |    X    |
+| Sub TOCs                  |           |         |           |    X    |
 | Smart typography          |           |         |    X      |    X    |
 | Special attributes        |           |   X     |    X      |    X    |
 | LeanPub extensions        |           |         |           |    X    |
@@ -277,7 +282,7 @@ Notes:
 
 * The implementation of [Definition lists](#) comes with some restrictions; see there. 
 
-* Special attributes got introduced by Extra Markdown, and they are partly supported in Pandoc but they are not part of the CommonMark specification. However, they are recognized by MarkAPL with a syntax that is slightly different from other implementations. This makes it much less probable that the user needs to escape any `{` and `}` characters but at the cost of compatability.
+* Special attributes got introduced by Extra Markdown, and they are partly supported in Pandoc but they are not part of the CommonMark specification. However, they are recognized by MarkAPL with a syntax that is slightly different from other implementations. This makes it much less probable that the user needs to escape any `{` and `}` characters at the cost of compatability.
 
 * Regarding the LeanPub extension see separate document.
 
@@ -323,8 +328,8 @@ should show the string "Text is marked up with the <abbr> tag" when you hover ov
 Notes:
 
 * You may have more than just one word between the `[` and the `]` bracket. 
-  However, any leading and trailing blanks will be removed.
-* Any leading and trailing blanks in the title will be removed.
+  However, any leading and trailing spaces will be removed.
+* Any leading and trailing spaces in the title will be removed.
 * What is within the square brackets is case sensitive.
 * You may use any Unicode characters belonging to the Unicode "letter" 
   category plus `+-_= /&` (plus, minus, underscore, equal, space, slash and ampersand).
@@ -378,21 +383,23 @@ Vestibulum enim wisi, viverra nec, fringilla **in**.
 
 > Second para.
 
-Note that blockquotes are not restricted in any respect: they may contain anything like paragraphs, tables, lists, headers, definition lists and blockquotes. However, headers are not numbered and do not have anchors attached, and any `<<SubTOC>>` directives are removed from a blockquote.
+Note that blockquotes are not restricted in any respect: they may contain anything like paragraphs, tables, lists, headers, definition lists and blockquotes. However, headers are not numbered and do not have anchors attached, and any `<<SubTOC>>` directives within a blockquote are ignored.
 
 
 #### Code blocks
+
+<<SubTOC>>
 
 According to the original Markdown specification any lines indented by 4 characters were considered a code block. Apart from not being particularly readable this caused problems with nested lists and code blocks within such lists. Therefore later a convention called "fencing" was introduced. 
 
 **_MarkAPL_** goes a step further: to avoid confusion indenting is **not** supported for marking up code blocks.
 
-Code blocks can be marked up in two different ways, fencing or by injecting a <pre> as well as a </pre> HTML block. We discuss one after the other:
+Code blocks can be marked up in two different ways, fencing or by injecting a <pre> as well as a </pre> tag. We discuss one after the other.
 
 
 ##### Fencing
 
-You can use the "Git" style with three --- or more --- back-ticks as shown here:
+You can use the "Git" style with three --- or more --- backticks as shown here:
 
 <pre>
 ```
@@ -414,15 +421,17 @@ You don't have to have empty lines around fenced code blocks but you might find 
 
 Notes:
 
-* The fencing lines may have up to three leading white space characters. These 
-  will just be ignored except that the number of blanks specified in the opening line defines the number of blanks that are actually removed from the code itself, though only if those columns carry only space characters.
+* The fencing lines may have up to three leading space characters. These will just be ignored except that the number of spaces 
+  specified in the opening line defines the number of spaces that are actually removed from the code itself, though only if 
+  those columns carry nothing but space characters.
 
   Note that this rule does **not** apply when a code block is part of a list since the number of spaces is then 
   used to determine the level of nesting.
-* After the initiating fencing characters one may specify an info string. This is usually used for syntax highlighting, though it may have other applications as well. An example for Dyalog:
+* After the initiating fencing characters one may specify an info string. This is usually used for syntax highlighting, 
+  though it may have other applications as well. An example for APL:
 
   ```
-  ~~~Dyalog
+  ~~~APL
   +⌿
   ~~~
   ```
@@ -430,10 +439,13 @@ Notes:
   This results in this HTML code:
 
   ~~~
-  <pre class="dyalog"><code>+⌿</code></pre>
+  <pre class="APL"><code>+⌿</code></pre>
   ~~~
 * The closing fence must carry at least as many fencing characters as the opening line did.
 * Code blocks may also (after any info string) have [Special attributes](#); see there for details.
+* You cannot mix ```` ``` ```` and `~~~`: when a code block is opened with three backticks then it can be closed only by three backticks.
+
+  But that also means that you can put three tilde characters on display within a code block that was opened with three backticks, and vice versa.
 
 
 ##### Code: the `<pre>` tag
@@ -456,7 +468,7 @@ There is no other way since assigning a [special attribute](#Special-attributes)
 ~~~
 </pre>
 
-does assign the attributes not to the `<pre>` tag but to the inner `<code>` tag:
+This assigns the attributes _not_ to the `<pre>` tag but to the inner `<code>` tag:
 
 ~~~
 <pre><code id="foo">
@@ -512,9 +524,9 @@ The resulting HTML:
 </dl>
 ~~~
 
-No <p> tags here because there is no blank line between the term and its definition.
+There are no <p> tags here because there is no blank line between the term and its definition.
 
-More complex example:
+A more complex example:
 ~~~
 Term 1
 
@@ -523,6 +535,7 @@ Term 1
    : More information
      that spans over
      three lines
+     but only in the markdown
 
 Term 2
     : Another definition
@@ -539,6 +552,7 @@ Term 1
    : More information
      that spans over
      three lines
+     but only in the markdown
 
 Term 2
    : Another definition
@@ -551,7 +565,7 @@ The resulting HTML:
 <dl>
 <dt>Term 1</dt>
 <dd><p>The definition</p></dd>
-<dd><p>More information that spans over three lines</p></dd>
+<dd><p>More information that spans over three lines but only in the markdown</p></dd>
 <dt>Term 2</dt>
 <dd>Another definition</dd>
 <dd><p>Additional information</p></dd>
@@ -565,7 +579,7 @@ Restrictions:
 
 #### Footnotes
 
-Footnotes can be referenced by something like `[^1]` or `[^foo]`. The footnotes `1` and `foo` can be defined anywhere in the document although it seems to be a good idea to collect them at the bottom of the Markdown document. Footnotes cannot contain anything but paragraphs: no code blocks, lists, blockquotes or tables. In-line mark-up is of course available.
+Footnotes can be referenced by something like `[^1]` or `[^foo]`. The footnotes `1` and `foo` can be defined anywhere in the document although it seems to be a good idea to collect them at the bottom of the Markdown document. Footnotes cannot contain anything but paragraphs: no code blocks, lists, blockquotes or tables. In-line mark-up will be processed.
 
 Note that the `^` character is the caret, **not** the APL symbol for logical AND.
 
@@ -583,11 +597,11 @@ The format of the definition `[^footnote]`:
 Notes:
 
 * Two empty lines end a footnote. 
-* As soon as something is not indented by two blanks a footnote definition ends.
+* As soon as something is not indented by two spaces a footnote definition ends.
 * The footnote identifiers must start with an upper case or lower case ASCII character or a digit and may contain 
   any upper case and lower case characters, digits and the underscore (`_`) but nothing else.
 * The footnotes (= the ordered list) are wrapped in a 
-  `<div id="footnotes_div">` tag to make them easily styleable with CSS. 
+  `<div id="footnotes_div">` tag to make them styleable with CSS. 
 * Footnotes always go to the very end of the HTML document.
 * ~~In case of footnote contains a `:` then `<<br>>` (new line) is inserted after the colon.~~
 
@@ -595,6 +609,8 @@ Notes:
 
 
 #### Headers
+
+<<SubTOC>>
 
 There are two ways to mark up headers, and both are part of the original Markdown specification:
 
@@ -627,7 +643,7 @@ is converted into a header of level 2.
 
 Again it does not matter how many hyphens are used. As long as the first character on a line is a hyphen and there are no other characters or they are all spaces it will be recognized as a level-2 header.
 
-However, since a single `-` can also start a bulleted list it is **strongly** recommended to use at least two (`--`) characters.
+However, since a single `-` can also start a bulleted list it is **strongly** recommended to use at least two hyphens.
 
 Note that the definition of a header might well span several lines like this:
 
@@ -657,7 +673,7 @@ is converted into a header of level 1 while a line that looks like this:
 
 is converted into a header of level 6. You cannot have headers of level 7 or higher (HTML does not allow this), and it is probably not a good idea to use levels beyond 4 anyway, except perhaps in technical documentation.
 
-Many Markdown implementations do not require a space between the last `#` and the content (= the header as such). However, the space was required even by the original Markdown specification. The CommonMark specification points out that this was actually a good idea because without the blank these two lines would be rendered as headers:
+Many Markdown implementations do not require a space between the last `#` and the content (= the header as such). However, the space was required even by the original Markdown specification. The CommonMark specification points out that this was actually a good idea because without the space these two lines would be rendered as headers:
 
 ~~~
 #5 bolt
@@ -667,9 +683,9 @@ Many Markdown implementations do not require a space between the last `#` and th
 #hashtag
 ~~~
 
-For that reason **_MarkAPL_** **does** require a space between the `#` and the header as such.
+For that reason **_MarkAPL_** requires a space between the `#` and the header as such.
 
-Note that you may have trailing `#` characters as well; however, they are simply ignored. That's the reason why the number of characters does not even have to match the leading number of `#`.
+Note that you may have trailing `#` characters as well; however, they are simply ignored.
 
 
 ##### ATX versus SeText syntax
@@ -677,7 +693,7 @@ Note that you may have trailing `#` characters as well; however, they are simply
 * The SeText syntax is contributing to the readability of a document.
 * The ATX syntax makes it easier for an author to search for a specific header.
 
-  Howevert that does not matter in case you edit your Markdown with Meddy because you can easily navigate to any header by clicking at it in the tree view. 
+  However, that does not matter in case you edit your Markdown with Meddy because you can easily navigate to any header by clicking at it in the tree view anyway. 
 
 ##### Headers and bookmarks 
 
@@ -685,7 +701,7 @@ By default **_MarkAPL_** automatically embraces headers (<h\{number\}>) by bookm
 
 Note that both ID and HREF are assigned the same value. That allows the user to make any header the first line by just clicking at it.
 
-Though the <a> tag surrounding any <h1> etc. tag is useful it also poses a problem: assigning `page-break: avoid` to any <hn> tag in the CSS might not prevent an unwanted break because it will then break after the <a> tag which is not any better from a user's point of view.
+Though the <a> tag surrounding any <h1> etc. tag is useful it also poses a problem: assigning `page-break: avoid` to any <h{number}> tag in the CSS might not prevent an unwanted break because it will then break after the <a> tag which is not any better from a user's point of view.
 
 For that reason headers and their associated <a> tags are surrounded by `<div class="h_tag"`. That way the `page-break: avoid` can be assigned to the <div> which will prevent the unwanted page break. If you don't want that <div> for some reason you can achieve that by assigning 0 to the [div_h_tag](#) parameter.
 
@@ -694,9 +710,9 @@ The names of the bookmarks are constructed automatically according to this set o
 
 * Remove all formatting, links, etc.
 * Remove everything between <>, () and [], including the brackets.
-* Remove all punctuation, except underscores, hyphens, and periods.
-* Remove the back-ticks around code.
-* Remove HTML entities (recursive calls to **_MarkAPL_**!)
+* Remove all punctuation, except underscores, hyphens and periods.
+* Remove the backticks around code.
+* Remove HTML entities; those might have been injected into the document by recursive calls to **_MarkAPL_**, for example in order to process a blockquote.
 * Replace all spaces and newlines with hyphens.
 * ~~Convert all alphabetic characters to lower case.~~
 
@@ -715,7 +731,7 @@ This is the result with `parms.bookmarkLink←1`:
 
 ~~~
 <a id="second-level-2-header" class="autoheader_anchor" 
-<h1>Second level-2 "Header!"</h1> 
+<h2>Second level-2 "Header!"</h2> 
 </a>
 ~~~
 
@@ -748,9 +764,9 @@ If you need a link or an image in a header specify an HTML block for it - see [H
 Note that **_MarkAPL_**'s ability to inject a table-of-contents is not harmed by an HTML block injecting a header. However, its ability to number headers **is** harmed.
 
 
-##### Headers with leading blanks
+##### Headers with leading spaces
 
-No matter how you defines headers, they may have between zero and up to three leading blanks.
+No matter how you defines headers, they may have between zero and up to three leading spaces.
 
 
 #### HTML blocks
@@ -759,9 +775,11 @@ It is perfectly legal to have HTML blocks in a Markdown document, but be aware t
 
 For details refer to [][commonmark_on_html_blocks].
 
-An HTML block must start with a `<` in the first column. In other words, a line that starts with any white space character can never become an HTML block.
+An HTML block must start with a `<` in the first column. In other words, a line that starts with a space character can never become an HTML block.
 
-This can be used to prevent the second paragraph to be treated as an HTML block because the white space at the beginning of the line has no meaning in HTML but in Markdown:
+This can be used to prevent something that starts with a `<` character from starting an HTML block.
+
+the second paragraph to be treated as an HTML block because the space character at the beginning of the line has no meaning in HTML:
 
 ~~~
 <p>HTML block</p>
@@ -769,9 +787,7 @@ This can be used to prevent the second paragraph to be treated as an HTML block 
  <p>NO HTML block</p>
 ~~~
 
-Note that the term "white space" includes TAB characters. 
-
-There are four different HTML blocks:
+There are four different kinds of HTML blocks:
 
 * `<script>` and `<style>`
   
@@ -779,7 +795,7 @@ There are four different HTML blocks:
 
 * `<pre>`
   
-  This one preserves white space. The special features of `<pre>` blocks are discussed in detail at [Code: the `<pre>` tag](#).
+  This one preserves spaces. The special features of `<pre>` blocks are discussed in detail at [Code: the `<pre>` tag](#).
 
 * `<!--`
 
@@ -789,7 +805,7 @@ There are four different HTML blocks:
 
 All HTML blocks but `<pre>`, `<script>`, HTML comments and `<style>` **must** be surrounded by blank lines except when an HTML block is placed at the top of a document or ends at the bottom of the document.
 
-An HTML comment must have a blank line before the opening tag (`<!--`) but no empty line is required after the closing tag. For this that reason is a prefectly legal Markdown document with an HTML comment:
+An HTML comment must have a blank line before the opening tag (`<!--`) but no empty line is required after the closing tag. For that reason this is a prefectly legal Markdown document with an HTML comment:
 
 ```
 # Overview
@@ -821,7 +837,7 @@ Notes:
 1. This example comprises **two** (!) HTML blocks.
 
 1. The beginning of a block is defined by an empty line followed by a line 
-  that starts with either  `<` or `</` followed by a tag name. That means that leading white space is important because it prevents a line from being recognized as an HTML block.
+  that starts with either  `<` or `</` followed by a tag name. That means that leading space is important because it prevents a line from being recognized as an HTML block.
 
 1. The end of each HTML block (except `<pre>`, `<script>`, `<style>`) is 
   defined by an empty line which therefore is essential.
@@ -840,9 +856,9 @@ Notes:
 1. Because `**foo**` is an ordinary paragraph located **between** two HTML 
    blocks it will be converted into `<strong>foo</strong>`.
 
-   Without the two empty lines around the paragraph it would be just **one** HTML block. As a side effect the paragraph would show `**foo**` rather than **foo** because within an HTML block no in-line Markdown is recognized.
+   Without the two empty lines around the paragraph it would be just **one** HTML block. As a side effect the paragraph would show "\*\*foo\*\*" rather than "**foo**" because within an HTML block no in-line Markdown is processed.
 
-The `<pre>` blocks are different in so far as there is no Markdown styling done to anything between `<pre>` and `</pre>` anyway; therefore you can have just one block without any disadvantages. 
+The `<pre>` blocks are different in so far as there is no Markdown processing done to anything between `<pre>` and `</pre>` anyway; therefore you can have just one block without any disadvantages. 
 
 
 #### Horizontal rulers
@@ -852,7 +868,7 @@ You can create a horizontal ruler by following these rules:
 1. After an empty line there must be a line that starts with either a hyphen (`-`) or an 
    asterisk (`*`) or an underscore (`_`).
 1. There must be at least three such characters on the line.
-1. There might be zero to a maximum of three white space characters to the 
+1. There might be zero to a maximum of three space characters to the 
    left of the characters defining the ruler.
 1. There are no other characters but spaces allowed, with the exception of [
    Special attributes](#).
@@ -864,7 +880,7 @@ So these lines will all create a ruler:
 * * * * * *
 _ _    _
    ***
-   ***{style="max-width: 50%; border-top: spx solid silver;"}
+   ***{style="max-width: 50%; border-top: 2px solid silver;"}
 ~~~
 
 The result:
@@ -876,7 +892,7 @@ _ _    _
 
    ***{style="max-width: 50%; border-top: 2px solid silver;"}
 
-A common mistake is to forget the empty line required **before** the definition of a ruler which might well create a [SeText header](#The “=” and "-" syntax (SeText)).
+It is a common mistake to forget the empty line required **before** the definition of a ruler which might well create a [SeText header](#The “=” and "-" syntax (SeText)).
 
 
 #### Images
@@ -934,21 +950,21 @@ results in this HTML:
 
 #### In-line mark up
 
+<<SubTOC>>
+
 First of all, all in-line mark up does **not** touch code, be it in-line code or a code block.
 
 In-line mark-up can be used in paragraphs, lists, table cells, blockquotes, definition lists and headers but also in the link text, the alt text and the title of [Links](#).
 
-Note that you cannot assign [Special attributes](#) to any in-line mark-up.
-
-<<SubTOC>>
+Note that you cannot assign [Special attributes](#) to in-line mark-up.
 
 ##### Emphasize with `<em>` and `<strong>`
 
 Some rules apply for `<em>` and `<strong>` alike:
 
-* When any of the characters, like `*`, is surrounded by white space they have no effect. Therefore this: ` * not italic * ` survives verbatim:  * not italic * 
+* When any of the characters, like `*`, is surrounded by spaces they have no effect. Therefore this: ` * not italic * ` survives verbatim:  * not italic * 
 
-* You cannot spread it over several lines: it would then not be interpreted as inline markup, therefore
+* You cannot spread it over several lines: it would then not be interpreted as in-line mar-kup, therefore
 
   ```
   _
@@ -962,12 +978,12 @@ Some rules apply for `<em>` and `<strong>` alike:
   Not italic
   _
 
-Within a word, inline markup with `_` is ignored while `*` is honoured. This is because `_` may well appear in words but `*` won't.
+Within a word, in-line mark-up with `_` is ignored while `*` is honoured. This is because `_` may well appear in words but `*` won't.
 Therefore `Not i_tali_c` survives verbatim (Not i_tali_c) while `I*tali*c` results in Ii*tali*c. Same for `St__ro__ng` (St__ro__ng) and `St**ro**ng` (St**ro**ng).
 
-With the aforementioned exception all examples that use `*` are valid for `_` and `__` and `**` as well.
+With the aforementioned exception all examples that use `*` are valid for `_`, and for `__` and `**` accordingly.
 
-Note that you can always escape either `*` or `_` with a backslash, therefore `\___Word__\_` results in \___Word__\_ (the underscores are not emphasized) while `__\_Word\___` would result in __\_Word\___ (the underscores are both emphasized).
+Note that you can always escape either `*` or `_` with a backslash, therefore `\___Word__\_` results in \___Word__\_ (the underscores are not emphasized) while `__\_Word\___` would result in __\_Word\___ (the underscores are both emphasized; note that this might not be obvious depending on the font or font size).
 
 ###### Emphasize with `<em>`
 
@@ -1025,54 +1041,99 @@ This is the result:
 
 This ~~is~~ was an ordinary paragraph.
 
-Note that to the right of any opening `~~` and to the left of any closing `~~` there must be a non-white-space character for them to be accepted as mark-up.
+Note that to the right of any opening `~~` and to the left of any closing `~~` there must be a non-space character for them to be accepted as mark-up.
 
 
 ##### Line breaks
 
-There are two different ways to enforce a line break (= inserting a `<br>` tag) into paragraphs, lists, footnotes and table cells:
+There are two different ways to enforce a line break (= inserting a `<br>` tag) within paragraphs, lists, footnotes and table cells:
 
-* Have a backslash character (`\`) at the end of a line. However, this has the disadvantage that you cannot use it in table cells - there is no "end of line" in those.
+* Have a backslash character (`\`) at the end of a line. This has the disadvantage that you cannot use it in table cells - there is no "end of line" in those.
 * Insert `<<br>>` and it will become a `<br>` tag. This is the recommended way: it is readable and can be used in table cells as well. However, it is a **_MarkAPL_**-only feature.
  
-Having two blanks at the end of a paragraph or list item is according to the Markdown implementation --- and also the early versions of **_MarkAPL_** --- designed to inject a line break. This caused bug reports by people who accidentally added two spaces to the end of a line without realizing and then started to wonder where exactly the line break was coming from. It seemed to be a bad idea from the start; therefore this feature was removed from **_MarkAPL_** in version 1.3.0.
+Having two spaces at the end of a paragraph or list item is according to the Markdown implementation --- and also the early versions of **_MarkAPL_** --- designed to inject a line break. This caused bug reports by people who accidentally added two spaces to the end of a line without realizing and then started to wonder where exactly the line break was coming from. It seemed to be a bad idea from the start; therefore this feature was removed from **_MarkAPL_** in version 1.3.0.
 
 
 ##### In-line code (verbatim)
 
-You can insert code samples into paragraphs, blockquotes, lists, cells and footnotes by putting back-ticks around them:
+You can insert code samples into paragraphs, blockquotes, lists, cells and footnotes by putting backticks around them:
 
 ~~~
 This: `is code`
 ~~~
 
-Note that in order to show a back-tick within code you need to double it:
+Note that in order to show a backtick within code you need to double the backticks that indicate the start and end of the code:
 
 ~~~
-Enclose in-line code with a back-tick character (````).
+`` A backtick: ` ``
 ~~~
 
-Note also that the number of back-ticks in a paragraph (list, cell,...) should be even. If that's not the case then a closing back-tick is added to the end automatically. That's why this seems to work:
+This results in `` A backtick: ` ``
+
+In general the number of backticks that define start and end of the code must be one more than the longest sequence of backticks you want to show within the code. So in order to show 4 backticks:
+
+```
+`````Four (````) backticks`````
+```
+
+This results in `````Four (````) backticks`````
+
+If you want to show a backtick at the start and/or the end of the code then you must inject additonal space characters, because otherwise it would not be possible to tell whether the backtick should show or is part of the opening sequence.
 
 ~~~
-This is a back-tick: ` ``
+`` `tablespace` ```
 ~~~
 
-This is a back-tick: ` ``
+This results in `` `tablespace` ``
 
-⍝ ` otherwise syntax coloring might go crazy!
+The number of backticks in a paragraph (list, cell,...) should be even. If that's not then since version 8.0.0 the last backtick (or group of backticks) survives verbatim. In earlier versions a closing backtick was added but that violated the specification.
 
-However, adding a dot emphasizes what is really going on here:
+Therefore this:
+
+```
+Code: `{+/≢¨⍵}` and (`) a single backtick that is not code.
+```
+
+leads to: Code: `{+/≢¨⍵}` and (`) a single backtick that is not code.
+
+An error in the number of opening and closing backticks therefore leads to no code at all. For example, if you want to embrace code with 4 backticks and display two consecutive backticks inside the code but by mistake the closing group carries only 3 rather than 4 backticks as shown here:
 
 ~~~
-This is back-tick: ` ``.
+```` {+/⍳≢⍵} `` ⌹ ```
 ~~~
 
-This is back-tick: ` ``.
+This is the outcome: ```` {+/⍳≢⍵} `` ⌹ ``` --- no in-line code at all.
 
-⍝ ` otherwise syntax coloring might go crazy!
 
-Since the missing back-tick is added to the end of the paragraph the dot becomes part of the code. That's probably not what you had in mind. 
+##### Syntax sugar
+
+**_MarkAPL_** converts a number of shortcuts:
+
+* Pairs of double-quotes (`"`) are exchanged against their typographically correct equivalents "like here" while the [`lang`](#) parameter decides what's going to be the opening and what's the closing one: Germany/Austria/Switzerland have different ideas in this respect from the rest of the world.     
+    
+  Note also that this means that mentioning a single double-quote requires it to be put between backticks or escaped with a `\` character when there are also pairs of double-quotes in the same paragraph, cell, list item, blockquote or header because otherwise **_MarkAPL_** cannot decide what is an opening and what is a closing one and which one is supposed to survive verbatim.
+
+  A single double quote (") however is simply shown as is.
+
+* Three dots (`...`) are exchanged against an ellipses: ...
+* Three hyphens (`---`) are exchanged against ---.
+    
+  This is called an em dash: a dash with the length of the character <<m>>.
+
+* Two hyphens (`--`) are exchanged against --.
+    
+  This is called an en dash: a dash with the length of the character <<n>>.
+        
+* `(c)` is exchanged against (c).
+* `(tm)` is exchanged against (tm).
+* `<<` and `>>` are converted into <<Guillemets>>. 
+    
+     Note that because of the special meaning of [`<<br>>`](#Line breaks) and [`<<SubTOC>>`](#subTocs) you cannot have those strings between Guillemets defined by `<<` and `>>`. 
+* `==>`, `<==` and `<==>` are converted into arrows: ==>, <== and <==>.
+
+If you don't want syntax sugar at all for any reason then you can switch this off entirely by setting the [syntaxSugar](#) parameter to 0.
+
+Note that in case you want to have syntax sugar switched on but in a particular case you don't want something to be converted then you must put it between backticks in order to make it code: escaping is not supported for syntax sugar.
 
 
 #### Links
@@ -1094,7 +1155,7 @@ When you hover with the mouse over the link the title (that's the stuff between 
 
 Notes
 
-* The way the title is used differs for external links and bookmark links.
+* The way the title is used is different for external links and bookmark links.
 * You cannot use in-line mark-up (bold, italic, del,...) in the URL.
 
 The title is optional, therefore the link can also be written as:
@@ -1111,12 +1172,12 @@ If you want the URL to become the link text then this would suffice:
 
 That would result in [](https://github.com/aplteam/MarkAPL)
 
-However, see the next topic (AutoLinks) as well. 
+See also the next topic (AutoLinks). 
 
 
 ##### Automated links (Autolinks)
 
-Because external links are often injected "as is" --- meaning that they actually have no link text and no link title --- you can also specify a link as:
+Because external links are often injected "as is" --- meaning that they actually have no link text and no link title --- Markdown has a special syntax for this:
 
 ~~~
 <https://github.com/aplteam/MarkAPL>
@@ -1126,7 +1187,7 @@ That results is this link: <https://github.com/aplteam/MarkAPL>: the link text a
 
 Note that you **must** specify a protocol (http://, https://, ftp://...), here, otherwise it is **not** treated as an automated link.
 
-There is one exception: since version 5.0.0 you can use this for "mailto:" links. Since the `@` character makes it an email address no protocol needs to be specicfied.
+There is one exception: since version 5.0.0 you can use this for "mailto:" links. Since the `@` character makes it an email address no protocol needs to be specified, therefore this:
 
 ~~~
 <kai@aplteam.com>
@@ -1178,7 +1239,7 @@ To link to this header you can therefore say:
 
 and that would work indeed.
 
-However, instead you could use just the chapter title and specify a `#` in order to let **_MarkAPL_** know that this is an internal link:
+Instead you could use just the chapter title and specify a `#` in order to let **_MarkAPL_** know that this is an internal link:
 
 ~~~
 [This is (really) chapter 5-2](#)
@@ -1188,7 +1249,7 @@ That will result in a bookmark link as well.
 
 Note that this is a **_MarkAPL_**-only feature.
 
-There are times when the actual title of the header you are linking to does not fit as a link text. In that case you specify an alternative link text:
+There are times when the actual title of the header you are linking to does not fit as a link text. In that case you can specify an alternative link text:
 
 ~~~
 [This is (really) chapter 5-2](#"Alt text")
@@ -1196,12 +1257,12 @@ There are times when the actual title of the header you are linking to does not 
 
 This would create a link to the header _This is (really) chapter 5-2_ but it would show "Alt text" as link text. 
 
-Note that external and internal links differ in how they make use of any string between double quotes.
+Note that external and internal links differ in how they make use of a string between double quotes.
 
 
 ##### Link references
 
-Link references are defined by `[ID]: url "alt text"`. Note that "alt text" is optional and therefore may be empty or even absend. You may also add [Special attributes](#): `[ID]: url "alt text"{target:"_blank"}`. There might be a space between the colon and the URL or not. 
+Link references are defined by `[ID]: url "alt text"`. Note that "alt text" is optional and therefore may be empty or even absent. You may also add [Special attributes](#): `[ID]: url "alt text"{target:"_blank"}`. There might be a space between the colon and the URL or not. 
 
 Such definitions can appear anywhere in the document. 
 
@@ -1254,10 +1315,10 @@ then "Fire's home page on GitHub" would become the link text.
 
 Notes: 
 
-* In case of a typo in the link definition --- meaning that **_MarkAPL_** 
-  cannot find a corresponding link reference --- the text will appear "as is" in the final document but the failing reference will also be reported on `ns.report` (APL programmers only).
-* [Special attributes](#) can be assigned to the link reference definition but 
-  not in the link itself.
+* In case of a typo in the link definition --- meaning that **_MarkAPL_** cannot find a corresponding 
+  link reference --- the text will appear "as is" in the final document but the failing reference 
+  will also be reported on `ns.report` (APL programmers only).
+* [Special attributes](#) can be assigned to the link reference definition but not to the link itself.
 
 
 ##### Links containing code
@@ -1276,7 +1337,7 @@ This on the other hand does **not** work:
 
 The reason is simple:
 
-* In the first expression the \` are removed before the contents between `[` 
+* In the first expression the backticks are removed before the contents between `[` 
   and `]`, and the remaining content is converted into a link but also still marked up with <pre> and <code>.
 * The second statement is treated like code. No links then: it is taken 
   verbatim.
@@ -1307,8 +1368,7 @@ If your lists comprise just short single sentences then you will find lists easy
 
 ##### General rules
 
-1. Lists start with an empty line, followed by a line were the first 
-  non-white-space character is either one of `-+*` for a bulleted list or a digit followed either by a dot (`.`) or a parenthesis (`)`) and a space for an ordered list. This is called the list marker.
+1. Lists start with a line were the first non-space character is either one of `-+*` for a bulleted list or a digit followed either by a dot (`.`) or a parenthesis (`)`) and a space for an ordered list. This is called the list marker.
 
    However, in case [`markdownStrict`](#) is 1 (default is 0) then a list requires a blank line before the first line that 
    will become the first list item.
@@ -1333,10 +1393,10 @@ If your lists comprise just short single sentences then you will find lists easy
 
 1. Lists can be nested.
 
-1. The number of leading white-space characters between the left margin and 
-   the list marker (in case of a list item itself) or content (in case of a sub-paragraph or a code block) defines the level of nesting.
+1. The number of leading space characters between the left margin and the list marker (in case of a list item itself) or content 
+   (in case of a sub-paragraph or a code block) defines the level of nesting.
  
-   That means that any content that is supposed to belong to a particular list item must be indented by the number of white-space characters to the left and to the right of the list marker plus the characters for the list marker itself: one for bulleted lists and at least two for numbered lists.
+   That means that any content that is supposed to belong to a particular list item must be indented by the number of space characters to the left and to the right of the list marker plus the characters for the list marker itself: one for bulleted lists and at least two for numbered lists.
 
 1. Between a list marker and the content there might be any number of white 
    space characters.
@@ -1355,10 +1415,8 @@ If your lists comprise just short single sentences then you will find lists easy
 1. If a list item contains a code block or a paragraph then there **must** be 
    an empty line before the code block or paragraph respectively. 
 
-1. A stand-alone code block may have zero or up to three leading spaces. This 
-   rule **does not apply** for code blocks that are part
-   of a list item since spaces are used as the means to work out which list level the code block belongs to. That means that if for the
-   non-fenced lines the indentation is not right it does not qualify as a code block at all.
+1. A stand-alone code block may have zero or up to three leading spaces. This rule **does not apply** for code blocks that are part
+   of a list item since spaces are used as the means to work out which list level the code block belongs to.
  
 1. Single empty lines between list items and sub-paragraphs / code blocks 
   belonging to a list item are ignored.
@@ -1371,16 +1429,16 @@ If your lists comprise just short single sentences then you will find lists easy
 1. Closing LI tags (`</li>`) are optional according to the W3C HTML5 
    specification. However, **_MarkAPL_** adds **always** a closing `</li>` tag starting with version 2.0.
  
-Note that these rules differ from those from the original Markdown specification (which are inconsistent) and CommonMark (which are consistent but very complex). 
+Note that these rules differ from the original Markdown specification (which are inconsistent) and CommonMark (which are consistent but very complex). 
 
 Originally **_MarkAPL_** attempted to implement the CommanMark rules. However, the first bug reports all referred to list problems, and only one was a true bug. Everything else was caused by misunderstanding those very complex rules. Therefore, starting with version 1.3.0, **_MarkAPL_** now has its own ---  simpler and still consistent --- set of rules. With these easier to understand rules everything can be achieved but wrapping the content of a list item into a `<p>` tag.  
 
-**A word of warning:** getting the number of white-space characters wrong --- in particular for sub-paragraphs, images, tables, blockquotes and/or code blocks --- is the most common reason for unexpected results. You are advised to use a monospace font since this makes it much easier to spot such problems, or to avoid them in the first place. 
+**A word of warning:** getting the number of space characters wrong --- in particular for sub-paragraphs, images, tables, blockquotes and/or code blocks --- is the most common reason for unexpected results. You are advised to use a monospace font since this makes it much easier to spot such problems, or to avoid them in the first place. 
 
 
 ##### Bulleted lists
 
-Bulleted --- or unordered --- lists can be marked by an asterisk (`*`), a plus (`+`) or a minus (`-`). There might by zero to three white-space characters between the left margin and the list marker. There might be any number of white-space characters between the list marker and the beginning of the contents.
+Bulleted --- or unordered --- lists can be marked by an asterisk (`*`), a plus (`+`) or a minus (`-`). There might by zero to three space characters between the left margin and the list marker. There might be any number of space characters between the list marker and the beginning of the contents.
 
 Note that for nesting you need to have at least one more space to the left of the list marker per additional level. Although you can choose the number of spaces freely items that are supposed to end up on the same level must have the same number of leading spaces, otherwise results become unpredictable.
 
@@ -1414,9 +1472,9 @@ This results in this:
 
 ##### Ordered lists
 
-An ordered list must start with a digit followed by a dot (`.`) or a parentheses (`)`) and one or more white-space characters. The digit(s) in the first row define the starting point. For the remaining rows any digit will do. Note that some browsers cannot deal with more than 9 digits, so that's the limit. 
+An ordered list must start with a digit followed by a dot (`.`) or a parentheses (`)`) and one or more space characters. The digit(s) in the first row define the starting point. For the remaining rows any digit will do. Note that some browsers cannot deal with more than 9 digits, so that's the limit. 
 
-There might by zero to three white-space characters between the left margin and the list marker. There might be any number of white-space characters between the list marker and the beginning of the contents.
+There might by zero to three space characters between the left margin and the list marker. There might be any number of space characters between the list marker and the beginning of the contents.
 
 Example:
 
@@ -1441,7 +1499,7 @@ This results in this:
 
 ##### List item contents
 
-You may want to inject line breaks for readability, or you may not and be lazy, and you may add blanks or not; all has the same effect. 
+You may want to inject line breaks for readability, or you may not and be lazy, and you may add blanks or not. 
 
 An example for the lazy approach:
 ~~~
@@ -1496,12 +1554,12 @@ In all cases this would be the result:
 ---
 
 Notes:
-* Line breaks can be injected anywhere, even within links, but not in code (anything between two back-ticks).
+* Line breaks can be injected anywhere, even within links, but not in code (anything between two backticks).
 * Indentation matters only in the first line of any list item and 
   sub-paragraph as well as for the fencing lines of any code blocks.
 * The end of the contents of a list item (but not necessarily a list!) is defined by one of:
   * An empty line, including lines that comprise nothing but spaces.
-  * A line (with or without any leading white-space) that starts with a list 
+  * A line (with or without any leading space) that starts with a list 
     marker.
 
 
@@ -1509,7 +1567,7 @@ Notes:
 
 The fencing lines of code blocks as well as the first line of paragraphs that belong to a list item need to be indented by the same number of spaces as the list item they belong to. They **must** be separated from the initial list item contents or any earlier sub-paragraph or code block by a blank line.  
 
-Note that the number of leading white-space characters (indentations) of any paragraphs must match the number of white-space characters from the left margin to the beginning of the content (the list marker characters count as white space here!) of the list item the paragraph or code block is supposed to belong to.
+Note that the number of leading space characters (indentations) of any paragraphs must match the number of any space characters _and_ the list marker(s) from the left margin to the beginning of the content of the list item the paragraph or code block is supposed to belong to.
 
 ~~~
 1. First line
@@ -1554,7 +1612,7 @@ Note that the code block has two leading spaces **within the fence**. These make
 
 When [Special attributes](#) are assigned to the very first item on any list then that definition is assigned to the **list** (<ul> or <ol>) rather than the list item itself.
 
-When special attributes are assigned to other items than the first one then they become ordinary text.
+You cannot assign special attributes to list items.
 
 
 #### Paragraphs
@@ -1586,10 +1644,12 @@ This results in this HTML:
 <p id="author">Simple paragraph</p>
 ~~~
 
-There is of course a small chance that something is interpreted as a special attribute definition that is actually just part of the paragraph. In that case you need to escape the curly brackets with `\{` and `\}`. 
+There is of course a small chance that something is interpreted as a special attribute definition that is meant to be part of the paragraph. In that case you need to escape the curly brackets with `\{` and/or `\}`. 
 
 
 #### Tables
+
+<<SubTOC>>
 
 
 ##### Overview{#ov2}
@@ -1637,7 +1697,7 @@ Second |
 Notes:
 * Leading and trailing spaces are removed from all cells.
 * Automated alignment detection based on the data type of a column can be slow 
-  with very large tables (several thousands of lines). You are advised to specify the alignment yourself for such tables to avoid a penalty.
+  with very large tables (several thousands of lines). You are advised to specify the alignment yourself for such tables to avoid a performance penalty.
 
 
 ##### Constructing tables
@@ -1818,9 +1878,7 @@ This has two effects:
   1. `"This: \" is an escaped double quote"` will result in "This: \" is an 
      escaped double quote" which is certainly not appreciated.
   
-However, the first case is something you will come across frequently while the second one is unlikely to ever cause headache.
-
-Unless there is a `~` character part of the path. Watch this:
+However, the first case is something you will come across frequently while the second one is unlikely to ever cause headache. Unless there is a `~` character part of the path. Watch this:
 
 ```
 C:\~\myfile
@@ -1830,7 +1888,7 @@ That results in
 
 C:\~\myfile
 
-because `~` is an "escapeable" character, and therefore it consumes the backslash to the left. You need to double it:
+because `~` is an "escapable" character, and therefore it consumes the backslash to the left. You need to double it:
 
 ```
 C:\\~\myfile
@@ -1859,6 +1917,7 @@ One can add special attributes --- that is an ID, class name(s) and other attrib
 * Paragraphs
 * Tables
 * Block quotes
+* `<<SubTOC>>`
 
 Notes:
 
@@ -1869,7 +1928,8 @@ Notes:
 * If an attempted definition of a special attribute fails due to an error like a
   missing `=` or an odd number of `"` etc. then it's not going to become a special attribute definition but ordinary data; that means it will show in the document.
 * Although for ordinary links special attributes can be assigned, for links 
-  using a link reference this is not supported. However, for the link reference definition as such special attributes **can** be assigned.
+  using a link reference this is not supported. However, for the link reference definition as such special attributes *can* be assigned.
+* For sub-TOCs the syntax is `<<SubTOC {.centerin}>>`. The space is redundant.
 
 
 ##### Assigning a class name
@@ -1917,7 +1977,7 @@ It is of course possible to put it all together:
 * list item {#myid style="font-family:'APL385 Unicode'" .class1 .class2 target="_blank"}'
 ~~~
 
-Note that you cannot put double-quotes around the name of the font family here because double-quotes are already used to determine the definition of the "style" attribute. Therefore you **must** use single quotes in this instance.  
+Note that you cannot put double-quotes around the name of the font family here because double-quotes are already used to determine the definition of the "style" attribute. Therefore you *must* use single quotes in this instance.  
 
 
 ##### Paragraphs and special attributes
@@ -1981,7 +2041,7 @@ Notes:
 
 * The keyword ("data") is case insensitive.
 * `[data]:` can appear anywhere in the document.
-* There may be any number of white-space characters between "[data]:" and the 
+* There may be any number of space characters between "[data]:" and the 
   name.
 * The name must consist of nothing but ASCII characters or digits.
 * If the value is not enclosed by quotes **_MarkAPL_** attempts to establish 
@@ -1995,12 +2055,22 @@ Notes:
 
 #### Sub topics
 
-By inserting `<<SubTopic>>` (case insensitive) one can insert a table of contents for a sub topic. This can be useful in order to avoid overloading the main table of contents. Note that this document has several such SubTOCs embedded.
+By inserting `<<SubTopic>>` (case insensitive) one can insert a table of contents for a sub topic. This can be useful in order to avoid overloading the principle table of contents. Note that this document has several such SubTOCs embedded.
+
+You can only insert SubTOCs when the [`toc`](#toc) parameter is 1.
+
+SubTOCs can have [Special attributes](#) assgined to them.
+
+##### Restricting depth
+
+Typically SubTOCs are inserted into a markdown document right after a header; this header is called a parent header. By default all headers that are children of the parent header are going to become part of the SubTOC.
+
+You can change this by specifying the maximum depth. For example, if the SubTOC should only carry headers that are children or grandchildren of the parent header specify `<<SubTOC-2>>`.
 
 
 #### Embedding parameters with `[parm]:`
 
-With version 2.6 a mechanism was introduced to embed **_MarkAPL_** parameters within a Markdown document: by using `[parm]:` you can tell **_MarkAPL_** that this defines a key/value pair as a **_MarkAPL_** parameter. Naturally this is a **_MarkAPL_**-only feature.
+With version 2.6 a mechanism was introduced to embed **_MarkAPL_** parameters within a Markdown document: by using `[parm]:` you can tell **_MarkAPL_** that this defines a key/value pair as a **_MarkAPL_** parameter, meaning that this is a **_MarkAPL_**-only feature.
 
 This can be useful to create an HTML file from a Markdown file with **_MarkAPL_** without setting any parameters because the document itself "knows" what parameters are best for it.
 
@@ -2018,13 +2088,18 @@ For example, this document carries the following lines:
 
 This defines parameters specific to this document.
 
+Rules:
+
+* The part of the document that is considered to embed parameters ends with either two consecutive empty lines or a line that does not start with neither `[parm]:` or `⍝`.
+* It follows that you may inject single blank lines and any number of lines that start with the APL lamp (`⍝` meaning "Comment") symbol without breaking the parameter definition.
+
 Notes:
-* Such definitions must be the very first ones in a document.
+* Such definitions must be placed at the top of the document with the important exception that a LeanPub encoding directive (something like `{:: encoding="utf-8" /}`) which must be the first line in any markdown document that is going to be published on the [LeanPub publishing platform)[https://leanpub.com/] and therefore does not count when MarkAPL looks for any `[parm]:` definitions.
 * Those definitions take precedence over standard (or default) parameters; 
   therefore they cannot be overwritten unless you set the [ignoreEmbeddedParms](#"`ignoreEmbeddedParms`") parameter to 1.
 * The `[parm]` part is case insensitive.
-* All embedded parameters are collected on `ns.embeddedParms`.
-* You cannot have comments on a line defining an embedded parameter.
+* All embedded parameters are collected on `ns.embeddedParms` (APL programmers only).
+* You cannot have comments on a line defining an embedded parameter but you might have comment lines between `[parm]:` definition lines.
 
 
 ### Parameters
@@ -2032,11 +2107,9 @@ Notes:
 
 <<SubTOC>>
 
-This document lists _all_ parameters available (read: honoured by **_Mark_APL_**). However, you cannot set all of them with the `[parm]:<name>=<value>` technqiue: some of them can only be specified programmatically.
+This document lists _all_ parameters available (read: honoured by **_Mark_APL_**). However, you cannot set all of them with the `[parm]:<name>=<value>` technique: some of them can only be specified programmatically.
 
 If you use Meddy for editing a Markdown document it is easy to find out what can be injected into the document by selecting the "Inject parameters..." command from the context menu of the markdown pane.
-
-Note that parameters must **_go to the top of a document_** in order to be recognized.
 
  
 #### bookmarkLink
@@ -2062,14 +2135,14 @@ Defaults to "utf-8".
 
 #### checkFootnotes
 
-This parameter is of interest only for APL programmers.
+This parameter is of interest only to APL programmers.
 
-Boolean. The default depends on `debug`. If this is 1 the `Process` method checks all footnotes and reports any problems on `ns.report`. 
+Boolean. The default depends on `debug`. For example, if this is 1 the `Process` method checks all footnotes and reports any problems on `ns.report`. 
 
 
 #### checkLinks 
 
-This parameter is of interest only for APL programmers.
+This parameter is of interest only to APL programmers.
 
 Boolean. The default depends on `debug`. If this is 1 the `Process` method checks the internal (bookmark) links and reports any problems on `ns.report` (APL programmers only).
 
@@ -2084,7 +2157,7 @@ This is a Boolean that defaults to 0. If you set this to 1 it has two effects:
 1. The TOC is positioned at the top-right corner of the view port, and there 
    it remains even if the user chooses to scroll down.
 
-Note that the <nav> the toc is embraced by gets an ID `main_nav` assigned to it when `collapsibleTOC` is 1 but `main_nav_no_collapse` otherwise.
+Note that the <nav> tag the toc is embraced by gets an ID `main_nav` assigned to it when `collapsibleTOC` is 1 but `main_nav_no_collapse` otherwise.
 
 This feature does not require any JavaScript: it's a pure CSS solution.
 
@@ -2101,7 +2174,7 @@ One might be able to overcome these obstacles by restricting the level of headli
 
 #### compileFunctions
 
-This parameter is of interest only for APL programmers.
+This parameter is of interest only to APL programmers.
 
 Boolean that defaults to 1. There is just one reason to prevent any function from being compiled: performance measurements.
 
@@ -2110,7 +2183,7 @@ However, with version 1.8.3 **_MarkAPL_** does not compile its functions any mor
 
 #### compressCSS
 
-This parameter is of interest only for APL programmers.
+This parameter is of interest only to APL programmers.
 
 Boolean that defaults to 1. This does the following things:
 
@@ -2125,7 +2198,7 @@ Note that this parameter has an effect only when the CSS is injected.
 
 #### createFullHtmlPage
 
-This parameter is of interest only for APL programmers.
+This parameter is of interest only to APL programmers.
 
 This parameter is `¯1` by default (undefined).
 
@@ -2136,6 +2209,7 @@ It can be set to either 0 or 1:
 * A 1 means that the given Markdown is converted into a fully fledged HTML 
   page, no matter whether `outputFilename` is empty or not.
 
+For what happens when it is `¯1` see the [outputFilename](#) parameter.
 
 #### cssURL
 
@@ -2146,7 +2220,7 @@ Defaults to `homeFolder`, but when `screenCSS` is not found there then it defaul
 
 #### debug
 
-This parameter is of interest on for APL programmers.
+This parameter is of interest only to APL programmers.
 
 Boolean that defaults to 1 in development and 0 otherwise.
 
@@ -2155,7 +2229,9 @@ Note that this parameter influences the defaults of a number of other parameters
 
 #### div_h_tag
 
-Headers (<h1> to <h6> tags) are surrounded by an <a> tag. That allows a user to make a header line 1 by simply clicking at them. It has an unwanted effect as well: assigning `page-break: avoid` to any <hn> tag might not prevent a break because it will then break after the <a> tag, and because there is no parent selector in CSS we cannot style the <a> so that is does not do this when part of a header.
+Headers (<h1> to <h6> tags) are surrounded by an <a> tag. That allows a user to make a particular header the first line in its window by simply clicking at it. 
+
+It has an unwanted effect as well: assigning `page-break: avoid` to any <h{number}> tag might not prevent a break because it will then break after the <a> tag, and because there is no parent selector in CSS we cannot style the <a> so that is does not do this when part of a header.
 
 For that reason headers are surrounded by a <div> tag with class="h_tag". That allows to define `page-break: avoid` for the <div>, and it will all work as expected.
 
@@ -2189,7 +2265,7 @@ Note that any tags added by the `head` parameter are injected **after** any sub 
 
 #### homeFolder
 
-This points to the folder where Markdown.html and MarkAPL_CheatSheet.html and the default CSS files live. If this is not set then **_MarkAPL_** tries to find them:
+This points to the folder where MarkAPL.html and MarkAPL_CheatSheet.html and the default CSS files live. If this is not set then **_MarkAPL_** tries to find it:
 
 1. First it tries to find the two HTML files in the current directory. 
 2. Next it tries to find them in a sub-folder `Files\` within the current 
@@ -2198,8 +2274,8 @@ This points to the folder where Markdown.html and MarkAPL_CheatSheet.html and th
    tries to find those files from the folder SALT has loaded the script from.
 4. Finally it tries to find them in a sub-folder `Files\` within the SALT 
    source folder.
-5. If that fails `homefolder` is set to the current directory, but it means 
-   that the help commands in the menu won't be able to work properly, and other things may fail as well. The user should set `homeFolder` in such cases.
+5. If that fails `homefolder` is set to the current directory. However, that means that some functionality might not work.
+   It might be better to set `homeFolder` in such cases.
 
 
 #### ignoreEmbeddedParms
@@ -2240,7 +2316,7 @@ Defaults to 0. Set this only in case **_MarkAPL_** is called recursively. Allows
 
 #### linkToCSS
 
-Boolean that defaults to 0. This means that CSS for screen and print is injected into the resulting HTML page. If this is 1 a <link> tag for the CSS file(s) is added to the header. Naturally `cssURL`, `screenCSS` and `printCSS` must be set accordingly then.
+Boolean that defaults to 0. This means that CSS for screen and print is injected into the resulting HTML page. If this is 1 a <link> tag for the CSS file(s) is added to the header. Naturally `cssURL`, `screenCSS` and `printCSS` must carry reasonable content then.
 
 Note that certain parameters have no effect when `linkToCSS` is 1.
 
@@ -2288,9 +2364,9 @@ An integer or integer vector that defaults to 0, meaning that headers are not nu
 
 #### outputFilename
 
-Note that this is relevant only for APL Programmers.
+Note that this is relevant only to APL Programmers.
 
-Defaults to an empty vector. If specified the HTML will be written to this file by the `MarkDown2HTML` method; refer to the "MarkAPL for prorgammers" document for details.
+Defaults to an empty vector. If specified the HTML will be written to this file by the `MarkDown2HTML` method; refer to the "MarkAPL for progammers" document for details.
 
 Note that in case [`createFullHtmlPage`](#) is not a Boolean but `¯1` (that's the default value which stands for "undefined") then the setting of `outputFilename` defines what is created from the Markdown:
 
@@ -2307,7 +2383,7 @@ The name of the CSS file (or several CSS files separated by commata) for printin
 
 Boolean that defaults to 0. If this is set to 1 then a list of all links together with the associated link text is added to the end of the document but before the footnotes (if any).
 
-Note however that this list is not available on the screen, it's only available for print. This list is the only way for a user to actually see any links that have a link text when a document is printed.
+Note however that this list is not available on the screen, it's only printed. This list is the only way for a user to actually see any links that have a link text when a document is printed.
 
 When printed, links are not exactly useful. The only thing we can do is to make sure that the user can at least recognize them as links. With the default CSS, internal links are marked up with a leading arrow while external links show a symbol of the Earth, and the text of both types of links is shown in italic. 
 
@@ -2321,7 +2397,7 @@ String that defaults to "Link report:". This is placed above the list of all lin
 
 #### saveHTML
 
-Note that this parameter is special insofar as it is not a MarkAPL but a Meddy parameter, meaning that MarkAPL just ignored it.
+Note that this parameter is special insofar as it is not a MarkAPL but a Meddy parameter, meaning that MarkAPL just ignores it.
 
 However, the Markdown editor [Meddy](https://github.com/aplteam/Meddy "Link to Meddy on GitHub") would take it into account if the value is **not** `¯1`.
 
@@ -2334,7 +2410,7 @@ These are the possible values:
 |`0`  |**Do not** save HTML        | |
 |`2`  |Ask user whether the HTML should be saved or not| |
 
-If specified this parameter overwrites the user's preferences.
+If specified this parameter overwrites the user's preferences in Meddy.
 
 
 #### screenCSS
@@ -2350,7 +2426,7 @@ The name of the CSS file (or several CSS files separated by commata) for the scr
 
 ~~Note that this parameter has an effect only when the CSS is injected. Linked-to CSS must be prepared properly.~~
 
-With version 4.3 this parameter is ignored. Instead of text triangles (`▼` and `▲`) are used mimicking combo boxes. Note that this change requires a change in the CSS as well.
+With version 4.3 this parameter is ignored. Instead of text triangles (`▼` and `▲`) are used to mimick a combo box. Note that this change requires a change in the CSS as well.
 
 
 #### subTocs
@@ -2389,7 +2465,7 @@ In case the document has exactly one level-1 header then `title` defaults to thi
 Defines the `<title>` tag in the `<head>` section of the resulting HTML page.
 
 
-#### toc (table of contents)
+#### toc (table of contents){#toc}
 
 An integer or integer vector that defaults to 0, meaning that no table of contents is injected into a document created by **_MarkAPL_**.
 
@@ -2407,7 +2483,7 @@ You can influence the toc in several ways; see the parameters [collapsibleTOC](#
 
 Notes:
 
-* The <nav> the toc is embraced by <div>s and gets an ID `main_nav` or `main_nav_no_collapse` assigned to it depending on the setting uf `collapsibleTOC`.
+* The <nav> tag the toc is embraced by <div>s and gets an ID `main_nav` or `main_nav_no_collapse` assigned to it depending on the setting uf `collapsibleTOC`.
 
 * You can insert [subTocs](# "sub topics") only if `toc` is not 0.
 
@@ -2428,12 +2504,12 @@ Boolean that defaults to `debug`. If this is 1 then the `Process` method will pr
 
 #### width
 
-This defaults to `900px`. You can specify this either as a character vector or a numeric value. However, a numeric value always becomes `px` while a character value allows you to specify a different value, for example `80em`.
+This defaults to `900px`. You can specify this either as a character vector or a numeric value. However, a numeric value always becomes `px` while a character value allows you to specify not only a value but also a different metric, for example `80em`.
 
 Notes:
 
 * This is injected into the screen CSS only. The print CSS uses "auto" for this, allowing to take full advantage of the size of the paper.
-* The parameter has an effect only when the CSS is injected. Linked CSS must be prepared properly
+* The parameter has an effect only when the CSS is injected. Linked CSS must be prepared properly.
 
 
 Problems
@@ -2472,9 +2548,9 @@ If you cannot work out why it goes wrong report it to me -- see the previous top
 Version information
 -------------------
 
-This document refers to version 7.0.0 of **_MarkAPL_**.
+This document refers to version 8.0.0 of **_MarkAPL_**.
 
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-09-28
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-10-21
 
 [^meddy]: The Markdown editor Meddy on GitHub:<<br>><https://github.com/aplteam/Meddy>
 [^abandon]: Wikipedia definition of abandonware:<<br>><https://www.wikiwand.com/en/Abandonware>

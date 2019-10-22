@@ -1,5 +1,5 @@
  R←Test_InLine_025(stopFlag batchFlag);⎕TRAP;ns;md;expected
-⍝ Paragraphs with multiple but add number of asterisks: ignore last one.
+⍝ Paragraphs with multiple but odd number of asterisks: ignore last one.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

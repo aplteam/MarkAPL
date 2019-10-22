@@ -3,6 +3,6 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 
- →FailsIf 0=∆YesOrNo'Have you updated the online version of the MarkAPL documentation?'
+ →FailsIf 0=1 ∆YesOrNo'Have you updated the online version of the MarkAPL documentation?'
 
  R←∆OK

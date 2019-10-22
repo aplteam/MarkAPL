@@ -21,7 +21,7 @@ The input format for LeanPub is markdown. Now markdown does not have the feature
 
 2. You can insert an aside or text box, often used to discuss issues that are slightly off topic, or to add more complex information for advanced readers etc.
 
-3. Several flavours of a message combined with an icon and separated from the main text by some white space. We refer to this as "specialties".
+3. Several flavours of messages combined with an icon and separated from the main text by some white space. We refer to this as "specialties".
 
 Since version 3.6 MarkAPL understands the LeanPub extensions and marks up the markdown accordingly. Both style sheets coming with MarkAPL have proper mark-up added.
 
@@ -40,9 +40,9 @@ primeNumbers←{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}100
 dropLeadingBlanks←{(∨\' '≠⍵)/⍵}
 ~~~
 
-Note that in the code block above the `leanpub-*-insert` strings show, meaning that they have not been processed. This is because there is an escape character (`\`) in front of them in the document itself.
+Note that in the code block above the `leanpub-*-insert` strings both show and have no effect, meaning that they have not been processed. This is because there is an escape character (`\`) in front of them in the document itself.
 
-This shows as:
+Without the escape character this would have been the result:
 
 ~~~
 life←{↑1 ⍵∨.∧3 4=+/,¯1 0 1∘.⊖¯1 0 1∘.⌽⊂⍵)
@@ -244,12 +244,15 @@ Q> However, time is a scarce resource, so don't waste it on asking questions tha
 
 All Leanpub extensions are converted into HTML independently from processing the main document. The resulting HTML then replaces the markdown defining them as a one-line HTML block. If necessary additional empty lines are inserted in order to keep the rows in line with the original ones. 
 
-Because HTML blocks are left alone when the actual markdown is processed that works pretty well. There is one downside however: since empty lines define the end of an HTML block any empty lines within a LeanPub extension are converted into `&nbsp;` which in HTML speak is a space.
+Because HTML blocks are left alone when the actual markdown is processed that works pretty well. There is one downside however: since empty lines define the end of an HTML block any empty lines within a LeanPub extension are converted into `&nbsp;` which in HTML speak is a non-breakable space.
 
-As a side effect of this techniqe multi-line code blocks loose their newline characters because the HTML is converted into a single line. For that reason `<br>` tags are inserted to preserve those newlines.
+As a side effect of this technique multi-line code blocks loose their newline characters because the HTML is converted into a single line. For that reason `<br>` tags are inserted to preserve those newlines.
 
-This document refers to version 5.5.0 of **_MarkAPL_**.<<br>>
+This document refers to version 8.0.0 of **_MarkAPL_**.
+
 Kai Jaeger ⋄ APL Team Ltd ⋄ 2018-10-14
+
+Last Update: 2019-10-21
 
 
 [^leanPub]: <http://LeanPub.com>

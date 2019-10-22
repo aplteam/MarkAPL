@@ -1,5 +1,5 @@
  R←Test_SpecAttrs_Table_005(stopFlag batchFlag);⎕TRAP;md;ns
-⍝ Table: invalid special attributes (will become data).
+⍝ Table: invalid special attributes (will become data). Because of that there are no column headers either (wrong number).
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 
@@ -11,8 +11,9 @@
  md,←⊂'|Row 1/Col A|Row 1/Col B|'
 
  ns←##.MarkAPL.Init''md
-
  ns←##.MarkAPL.Process ns
- →PassesIf 1=+/'<td>{foo}</td>'⍷∊ns.html
+
+ →PassesIf 1=+/'<td style="text-align: left;">{foo}</td>'⍷∊ns.html
+ →PassesIf 0=≢'<th[ >]'⎕S 0⊣∊ns.html
 
  R←∆OK

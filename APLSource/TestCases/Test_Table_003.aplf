@@ -13,11 +13,9 @@
  ns←##.MarkAPL.Init''mat
  ns←##.MarkAPL.Process ns
  html←1↓∊(⎕UCS 13),¨ns.html
- →FailsIf 3≠+/'<td>'⍷html
- →FailsIf 6≠+/'<td '⍷html
+ →FailsIf 9≠≢'<td[ >]'⎕S 0⊣html
  →FailsIf 9≠+/'</td>'⍷html
- →FailsIf 3≠+/'<th '⍷html
- →FailsIf 3≠+/'</th>'⍷html
+ →FailsIf 3≠+/'</th>'⍷⊣html
  →FailsIf 4≠+/'<tr>'⍷html
  →FailsIf 4≠+/'</tr>'⍷html
  →FailsIf 1≠+/'<thead>'⍷html

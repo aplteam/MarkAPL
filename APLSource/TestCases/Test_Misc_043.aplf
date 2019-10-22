@@ -35,9 +35,9 @@
  ns←##.MarkAPL.Process ns
 
  expected←⊂'<table>'
- expected,←'<thead>' '<tr>' '<th style="text-align: left;">Col 1</th>' '<th style="text-align: right;">Col 2</th>' '</tr>' '</thead>'
+ expected,←'<thead>' '<tr>' '<th>Col 1</th>' '<th style="text-align: right;">Col 2</th>' '</tr>' '</thead>'
  expected,←'<tbody>' '<tr>' '<td>ABC</td>' '<td style="text-align: right;">10</td>' '</tr>' '</tbody>'
- expected,←'<tfoot>' '<tr>' '<td>Total</td>' '<td style="text-align: right;">10</td>' '</tr>' '</tfoot>'
+ expected,←'<tfoot>' '<tr>' '<td style="text-align: left;">Total</td>' '<td style="text-align: right;">10</td>' '</tr>' '</tfoot>'
  expected,←⊂'</table>'
 
  →PassesIf expected≡ns.html
@@ -48,7 +48,7 @@
  ns←##.MarkAPL.Process ns
 
  expected←⊂'<table>'
- expected,←'<thead>' '<tr>' '<th style="text-align: left;">Col 1</th>' '<th style="text-align: right;">Col 2</th>' '</tr>' '</thead>'
+ expected,←'<thead>' '<tr>' '<th>Col 1</th>' '<th style="text-align: right;">Col 2</th>' '</tr>' '</thead>'
  expected,←'<tbody>' '<tr>' '<td>ABC</td>' '<td style="text-align: right;">10</td>' '</tr>' '<tr>' '<td>=====</td>' '<td style="text-align: right;">=====</td>' '</tr>' '<tr>' '<td>Total</td>' '<td style="text-align: right;">10</td>' '</tr>' '</tbody>'
  expected,←⊂'</table>'
  →PassesIf expected≡ns.html

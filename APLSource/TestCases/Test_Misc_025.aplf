@@ -1,4 +1,4 @@
- R←Test_Misc_025(stopFlag batchFlag);⎕TRAP;md;parms;html;start;end
+ R←Test_Misc_025(stopFlag batchFlag);⎕TRAP;md;parms;html;start;end;tempFilename
 ⍝ Test "compressCSS"
 ⍝ Defaults to "en" but can be set
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
@@ -8,10 +8,13 @@
  parms←##.MarkAPL.CreateParms
  parms.createFullHtmlPage←1
  parms.compressCSS←1
+ tempFilename←##.FilesAndDirs.GetTempPath,'\MarkAPL_Tests\',(↑⎕SI),'\MarkAPL.html'
+ parms.outputFilename←tempFilename
+ 'Create!'##.FilesAndDirs.CheckPath↑⎕NPARTS parms.outputFilename
  html←0⊃parms ##.MarkAPL.Markdown2HTML md
  start←html∊'<style media="screen">' '<style media="print">'
  end←html≡¨⊂'</style>'
- →PassesIf 2=+/0 1 1 0⍷(+\start)-+\end
+ →GoToTidyUp 2≠+/0 1 1 0⍷(+\start)-+\end
 
  parms←##.MarkAPL.CreateParms
  parms.createFullHtmlPage←1
@@ -19,6 +22,9 @@
  html←0⊃parms ##.MarkAPL.Markdown2HTML md
  start←html∊'<style media="screen">' '<style media="print">'
  end←html≡¨⊂'</style>'
- →PassesIf 100<+/(+\start)-+\end  ⍝ At least 100 lines (probably MUCH more, but things might change in the future)
+ →GoToTidyUp 100≥+/(+\start)-+\end  ⍝ At least 100 lines (probably MUCH more, but things might change in the future)
 
  R←∆OK
+
+∆TidyUp:
+ ##.FilesAndDirs.RmDir↑⎕NPARTS tempFilename

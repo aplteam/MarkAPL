@@ -14,7 +14,7 @@
  ns←##.MarkAPL.Process ns
 
  html←1↓∊(⎕UCS 13),¨ns.html
- →PassesIf 3=+/'<th '⍷html
+ →PassesIf 3=≢'<th[ >]'⎕S 0⊣html
  →PassesIf 3=+/'<tr>'⍷html
  →PassesIf 6=+/'<td'⍷html
 

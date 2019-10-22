@@ -61,17 +61,34 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'7.0.1.91' '2019-10-06'
+      r←(Last⍕⎕THIS)'8.0.0.131' '2019-10-21'
     ∇
 
     ∇ History
       :Access Public Shared
-      ⍝ * 7.0.1
-      ⍝   * A single `*` or a single `_` in a paragraph are now ignored
-      ⍝   * In case of an odd number of `*` or `_` the last one is ignored (=survives verbatim)
-      ⍝   * Documentation improved ("MarkAPL for APL programmers")
-      ⍝   * Tally (≢) introduced
-      ⍝   * Test case added for version number in Docs\MarkAPL_for_Programmers.md
+      ⍝ * 8.0.0
+      ⍝   * The way multiple backticks and escaped backticks were handled in in-line code got changed.\\
+      ⍝     **Watch out**: This change might well make your document(s) look different; it's therefore considered a breaking change.
+      ⍝     However, in real life this is unlikely to cause a problem.
+      ⍝   * A single empty line does not break anymore the part of the markdown document that defines embedded parameters.
+      ⍝   * Special attributes can now be assigned to `<<SubToc>>`.
+      ⍝   * The level of headers listed by `<<SubTOC>>` can now be restricted with the newly introduced `<<SubToc-1>>` syntax.
+      ⍝   * A Leanpub encoding directive in the first line not only survives but does not interfere with any `[parm]:` definitions.
+      ⍝   * Documenation improved. 
+      ⍝   * Bug fixes
+      ⍝     * Assigning special attributes to a header that was part of a `<<SubToc>>` crashed MarkAPL.
+      ⍝     * A comment line should, according to the documentation, not break the part of the markdown document that defines embedded
+      ⍝       parameters, but it did anyway.
+      ⍝     * The CSS for printing a code block that uses `leanpub-start-insert` and `leanpub-end-insert` did not emphasize the part
+      ⍝       of the code block that was embraced by this mark-up was.
+      ⍝     * The CSS class `.page_break_before` did not work in both style sheets coming with MarkAPL.
+      ⍝     * The CSS class `.center` set the top and bottom margin to 0 rather than leaving them alone.
+      ⍝     * The default alignment of numeric columns ("right") was "left" when a table had a footer.
+      ⍝     * In case a sub toc was injected but either paremeter `subtoc` or `toc` was 0 the text was not converted correctly into
+      ⍝       a paragraph.
+      ⍝     * In case a sub toc would consist of just one sub header nothing was done (correctly) but the message was confusing.
+      ⍝     * A sub toc followong the main toc or another sub toc could interfere with each other. Style sheets corrected.
+      ⍝\\
       ⍝ For information regarding older versions see <https://github.com/aplteam/MarkAPL/releases>
     ∇
 
@@ -323,18 +340,18 @@
       ns←Create_NS ⍬
       ns.markdown←dtb(Nest markdown),⊂''
       ns.lineNumbers←⍳≢ns.markdown                  ⍝ Useful for reporting problems
+      ns.parms←parms
+      ns←ProcessEmbeddedParms⍣(~parms.ignoreEmbeddedParms)⊣ns
       ns←RemoveAllComments ns
       ns←parms ProcessLeanPubExtensions ns
-      :If 0<≢'^ *{:: encoding=".*$'⎕S 0⊣⊃ns.markdown
-          ns.markdown←1↓ns.markdown
+      :If IsLeanPubEncodingLine⊃ns.markdown
+          ns.markdown[1]←⊂''
       :EndIf
       ns.markdownLC←Lowercase ns.markdown           ⍝ We need this often, so we do this ONCE
       buffer←dlb ns.markdown
       ns.emptyLines←GetEmptyLines buffer
       ns.leadingChars←(16⌊≢¨ns.markdown)↑¨buffer
       ns.withoutBlanks←ns.markdown~¨' '
-      ns.parms←parms
-      ns←ProcessEmbeddedParms⍣(~parms.ignoreEmbeddedParms)⊣ns
       :If (,0)≢,ns.parms.toc
           ns.parms.bookmarkLink⌈←⌈/ns.parms.toc
       :EndIf
@@ -903,7 +920,7 @@
       :EndIf
     ∇
 
-    ∇ r←ProcessTable_ ns;specialAttrs;ind;align;drop;cells;rows;b;head;noOfCols;footer
+    ∇ r←ProcessTable_ ns;specialAttrs;ind;align;drop;cells;rows;b;head;noOfCols;footer;buff
       :Trap (~ns.parms.debug)/0
           specialAttrs←GetSpecialAttributes⊃ns.markdown
           ns.html,←⊂{0=≢⍵:'<table>' ⋄ '<table',⍵,'>'}specialAttrs
@@ -949,13 +966,26 @@
           :EndIf
      
           :If 2=drop
-              ns.html,←('th'∘{⍺,⍵}¨1 AddAlignStyle¨align)Tag¨(≢align)↑head,(≢align)⍴⊂''
+              buff←('th'∘{⍺,⍵}¨1 AddAlignStyle¨align)Tag¨(≢align)↑head,(≢align)⍴⊂''
+              :If 0=≢specialAttrs
+              :OrIf ~∨/'class="center"'⍷specialAttrs
+                  buff←' style="text-align: left;"'⎕R''⊣buff        ⍝ Because that is the default anyway
+              :Else
+                  buff←' style="text-align: center;"'⎕R''⊣buff      ⍝ Because that is inherited anyway
+              :EndIf
+              ns.html,←buff
               ns.html,←⊂'</tr>'
               ns.html,←⊂'</thead>'
           :EndIf
           (footer cells)←ns.parms.markdownStrict GetFooter cells
           ns.html,←⊂'<tbody>'
           rows←{('td'∘{⍺,⍵}¨2 AddAlignStyle¨align)Tag¨⍵}¨(≢align)↑¨cells
+          :If 0=≢specialAttrs
+          :OrIf ~∨/'class="center"'⍷specialAttrs
+              rows←{' style="text-align: left;"'⎕R''⊣⍵}¨rows        ⍝ Because that is the default anyway
+          :Else
+              rows←{' style="text-align: center;"'⎕R''⊣⍵}¨rows      ⍝ Because that is inherited anyway
+          :EndIf
           ns.html,←⊃,/{(⊂'<tr>'),⍵,⊂'</tr>'}¨rows
           ns.html,←⊂'</tbody>'
           :If 0≠≢footer
@@ -981,14 +1011,15 @@
           ((1+ind)↓cells)(ind↑cells)
       }
 
-    ∇ r←ProcessTableWithoutColTitles ns;specialAttrs;cells;align;footer;rows
+    ∇ r←ProcessTableWithoutColTitles ns;specialAttrs;cells;footer;rows;align;hasFooter
       r←1
       specialAttrs←GetSpecialAttributes⊃ns.markdown
       ns.html,←⊂{0=≢⍵:'<table>' ⋄ '<table',⍵,'>'}specialAttrs
       cells←SplitTableRowButMaskCode¨{(⊂specialAttrs DropSpecialAttributes⊃⍵),1↓⍵}ns.noOf↑ns.markdown
       cells←{dlb∘dtb ⍵}¨¨cells
       cells←ns{⍺ CheckOddNumberOfDoubleQuotes ⍵'header'}¨¨cells
-      align←('left' 'right')[1+{∧/⊃⎕VFI∊' ',¨⍵}¨↓⍉↑cells]
+      hasFooter←'='∧.={2≥≢⍵:0 ⋄ ∊(¯1+≢⍵)⊃⍵}cells
+      align←('left' 'right')[1+{∧/⊃⎕VFI∊' ',¨⍵}¨↓⍉↑hasFooter{1=⍺:1↓¯2⌽⍵ ⋄ ⍵}cells]
       :If {(∧/⍵∊' -:')∧('-'∊⍵)}↑,/1⊃cells
           cells←1↓cells
       :EndIf
@@ -1252,31 +1283,21 @@
           code
       }
 
-    ∇ tx←MarkUpInlineCode tx_;b;s;e;tx2;tx1;tx;ind;even;ind2
-      :If 0<+/b←'`'=tx←tx_                  ⍝ We are done if there are no back-ticks
-          ind←Where b                       ⍝ All indices
-          :If ∨/b←∧\'\'=(' ',tx)[ind]
-              ind2←b/ind
-              ind←(~b)/ind
-          :Else
-              ind2←⍬
-          :EndIf
-      :AndIf 0<≢ind
-          s←⊃ind                            ⍝ First one
-          even←(0 1⍴⍨≢ind)/ind              ⍝ Only these can be closing ones,
-          :If 0=e←⊃('`'≠(tx,' ')[even+1])/even   ⍝ Only odd ` with no ` to their right can be a closing back-tick
-              e←1+≢tx
-          :EndIf
-          tx1←(s-1)⍴tx
-          tx2←(e-s-1)↑(≢tx1)↓tx
-          :If 0≠≢ind2
-              tx1←tx1[(⍳≢tx1)~ind2-1]
-          :EndIf
-          tx←e↓tx
-          tx2←'<code>',(1↓¯1↓tx2),'</code>'
-          tx2←(~'``'⍷tx2)/tx2
-          tx←MarkUpInlineCode tx
-          tx←tx1,tx2,tx
+    ∇ tx2←MarkUpInlineCode tx;mask;offset1;offset2;noOf;i
+      :If 0<+/mask←GetMaskForCode tx2←tx
+          offset1←Where 0 1⍷0,mask
+          tx2[offset1]←⊂'<code>'
+          offset2←Where 1 0⍷mask,0
+          tx2[offset2]←⊂'</code>'
+          ⍝ In case a block was opened/closed by more than just one backtick we need to get rid of the additonal ones:
+          noOf←tx2∘{+/∧\'`'=∊⍵↓⍺}¨offset1           ⍝ noOf opening (closing backticks). Those larger than 0 need attention
+          :For i :In ⍳≢noOf
+              :If 0<i⊃noOf
+                  tx2[offset1[i]+Where{(∧\'`'=⍵)∨⌽∧\'`'=⌽⍵}tx2[offset1[i]+⍳offset2[i]-offset1[i]+1]]←⊂''
+              :EndIf
+          :EndFor
+          tx2←⊃,/tx2
+          ⍝tx2←'<code>.*</code>'⎕R{m←⍵.Match ⋄ 0=+/b←' '=m:m ⋄ (b/m)←⊂'&nbsp;' ⋄ ⊃,/m}⍠('Greedy' 0)⊣tx2
       :EndIf
     ∇
 
@@ -1313,33 +1334,47 @@
           '&amp;'⎕R'\&'⊣'&gt;'⎕R'>'⊣'&lt;'⎕R'<'⊣⍵
       }
 
-    ∇ r←ProcessSubTOC ns;header;level
+    ∇ r←ProcessSubTOC ns;header;level;nextHeader;specialAttrs;subToc;depth
       r←0
-      :If '<<subtoc>>'{⍺≡(≢⍺)↑⍵}⊃ns.markdownLC
-          :If ns.parms.subTocs
-              (level header)←{'<h'{⍺≡(≢⍺)↑⍵}⊃⍵:{({⍎⍵↑⍨¯1+⍵⍳'>'}2↓⍵)({⍵↑⍨¯1+⍵⍳'<'}⍵↓⍨⍵⍳'>')}⊃⍵ ⋄ ∇ 1↓⍵}⌽ns.html
-              ns.subToc,←⊂level header
-              ns.html,←Lowercase 1↑ns.markdown
+      :If 0<≢subToc←GetRegExPatternForSubToc ⎕S{⍵.Match}⍠('Greedy' 0)('IC' 1)⊣⊃ns.markdown
+          :If (,0)≢,ns.parms.toc
+          :AndIf ns.parms.subTocs
+              subToc←⊃subToc
+              :If 0<≢ns.html
+              :AndIf 0<≢nextHeader←{⍵⊃⍨1⍳⍨'<h'∘≡¨(≢'<h')↑¨⍵}⌽ns.html
+                  header←{⍵↑⍨¯1+⍵⍳'<'}{⍵↓⍨⍵⍳'>'}nextHeader
+                  level←{⊃(//)⎕VFI ⍵↑⍨¯1+⌊/⍵⍳' >'}2↓nextHeader
+                  specialAttrs←GetSpecialAttributes(∧/'{}'∊subToc)/{⍵↑⍨⍵⍳'}'}{⍵↓⍨¯1+⍵⍳'{'}subToc
+                  depth←0
+                  :If '-'∊subToc
+                      depth←⊃(//)⎕VFI{⊃⍵↓⍨⍵⍳'-'}subToc
+                  :EndIf
+                  ns.subToc,←⊂level header depth specialAttrs
+                  ns.html,←Lowercase 1↑ns.markdown
+              :EndIf
           :EndIf
           ns←Drop ns
           r←1
       :EndIf
     ∇
 
-    ∇ ns←InjectSubTOCs ns;where;i;header;level;ind;from;noOf;levels;toc;drop;md;ns2;subToc;parms
+    ∇ ns←InjectSubTOCs ns;where;i;header;level;ind;from;noOf;levels;toc;drop;md;ns2;subToc;parms;specialAttrs;depth
       :If (,0)≢,ns.parms.toc
       :AndIf 0≠≢ns.subToc
-          where←Where∨/¨'<<subtoc>>'∘⍷¨Lowercase ns.html
+          where←Where{≢GetRegExPatternForSubToc ⎕S 0⍠('Greedy' 0)('IC' 1)⊣⍵}¨ns.html
           :For i :In ⍳≢ns.subToc
-              (level header)←i⊃ns.subToc
+              (level header depth specialAttrs)←i⊃ns.subToc
               ind←i⊃where
               from←1⍳⍨(ns.headers[;1]=level)∧(ns.headers[;3]≡¨⊂header)
               noOf←+/∧\level<from↓ns.headers[;1]
               levels←noOf↑from↓ns.headers[;1]
               toc←↑3↑¨noOf↑from↓ns.toc
-              :If (⊃⍴toc)∊0 1
+              :If depth>0
+                  toc←((depth+¯1+⊃toc[;1])≥toc[;1])⌿toc
+              :EndIf
+              :If (≢toc)∊0 1
                   ns.html[i⊃where]←⊂''
-                  ns.report,←⊂'No SubTOC injected for "',header,'": no items found'
+                  ns.report,←⊂'No SubTOC injected for "',header,'": ',((1+1=≢toc)⊃'no item' 'just one sub-header'),' found'
                   :Leave
               :Else
                   :If (,0)≢,ns.parms.numberHeaders
@@ -1362,7 +1397,7 @@
                   :If (,0)≢,ns.parms.numberHeaders
                       ns2.html←'href="#\d{0,}-'⎕R'href="#'⍠('Greedy' 0)⊣ns2.html
                   :EndIf
-                  subToc←'<nav>'('<p>Topics:</p>'),ns2.html,⊂'</nav>'
+                  subToc←('<nav',specialAttrs,'>')('<p>Topics:</p>'),ns2.html,⊂'</nav>'
                   ns.html[i⊃where]←⊂subToc
               :EndIf
           :EndFor
@@ -1391,46 +1426,69 @@
       :EndIf
     ∇
 
-    ∇ ns←ProcessEmbeddedParms ns;mask;buff;bool;noOf;def;i;id;value;b;v
+    ∇ ns←ProcessEmbeddedParms ns;noOf;b1;buff;b2;b3;bool
     ⍝ Here we do not need to add ns.parms.lineNumberOffset because there are no
     ⍝ embedded parameters with recursive calls anyway!
-      :If 0<noOf←+/∧\'['=⊃¨ns.leadingChars
-          buff←noOf↑ns.markdown
-          noOf←'[parm]:'{+/∧\⍺∘≡¨{(Lowercase 5↑¨⍵),¨5↓¨⍵}(≢⍺)↑¨⍵}buff
-          ns.noOf←noOf
-          buff←noOf↑buff
-          ns←Drop ns
-          :For i def :InEach (⍳noOf)buff
-              :If '='∊def
-                  (id value)←¯1 0↓¨7 0↓¨{i←⍵⍳'=' ⋄ (i↑⍵)(i↓⍵)}def
-                  id~←' '
-                  value←dlb dtb value
-                  :If 0=≢value
-                      ns.report,←⊂'Data definition on line ',(⍕i),' is invalid'
-                      :Continue
-                  :EndIf
-                  :If ''''∊value
-                      :If ''''''≡2⍴¯1⌽value
-                          value←¯1↓1↓value
-                      :Else
-                          value←''
-                          ns.report,←⊂'Data value definition for line ',(⍕⊃i),' is invalid'
-                      :EndIf
-                  :Else
-                      (b v)←⎕VFI value
-                      :If ∧/b
-                          value←{1=≢⍵:⍬⍴⍵ ⋄ ⍵}v
-                      :EndIf
-                  :EndIf
-                  ns.embeddedParms⍪←id value
-                  ⍎'ns.parms.',id,'←value'
-              :Else
-                  ns.report,←⊂'Data definition on line ',(⍕i),' is invalid'
-              :EndIf
-          :EndFor
-          :If ∨/b←~ns.embeddedParms[;1]∊CreateHelpParms.∆List[;1]
-              ns.report,←⊂'Invalid embbed parameter',((1<+/b)/'s'),': ',⊃{⍺,',',⍵}/'"',¨'"',⍨¨b/ns.embeddedParms[;1]
+      :If 0<noOf←{¯1+1⍳⍨1 1⍷((0=≢¨⍵)∨⍵∧.=¨' '),1 1}¯1↓ns.markdown           ⍝ Two consecutive blank lines break the [parm]: definitions
+          :If 0=⊃b1←(⊃¨noOf↑ns.markdown)∊'[ ⍝'                              ⍝ First character must be one of those
+              b1[1]←IsLeanPubEncodingLine⊃ns.markdown                       ⍝ But it might also be a LeanPub encoding directive
           :EndIf
+          (b1 buff)←noOf↑¨b1 ns.markdown
+          :If 0<noOf←{(≢⍵)-¯1+(⌽⍵)⍳1},b1                                    ⍝ The number of candidates
+              buff←noOf↑buff
+          :AndIf 0<+/b1←'['=⊃¨buff                                          ⍝ Leading `[` are required for [parm]: definitions!
+          :AndIf 0<noOf←{(≢⍵)-¯1+(⌽⍵)⍳1},b1                                 ⍝ The number of candidates
+              buff[(IsLeanPubEncodingLine⊃buff)/1]←⊂''                      ⍝ Erase the LeanPub encoding directive
+              buff←noOf↑buff
+          :AndIf 0<+/b1←'[parm]:'{⍺∘≡¨(≢⍺)↑¨⍵}buff                          ⍝ Now we are getting more specific because of `[data]:`
+          :AndIf 0<noOf←{(≢⍵)-¯1+(⌽⍵)⍳1},b1
+              (b1 buff)←noOf↑¨b1 buff
+              b2←0=≢¨buff~¨' '                                              ⍝ Between any [parm]: lines there might be single blank lines
+              b3←'⍝'=⊃¨buff                                                 ⍝ Between any [parm]: lines there might be comment lines
+          :AndIf 0<noOf←+/b1∨b2∨b3
+              buff←noOf↑buff
+              ns.markdown[(IsLeanPubEncodingLine⊃buff)↓⍳noOf]←⊂''           ⍝ Convert the [parm] definitions in the markdown to blank lines
+              bool←'[parm]:'∘{⍺≡(≢⍺)↑⍵}¨buff                                ⍝ Otherwise we are not interested
+              (Where bool)ProcessEmbeddedParms_¨bool/buff                   ⍝ Process the rows one by one
+              :If ∨/bool←~ns.embeddedParms[;1]∊CreateHelpParms.∆List[;1]    ⍝ Report any invalid keys
+                  ns.report,←⊂'Invalid embbed parameter',((1<+/bool)/'s'),': ',⊃{⍺,',',⍵}/'"',¨'"',⍨¨bool/ns.embeddedParms[;1]
+              :EndIf
+          :EndIf
+      :EndIf
+    ∇
+
+    ∇ {r}←i ProcessEmbeddedParms_ def;key;value;allowed;b;v
+    ⍝ `def` is a single definition (like `[parm]:name=value`) or a blank or comment line or a LeanPub directive.
+    ⍝ Returns the number of succesdsfully established key/value pairs.
+    ⍝ Is called by `ProcessEmbeddedParms` and requiresd access to `ns`/
+      r←0
+      allowed←CreateParms.∆List[;1]                                     ⍝ List of allowed parameter names
+      :If '='∊def                                                       ⍝ A definition MUST contain this
+          (key value)←¯1 0↓¨((≢'[parm]:'),0)↓¨{i←⍵⍳'=' ⋄ (i↑⍵)(i↓⍵)}def ⍝ Split into name and value
+          key~←' '
+          :If 0=≢value←dlb dtb value                                    ⍝ Empty values do not make sense
+              ns.report,←⊂'Parameter definition on line ',(⍕i),' is invalid'
+          :Else
+              :If ''''∊value
+                  :If ''''''≡2⍴¯1⌽value
+                      value←¯1↓1↓value
+                  :Else
+                      value←''
+                      ns.report,←⊂'Parameter value definition for line ',(⍕⊃i),' is invalid'
+                  :EndIf
+              :ElseIf '⎕null'{⍺≡Lowercase(≢⍺)↑⍵}value
+                  value←⎕NULL
+              :Else
+                  (b v)←⎕VFI value
+                  :If ∧/b
+                      value←{1=≢⍵:⍬⍴⍵ ⋄ ⍵}v
+                  :EndIf
+              :EndIf
+          :EndIf
+          ns.embeddedParms⍪←key value
+          ⍎'ns.parms.',key,'←value'
+      :Else
+          ns.report,←⊂'Parameter definition on line ',(⍕i),' is invalid'
       :EndIf
     ∇
 
@@ -1512,6 +1570,7 @@
           :AndIf r←ProcessHtmlBlock_HtmlComments ns
           :AndIf r←ProcessHtmlBlockType_CDATA ns
           :AndIf r←ProcessHtmlBlockType_Tags ns
+              {⍵:.}ns.noOf=0
           :AndIf ⊃ns.emptyLines
               ns.noOf←1
               ns←Drop ns
@@ -1523,7 +1582,7 @@
     ⍝ <script>, <style> or <pre>.
     ⍝ These are special because the first two can never be nested while the last one
     ⍝ preserves white space by definition.
-    ⍝ ← is 0 when found and processed, otherwise 0.
+    ⍝ ← is 0 when found and processed, otherwise 1.
       r←0
       :If '^<script\b[^>]*>'DetectOpeningTag(⊃ns.emptyLines)↓ns.markdown
           ns←Drop⍣(⊃ns.emptyLines)⊣ns
@@ -1547,7 +1606,7 @@
 
     ∇ r←ProcessHtmlBlock_HtmlComments ns;start;md;bool
     ⍝ <!-- and -->
-    ⍝ ← is 0 when found and processed, otherwise 0.
+    ⍝ ← is 0 when found and processed, otherwise 1.
       r←1
       :If 2<≢ns.markdown
       :AndIf 1∊(1↓ns.emptyLines),1
@@ -1558,14 +1617,12 @@
           ns.html,←'-->'DropTailAfterClosingTag md
           ns←Drop ns
           r←0
-      :Else
-          ns.noOf←⊃ns.emptyLines
       :EndIf
     ∇
 
     ∇ r←ProcessHtmlBlockType_CDATA ns;start
     ⍝ <![CDATA[ and ]]
-    ⍝ ← is 0 when found and processed, otherwise 0.
+    ⍝ ← is 0 when found and processed, otherwise 1.
       r←1
       :If 2<≢ns.markdown
       :AndIf 0=≢⊃ns.markdown
@@ -1582,12 +1639,13 @@
     ⍝ Note that self-defined tags must contain a hyphen by definition
     ⍝ Note also that an HTML block MUST START with a < in the first column, and will
     ⍝ end at the first empty line to be found
-    ⍝ ← is 0 when found and processed, otherwise 1.
+    ⍝ ← is 1 when found and processed, otherwise 0.
       r←1
       :If ns.topOfDocument∨∆LastLineWasEmpty∨⊃ns.emptyLines
           :If 0<ns.noOf←+/∧\ns.emptyLines           ⍝ Let's get rid...
               ns←Drop ns                            ⍝ ...of any empty lines first.
           :EndIf
+          ns.noOf←1
           tag←'/'~⍨{⍵↑⍨¯1+⌊/⍵⍳'> '}1↓⊃ns.markdownLC ⍝ Just the tag name, no matter whether closing or opening
           :If (⊂tag)∊HtmlTags
           :OrIf IsSelfDefinedHtmlTag tag
@@ -1807,6 +1865,7 @@
           mask←GetMaskForCode txt
           bool∧←~mask
       :AndIf 0≠≢ind←Where bool
+      :AndIf 0≠≢ind←(-2|≢ind)↓ind
           start←((≢ind)⍴1 0)/ind
           end←((≢ind)⍴0 1)/ind
           txt[start]←⊂'<strong>'
@@ -1830,6 +1889,7 @@
       :AndIf 0<+/bool∧bool\~∧/⍉txt2[¯1 2∘.+Where bool]∊AllWhiteSpaceChars
       :AndIf 0≠≢ind←Where bool
       :AndIf 0≠≢ind←((txt 2∘NotWithinWord¨ind))/ind
+          ind←{⍵↑⍨(≢⍵)-2|≢⍵}ind
           start←((≢ind)⍴1 0)/ind
           end←((≢ind)⍴0 1)/ind
           txt[start]←⊂'<strong>'
@@ -2010,20 +2070,45 @@
           'class="'⎕R'&bookmark_link '⊣sa
       }
 
-    ∇ r←GetMaskForCode txt;noOf
+    ∇ r←GetMaskForCode txt;on;txt_;ind;in;i;noOf;k;bool
     ⍝ Returns a mask (vector of Booleans with zeros for all APL code in ⍵.
-    ⍝ Does not fall over odd number of ticks.
-      txt←'\\`'⎕R'  '⊣txt    ⍝ Escaped ` MUST NOT start a code block!
-      :If 0<+/r←'`'=' ',txt
-          r[Where r]←'\'≠txt[¯1+Where r]
-      :AndIf 0<+/r
-          :If 0<noOf←+/r
-          :AndIf {⍵≠⌊⍵}noOf÷2
-              (¯1↑r)←1
-          :EndIf
-          r←1↓r∨≠\r
+    ⍝ Does not fall over odd number of tick: the last one is then ignored.
+    ⍝ Honors escaped backticks when found outside a code block.
+    ⍝ This can only be solved in a loop because of, say, this:  `\\`
+    ⍝ This is a code block with two backslashes, not an opening backtick followed by an escaped one!
+      txt_←' ',txt,' '
+      on←0
+      :If 0=≢ind←Where txt_='`'
+          r←(≢txt)⍴0
       :Else
           r←(≢txt)⍴0
+          r←(2+≢txt)⍴0
+          i←0
+          :Repeat
+              i+←1
+              in←ind[i]
+              :If 0=on                          ⍝ No code block is "open" right now?
+                  :If '\'≠txt_[in-1]            ⍝ Then an escape char in front of the ` must be honoured.
+                  :AndIf i<≢ind                 ⍝ At least one more char to come? (results in ignoring the last in case of an odd number of backticks.
+                      noOf←+/∧\'`'=(in-1)↓txt_  ⍝ How many consecutive backticks? The same number must be used to close it!
+                      i+←0⌈noOf-1
+                      :If 1=+/bool←'`'=(in+noOf)↓txt_      ⍝ Is there a corresponding ...      (single backtick)
+                      :OrIf noOf∊{+/¨∧\¨1↓¨⍵⊂⍨0 1⍷⍵}0,bool                ⍝ ... closing block of backticks?   (more than one backtick)
+                          r[in]←1
+                          on←1                  ⍝ Code block "opened".
+                      :Else
+                                                ⍝ There is no corresponding closing block of backticks, so they did not open a block: they survive!
+                      :EndIf
+                  :EndIf
+              :Else
+                  :If noOf=+/∧\'`'=(in-1)↓txt_  ⍝ Only the precise same number of backticks that opened a block can close it.
+                      r[in+noOf-1]←1
+                      i+←noOf-1
+                      on←0                      ⍝ Code block "closed".
+                  :EndIf
+              :EndIf
+          :Until i≥≢ind
+          r←{⍵∨≠\⍵}¯1↓1↓r
       :EndIf
     ∇
 
@@ -2305,16 +2390,16 @@
 
     ∇ r←RemoveEscapeChars tx;mask;b;specialChars;ind;b2
     ⍝ Remove the "\" (Escape character) from ⍵ except when ...
-    ⍝ * there are two of them in a row (one survives)
     ⍝ * they are part of code (survives untouched)
-    ⍝ * it appears with an attribute definition like <div attr="\3">
-    ⍝ * any character to the right of the `\` is not one of `_*|<~{}(&`
-    ⍝ This does not work on, say, "\\\\\\\\\\\\\\\; that why this is no legal.
+    ⍝ * there are two of them in succession (one survives)
+    ⍝ * it appears within an attribute definition like <div attr="\3">
+    ⍝ * any character to the right of the `\` is not one of `_*|~{}(&<>` 
+    ⍝ This does not work on, say, "\\\\\\\\\\\\\\\; that why this is not legal.
       mask←~GetMaskForCodeTags tx
       mask←mask\{~Between ⍵∊'<>'}mask/tx
       b←'\'=(mask/tx),' '
-    ⍝ We try to be smart: only those are to be escaped anyway, so nothing else is touched
-      specialChars←'_*|<~`{}(&\'
+    ⍝ We try to be smart: those are to be escaped anyway, so nothing else is touched
+      specialChars←'_*|~`{}(&\'
       b∧←b\((mask/tx),' ')[1+Where b]∊specialChars
       b←¯1↓b∧b\'\'≠((mask/tx),' ')[1+Where b]
       r←((~mask)∨mask\~b)/tx
@@ -3246,7 +3331,9 @@
 
       AddAlignStyle←{
           ⍺←2
-          (⍺=2)∧'left'≡⍵:''                 ⍝ For <th> ⍺←→1: headers default to center rather than left!
+⍝          (⍺=2)∧'left'≡⍵:''                 ⍝ For <th> ⍺←→1: headers default to center rather than left!
+⍝          ' style="text-align: ',⍵,';"'     ⍝ For "center" and "right"
+          (⍺=2)≡⍵:''                        ⍝ For <th> ⍺←→1: headers default to center rather than left!
           ' style="text-align: ',⍵,';"'     ⍝ For "center" and "right"
       }
 
@@ -3497,6 +3584,21 @@
       ⍝ Uses RegEx for the identification, therefore slow on large amounts of data.
           1=≢⍵:≢'\p{L}'⎕S 0⊣⍵
           ∇¨⍵
+      }
+
+    ∇ r←GetRegExPatternForSubToc
+      r←''
+      r,←⊂'^<<subtoc>>'
+      r,←⊂'^<<subtoc *\{[^}]*}>>'
+      r,←⊂'^<<subtoc-[0-6]>>'
+      r,←⊂'^<<subtoc-[0-6] *\{[^}]*}>>'
+    ∇
+
+      IsLeanPubEncodingLine←{
+⍝ For the Leanpub Servcie the first line of the markdown (⍵) my contain `{:: encoding="` somewhere.
+⍝ This function returns a 1 in case this is true.\\
+⍝ Note that this is **not** related to the LeanPub extensions.
+          ≢'^ *{:: encoding=".*$'⎕S 0⊣⍵
       }
 
 :EndClass

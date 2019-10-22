@@ -62,6 +62,8 @@ In order to make **_MarkAPL_** create a complete HTML page you can either specif
 
 Setting `outputFilename` has the additional benefit of writing the HTML to that file. 
 
+Note that `parms` is a namespace that holds variables with default values. You can list them by calling `parms.∆List`.
+
 
 ### Create a fully fledged HTML page with embedded parameters
 
@@ -77,7 +79,6 @@ In order to make **_MarkAPL_** create a complete HTML page you can _embed_ eithe
 ~~~
 
 
-
 Documentation
 ------------
 
@@ -85,13 +86,13 @@ Call `MarkAPL.Help 0` in order to view the cheat sheet.
 
 Call `MarkAPL.Reference 0` in order to view the comprehensive documentation.
 
-Note that this requires the files Markdown_CheatSheet.html and Markdown.html respectively to be found either in the current directory or in a folder `Files\` in the current directory.
+Note that this requires the files MarkAPL_CheatSheet.html and MarkAPL.html respectively to be found either in the current directory or in a folder `files\` in the current directory.
 
 If those assumptions don't work you must tell `Help` (or `Reference`) where to find the file in question:
 
 ~~~
       parms←MarkAPL.CreateHelpParms
-      parms.homeFolder←'C:\WhereMarkdown2HTML_lives'
+      parms.homeFolder←'C:\Where_MarkAPLs_HTML_lives'
       parms MarkAPL.Help 0
 ~~~
 
@@ -111,4 +112,4 @@ Please send comments, suggestions and bug reports to kai@aplteam.com.
 
 Kai Jaeger ⋄ APL Team Ltd ⋄ 2016-02-17
 
-Last update: 2019-09-28
+Last update: 2019-10-11

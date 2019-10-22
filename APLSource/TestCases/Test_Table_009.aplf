@@ -16,6 +16,6 @@
  →PassesIf 1=+/'</table>'⍷html
  →PassesIf 2=+/'<td>'⍷html
  →PassesIf 2=+/'<tr>'⍷html
- →PassesIf 2=+/'<th '⍷html
+ →PassesIf 2=+/'<th>'⍷html
 
  R←∆OK

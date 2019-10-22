@@ -11,13 +11,16 @@
 
  ns←##.MarkAPL.Init''mat
  ns←##.MarkAPL.Process ns
- expected←'<table>' '<thead>'
- expected,←'<tr>' '<th style="text-align: left;">Language </th>'
- expected,←'<th style="text-align: left;"> Comment  </th>' '</tr>'
- expected,←'</thead>' '<tbody>' '<tr>' '<td>APL</td>'
- expected,←'<td>Powerful</td>' '</tr>' '<tr>' '<td>COBOL</td>'
- expected,←⊂'<td>Outdated. <br>There is little hope for revival. <br>And there probably shouldn''t be.</td>'
- expected,←'</tr>' '</tbody>' '</table>'
+ expected←⊂'<table>'
+ expected,←⊂'<thead>'
+ expected,←⊂'<tr>'
+ expected,←'<th>Language </th>' '<th> Comment  </th>'
+ expected,←⊂'</tr>'
+ expected,←⊂'</thead>'
+ expected,←⊂'<tbody>'
+ expected,←'<tr>' '<td>APL</td>' '<td>Powerful</td>' '</tr>'
+ expected,←'<tr>' '<td>COBOL</td>' '<td>Outdated. <br>There is little hope for revival. <br>And there probably shouldn''t be.</td>' '</tr>'
+ expected,←'</tbody>' '</table>'
  →PassesIf expected≡ns.html
 
  R←∆OK

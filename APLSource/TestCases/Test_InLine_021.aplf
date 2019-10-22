@@ -1,5 +1,5 @@
  R←Test_InLine_021(stopFlag batchFlag);⎕TRAP;ns;md;expected
-⍝ Test escaping underscores mixed with underscores
+⍝ Test escaped underscores mixed with non-escaped underscores.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

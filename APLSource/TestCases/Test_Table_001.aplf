@@ -16,7 +16,7 @@
  →FailsIf 6≠+/'<td>'⍷html
  →FailsIf 3≠+/'<td style'⍷html
  →FailsIf 9≠+/'</td'⍷html
- →FailsIf 3≠+/'<th '⍷html
+ →FailsIf 3≠≢'<th[ >]'⎕S 0⊣html
  →FailsIf 3≠+/'</th>'⍷html
  →FailsIf 4≠+/'<tr>'⍷html
  →FailsIf 4≠+/'</tr>'⍷html

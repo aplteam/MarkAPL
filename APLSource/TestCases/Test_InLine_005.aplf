@@ -3,10 +3,10 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 
- md←⊂'This: ```` is a back-tick'
+ md←⊂'This: `` ` `` is a back-tick'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- expected←'<p>This: <code>`</code> is a back-tick</p>'
+ expected←'<p>This: <code> ` </code> is a back-tick</p>'
  →PassesIf expected≡↑ns.html
 
  md←⊂'This is a paragraph with `{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}` APL code in it.'
@@ -15,52 +15,40 @@
  expected←'<p>This is a paragraph with <code>{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}</code> APL code in it.</p>'
  →PassesIf expected≡↑ns.html
 
- md←⊂'Enclose in-line code with two ``` (back-tick) characters'
+ md←⊂'Enclose in-line code with two ``` `` ``` (back-tick) characters'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- expected←'<p>Enclose in-line code with two <code>` (back-tick) characters</code></p>'
+ expected←'<p>Enclose in-line code with two <code> `` </code> (back-tick) characters</p>'
  →PassesIf expected≡↑ns.html
 
- md←⊂'This:`` `⍴⍴array` ``is code and `(+/)÷⍴,⍵`'
+ md←⊂'This:`` `⍴⍴array` `` is code and so is `(+/)÷⍴,⍵`'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- expected←'<p>This:<code></code> <code>⍴⍴array</code> <code></code>is code and <code>(+/)÷⍴,⍵</code></p>'
- →PassesIf expected≡↑ns.html
-
- md←⊂'This:`` `⍴⍴array` ``is code and this: `(+/)÷⍴,⍵` as well.'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
- expected←'<p>This:<code></code> <code>⍴⍴array</code> <code></code>is code and this: <code>(+/)÷⍴,⍵</code> as well.</p>'
+ expected←'<p>This:<code> `⍴⍴array` </code> is code and so is <code>(+/)÷⍴,⍵</code></p>'
  →PassesIf expected≡↑ns.html
 
  md←⊂'``⊃⍉↓``'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- expected←'<p><code></code>⊃⍉↓<code></code></p>'
+ expected←'<p><code>⊃⍉↓</code></p>'
  →PassesIf expected≡↑ns.html
 
  md←⊂'`` ` ``'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- expected←'<p><code></code> <code> `</code></p>'
+ expected←'<p><code> ` </code></p>'
  →PassesIf expected≡↑ns.html
 
- md←⊂'`` ` ``.'
+ md←⊂'Some ``` text ``'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- expected←'<p><code></code> <code> `.</code></p>'
- →PassesIf expected≡↑ns.html
-
- md←⊂'    ```'          ⍝ The 4 spaces are required: less spaces start a code block!
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
- expected←'<p><code>`</code></p>'
+ expected←'<p>Some ``` text ``</p>'
  →PassesIf expected≡↑ns.html
 
  md←⊂'```.'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- expected←'<p><code>`.</code></p>'
+ expected←'<p>```.</p>'
  →PassesIf expected≡↑ns.html
 
  md←⊂'This is a back-tick (\`) and this is code: `{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}`'
@@ -72,13 +60,19 @@
  md←⊂'These are three back-ticks (\`\`\`) and this is code: `{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}` and one more:`'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- expected←'<p>These are three back-ticks (```) and this is code: <code>{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}</code> and one more:<code></code></p>'
+ expected←'<p>These are three back-ticks (```) and this is code: <code>{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}</code> and one more:`</p>'
  →PassesIf expected≡↑ns.html
 
- md←⊂'This is a backslash between code: `\`.'
+ md←⊂'Some `\`. text'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- expected←'<p>This is a backslash between code: <code>\</code>.</p>'
+ expected←'<p>Some <code>\</code>. text</p>'
+ →PassesIf expected≡↑ns.html
+
+ md←⊂'Some ``\\`` `\`.  ```\\\``` text'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ expected←'<p>Some <code>\\</code> <code>\</code>. <code>\\\</code> text</p>'
  →PassesIf expected≡↑ns.html
 
  R←∆OK

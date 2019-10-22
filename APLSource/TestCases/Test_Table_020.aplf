@@ -11,10 +11,10 @@
  ns←##.MarkAPL.Init''mat
  ns←##.MarkAPL.Process ns
  html←1↓∊(⎕UCS 13),¨ns.html
- →PassesIf 1=+/'style="text-align: left;"'⍷html
+ →PassesIf 0=+/'style="text-align: left;"'⍷html
  →PassesIf 2=+/'style="text-align: right;"'⍷html
  →PassesIf 2=+/'style="text-align: center;"'⍷html
  →PassesIf 2=+/'<td '⍷html
- →PassesIf 3=+/'<th '⍷html
+ →PassesIf 3=≢'<th[ >]'⎕S 0⊣html
 
  R←∆OK

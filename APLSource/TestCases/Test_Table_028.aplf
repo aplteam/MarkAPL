@@ -12,9 +12,9 @@
  ns←##.MarkAPL.Init''mat
  ns←##.MarkAPL.Process ns
  expected←'<table>' '<thead>' '<tr>'
- expected,←⊂'<th style="text-align: left;">Language</th>'
- expected,←⊂'<th style="text-align: left;">Comment</th>'
- expected,←⊂'<th style="text-align: left;">Misc</th>'
+ expected,←⊂'<th>Language</th>'
+ expected,←⊂'<th>Comment</th>'
+ expected,←⊂'<th>Misc</th>'
  expected,←'</tr>' '</thead>'
  expected,←'<tbody>' '<tr>' '<td>APL</td>' '<td><code>Powerful|Foo|</code></td>'
  expected,←'<td> </td>' '</tr>' '<tr>' '<td>COBOL</td>'

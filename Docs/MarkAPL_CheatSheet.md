@@ -8,14 +8,14 @@
 [parm]:screenCSS      = 'BlackOnWhite_screen.css'                     
 
 
-Cheatsheet
-==========
+MarkAPL Cheatsheet
+==================
 
 This document comes with examples for most of the features offered by **_MarkAPL_**. The documentation is however **not** comprehensive: it provides just enough information to get you going.  
 
 For a comprehensive documentation refer to <http://download.aplteam.com/MarkAPL.html> or, if you use MarkAPL within an APL workspace, call the function `MarkAPL.Reference 0`.
 
-Note that all the features related to the so-called LeanPub extensions are discussed in its own document.
+Note that all the features related to the so-called LeanPub extensions are discussed in a separate document.
 
 ## Headers
 
@@ -45,33 +45,13 @@ This is a level 2 header
 
 Note that before and after such a header a **blank line is required**.
 
-## APL Code
+## APL code
 
-First of all code can be either marked up as in-line code (within a paragraph, a list item, a block quote, a grid cell and a header) or as a code block standing on its own.
+APL code can be presented to the reader either as a code block or as in-line mark-up, meaning that the APLcode is embedded into a paragraph or cell etc.
 
-### In-line code
+* See [Code blocks](#) for a discussion of code blocks.
 
-In-line code is discussed as part of in-line mark-up, [see there](#inlinecode2).
-
-#### "Extra" style fencing
-
-This requires 3 `~` as shown here:
-
-```
-~~~
-{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}
-~~~
-```
-
-Result:
-
-~~~
-{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}
-~~~
-
-#### Info string and special attributes
-
-A code block may have an info string or special attributes or both; see the full MarkAPL reference for details.
+* See [In-line code](#inlinecode2) for a discussion of code blocks.
 
 ## Tables
 
@@ -226,6 +206,18 @@ Result:
 {{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}
 ```
 
+You can mention the programming language after the opening fence as shown here:
+
+```
+~~~apl
+{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}
+~~~
+```
+
+### Info string and special attributes
+A code block may have an info string or special attributes or both; see the full MarkAPL reference for details.
+
+
 ### "Git" style fencing
 
 This requires 3 ticks:
@@ -314,12 +306,12 @@ A para can contain **bold**, *italic* and **_bold and italic_**.
 
 `**` and `__` are interchangeable, and so are `*` and `_` with the exception that `*` and `**` can be used to highlight letters within a word while `_` and `__` cannot:
 
-* `In*si*de ma**rku**p` results in "In**si**de ma**rku**p"
+* `In*si*de ma**rku**p` results in "In*si*de ma**rku**p"
 * `In_si_de ma__rku__p` results in "In_si_de ma__rku__p"
 
 ### In-line code{#inlinecode2}
 
-In-line code can be marked up by enclosing the code with back ticks:
+In-line code can be marked up by enclosing the code with backticks:
 
 ~~~
 This `{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}` is an example.
@@ -329,13 +321,23 @@ Result:
 
 This `{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}` is an example.
 
+However, there is much more to this than that once you need to include one or more backticks _inside_ the code; in short you have to enclose any code block between one more backticks then you want to show. For example, if you want to show two backticks:
+
+```
+``` These are two (``) backticks```
+```
+
+This results in ``` These are two (``) backticks```
+
+Refer to the full documentation for details and other possible complications.
+
 ### Strike-through
 
 ~~~
-This feature ~~is not available~~ was introduced in version 9.0
+This feature ~~is not available~~ was introduced in version x.y
 ~~~
 
-This feature ~~is not available~~ was introduced in version 9.0
+This feature ~~is not available~~ was introduced in version x.y
 
 ### Syntactical sugar
 
@@ -408,7 +410,7 @@ and without link text:
 [](https://github.com/aplteam/apltree)
 
 Note that you must specify a protocol ("http://", "https://", "ftp://" etc), otherwise it is not going to be converted. However, if the link contains a `@` characters it is assumed
-to be an email address, and the link is converted to a "mailto:" link.
+to be an email address, and the link is converted to a "mailto:" link, so there is no need to specify anything but just the email address.
 
 You can add a title as well as [Special attributes](#) to an external link:
 
@@ -613,8 +615,8 @@ For details refer to the [**_MarkAPL_** reference document](http://download.aplt
 
 ## Version
 
-This document refers to version 7.0.0 of **_MarkAPL_**.<<br>>
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-09-28
+This document refers to version 8.0.0 of **_MarkAPL_**.<<br>>
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-10-21
 
 ⍝ The link references:
 [1]:      https://aplwiki.com

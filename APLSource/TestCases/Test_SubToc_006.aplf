@@ -1,0 +1,28 @@
+ R←Test_SubToc_006(stopFlag batchFlag);⎕TRAP;md;ns;parms
+⍝ Test <<SubTOC>> with special attributes assigned to it.
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←∆Failed
+
+ md←''
+ md,←⊂'# Level 1'
+ md,←⊂'<<SubTOC {.center}>>'
+ md,←⊂'## Level 2'
+ md,←⊂'This is a para'
+ md,←⊂'## Level 3'
+ md,←⊂'This is another para'
+ md,←⊂''
+
+ parms←##.MarkAPL.CreateParms
+ parms.numberHeaders←1
+ parms.toc←1
+ ns←##.MarkAPL.Init parms md
+ ns←##.MarkAPL.Process ns
+
+ →PassesIf 1=+/'<h1>1. Level 1</h1>'⍷∊ns.html
+ →PassesIf 1=+/'<h3>'⍷∊ns.html
+ →PassesIf 2=+/'<h2>'⍷∊ns.html
+ →PassesIf 3=+/'<p>'⍷∊ns.html   ⍝ Caption of sub-toc is a para as well!
+ →PassesIf 0=+/'<<SubTOC>>'⍷∊ns.html
+ →PassesIf 2=⍴'<nav.*>'⎕S 0⍠('Greedy' 0)⊣ns.html
+
+ R←∆OK

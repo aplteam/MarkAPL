@@ -1,5 +1,5 @@
  R←Test_ZZZ_995(stopFlag batchFlag);⎕TRAP;buff;md
-⍝ Test whether date and version number in document "MarkAPL_CheatSheet.md" are correct
+⍝ Test whether date and version number in document "MarkAPL_for_Programmers.md" are correct
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

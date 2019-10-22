@@ -1,5 +1,5 @@
  R←Test_Table_012(stopFlag batchFlag);⎕TRAP;ns;parms;mat;html
-⍝ Check default alignment for numeric column without a header.
+⍝ Check default alignment for numeric column without a header. See also Test_30.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 

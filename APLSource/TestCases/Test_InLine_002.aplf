@@ -18,7 +18,7 @@
  md←⊂'This is a simple **paragraph** that has APL in it: `(2**5)÷0.5'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- expected←'<p>This is a simple <strong>paragraph</strong> that has APL in it: <code>(2**5)÷0.5</code></p>'
+ expected←'<p>This is a simple <strong>paragraph</strong> that has APL in it: `(2**5)÷0.5</p>'
  →PassesIf expected≡↑ns.html
 
  md←'normal' '**' 'bold' '**' 'normal'

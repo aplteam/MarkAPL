@@ -1,7 +1,7 @@
  R←Test_LeanPub_049(stopFlag batchFlag);⎕TRAP;ns;md;expected
 ⍝ Test whether a particular A> is identified correcly. Was once a bug.
 ⍝ When a code block in an A> section contained an empty line things went awry because it was later not recognized any more as a single HTML block.
-⍝ Fixed by replacing empty lines with "&nbsp;".
+⍝ Fixed by replacing empty lines with " ".
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←∆Failed
 
