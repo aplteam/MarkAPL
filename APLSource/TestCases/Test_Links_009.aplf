@@ -1,7 +1,7 @@
  R←Test_Links_009(stopFlag batchFlag);⎕TRAP;ns;html;md
 ⍝ Test auto-linking to bookmarks:  [](#) with CR in the link.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'Link: [Link to a ',(⎕UCS 13),' header `em`](#)'
@@ -11,6 +11,6 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →PassesIf∨/'<a href="#Link-to-a-header-em" class="bookmark_link">'⍷∊ns.html
+ →T.PassesIf∨/'<a href="#Link-to-a-header-em" class="bookmark_link">'⍷∊ns.html
 
- R←∆OK
+ R←T._OK

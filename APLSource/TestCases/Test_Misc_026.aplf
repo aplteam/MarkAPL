@@ -1,7 +1,7 @@
  R←Test_Misc_026(stopFlag batchFlag);⎕TRAP;md;parms;ns;buff;tempFilename
 ⍝ Converts the MarkAPL.md document and checks `report` afterwards.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  parms←##.MarkAPL.CreateHelpParms
  parms.viewInBrowser←0
@@ -14,9 +14,9 @@
 
  ns←parms ##.MarkAPL.Reference 1
 
- buff←(~↑∧/∨/¨'warning' 'ambiguous'⍷¨⊂#.APLTreeUtils.Lowercase⊃ns.report)/ns.report
+ buff←(~↑∧/∨/¨'warning' 'ambiguous'⍷¨⊂##.APLTreeUtils.Lowercase⊃ns.report)/ns.report
 
- R←∆OK
+ R←T._OK
 
 ∆TidyUp:
  ##.FilesAndDirs.RmDir↑⎕NPARTS tempFilename

@@ -1,7 +1,7 @@
  R←Test_DefinitionList_001(stopFlag batchFlag);⎕TRAP;ns;parms;md;expected
 ⍝ Test simple definition list
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'Term 1'
@@ -10,6 +10,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<dl>' '<dt>Term 1</dt>' '<dd>Definition of the term</dd>' '</dl>'
- →FailsIf expected≢ns.html
+ →T.FailsIf expected≢ns.html
 
- R←∆OK
+ R←T._OK

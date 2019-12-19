@@ -1,7 +1,7 @@
  R←Test_Links_005(stopFlag batchFlag);⎕TRAP;ns;html;md;expected
 ⍝ Test  a reference link which also appears between back-ticks.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'This: `Link to the [APL wiki][aplwiki].` has this effect: Link to the [APL wiki][aplwiki].'
@@ -13,6 +13,6 @@
 
  expected←'<p>This: <code>Link to the [APL wiki][aplwiki].</code> has this effect: Link to the '
  expected,←'<a href="http://aplwiki.com" class="external_link">APL wiki</a>.</p>'
- →PassesIf expected≡0⊃ns.html
+ →T.PassesIf expected≡0⊃ns.html
 
- R←∆OK
+ R←T._OK

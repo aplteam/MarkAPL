@@ -1,7 +1,7 @@
  R←Test_SpecAttrs_DefLists_001(stopFlag batchFlag);⎕TRAP;md;ns;parms
 ⍝ Definition list: several assignments.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'Term 1 {.foo ##goo style="color:red;"}'
@@ -15,6 +15,6 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- →PassesIf∨/'<dt class="foo" id="#goo" style="color:red;">'⍷∊ns.html
+ →T.PassesIf∨/'<dt class="foo" id="#goo" style="color:red;">'⍷∊ns.html
 
- R←∆OK
+ R←T._OK

@@ -2,7 +2,7 @@
 ⍝ Test code block where the fences are less indented then all of the code as such.
 ⍝ Which will be removed and leave the code block empty anyway.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'* This'
@@ -18,6 +18,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<ul>' '<li>This' '<pre><code>     {(+/⍵)÷⍴⍵}100 200' '  150</code></pre></li>' '<li>That</li>' '</ul>'
- →PassesIf expected≡ns.html
+ →T.PassesIf expected≡ns.html
 
- R←∆OK
+ R←T._OK

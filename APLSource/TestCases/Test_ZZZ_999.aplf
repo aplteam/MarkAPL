@@ -1,7 +1,7 @@
  R←Test_ZZZ_999(stopFlag batchFlag);v;n;d;xml;rf;f1;f2;f4;buffer;is;shouldBe;⎕TRAP
 ⍝ Check the "Version" function and publish.config.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  rf←##.MarkAPL
 
@@ -16,9 +16,9 @@
  f1∨←d[4 7]∨.≠'-'
  f1∨←~∧/⎕D∊⍨d~'-'
 
- v←↑{⍺,'.',⍵}/⍕¨3↑'.'#.APLTreeUtils.Split v
+ v←↑{⍺,'.',⍵}/⍕¨3↑'.'##.APLTreeUtils.Split v
 ⍝ publish.config must be in line with what "Version" returns of course:
- xml←⎕XML'flat'#.APLTreeUtils.ReadUtf8File'publish.config'
+ xml←⎕XML'flat'##.APLTreeUtils.ReadUtf8File'publish.config'
  f2←v≢2⊃xml[xml[;1]⍳⊂'version';]
  f2∨←d≢2⊃xml[xml[;1]⍳⊂'date';]
 
@@ -29,6 +29,7 @@
      ⎕←'The contents of "publish.config" is not in line with "Version".'
  :EndIf
 
- →FailsIf f1∨f2
+ →T.FailsIf f1∨f2
 
- R←∆OK
+ R←T._OK
+⍝Done

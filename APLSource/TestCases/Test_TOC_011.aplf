@@ -1,7 +1,7 @@
  R←Test_TOC_011(stopFlag batchFlag);⎕TRAP;md;ns;parms;tags;expected
 ⍝ Test line number of header in case LeanPub extensions are involved. Was once a bug.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'Pargraph'
@@ -34,6 +34,7 @@
  ns←##.MarkAPL.Process ns
 
  expected←'# Ia' '## Ib' '### Ic' 'IIa' 'IIb' '### IIc'
- →PassesIf expected≡md[ns.headerLineNos-1]
+ →T.PassesIf expected≡md[ns.headerLineNos-1]
 
- R←∆OK
+ R←T._OK
+⍝Done

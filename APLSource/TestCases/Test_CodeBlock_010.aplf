@@ -2,7 +2,7 @@
 ⍝ Test code block with 4 leading blanks: that's not a code block any more.
 ⍝ Which will be removed and leave the code block empty anyway.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'        ~~~~~~~'
@@ -11,6 +11,6 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 0=+/'<pre><code>'⍷∊ns.html
+ →T.PassesIf 0=+/'<pre><code>'⍷∊ns.html
 
- R←∆OK
+ R←T._OK

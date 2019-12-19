@@ -1,7 +1,7 @@
  R←Test_Data_004(stopFlag batchFlag);⎕TRAP;ns;md
 ⍝ Test a [data]: definitions without quotes that is not numeric.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'[data]:author=Kai Jaeger'
@@ -11,7 +11,7 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →FailsIf 1≠⊃⍴ns.data
- →FailsIf(,⊂'author' 'Kai Jaeger')≢ns.data
+ →T.FailsIf 1≠⊃⍴ns.data
+ →T.FailsIf(,⊂'author' 'Kai Jaeger')≢ns.data
 
- R←∆OK
+ R←T._OK

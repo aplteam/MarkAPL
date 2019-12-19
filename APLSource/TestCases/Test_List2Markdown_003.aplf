@@ -1,7 +1,7 @@
  R←Test_List2Markdown_003(stopFlag batchFlag);⎕TRAP;ns;md;m;expected
 ⍝ Test the conversion of an APL list to markdown with complex list item (para & code block)
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  m←''
  m,←⊂0 1 'Level 1 a bull'
@@ -16,6 +16,6 @@
  expected←'<ul>' '<li>Level 1 a bull' '<ol start="1">' '<li>Level 2 a num</li>' '<li>Level 2 a num'
  expected,←'<p>Another para</p>' '<pre><code>{+⌿⍵}</code></pre></li>' '<li>Level 2 a num</li>'
  expected,←'</ol></li>' '</ul>'
- →PassesIf expected≡ns.html
+ →T.PassesIf expected≡ns.html
 
- R←∆OK
+ R←T._OK

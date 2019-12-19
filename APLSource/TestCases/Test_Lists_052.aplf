@@ -1,7 +1,7 @@
  R←Test_Lists_052(stopFlag batchFlag);⎕TRAP;md;ns
 ⍝ Test a nested list. Last two but one must be bulleted (was once a bug)
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'* First line'
@@ -24,9 +24,9 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 6=+/'<li>'⍷∊ns.html
- →PassesIf 6=+/'</li>'⍷∊ns.html
- →PassesIf 2=+/'<ul>'⍷∊ns.html
- →PassesIf 2=+/'</ul>'⍷∊ns.html
+ →T.PassesIf 6=+/'<li>'⍷∊ns.html
+ →T.PassesIf 6=+/'</li>'⍷∊ns.html
+ →T.PassesIf 2=+/'<ul>'⍷∊ns.html
+ →T.PassesIf 2=+/'</ul>'⍷∊ns.html
 
- R←∆OK
+ R←T._OK

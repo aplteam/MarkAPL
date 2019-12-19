@@ -1,7 +1,7 @@
  R←Test_Images_11(stopFlag batchFlag);⎕TRAP;ns;md;expected
 ⍝ Test image with relative name starting with ./ (=current dir)
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'![](./pic1.png)'
@@ -13,6 +13,6 @@
 
  expected←⊂'<p><img src="./pic1.png" alt=""></p>'
  expected,←⊂'<p><img src="pic2.png" alt=""></p>'
- →PassesIf∧/expected∊ns.html
+ →T.PassesIf∧/expected∊ns.html
 
- R←∆OK
+ R←T._OK

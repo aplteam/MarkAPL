@@ -1,7 +1,7 @@
  R←Test_Mat2Markdown_002(stopFlag batchFlag);⎕TRAP;ns;m;md;ch
 ⍝ Test the conversion of an APL matrix to markdown with column header that carries colons.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  m←''
  m,←⊂'APL' 99 'Really great '
@@ -13,19 +13,19 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →FailsIf'<table>'≢0⊃ns.html
- →FailsIf'<thead>'≢1⊃ns.html
- →FailsIf 3≠≢'<th[ >]'⎕S 0⊣ns.html
- →FailsIf'</thead>'≢7⊃ns.html
- →FailsIf'<tbody>'≢8⊃ns.html
- →FailsIf 6≠+/∨/¨'<td>'∘⍷¨ns.html
- →FailsIf 3≠+/∨/¨'<td '∘⍷¨ns.html
- →FailsIf 4≠+/∨/¨'<tr>'∘⍷¨ns.html
- →FailsIf 4≠+/∨/¨'</tr>'∘⍷¨ns.html
- →FailsIf'</table>'≢↑¯1↑ns.html
- →FailsIf'</tbody>'≢↑¯2↑ns.html
+ →T.FailsIf'<table>'≢0⊃ns.html
+ →T.FailsIf'<thead>'≢1⊃ns.html
+ →T.FailsIf 3≠≢'<th[ >]'⎕S 0⊣ns.html
+ →T.FailsIf'</thead>'≢7⊃ns.html
+ →T.FailsIf'<tbody>'≢8⊃ns.html
+ →T.FailsIf 6≠+/∨/¨'<td>'∘⍷¨ns.html
+ →T.FailsIf 3≠+/∨/¨'<td '∘⍷¨ns.html
+ →T.FailsIf 4≠+/∨/¨'<tr>'∘⍷¨ns.html
+ →T.FailsIf 4≠+/∨/¨'</tr>'∘⍷¨ns.html
+ →T.FailsIf'</table>'≢↑¯1↑ns.html
+ →T.FailsIf'</tbody>'≢↑¯2↑ns.html
 
- →FailsIf 6≠+/∨/¨(⊂'<td>')⍷¨ns.html
- →FailsIf 3≠+/∨/¨(⊂'<td style="text-align: right;">')⍷¨ns.html
+ →T.FailsIf 6≠+/∨/¨(⊂'<td>')⍷¨ns.html
+ →T.FailsIf 3≠+/∨/¨(⊂'<td style="text-align: right;">')⍷¨ns.html
 
- R←∆OK
+ R←T._OK

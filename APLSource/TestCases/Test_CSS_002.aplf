@@ -1,16 +1,16 @@
  R←Test_CSS_002(stopFlag batchFlag);⎕TRAP;md;parms;b;ns;html
 ⍝ Assign a folder name that starts with "file://" to `cssURL`. Was once a bug.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  parms←##.MarkAPL.CreateParms
- parms.cssURL←'file://',#.FilesAndDirs.PWD
+ parms.cssURL←'file://',##.FilesAndDirs.PWD
 
  md←,⊂'> > This is a recursive blockquote.'
 
  ns←##.MarkAPL.Init parms md
- →PassesIf 0∊≢ns.report
+ →T.PassesIf 0∊≢ns.report
  ns←##.MarkAPL.Process ns
  ns.html←parms ##.MarkAPL.MakeHTML_Doc ns.html
 
- R←∆OK
+ R←T._OK

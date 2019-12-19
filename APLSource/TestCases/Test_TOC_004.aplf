@@ -1,7 +1,7 @@
  R←Test_TOC_004(stopFlag batchFlag);⎕TRAP;md;ns;parms;toc;tags;expected
 ⍝ Test TOC generation with level change from 4 to 2 with 1 suppressed. Was once a bug.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'# Main'
@@ -21,11 +21,12 @@
  ns←##.MarkAPL.Process ns
 
  toc←'<nav.*>.*</nav>'⎕R'&'⍠('Greedy' 0)('DotAll' 1)('Mode' 'M')⊣ns.html
- →PassesIf 3=+/∊'<ul>'∘⍷¨toc
- →PassesIf 3=+/∊'</ul>'∘⍷¨toc
+ →T.PassesIf 3=+/∊'<ul>'∘⍷¨toc
+ →T.PassesIf 3=+/∊'</ul>'∘⍷¨toc
  tags←{⍵↑⍨⍵⍳'>'}¨toc
  expected←'<nav id="main_nav_no_collapse"' '<ul' '<li' '<ul' '<li' '<ul' '<li' '<li' '</ul' '</ul'
  expected,←'<li' '<li' '</ul' '</nav'
- →PassesIf∧/expected∊tags
+ →T.PassesIf∧/expected∊tags
 
- R←∆OK
+ R←T._OK
+⍝Done

@@ -2,7 +2,7 @@
 ⍝ Test "compressCSS"
 ⍝ Defaults to "en" but can be set
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←'# Test' '' '* This' '* That' '* More'
  parms←##.MarkAPL.CreateParms
@@ -14,7 +14,7 @@
  html←0⊃parms ##.MarkAPL.Markdown2HTML md
  start←html∊'<style media="screen">' '<style media="print">'
  end←html≡¨⊂'</style>'
- →GoToTidyUp 2≠+/0 1 1 0⍷(+\start)-+\end
+ →T.GoToTidyUp 2≠+/0 1 1 0⍷(+\start)-+\end
 
  parms←##.MarkAPL.CreateParms
  parms.createFullHtmlPage←1
@@ -22,9 +22,9 @@
  html←0⊃parms ##.MarkAPL.Markdown2HTML md
  start←html∊'<style media="screen">' '<style media="print">'
  end←html≡¨⊂'</style>'
- →GoToTidyUp 100≥+/(+\start)-+\end  ⍝ At least 100 lines (probably MUCH more, but things might change in the future)
+ →T.GoToTidyUp 100≥+/(+\start)-+\end  ⍝ At least 100 lines (probably MUCH more, but things might change in the future)
 
- R←∆OK
+ R←T._OK
 
 ∆TidyUp:
  ##.FilesAndDirs.RmDir↑⎕NPARTS tempFilename

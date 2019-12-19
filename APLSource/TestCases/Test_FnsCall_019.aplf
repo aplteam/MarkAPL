@@ -1,7 +1,7 @@
  R←Test_FnsCall_019(stopFlag batchFlag);⎕TRAP;md;ns;expected
 ⍝ Test function call that returns tags - those are converted (it's not an HTML block) while in-line mark-up is done.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
@@ -14,6 +14,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<p>&lt;p&gt;This</p>' '<p><strong>is</strong> a paragraph.&lt;/p&gt;</p>'
- →PassesIf expected≡ns.html
+ →T.PassesIf expected≡ns.html
 
- R←∆OK
+ R←T._OK

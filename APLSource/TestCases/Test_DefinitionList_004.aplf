@@ -1,7 +1,7 @@
  R←Test_DefinitionList_004(stopFlag batchFlag);⎕TRAP;ns;parms;md;html
 ⍝ Test term and definition with and without a blank line between the two.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'Term 1'
@@ -12,9 +12,9 @@
  ns←##.MarkAPL.Process ns
 
  html←∊ns.html
- →PassesIf 1=+/'<dd><p>'⍷html   ⍝ The blank line causes thje definition it to be enclosed in a <p> tag
- →PassesIf 1=+/'<dt>'⍷html
- →PassesIf 1=+/'<dd>'⍷html
+ →T.PassesIf 1=+/'<dd><p>'⍷html   ⍝ The blank line causes thje definition it to be enclosed in a <p> tag
+ →T.PassesIf 1=+/'<dt>'⍷html
+ →T.PassesIf 1=+/'<dd>'⍷html
 
  md←''
  md,←⊂'Term 1'
@@ -24,8 +24,8 @@
  ns←##.MarkAPL.Process ns
 
  html←∊ns.html
- →PassesIf 0=+/'<dd><p>'⍷html   ⍝ No <p> tag at all
- →PassesIf 1=+/'<dt>'⍷html
- →PassesIf 1=+/'<dd>'⍷html
+ →T.PassesIf 0=+/'<dd><p>'⍷html   ⍝ No <p> tag at all
+ →T.PassesIf 1=+/'<dt>'⍷html
+ →T.PassesIf 1=+/'<dd>'⍷html
 
- R←∆OK
+ R←T._OK

@@ -1,7 +1,7 @@
  R←Test_CodeBlock_021(stopFlag batchFlag);⎕TRAP;ns;parms;md;expected
 ⍝ Test that `|||` is not treated as fencing; this was once a bug.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'~~~'
@@ -38,6 +38,6 @@
  expected,←⊂'</tr>'
  expected,←⊂'</tbody>'
  expected,←⊂'</table>'
- →PassesIf expected≡ns.html
+ →T.PassesIf expected≡ns.html
 
- R←∆OK
+ R←T._OK

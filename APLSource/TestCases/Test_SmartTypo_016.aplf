@@ -1,7 +1,7 @@
  R←Test_SmartTypo_016(stopFlag batchFlag);⎕TRAP;md;ns;parms;expected
 ⍝ Have an escaped `\"` one between two ".
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←⊂'"This: \" is an escaped double quote"'
  parms←##.MarkAPL.CreateParms
@@ -10,6 +10,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←,⊂'<p>“This: \” is an escaped double quote"</p>'
- →PassesIf expected≡ns.html
+ →T.PassesIf expected≡ns.html
 
- R←∆OK
+ R←T._OK

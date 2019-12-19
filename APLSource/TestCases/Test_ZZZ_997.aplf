@@ -2,7 +2,7 @@
 ⍝ Checks on two text vectors: "⍝TODO⍝" and "⍝CHECK⍝"; This test case never fails, it just reports findings to the session.
  ⎕IO←0 ⋄ ⎕ML←3
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆OK
+ R←T._OK
  Find←⎕SE.acre._code.UT.fi
 
  report←''
@@ -19,11 +19,11 @@
      report,←(⊂' ⍝TODO⍝ found:'),(⊂'   '),¨buff
  :EndIf
 
- xml←⎕XML'flat'#.APLTreeUtils.ReadUtf8File'publish.config'
+ xml←⎕XML'flat'##.APLTreeUtils.ReadUtf8File'publish.config'
  :If (↑⍴xml)>row←xml[;1]⍳⊂'main'
      source←2⊃xml[row;]
      report,←⊂'*** Scan ',source
-     source←','#.APLTreeUtils.Split source
+     source←','##.APLTreeUtils.Split source
      source←{(('#.'≢2⍴⍵)/'#.'),⍵}¨source
 
      buff←source Find'⍝CHECK⍝'

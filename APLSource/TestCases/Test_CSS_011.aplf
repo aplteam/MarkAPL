@@ -1,7 +1,7 @@
  R←Test_CSS_011(stopFlag batchFlag);⎕TRAP;md;b;ns;html;expected;parms
 ⍝ Check `smoothScrolling`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'This is a para.'
@@ -9,12 +9,12 @@
  parms←##.MarkAPL.CreateParms
 
  ns←##.MarkAPL.Init''md
- →PassesIf 0∊≢ns.report
+ →T.PassesIf 0∊≢ns.report
  ns←##.MarkAPL.Process ns
  ns.html←ns.parms ##.MarkAPL.MakeHTML_Doc ns.html
 
  expected←'style="scroll-behavior:smooth"'
- →PassesIf∨/expected⍷∊ns.html
+ →T.PassesIf∨/expected⍷∊ns.html
 
  md←''
  md,←⊂'[parm]:smoothScrolling = 0'
@@ -24,11 +24,11 @@
  parms←##.MarkAPL.CreateParms
 
  ns←##.MarkAPL.Init''md
- →PassesIf 0∊≢ns.report
+ →T.PassesIf 0∊≢ns.report
  ns←##.MarkAPL.Process ns
  ns.html←ns.parms ##.MarkAPL.MakeHTML_Doc ns.html
 
  expected←'style="scroll-behavior:smooth"'
- →PassesIf~∨/expected⍷∊ns.html
+ →T.PassesIf~∨/expected⍷∊ns.html
 
- R←∆OK
+ R←T._OK

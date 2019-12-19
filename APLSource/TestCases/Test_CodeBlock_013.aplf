@@ -3,7 +3,7 @@
 ⍝ More precisely, the next corresponding fence should be taken into account, or the end of the document.
 ⍝ That is okay as long as the number of spaces is in line with the nesting, plus possibly up to three more spaces.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'~~~'
@@ -12,7 +12,7 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
  expected←'<pre><code>{+/⍳⍴,w}' '```</code></pre>'
- →PassesIf expected≡ns.html
+ →T.PassesIf expected≡ns.html
 
  md←''
  md,←⊂'```'
@@ -21,6 +21,6 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
  expected←'<pre><code>{+/⍳⍴,w}' '~~~</code></pre>'
- →PassesIf expected≡ns.html
+ →T.PassesIf expected≡ns.html
 
- R←∆OK
+ R←T._OK

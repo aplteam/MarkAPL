@@ -1,7 +1,7 @@
  R←Test_Header_025(stopFlag batchFlag);⎕TRAP;md;ns;parms
 ⍝ Completely ill-form headers. Was once a bug (read: crashed MarkAPL).
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'# Level 1'
@@ -17,10 +17,10 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- →PassesIf(⊂'<h1>Level 1</h1>')∊ns.html
- →PassesIf(⊂'<h5>Level 5</h5>')∊ns.html
- →PassesIf(⊂'<h4>Level 4</h4>')∊ns.html
- →PassesIf 1=≢ns.report
- →PassesIf'Headers are ill-nested and need correction!'≡0⊃ns.report
+ →T.PassesIf(⊂'<h1 data-id="Level-1">Level 1</h1>')∊ns.html
+ →T.PassesIf(⊂'<h5 data-id="Level-5">Level 5</h5>')∊ns.html
+ →T.PassesIf(⊂'<h4 data-id="Level-4">Level 4</h4>')∊ns.html
+ →T.PassesIf 1=≢ns.report
+ →T.PassesIf'Headers are ill-nested and need correction!'≡0⊃ns.report
 
- R←∆OK
+ R←T._OK

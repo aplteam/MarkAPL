@@ -1,7 +1,7 @@
  R←Test_Blockquote_006(stopFlag batchFlag);⎕TRAP;md;ns;parms;html
 ⍝ Test a blockquote that contains <<SUBTOPIC>>. Will be simply removed rather than processed.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'# Header 1'
@@ -17,6 +17,6 @@
  ns←##.MarkAPL.Process ns
 
  html←1↓⊃,/(⎕UCS 13),¨ns.html
- →PassesIf 0=+/'subtoc'⍷#.APLTreeUtils.Lowercase html
+ →T.PassesIf 0=+/'subtoc'⍷##.APLTreeUtils.Lowercase html
 
- R←∆OK
+ R←T._OK

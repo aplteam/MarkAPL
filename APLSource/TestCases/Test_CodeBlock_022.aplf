@@ -1,7 +1,7 @@
  R←Test_CodeBlock_022(stopFlag batchFlag);⎕TRAP;ns;parms;md;expected
 ⍝ Test ``` code block that contains a line ~~~
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'~~~~~'
@@ -12,6 +12,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←,⊂'<pre><code>```</code></pre>'
- →PassesIf expected≡ns.html
+ →T.PassesIf expected≡ns.html
 
- R←∆OK
+ R←T._OK

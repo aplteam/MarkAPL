@@ -1,36 +1,36 @@
  R←Test_Misc_012(stopFlag batchFlag);⎕TRAP;link;buff;expect
 ⍝ Test internal function "GetUrlAndTitleFromLink" on internal (bookmark) links.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  link←'[](#This)'
  buff←##.MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
  expect←'#This' ''
- →PassesIf expect≡buff
+ →T.PassesIf expect≡buff
 
  link←'[This](#)'
  buff←##.MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
  expect←,¨'#' ''
- →PassesIf expect≡buff
+ →T.PassesIf expect≡buff
 
  link←'[](#This "That")'
  buff←##.MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
  expect←'#This' 'That'
- →PassesIf expect≡buff
+ →T.PassesIf expect≡buff
 
  link←'[This](# "That")'
  buff←##.MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
  expect←,¨'#' 'That'
- →PassesIf expect≡buff
+ →T.PassesIf expect≡buff
 
  link←'[](#This is a ##complex## example "That")'
  buff←##.MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
  expect←'#This is a ##complex## example' 'That'
- →PassesIf expect≡buff
+ →T.PassesIf expect≡buff
 
  link←'[](  #This is a ##complex## example    "That")'
  buff←##.MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
  expect←'#This is a ##complex## example' 'That'
- →PassesIf expect≡buff
+ →T.PassesIf expect≡buff
 
- R←∆OK
+ R←T._OK

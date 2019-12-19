@@ -1,7 +1,7 @@
  R←Test_Lists_047(stopFlag batchFlag);⎕TRAP;md;ns;expected
 ⍝ Test a list item that contains a code block in a deeply nested list item
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'* This'
@@ -20,6 +20,6 @@
 
  expected←'<ul>' '<li>This' '<ul>' '<li>That' '<ul>' '<li>More' '<ul>' '<li>Deep'
  expected,←'<pre><code> {+⌿⍺,⍵}</code></pre></li>' '</ul></li>' '</ul></li>' '</ul></li>' '<li>Foo</li>' '</ul>'
- →PassesIf expected≡ns.html
+ →T.PassesIf expected≡ns.html
 
- R←∆OK
+ R←T._OK

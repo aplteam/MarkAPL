@@ -1,16 +1,16 @@
  R←Test_Images_08(stopFlag batchFlag);⎕TRAP;ns;md;fn
 ⍝ Test image in a cell of a table
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
- fn←#.FilesAndDirs.EnforceSlash'file://',#.FilesAndDirs.PWD,'\Files\KaiJaegerHeadVerySmall.png'
+ fn←##.FilesAndDirs.EnforceSlash'file://',##.FilesAndDirs.PWD,'\Files\KaiJaegerHeadVerySmall.png'
  md←''
  md,←⊂'|Kai Jaeger | ![picture3](',fn,' "Kai Jaeger")|'
 
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →PassesIf∨/'<td style="text-align: left;"><img src="file://'⍷∊ns.html
- →PassesIf∨/'Files/KaiJaegerHeadVerySmall.png" alt="picture3" title="Kai Jaeger"></td>'⍷∊ns.html
+ →T.PassesIf∨/'<td style="text-align: left;"><img src="file://'⍷∊ns.html
+ →T.PassesIf∨/'Files/KaiJaegerHeadVerySmall.png" alt="picture3" title="Kai Jaeger"></td>'⍷∊ns.html
 
- R←∆OK
+ R←T._OK

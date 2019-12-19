@@ -2,7 +2,7 @@
 ⍝ Mixed fence characters (invalid). The remaining document must become a code block here.
 ⍝ Note that no leading blanks are removed anywhere because the last para does not have any!
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'   ~~~~'
@@ -13,6 +13,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<pre><code>    {+/⍵}' '   ````' 'This is a para.</code></pre>'
- →PassesIf expected≡ns.html
+ →T.PassesIf expected≡ns.html
 
- R←∆OK
+ R←T._OK

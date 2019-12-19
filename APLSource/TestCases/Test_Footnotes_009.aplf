@@ -1,7 +1,7 @@
  R←Test_Footnotes_009(stopFlag batchFlag);⎕TRAP;md;ns;parms;html;buff;expected
 ⍝ Test footnote with some text ending with `:`, line break and a link (was once a bug).
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'[^github1] and [^github2]'
@@ -13,9 +13,9 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 2 2≡⍴ns.footnoteDefs
- →PassesIf'github1' 'github2'≡ns.footnoteDefs[;0]
+ →T.PassesIf 2 2≡⍴ns.footnoteDefs
+ →T.PassesIf'github1' 'github2'≡ns.footnoteDefs[;0]
  html←1↓∊(⎕UCS 13),¨ns.html
- →PassesIf 2=+/'<br>'⍷html
+ →T.PassesIf 2=+/'<br>'⍷html
 
- R←∆OK
+ R←T._OK

@@ -2,7 +2,7 @@
 ⍝ Test code block where only the fences are indented. That's treated specially by MarkAPL.
 ⍝ Which will be removed and leave the code block empty anyway.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'* This'
@@ -27,6 +27,6 @@
 
  expected←'<ul>' '<li>This' '<pre><code>{(+/⍵)÷⍴⍵}</code></pre>' '<p>Still This</p></li>'
  expected,←'<li>That' '<pre><code>  ⎕←+⌿Mat' '123</code></pre></li>' '<li>More</li>' '</ul>'
- →PassesIf expected≡ns.html
+ →T.PassesIf expected≡ns.html
 
- R←∆OK
+ R←T._OK

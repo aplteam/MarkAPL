@@ -1,7 +1,7 @@
  R←Test_Header_020(stopFlag batchFlag);⎕TRAP;md;ns;html;expected
 ⍝ Test headers that has APL code in it
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'# Main 1 `{+/⍳⍴⍵}` more'
@@ -10,7 +10,7 @@
  ns←##.MarkAPL.Process ns
 
  html←ns.html
- expected←'<div class="h_tag">' '<a href="#Main-1--more" id="Main-1--more" class="autoheader_anchor">' '<h1>Main 1 <code>{+/⍳⍴⍵}</code> more</h1>' '</a>' '</div>'
- →PassesIf expected≡html
+ expected←'<div class="h_tag">' '<a href="#Main-1--more" id="Main-1--more" class="autoheader_anchor">' '<h1 data-id="Main-1--more">Main 1 <code>{+/⍳⍴⍵}</code> more</h1>' '</a>' '</div>'
+ →T.PassesIf expected≡html
 
- R←∆OK
+ R←T._OK

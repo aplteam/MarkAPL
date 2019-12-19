@@ -1,7 +1,7 @@
  R←Test_DefinitionList_009(stopFlag batchFlag);⎕TRAP;ns;parms;md
 ⍝ Test a definition list with sub paragraphs and (!) leading spaces in front of the ":"
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'Term 1'
@@ -21,14 +21,14 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →FailsIf'<dl>'≢0⊃ns.html
- →FailsIf'<dt>Term 1</dt>'≢1⊃ns.html
- →FailsIf'<dd><p class="first_dd">Definition of the term</p></dd>'≢2⊃ns.html
- →FailsIf'<dd><p>Still definition of the term running over many lines!</p></dd>'≢3⊃ns.html
- →FailsIf'<dd><p>And still definition of the term</p></dd>'≢4⊃ns.html
- →FailsIf'<dt>Term 2</dt>'≢5⊃ns.html
- →FailsIf'<dd><p>Def os term 2.</p></dd>'≢6⊃ns.html
- →FailsIf'</dl>'≢7⊃ns.html
- →FailsIf 8<⍴ns.html
+ →T.FailsIf'<dl>'≢0⊃ns.html
+ →T.FailsIf'<dt>Term 1</dt>'≢1⊃ns.html
+ →T.FailsIf'<dd><p class="first_dd">Definition of the term</p></dd>'≢2⊃ns.html
+ →T.FailsIf'<dd><p>Still definition of the term running over many lines!</p></dd>'≢3⊃ns.html
+ →T.FailsIf'<dd><p>And still definition of the term</p></dd>'≢4⊃ns.html
+ →T.FailsIf'<dt>Term 2</dt>'≢5⊃ns.html
+ →T.FailsIf'<dd><p>Def os term 2.</p></dd>'≢6⊃ns.html
+ →T.FailsIf'</dl>'≢7⊃ns.html
+ →T.FailsIf 8<⍴ns.html
 
- R←∆OK
+ R←T._OK

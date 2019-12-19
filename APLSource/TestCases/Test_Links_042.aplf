@@ -1,7 +1,7 @@
  R←Test_Links_042(stopFlag batchFlag);⎕TRAP;ns;html;md;expected
 ⍝ Test the "[](#Header)" syntax. Was once a bug
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'# Header'
@@ -12,6 +12,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<p>See <a href="#Header" class="bookmark_link">Header</a> for details.</p>'
- →PassesIf 1=+/expected⍷∊ns.html
+ →T.PassesIf 1=+/expected⍷∊ns.html
 
- R←∆OK
+ R←T._OK

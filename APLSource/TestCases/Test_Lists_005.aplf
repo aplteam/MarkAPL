@@ -1,7 +1,7 @@
  R←Test_Lists_005(stopFlag batchFlag);⎕TRAP;md;ns;parms;noOfListItems;expected
 ⍝ Test changing the list type stops a list
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'* List 1-a'
@@ -15,6 +15,6 @@
 
  expected←'<ul>' '<li>List 1-a</li>' '</ul>' '<ul>' '<li>List 2-b' '<ul>' '<li>List 1-b</li>' '</ul>' '<ol start="2">'
  expected,←'<li>List 2-a</li>' '</ol></li>' '</ul>'
- →FailsIf expected≢ns.html
+ →T.FailsIf expected≢ns.html
 
- R←∆OK
+ R←T._OK

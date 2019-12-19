@@ -2,7 +2,7 @@
 ⍝ Test an HTML block that is located at the bottom of the document.
 ⍝ Was once a bug because two empty lines were ALWAYS requested.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←'A paragraph.' '' '<div id="foo">' 'Another paragraph.' '</div>'
@@ -12,6 +12,6 @@
  expected←⊂'<p>A paragraph.</p>'
  expected,←'<div id="foo">' 'Another paragraph.' '</div>'
 
- →PassesIf expected≡ns.html~⊂''
+ →T.PassesIf expected≡ns.html~⊂''
 
- R←∆OK
+ R←T._OK

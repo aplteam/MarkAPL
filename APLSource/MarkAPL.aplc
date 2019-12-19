@@ -61,33 +61,19 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'8.0.0.131' '2019-10-21'
+      r←(Last⍕⎕THIS)'8.1.0.133' '2019-12-17'
     ∇
 
     ∇ History
       :Access Public Shared
-      ⍝ * 8.0.0
-      ⍝   * The way multiple backticks and escaped backticks were handled in in-line code got changed.\\
-      ⍝     **Watch out**: This change might well make your document(s) look different; it's therefore considered a breaking change.
-      ⍝     However, in real life this is unlikely to cause a problem.
-      ⍝   * A single empty line does not break anymore the part of the markdown document that defines embedded parameters.
-      ⍝   * Special attributes can now be assigned to `<<SubToc>>`.
-      ⍝   * The level of headers listed by `<<SubTOC>>` can now be restricted with the newly introduced `<<SubToc-1>>` syntax.
-      ⍝   * A Leanpub encoding directive in the first line not only survives but does not interfere with any `[parm]:` definitions.
-      ⍝   * Documenation improved. 
+      ⍝ * 8.1.0
+      ⍝   * Headers (<h1> to <h6>) had no ID assigned in case auto-anchoring for <h{n}> tags was switched off.
+      ⍝     Now the ID is assigned as `data-id="{...}`, taking advantage of the uiser-defined attributes introduced
+      ⍝     with HTML5: those need to start with "data-" in order to avoid name clashes.
+      ⍝   * Functions are not compiled any longer (400⌶) in order to avoid stability problems.
       ⍝   * Bug fixes
-      ⍝     * Assigning special attributes to a header that was part of a `<<SubToc>>` crashed MarkAPL.
-      ⍝     * A comment line should, according to the documentation, not break the part of the markdown document that defines embedded
-      ⍝       parameters, but it did anyway.
-      ⍝     * The CSS for printing a code block that uses `leanpub-start-insert` and `leanpub-end-insert` did not emphasize the part
-      ⍝       of the code block that was embraced by this mark-up was.
-      ⍝     * The CSS class `.page_break_before` did not work in both style sheets coming with MarkAPL.
-      ⍝     * The CSS class `.center` set the top and bottom margin to 0 rather than leaving them alone.
-      ⍝     * The default alignment of numeric columns ("right") was "left" when a table had a footer.
-      ⍝     * In case a sub toc was injected but either paremeter `subtoc` or `toc` was 0 the text was not converted correctly into
-      ⍝       a paragraph.
-      ⍝     * In case a sub toc would consist of just one sub header nothing was done (correctly) but the message was confusing.
-      ⍝     * A sub toc followong the main toc or another sub toc could interfere with each other. Style sheets corrected.
+      ⍝     * Superfluous "s" removed from message 'Single double quotes`
+      ⍝     * When `bookmarkLink` was restricted the TOC was not always compiled correctly
       ⍝\\
       ⍝ For information regarding older versions see <https://github.com/aplteam/MarkAPL/releases>
     ∇
@@ -335,7 +321,6 @@
     ⍝ See "MarkAPL.html" for details.
       :Access Public Shared
       parms←CompileParms parms
-      {}CompileMarkAPLFnsAndOprs parms
       markdown←GetMarkdown markdown
       ns←Create_NS ⍬
       ns.markdown←dtb(Nest markdown),⊂''
@@ -1060,8 +1045,8 @@
           anchor←AddBookmarkLink l ns bookmarkName
           ns.html,←ns.parms.div_h_tag/⊂'<div class="h_tag">'
           ns.html,←{⊂⍣(0≠≢⍵)⊣⍵}anchor
-          ns.html,←⊂'<h',(⍕l),(RemoveIdFromSpecialAttributes⍣(0≠≢anchor)⊣sa),'>',c2,'</h',(⍕l),'>'
-          ns.html,←((,0)≢,ns.parms.bookmarkLink)/⊂'</a>'
+          ns.html,←⊂dmb'<h',(⍕l),({0=≢⍵:⍵ ⋄ ' data-id="',⍵,'"'}bookmarkName),({0=≢⍵:⍵ ⋄ ' ',⍵}RemoveIdFromSpecialAttributes⍣(0≠≢anchor)⊣sa),'>',c2,'</h',(⍕l),'>'
+          ns.html,←(0<≢anchor)/⊂'</a>'
           ns.html,←ns.parms.div_h_tag/⊂'</div>'
           ns.headers⍪←l bookmarkName c2
           ns.headerLineNos,←⊃ns.lineNumbers
@@ -1110,8 +1095,8 @@
           anchor←AddBookmarkLink l ns bookmarkName
           ns.html,←ns.parms.div_h_tag/⊂'<div class="h_tag">'
           ns.html,←{⊂⍣(0≠≢⍵)⊣⍵}anchor
-          ns.html,←⊂'<h',(⍕l),(RemoveIdFromSpecialAttributes⍣(0≠≢anchor)⊣sa),'>',c2,'</h',(⍕l),'>'
-          ns.html,←((,0)≢,ns.parms.bookmarkLink)/⊂'</a>'
+          ns.html,←⊂dmb'<h',(⍕l),({0=≢⍵:⍵ ⋄ ' data-id="',⍵,'"'}bookmarkName),({0=≢⍵:⍵ ⋄ ' ',⍵}RemoveIdFromSpecialAttributes⍣(0≠≢anchor)⊣sa),'>',c2,'</h',(⍕l),'>'
+          ns.html,←(0<≢anchor)/⊂'</a>'
           ns.html,←ns.parms.div_h_tag/⊂'</div>'
           ns.headers⍪←l bookmarkName c2
           ns.headerLineNos,←⊃ns.lineNumbers
@@ -2212,7 +2197,7 @@
           :If (,0)≢,ns.parms.numberHeaders
               toc,←toc{⍵[;4]⌿⍨⍵[;2]∊⍺[;3]}ns.headers
               links←ns.parms.bookmarkMayStartWithDigit{⍺ CompileBookMarkName ⍵''}¨toc[;3]
-              tocHtml←ns CreateTOC toc[;1 2 4],links
+              tocHtml←ns CreateTOC toc[;1 2 5],links
           :Else
               links←{(3⊃⍵)≡GetBookMarkNameFromCaption(2⊃⍵)'':3⊃⍵ ⋄ 3⊃⍵}¨↓toc
               tocHtml←ns CreateTOC(toc[;1 2],(⊂'')),links
@@ -2393,7 +2378,7 @@
     ⍝ * they are part of code (survives untouched)
     ⍝ * there are two of them in succession (one survives)
     ⍝ * it appears within an attribute definition like <div attr="\3">
-    ⍝ * any character to the right of the `\` is not one of `_*|~{}(&<>` 
+    ⍝ * any character to the right of the `\` is not one of `_*|~{}(&<>`
     ⍝ This does not work on, say, "\\\\\\\\\\\\\\\; that why this is not legal.
       mask←~GetMaskForCodeTags tx
       mask←mask\{~Between ⍵∊'<>'}mask/tx
@@ -2958,7 +2943,7 @@
           r←txt
       :ElseIf 1=≢ind                                        ⍝ Just one double quote? Done!
           r←'`(.*?)`' '"'⎕R'&' '\\"'⊣txt                    ⍝ Escapes the " but ignores `code`
-          msg←'Warning: single double quotes found in ',type
+          msg←'Warning: single double quote found in ',type
           ns.report,←⊂msg,' (line ',(⍕ns.parms.lineNumberOffset+⊃ns.lineNumbers),')'
       :Else
           :If '\'∧.≠r[ind-1]                                ⍝ Nothing escaped?
@@ -3043,13 +3028,6 @@
           links←1↓¨('#'=⊃¨links)/links
       :EndIf
     ∇
-
-      CompileMarkAPLFnsAndOprs←{
-          parms←⍵
-          0=parms.compileFunctions:0    ⍝ Don't?!
-          1(400⌶)'Between':0            ⍝ already compiled
-          ⍬ ⍝{2(400⌶)⍵}¨↓⎕NL 3
-      }
 
     Between←{⍵∨≠\⍵}
 
@@ -3221,7 +3199,7 @@
               ((≢r)⊃r),←'</li>'
           :EndIf
           caption←⊃ns ProcessInlineMarkUp caption
-          r,←⊂'<li><a href="#',id,'">',(nf/no,' '),caption,'</a>'
+          r,←⊂'<li><a href="#',id,'">',({⍵,(0<≢⍵)/' '}nf/⍕no),caption,'</a>'
           lastLevel←level
           ff←0
       :EndFor
@@ -3337,22 +3315,21 @@
           ' style="text-align: ',⍵,';"'     ⍝ For "center" and "right"
       }
 
-    ∇ toc←CollectToc ns;ind;buff;level;caption;IDs
+    ∇ toc←CollectToc ns;ind;buff;level;caption;IDs;bool
       toc←⍬
-      :If 0≠≢ind←'<a .*href=".*" class="autoheader_anchor".*>'⎕S 2⍠('Greedy' 0)⊣ns.html
-          level←{⍎1↑2↓⊃⍵∘GetHitsFromRegExSearch¨'<h[1-6].*>'⎕S 0 1⍠('Greedy' 0)⊣⍵}¨ns.html[2+ind]
-          caption←{1↓¨(-1+≢'<hx>')↓¨⍵ GetHitsFromRegExSearch¨{⊃'\>.*\</h[1-6]>'⎕S 0 1⍠('Greedy' 0)⊣⍵}¨⍵}ns.html[2+ind]
+      :If 0≠≢ind←'<h[1-6][ >]'⎕S 2⍠('Greedy' 0)⊣ns.html
+          level←{⊃ToNum 1↑2↓⊃'<h[1-6].*>'⎕S{⍵.Match}⍠('Greedy' 0)⊣⍵}¨ns.html[ind+1]
+          caption←{1↓¨(-1+≢'<hx>')↓¨{⊃'\>.*\</h[1-6]>'⎕S{⍵.Match}⍠('Greedy' 0)⊣⍵}¨⍵}ns.html[1+ind]
           caption←{0=≢⍵:⍵ ⋄ '&lt;' '&gt;' '&amp;' '<code.*>' '</code>'⎕R('<' '>' '\&' '`' '`')⍠('Greedy' 0)('Mode' 'L')⊣⍵}¨caption
-          IDs←{⍵{{⍵↑⍨¯1+⍵⍳'"'}((≢'id="')+⍵)↓⍺}¨'id="(.*)"'⎕S 0⍠('Greedy' 0)⊣⍵}ns.html[1+ind]
+          IDs←{⊃'data-id="[^"]*"'⎕S{⍵.Match}⊣⍵}¨ns.html[ind+1]
+          ((0=⊃¨1↑¨0⍴¨IDs)/IDs)←⊂''
           toc←↓(level,[1.5]caption),IDs
+          (3⊃¨toc)←{0=≢⍵:⍵ ⋄ ¯1↓⍵↓⍨⍵⍳'"'}¨3⊃¨toc
+          bool←{2<+/{⍵∨≠\⍵}⍵='"'}¨IDs
+      :AndIf 0≠≢toc←bool⌿toc
+          toc,¨←ns.headerLineNos
       :EndIf
     ∇
-
-      GetHitsFromRegExSearch←{
-      ⍝ ⍺ is a text string to be indexed.
-      ⍝ ⍵ is a two-element vector as returned by `⎕S 0 1`: start and length
-          ⍵[2]↑⍵[1]↓⍺
-      }
 
     ∇ r←GetEmptyLines md
       ⍝ Returns vector of Booleans for those lines that are empty.

@@ -1,7 +1,7 @@
  R←Test_Links_006(stopFlag batchFlag);⎕TRAP;ns;html;md
 ⍝ Test  a reference link which also appears in a code block.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'This:'
@@ -20,6 +20,6 @@
  ns←##.MarkAPL.Process ns
 
  html←1↓↑,/(⎕UCS 13),¨ns.html
- →PassesIf 1=+/'<a href="http://aplwiki.com"'⍷html
+ →T.PassesIf 1=+/'<a href="http://aplwiki.com"'⍷html
 
- R←∆OK
+ R←T._OK

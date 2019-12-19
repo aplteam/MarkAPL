@@ -1,7 +1,7 @@
  R←Test_Table_024(stopFlag batchFlag);⎕TRAP;ns;mat;expected
 ⍝ Test table with an ill-defined table definition; was a bug once.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  mat←''
  mat,←⊂'|This  | | | |'
@@ -18,6 +18,6 @@
  expected,←'<td style="text-align: left;">Card reader</td>' '<td style="text-align: right;">1</td>' '<td style="text-align: right;">62.00</td>' '<td style="text-align: right;">62.00</td>'
  expected,←⊂'</tr>'
  expected,←'</tbody>' '</table>'
- →PassesIf expected≡ns.html
+ →T.PassesIf expected≡ns.html
 
- R←∆OK
+ R←T._OK

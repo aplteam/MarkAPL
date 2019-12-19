@@ -1,7 +1,7 @@
  R←Test_Misc_001(stopFlag batchFlag);⎕TRAP;ns;md;Code;expected;Flat;bool
 ⍝ Test internal function "GetMaskForCodeTags"
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  Code←{'<code>',⍵,'</code>'}
  #.⎕SHADOW'TEMP'
@@ -9,35 +9,35 @@
 
  md←'{(+/⍵)÷⍴,⍵}'
  #.TEMP.md←Code md
- →PassesIf∧/##.MarkAPL.Execute'GetMaskForCodeTags  #.TEMP.md'
+ →T.PassesIf∧/##.MarkAPL.Execute'GetMaskForCodeTags  #.TEMP.md'
 
  md←'{(+/⍵)÷⍴,⍵}' '111' '+/[2]'
  #.TEMP.md←{(Code 0⊃⍵),(1⊃⍵),Code 2⊃⍵}md
  expected←↑,/((⍴¨'<code></code>' '' '<code></code>')+↑¨⍴¨md)⍴¨1 0 1
- →PassesIf expected≡##.MarkAPL.Execute'GetMaskForCodeTags #.TEMP.md'
+ →T.PassesIf expected≡##.MarkAPL.Execute'GetMaskForCodeTags #.TEMP.md'
 
  md←'111' '{(+/⍵)÷⍴,⍵}'
  #.TEMP.md←{(0⊃⍵),Code 1⊃⍵}md
  expected←↑,/((⍴¨'' '<code></code>')+↑¨⍴¨md)⍴¨0 1
- →PassesIf expected≡##.MarkAPL.Execute'GetMaskForCodeTags #.TEMP.md'
+ →T.PassesIf expected≡##.MarkAPL.Execute'GetMaskForCodeTags #.TEMP.md'
 
  md←'{(+/⍵)÷⍴,⍵}' '111'
  #.TEMP.md←{(Code 0⊃⍵),1⊃⍵}md
  expected←↑,/((⍴¨'<code></code>' '')+↑¨⍴¨md)⍴¨1 0
- →PassesIf expected≡##.MarkAPL.Execute'GetMaskForCodeTags #.TEMP.md'
+ →T.PassesIf expected≡##.MarkAPL.Execute'GetMaskForCodeTags #.TEMP.md'
 
  Flat←{1↓⊃,/(⎕UCS 13),¨⍵}
  #.TEMP.md←Flat'<code>' '{(+/⍵)÷⍴,⍵}' '</code>'
- →PassesIf∧/##.MarkAPL.Execute'GetMaskForCodeTags #.TEMP.md'
+ →T.PassesIf∧/##.MarkAPL.Execute'GetMaskForCodeTags #.TEMP.md'
 
  #.TEMP.md←'aaa',Flat'<code>' '{(+/⍵)÷⍴,⍵}' '</code>'
  bool←##.MarkAPL.Execute'GetMaskForCodeTags #.TEMP.md'
- →PassesIf 3=+/~bool
- →PassesIf∧/3↓bool
+ →T.PassesIf 3=+/~bool
+ →T.PassesIf∧/3↓bool
 
  #.TEMP.md←(Flat'<code>' '{(+/⍵)÷⍴,⍵}' '</code>'),'aaa'
  bool←##.MarkAPL.Execute'GetMaskForCodeTags #.TEMP.md'
- →PassesIf 3=+/~bool
- →PassesIf∧/¯3↓bool
+ →T.PassesIf 3=+/~bool
+ →T.PassesIf∧/¯3↓bool
 
- R←∆OK
+ R←T._OK

@@ -1,7 +1,7 @@
  R←Test_HTML_001(stopFlag batchFlag);⎕TRAP;md;ns
 ⍝ Test <script> tags in all flavours.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'This is a para.'
@@ -10,9 +10,9 @@
  md,←⊂'Another para'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- →PassesIf'<scriPt>'{⍺≡(⍴⍺)↑⍵}1⊃ns.html
- →PassesIf∨/'</Script>'⍷1⊃ns.html
- →PassesIf'<p>Another para</p>'≡↑¯1↑ns.html
+ →T.PassesIf'<scriPt>'{⍺≡(⍴⍺)↑⍵}1⊃ns.html
+ →T.PassesIf∨/'</Script>'⍷1⊃ns.html
+ →T.PassesIf'<p>Another para</p>'≡↑¯1↑ns.html
 
  md←''
  md,←⊂'This is a para.'
@@ -25,9 +25,9 @@
  md,←⊂'Another para'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- →PassesIf'<scriPt lang="en" type="this and that">'≡1⊃ns.html
- →PassesIf'</Script>'≡5⊃ns.html
- →PassesIf'<p>Another para</p>'≡↑¯1↑ns.html
+ →T.PassesIf'<scriPt lang="en" type="this and that">'≡1⊃ns.html
+ →T.PassesIf'</Script>'≡5⊃ns.html
+ →T.PassesIf'<p>Another para</p>'≡↑¯1↑ns.html
 
  md←''
  md,←⊂'This is a para.'
@@ -38,8 +38,8 @@
  md,←⊂'Another para'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- →PassesIf'<script>'≡1⊃ns.html
- →PassesIf'More Javascript</Script>'≡3⊃ns.html
+ →T.PassesIf'<script>'≡1⊃ns.html
+ →T.PassesIf'More Javascript</Script>'≡3⊃ns.html
 
  md←''
  md,←⊂'This is a para.'
@@ -50,8 +50,8 @@
  md,←⊂'Another para'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- →PassesIf'<script>'≡1⊃ns.html
- →PassesIf'More Javascript</Script>'≡3⊃ns.html
+ →T.PassesIf'<script>'≡1⊃ns.html
+ →T.PassesIf'More Javascript</Script>'≡3⊃ns.html
 
  md←''
  md,←⊂'This is a para.'
@@ -63,8 +63,8 @@
  md,←⊂'Another para'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- →PassesIf'<script lang="apl">'≡1⊃ns.html
- →PassesIf'</Script>'≡4⊃ns.html
+ →T.PassesIf'<script lang="apl">'≡1⊃ns.html
+ →T.PassesIf'</Script>'≡4⊃ns.html
 
  md←''
  md,←⊂'This is a para.'
@@ -76,7 +76,7 @@
  md,←⊂'Another para'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- →PassesIf'<scriPt>'≡1⊃ns.html
- →PassesIf'</Script>'≡4⊃ns.html
+ →T.PassesIf'<scriPt>'≡1⊃ns.html
+ →T.PassesIf'</Script>'≡4⊃ns.html
 
- R←∆OK
+ R←T._OK

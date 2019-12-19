@@ -1,7 +1,7 @@
  R←Test_InLine_026(stopFlag batchFlag);⎕TRAP;ns;md;expected
 ⍝ Inline-mark-up after a single ` should be processed. Was once a bug.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←⊂'`\` should not influence **_MarkAPL_**'
 
@@ -9,6 +9,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←,⊂'<p><code>\</code> should not influence <strong><em>MarkAPL</em></strong></p>'
- →PassesIf expected≡ns.html
+ →T.PassesIf expected≡ns.html
 
- R←∆OK
+ R←T._OK

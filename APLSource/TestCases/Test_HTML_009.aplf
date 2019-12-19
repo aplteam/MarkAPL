@@ -1,7 +1,7 @@
  R←Test_HTML_009(stopFlag batchFlag);⎕TRAP;md;ns
 ⍝ Test nested tags in an HTML block (obstacle is finding the end of the block).
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
 ⍝ First block contains the opening <div>s, the second one the closing ones.
 ⍝ Note that the two blocks have actually no content and are separated by just ONE empty line.
@@ -25,10 +25,10 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 1=+/'<div id="abc">'⍷∊ns.html
- →PassesIf 1=+/'<div id="xy">'⍷∊ns.html
- →PassesIf 1=+/'<span class="special">'⍷∊ns.html
- →PassesIf 1=+/'<span class="special2">'⍷∊ns.html
- →PassesIf 2=+/'</div>'⍷∊ns.html
+ →T.PassesIf 1=+/'<div id="abc">'⍷∊ns.html
+ →T.PassesIf 1=+/'<div id="xy">'⍷∊ns.html
+ →T.PassesIf 1=+/'<span class="special">'⍷∊ns.html
+ →T.PassesIf 1=+/'<span class="special2">'⍷∊ns.html
+ →T.PassesIf 2=+/'</div>'⍷∊ns.html
 
- R←∆OK
+ R←T._OK

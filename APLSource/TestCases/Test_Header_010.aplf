@@ -1,7 +1,7 @@
  R←Test_Header_010(stopFlag batchFlag);⎕TRAP;md;ns;parms
 ⍝ Test numbering of headers but start numbering not with first level.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'Main'
@@ -32,23 +32,23 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- →PassesIf''≡0⊃ns.headers[;3]
- →PassesIf'1.'≡1⊃ns.headers[;3]
- →PassesIf'1.1.'≡2⊃ns.headers[;3]
- →PassesIf'1.1.1.'≡3⊃ns.headers[;3]
- →PassesIf''≡4⊃ns.headers[;3]
- →PassesIf''≡5⊃ns.headers[;3]
- →PassesIf'1.1.2.'≡6⊃ns.headers[;3]
- →PassesIf'1.1.3.'≡7⊃ns.headers[;3]
- →PassesIf'1.2.'≡8⊃ns.headers[;3]
- →PassesIf'1.3.'≡9⊃ns.headers[;3]
- →PassesIf'1.3.1.'≡10⊃ns.headers[;3]
- →PassesIf''≡11⊃ns.headers[;3]
- →PassesIf''≡12⊃ns.headers[;3]
- →PassesIf'1.4.'≡13⊃ns.headers[;3]
- →PassesIf'1.5.'≡14⊃ns.headers[;3]
- →PassesIf'1.6.'≡15⊃ns.headers[;3]
- →PassesIf'1.7.'≡16⊃ns.headers[;3]
- →PassesIf'2.'≡17⊃ns.headers[;3]
+ →T.PassesIf''≡0⊃ns.headers[;3]
+ →T.PassesIf'1.'≡1⊃ns.headers[;3]
+ →T.PassesIf'1.1.'≡2⊃ns.headers[;3]
+ →T.PassesIf'1.1.1.'≡3⊃ns.headers[;3]
+ →T.PassesIf''≡4⊃ns.headers[;3]
+ →T.PassesIf''≡5⊃ns.headers[;3]
+ →T.PassesIf'1.1.2.'≡6⊃ns.headers[;3]
+ →T.PassesIf'1.1.3.'≡7⊃ns.headers[;3]
+ →T.PassesIf'1.2.'≡8⊃ns.headers[;3]
+ →T.PassesIf'1.3.'≡9⊃ns.headers[;3]
+ →T.PassesIf'1.3.1.'≡10⊃ns.headers[;3]
+ →T.PassesIf''≡11⊃ns.headers[;3]
+ →T.PassesIf''≡12⊃ns.headers[;3]
+ →T.PassesIf'1.4.'≡13⊃ns.headers[;3]
+ →T.PassesIf'1.5.'≡14⊃ns.headers[;3]
+ →T.PassesIf'1.6.'≡15⊃ns.headers[;3]
+ →T.PassesIf'1.7.'≡16⊃ns.headers[;3]
+ →T.PassesIf'2.'≡17⊃ns.headers[;3]
 
- R←∆OK
+ R←T._OK

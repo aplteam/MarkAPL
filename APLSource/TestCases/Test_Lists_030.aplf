@@ -1,7 +1,7 @@
  R←Test_Lists_030(stopFlag batchFlag);⎕TRAP;md;ns;parms;expect
 ⍝ Test a list where a para (rather then a list item) falls back in indentation to a previous level
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'* List item a'
@@ -20,6 +20,6 @@
 
 ⍝          a            a-1         a-1-1         a-1-1-1      a-1-1-1-1      a-1-1-1-1      a-1-1-1  a-1-1                 a-1            a
  expect←'<ul>' '<li>' '<ul>' '<li>' '<ul>' '<li>' '<ul>' '<li>' '<ul>' '<li>' '</ul>' '<li>' '</ul>' '</ul>' '<p>' '<li>' '</ul>' '<li>' '</ul>'
- →PassesIf expect≡{⍵↑⍨1+⍵⍳'>'}¨ns.html
+ →T.PassesIf expect≡{⍵↑⍨1+⍵⍳'>'}¨ns.html
 
- R←∆OK
+ R←T._OK

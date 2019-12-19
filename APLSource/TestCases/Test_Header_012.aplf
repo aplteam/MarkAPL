@@ -1,7 +1,7 @@
  R←Test_Header_012(stopFlag batchFlag);⎕TRAP;md;ns;parms
 ⍝ Test numbering of headers when there are no headers (crashed once).
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'Para'
@@ -15,4 +15,4 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- R←∆OK
+ R←T._OK

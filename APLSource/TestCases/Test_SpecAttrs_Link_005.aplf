@@ -1,7 +1,7 @@
  R←Test_SpecAttrs_Link_005(stopFlag batchFlag);⎕TRAP;ns;md;fn;expected
 ⍝ Link reference: assign "color=red" to the reference.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'See the [APL wiki][apl].'
@@ -15,6 +15,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'style="color:red;"'
- →PassesIf 2=+/expected⍷∊ns.html
+ →T.PassesIf 2=+/expected⍷∊ns.html
 
- R←∆OK
+ R←T._OK

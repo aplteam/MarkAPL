@@ -1,7 +1,7 @@
  R←Test_Header_006(stopFlag batchFlag);⎕TRAP;md;ns;parms
 ⍝ Test auto-headers (bookmarks)
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'Main'
@@ -37,9 +37,9 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 18=↑⍴ns.headers
- →PassesIf{(⍴∪⍵)=⍴⍵}ns.headers[;1]
- →PassesIf 0∊⍴{⍵/⍨~∨/¨'Warning'∘⍷¨⍵}ns.report
- →PassesIf 17 18 19 21≡∆GetLineNumber¨ns.report
+ →T.PassesIf 18=↑⍴ns.headers
+ →T.PassesIf{(⍴∪⍵)=⍴⍵}ns.headers[;1]
+ →T.PassesIf 0∊⍴{⍵/⍨~∨/¨'Warning'∘⍷¨⍵}ns.report
+ →T.PassesIf 17 18 19 21≡∆GetLineNumber¨ns.report
 
- R←∆OK
+ R←T._OK

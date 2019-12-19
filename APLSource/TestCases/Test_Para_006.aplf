@@ -2,7 +2,7 @@
 ⍝ Test a paragraph that contains "_HTML" as part of a paragraph
 ⍝ Should not trigger anything.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'The name of the variable is _HTML_, which is a reserved name.'
@@ -12,6 +12,6 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 1=+/'<em>'⍷∊ns.html
+ →T.PassesIf 1=+/'<em>'⍷∊ns.html
 
- R←∆OK
+ R←T._OK

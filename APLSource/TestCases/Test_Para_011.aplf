@@ -1,7 +1,7 @@
  R←Test_Para_011(stopFlag batchFlag);⎕TRAP;ns;md;expected
 ⍝ Test a paragraph code that containes a `*` (was once a bug).
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'`*/⍳8` should be a paragraph'
@@ -10,6 +10,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<p><code>*/⍳8</code> should be a paragraph</p>'
- →PassesIf expected≡∊ns.html
+ →T.PassesIf expected≡∊ns.html
 
- R←∆OK
+ R←T._OK

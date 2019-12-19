@@ -2,7 +2,7 @@
 ⍝ Test a list that starts in column 5 - this is not a list then.
 ⍝ 3 blanks are the maximum number of leading blanks.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'    1. Running number, starting from 1.'
@@ -11,6 +11,6 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 0=+/'<ol'⍷∊ns.html
+ →T.PassesIf 0=+/'<ol'⍷∊ns.html
 
- R←∆OK
+ R←T._OK

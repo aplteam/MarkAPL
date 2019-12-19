@@ -1,16 +1,17 @@
  R←Test_ZZZ_998(stopFlag batchFlag);⎕TRAP;buff;md
 ⍝ Test whether date and version number in document "MarkAPL.md" are correct
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
- md←'flat'#.APLTreeUtils.ReadUtf8File'Docs\MarkAPL.md'
+ md←'flat'##.APLTreeUtils.ReadUtf8File'Docs\MarkAPL.md'
  buff←'This document refers to version '
- buff,←↑{⍺,'.',⍵}/3↑'.'#.APLTreeUtils.Split 1⊃##.MarkAPL.Version
+ buff,←↑{⍺,'.',⍵}/3↑'.'##.APLTreeUtils.Split 1⊃##.MarkAPL.Version
  buff,←' of **_MarkAPL_**.'
- →PassesIf 1=+/buff⍷md
+ →T.PassesIf 1=+/buff⍷md
 
  buff←'Kai Jaeger ⋄ APL Team Ltd ⋄ '
  buff,←2⊃##.MarkAPL.Version
- →PassesIf 1=+/buff⍷md
+ →T.PassesIf 1=+/buff⍷md
 
- R←∆OK
+ R←T._OK
+⍝Done

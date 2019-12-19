@@ -1,7 +1,7 @@
  R←Test_Lists_022(stopFlag batchFlag);⎕TRAP;md;ns;parms;expected
 ⍝ Test indentation: what belonge to a list item and what doesn't.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂' 1) List I.'
@@ -20,6 +20,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<ol start="1">' '<li>' '<li>' '<p>' '<p>' '<p>' '<li>' '</ol>'
- →PassesIf expected≡{⍵↑⍨1+⍵⍳'>'}¨ns.html
+ →T.PassesIf expected≡{⍵↑⍨1+⍵⍳'>'}¨ns.html
 
- R←∆OK
+ R←T._OK

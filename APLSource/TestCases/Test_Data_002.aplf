@@ -1,7 +1,7 @@
  R←Test_Data_002(stopFlag batchFlag);⎕TRAP;ns;md;data
 ⍝ Test multiple [data]: definitions.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'[data]:author=''Kai Jaeger'''
@@ -14,9 +14,9 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →FailsIf 4≠⊃⍴ns.data
+ →T.FailsIf 4≠⊃⍴ns.data
  data←⊃ns.data
- →FailsIf('author' 'Date' 'Copies' 'sequence')≢data[;0]
- →FailsIf('Kai Jaeger' '2016-02-19' 112(1 2 3))≢data[;1]
+ →T.FailsIf('author' 'Date' 'Copies' 'sequence')≢data[;0]
+ →T.FailsIf('Kai Jaeger' '2016-02-19' 112(1 2 3))≢data[;1]
 
- R←∆OK
+ R←T._OK

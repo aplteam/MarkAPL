@@ -1,7 +1,7 @@
  R←Test_Links_036(stopFlag batchFlag);⎕TRAP;ns;html;md
 ⍝ Test link to an internal ID that was defined as special attribute with uppercase.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'Program files(x86){#X86}'
@@ -13,8 +13,8 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →PassesIf∨/'<dt id="X86">'⍷∊ns.html
- →PassesIf∨/'<p><a href="#X86" class="bookmark_link">Link</a> to the definition.</p>'⍷∊ns.html
- →PassesIf 0∊⍴ns.report
+ →T.PassesIf∨/'<dt id="X86">'⍷∊ns.html
+ →T.PassesIf∨/'<p><a href="#X86" class="bookmark_link">Link</a> to the definition.</p>'⍷∊ns.html
+ →T.PassesIf 0∊⍴ns.report
 
- R←∆OK
+ R←T._OK

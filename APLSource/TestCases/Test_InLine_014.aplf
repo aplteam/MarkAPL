@@ -1,7 +1,7 @@
  R←Test_InLine_014(stopFlag batchFlag);⎕TRAP;ns;md
 ⍝ Test escaping `.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'In the first expression the \` is removed...'
@@ -14,18 +14,18 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 1=+/'the ` is removed'⍷0⊃ns.html
- →PassesIf 0=+/'<code>'⍷0⊃ns.html
+ →T.PassesIf 1=+/'the ` is removed'⍷0⊃ns.html
+ →T.PassesIf 0=+/'<code>'⍷0⊃ns.html
 
- →PassesIf 1=+/'this ` is '⍷1⊃ns.html
- →PassesIf 2=+/'<code>'⍷1⊃ns.html
- →PassesIf 2=+/'</code>'⍷1⊃ns.html
+ →T.PassesIf 1=+/'this ` is '⍷1⊃ns.html
+ →T.PassesIf 2=+/'<code>'⍷1⊃ns.html
+ →T.PassesIf 2=+/'</code>'⍷1⊃ns.html
 
- →PassesIf 1=+/'the ` are removed'⍷3⊃ns.html
- →PassesIf 0=+/'<code>'⍷3⊃ns.html
+ →T.PassesIf 1=+/'the ` are removed'⍷3⊃ns.html
+ →T.PassesIf 0=+/'<code>'⍷3⊃ns.html
 
- →PassesIf 1=+/'this ` is '⍷4⊃ns.html
- →PassesIf 2=+/'<code>'⍷4⊃ns.html
- →PassesIf 2=+/'</code>'⍷4⊃ns.html
+ →T.PassesIf 1=+/'this ` is '⍷4⊃ns.html
+ →T.PassesIf 2=+/'<code>'⍷4⊃ns.html
+ →T.PassesIf 2=+/'</code>'⍷4⊃ns.html
 
- R←∆OK
+ R←T._OK

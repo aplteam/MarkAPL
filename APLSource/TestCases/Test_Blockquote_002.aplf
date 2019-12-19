@@ -1,7 +1,7 @@
  R←Test_Blockquote_002(stopFlag batchFlag);⎕TRAP;md;ns;parms
 ⍝ Test a simple blockquote with in-line formatting.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'> This **is** a para; it _also_ (`(+/⍵)÷,⍴⍵`) contains code.'
@@ -9,8 +9,8 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 1=+/'<blockquote>'⍷∊ns.html
- →PassesIf 1=+/'</blockquote>'⍷∊ns.html
- →PassesIf'<p>This <strong>is</strong> a para; it <em>also</em> (<code>(+/⍵)÷,⍴⍵</code>) contains code.</p>'≡1⊃ns.html
+ →T.PassesIf 1=+/'<blockquote>'⍷∊ns.html
+ →T.PassesIf 1=+/'</blockquote>'⍷∊ns.html
+ →T.PassesIf'<p>This <strong>is</strong> a para; it <em>also</em> (<code>(+/⍵)÷,⍴⍵</code>) contains code.</p>'≡1⊃ns.html
 
- R←∆OK
+ R←T._OK

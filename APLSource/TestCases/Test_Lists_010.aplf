@@ -1,7 +1,7 @@
  R←Test_Lists_010(stopFlag batchFlag);⎕TRAP;md;ns;parms;noOfListItems;expected;html
 ⍝ Test deeply nested lists with paras in between.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'* First level'
@@ -27,6 +27,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<ul>' '<li>' '<ul>' '<li>' '<ol start="1">' '<li>' '<p>' '<ul>' '<li>' '<ul>' '<li>' '<ul>' '<li>' '<p>' '</ul>' '<li>' '<li>' '<ul>' '<li>' '<li>' '<p>' '</ul>' '</ul>' '<li>' '<ul>' '<li>' '</ul>' '</ul>' '</ol>' '</ul>' '</ul>'
- →FailsIf expected≢{⍵↑⍨1+⍵⍳'>'}¨ns.html
+ →T.FailsIf expected≢{⍵↑⍨1+⍵⍳'>'}¨ns.html
 
- R←∆OK
+ R←T._OK

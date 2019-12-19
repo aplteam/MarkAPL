@@ -1,7 +1,7 @@
  R←Test_Header_022(stopFlag batchFlag);⎕TRAP;md;ns;expected
 ⍝ Test header That start with a digit rather than a letter.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'# 32/64-bit nightmares'
@@ -11,7 +11,7 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<div class="h_tag">' '<a href="#3264-bit-nightmares" id="3264-bit-nightmares" class="autoheader_anchor">'
- expected,←'<h1>32/64-bit nightmares</h1>' '</a>' '</div>' '<p>A para.</p>'
- →PassesIf expected≡ns.html
+ expected,←'<h1 data-id="3264-bit-nightmares">32/64-bit nightmares</h1>' '</a>' '</div>' '<p>A para.</p>'
+ →T.PassesIf expected≡ns.html
 
- R←∆OK
+ R←T._OK

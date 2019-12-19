@@ -2,7 +2,7 @@
 ⍝ Test an HTML block that is located at the beginning of the document.
 ⍝ Was once a bug because two empty lines were ALWAYS requested.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←'<a href="http://aplwiki.com/KaiJaeger">' '<img src="http://aplteam.com/wp-content/uploads/2015/02/KaiJaegerHeadMedium75perc.png" title="logo">' '</a>'
@@ -15,6 +15,6 @@
  expected,←⊂'<img src="http://aplteam.com/wp-content/uploads/2015/02/KaiJaegerHeadMedium75perc.png" title="logo">'
  expected,←'</a>' ''
  expected,←⊂'<p>A para</p>'
- →PassesIf expected≡ns.html
+ →T.PassesIf expected≡ns.html
 
- R←∆OK
+ R←T._OK

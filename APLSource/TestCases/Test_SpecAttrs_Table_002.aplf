@@ -1,7 +1,7 @@
  R←Test_SpecAttrs_Table_002(stopFlag batchFlag);⎕TRAP;md;ns;expected
 ⍝ Table with columns: assigning ID, class, attributes
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'|Col A|Col B|  { #foo .class2 foo=123}'
@@ -14,6 +14,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<table class="class2" id="foo" foo="123">'
- →PassesIf expected≡↑ns.html
+ →T.PassesIf expected≡↑ns.html
 
- R←∆OK
+ R←T._OK

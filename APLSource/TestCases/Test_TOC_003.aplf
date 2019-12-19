@@ -1,7 +1,7 @@
  R←Test_TOC_003(stopFlag batchFlag);⎕TRAP;md;ns;parms
 ⍝ Test TOC generation with both ATX and SeText headers
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'Main'
@@ -26,9 +26,10 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 8 3≡⍴⊃ns.toc=ns.toc
- →PassesIf 1 2 3 3 4 4 2 2≡0⊃¨ns.toc
- →PassesIf(⊂'<li><a href="#4-1">4-1</a></li>')∊ns.html
- →PassesIf(⊂'<li><a href="#42">4.2</a></li>')∊ns.html
+ →T.PassesIf 8 4≡⍴⊃ns.toc
+ →T.PassesIf 1 2 3 3 4 4 2 2≡↑¨ns.toc
+ →T.PassesIf(⊂'<li><a href="#4-1">4-1</a></li>')∊ns.html
+ →T.PassesIf(⊂'<li><a href="#42">4.2</a></li>')∊ns.html
 
- R←∆OK
+ R←T._OK
+⍝Done

@@ -1,7 +1,7 @@
  R←Test_SubToc_008(stopFlag batchFlag);⎕TRAP;md;ns;parms
 ⍝ Test <<SubTOC>> with TOC depth restriction to 2
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'# Level 1'
@@ -28,13 +28,17 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 1=+/'<h1>1. Level 1</h1>'⍷∊ns.html
- →PassesIf 5=+/'<h3>'⍷∊ns.html                      ⍝ One for Main TOC
- →PassesIf 2=+/'<h4>'⍷∊ns.html
- →PassesIf 2=+/'<h2>'⍷∊ns.html
- →PassesIf 7=+/'<p>'⍷∊ns.html                       ⍝ Caption of sub-toc is a para as well!
- →PassesIf 0=+/'<<SubTOC'⍷∊ns.html
- →PassesIf 2=⍴'<nav.*>'⎕S 0⍠('Greedy' 0)⊣ns.html
- →PassesIf 6=+/'bookmark_link'⍷⊃'<nav>.*</nav>'⎕S{⍵.Match}⊣⊃,/ns.html
+ →T.PassesIf 1=+/'<h1 data-id="Level-1">1. Level 1</h1>'⍷∊ns.html
+ →T.PassesIf 1=+/'<h3>'⍷∊ns.html                      ⍝ For Main TOC
+ →T.PassesIf 5=+/'<h3'⍷∊ns.html
+ →T.PassesIf 1=+/'<h4 data-id="Fourth-1">'⍷∊ns.html
+ →T.PassesIf 1=+/'<h4 data-id="Fourth-2">'⍷∊ns.html
+ →T.PassesIf 1=+/'<h2 data-id="Level-2">'⍷∊ns.html
+ →T.PassesIf 1=+/'<h2 data-id="Level-3">'⍷∊ns.html
+ →T.PassesIf 7=+/'<p>'⍷∊ns.html                       ⍝ Caption of sub-toc is a para as well!
+ →T.PassesIf 0=+/'<<SubTOC'⍷∊ns.html
+ →T.PassesIf 2=⍴'<nav.*>'⎕S 0⍠('Greedy' 0)⊣ns.html
+ →T.PassesIf 6=+/'bookmark_link'⍷⊃'<nav>.*</nav>'⎕S{⍵.Match}⊣⊃,/ns.html
 
- R←∆OK
+ R←T._OK
+⍝Done

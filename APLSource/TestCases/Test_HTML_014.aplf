@@ -1,7 +1,7 @@
  R←Test_HTML_014(stopFlag batchFlag);⎕TRAP;md;ns;expected
 ⍝ Test <p>: with no leading space it's an HTML block, otherwise it's not.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂''
@@ -15,6 +15,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<p>HTML block 1</p>' '<p>&lt;p&gt;This is para&lt;/p&gt;</p>'
- →PassesIf expected≡ns.html~⊂''
+ →T.PassesIf expected≡ns.html~⊂''
 
- R←∆OK
+ R←T._OK

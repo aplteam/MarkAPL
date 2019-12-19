@@ -1,7 +1,7 @@
  R←Test_Abbr_007(stopFlag batchFlag);⎕TRAP;ns;html;md
 ⍝ Test abbreviation with " around it.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'"HTML" was coined by Tim Berners-Lee.'
@@ -12,7 +12,7 @@
  ns←##.MarkAPL.Process ns
 
  html←1↓↑,/(⎕UCS 13),¨ns.html
- →FailsIf 1≠+/'<abbr'⍷html
- →FailsIf 1≠+/'<abbr title="'⍷html
+ →T.FailsIf 1≠+/'<abbr'⍷html
+ →T.FailsIf 1≠+/'<abbr title="'⍷html
 
- R←∆OK
+ R←T._OK

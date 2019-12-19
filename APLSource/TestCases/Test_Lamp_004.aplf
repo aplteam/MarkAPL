@@ -1,7 +1,7 @@
  R←Test_Lamp_004(stopFlag batchFlag);⎕TRAP;ns;parms;mat;html
 ⍝ Test that a line with an odd number of `'` is reported correctly. The comment line needs to be taken into account. Was once a bug.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  mat←''
  mat,←⊂'col 1|col2 |col 3'
@@ -19,7 +19,7 @@
  ns←##.MarkAPL.Init parms mat
  ns←##.MarkAPL.Process ns
 
- →PassesIf 1=⍴ns.report
- →PassesIf(,8)≡,'^.*line ' '\).*$'∘∆GetLineNumber¨ns.report
+ →T.PassesIf 1=⍴ns.report
+ →T.PassesIf(,8)≡,'^.*line ' '\).*$'∘∆GetLineNumber¨ns.report
 
- R←∆OK
+ R←T._OK

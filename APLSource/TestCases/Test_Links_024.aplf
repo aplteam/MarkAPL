@@ -1,7 +1,7 @@
  R←Test_Links_024(stopFlag batchFlag);⎕TRAP;ns;html;md;expected
 ⍝ Test  a self-link that contains `_`; was once buggy.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'[](aplwiki.com/_/test.html)'
@@ -10,6 +10,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<p><a href="http://aplwiki.com/_/test.html" class="external_link">http://aplwiki.com/_/test.html</a></p>'
- →PassesIf expected≡∊ns.html
+ →T.PassesIf expected≡∊ns.html
 
- R←∆OK
+ R←T._OK

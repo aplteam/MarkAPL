@@ -1,7 +1,7 @@
  R←Test_Para_001(stopFlag batchFlag);⎕TRAP;ns;md
 ⍝ Test one-line and multi-line paragraphs without any inline-markup.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←'This is a paragraph that' 'stretches over 2 lines.' '' 'Single-line paragraph.'
@@ -9,8 +9,8 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →FailsIf 2≠⍴ns.html
- →FailsIf(0⊃ns.html)≢'<p>',(1↓↑,/' ',¨2↑md),'</p>'
- →FailsIf(1⊃ns.html)≢'<p>',(3⊃md),'</p>'
+ →T.FailsIf 2≠⍴ns.html
+ →T.FailsIf(0⊃ns.html)≢'<p>',(1↓↑,/' ',¨2↑md),'</p>'
+ →T.FailsIf(1⊃ns.html)≢'<p>',(3⊃md),'</p>'
 
- R←∆OK
+ R←T._OK

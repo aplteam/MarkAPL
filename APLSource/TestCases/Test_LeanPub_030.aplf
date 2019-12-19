@@ -1,7 +1,7 @@
  R←Test_LeanPub_030(stopFlag batchFlag);⎕TRAP;ns;md;parms;expected
 ⍝ Test whether the leanpub extension "highlight lines of code" works
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'A para'
@@ -22,6 +22,6 @@
 
  expected←'<p>A para</p>' '<pre><code>(+⌿⍵)÷⍴,⍵' '<span class="leanpub_code">{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}'
  expected,←'</span>(+⌿⍵)÷⍴,⍵</code></pre>' '<p>Another para</p>'
- →PassesIf expected≡ns.html
+ →T.PassesIf expected≡ns.html
 
- R←∆OK
+ R←T._OK

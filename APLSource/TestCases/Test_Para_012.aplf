@@ -1,7 +1,7 @@
  R←Test_Para_012(stopFlag batchFlag);⎕TRAP;ns;md;expected
 ⍝ Test a paragraph code that containes "<p>" and "</p>"; was once  abug.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'A paragraph'
@@ -14,6 +14,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<p>&lt;p&gt;Start of a para that contains a commented line.&lt;/p&gt;</p>'
- →PassesIf∨/expected⍷∊ns.html
+ →T.PassesIf∨/expected⍷∊ns.html
 
- R←∆OK
+ R←T._OK

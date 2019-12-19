@@ -2,13 +2,13 @@
 ⍝ Test code blocks with opening and closing ~~~ on the same line: that should become a paragraph.
 ⍝ The reason is that a code block cannot start this way.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←⊂'~~~{(+/⍵)÷⍴,⍵}~~~'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
  expected←'<p>~~~{(+/⍵)÷⍴,⍵}~~~</p>'
- →PassesIf expected≡∊ns.html
+ →T.PassesIf expected≡∊ns.html
 
- R←∆OK
+ R←T._OK

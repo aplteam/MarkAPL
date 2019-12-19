@@ -1,7 +1,7 @@
  R←Test_TOC_009(stopFlag batchFlag);⎕TRAP;md;ns;parms;tags;expected
 ⍝ Test a TOC that contains "<", ">" and "&"; was once a bug
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'# Contains <, > and &, really'
@@ -14,8 +14,8 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 1=⍴ns.toc
+ →T.PassesIf 1=⍴ns.toc
  expected←'Contains <, > and &, really'
- →PassesIf expected≡0 1⊃ns.toc
+ →T.PassesIf expected≡0 1⊃ns.toc
 
- R←∆OK
+ R←T._OK

@@ -2,7 +2,7 @@
 ⍝ Nested list with a para the follows a sub list but belongs to the owning list item
 ⍝ Which will be removed and leave the code block empty anyway.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'  * This'
@@ -22,6 +22,6 @@
  expected←'<ul>' '<li>This</li>' '<li>That' '<ol start="1">' '<li>First</li>' '<li>Second</li>' '</ol>'
  expected,←'<p>Para that belongs to “that”.</p></li>' '<li>More' '<ol start="10">'
  expected,←'<li>Tenth</li>' '<li>Eleventh</li>' '</ol></li>' '</ul>'
- →PassesIf expected≡ns.html
+ →T.PassesIf expected≡ns.html
 
- R←∆OK
+ R←T._OK

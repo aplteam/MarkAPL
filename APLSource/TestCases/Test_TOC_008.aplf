@@ -1,7 +1,7 @@
  R←Test_TOC_008(stopFlag batchFlag);⎕TRAP;md;ns;parms;tags;expected
 ⍝ Test the list generated as TOC from the headers.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'# I.'
@@ -21,7 +21,7 @@
 
  expected←''
  expected,←⊂'<a href="#I" id="I" class="autoheader_anchor">'
- expected,←⊂'<h1>I.</h1>'
+ expected,←⊂'<h1 data-id="I">I.</h1>'
  expected,←⊂'</a>'
  expected,←⊂'<nav id="main_nav_no_collapse">'
  expected,←⊂'<div class="toc-container">'
@@ -43,20 +43,20 @@
  expected,←⊂'</div>'
  expected,←⊂'</nav>'
  expected,←⊂'<a href="#II-A" id="II-A" class="autoheader_anchor">'
- expected,←⊂'<h2>II-A</h2>'
+ expected,←⊂'<h2 data-id="II-A">II-A</h2>'
  expected,←⊂'</a>'
  expected,←⊂'<a href="#III" id="III" class="autoheader_anchor">'
- expected,←⊂'<h3>III.</h3>'
+ expected,←⊂'<h3 data-id="III">III.</h3>'
  expected,←⊂'</a>'
  expected,←⊂'<a href="#III-a" id="III-a" class="autoheader_anchor">'
- expected,←⊂'<h4>III-a</h4>'
+ expected,←⊂'<h4 data-id="III-a">III-a</h4>'
  expected,←⊂'</a>'
  expected,←⊂'<a href="#III-b" id="III-b" class="autoheader_anchor">'
- expected,←⊂'<h3>III-b</h3>'
+ expected,←⊂'<h3 data-id="III-b">III-b</h3>'
  expected,←⊂'</a>'
  expected,←⊂'<a href="#II-B" id="II-B" class="autoheader_anchor">'
- expected,←⊂'<h2>II-B</h2>'
+ expected,←⊂'<h2 data-id="II-B">II-B</h2>'
  expected,←⊂'</a>'
- →PassesIf expected≡ns.html
+ →T.PassesIf expected≡ns.html
 
- R←∆OK
+ R←T._OK

@@ -1,7 +1,7 @@
  R←Test_Misc_013(stopFlag batchFlag);⎕TRAP;md;ns;html;parms
 ⍝ Test `syntaxSugar` (syntactical sugar).
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'This --- really! --- is a change'
@@ -23,13 +23,13 @@
 
  html←1↓⊃,/(⎕UCS 13),¨ns.html
 
- →PassesIf 2=+/'—'⍷html
- →PassesIf 1=+/'–'⍷html
- →PassesIf 1=+/'…'⍷html
- →PassesIf 1=+/'©'=html
- →PassesIf 1=+/'™'=html
- →PassesIf 1=+/'“rubbish!”'⍷html
- →PassesIf 1=+/'«rubbish!»'⍷html
+ →T.PassesIf 2=+/'—'⍷html
+ →T.PassesIf 1=+/'–'⍷html
+ →T.PassesIf 1=+/'…'⍷html
+ →T.PassesIf 1=+/'©'=html
+ →T.PassesIf 1=+/'™'=html
+ →T.PassesIf 1=+/'“rubbish!”'⍷html
+ →T.PassesIf 1=+/'«rubbish!»'⍷html
 
  parms←##.MarkAPL.CreateParms
  parms.syntaxSugar←0
@@ -38,12 +38,12 @@
 
  html←1↓⊃,/(⎕UCS 13),¨ns.html
 
- →PassesIf 0=+/'—'⍷html
- →PassesIf 0=+/'–'⍷html
- →PassesIf 0=+/'…'⍷html
- →PassesIf 0=+/'©'=html
- →PassesIf 0=+/'™'=html
- →PassesIf 1=+/'"rubbish!"'⍷html
- →PassesIf 1=+/'&lt;&lt;rubbish!&gt;&gt;'⍷html
+ →T.PassesIf 0=+/'—'⍷html
+ →T.PassesIf 0=+/'–'⍷html
+ →T.PassesIf 0=+/'…'⍷html
+ →T.PassesIf 0=+/'©'=html
+ →T.PassesIf 0=+/'™'=html
+ →T.PassesIf 1=+/'"rubbish!"'⍷html
+ →T.PassesIf 1=+/'&lt;&lt;rubbish!&gt;&gt;'⍷html
 
- R←∆OK
+ R←T._OK

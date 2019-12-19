@@ -1,7 +1,7 @@
  R←Test_Lists_072(stopFlag batchFlag);⎕TRAP;md;ns;parms;noOfListItems;expected;html
 ⍝ List that contains a quote
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'* First list item'
@@ -43,6 +43,6 @@
  expected,←⊂'<p>Quote that stretches over several lines in the code but results in a single line in the output.</p>'
  expected,←⊂'</blockquote></li>'
  expected,←⊂'</ul>'
- →FailsIf expected≢ns.html
+ →T.FailsIf expected≢ns.html
 
- R←∆OK
+ R←T._OK

@@ -1,7 +1,7 @@
  R←Test_CodeBlock_015(stopFlag batchFlag);⎕TRAP;ns;parms;md
 ⍝ Test having `<<` and `>>` inside a code block.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'~~~'
@@ -10,6 +10,6 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →PassesIf(,⊂'<pre><code>&lt;&lt;Guillemets&gt;&gt;</code></pre>')≡ns.html
+ →T.PassesIf(,⊂'<pre><code>&lt;&lt;Guillemets&gt;&gt;</code></pre>')≡ns.html
 
- R←∆OK
+ R←T._OK

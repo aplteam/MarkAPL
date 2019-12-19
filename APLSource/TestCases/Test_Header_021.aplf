@@ -1,7 +1,7 @@
  R←Test_Header_021(stopFlag batchFlag);⎕TRAP;md;ns;expected
 ⍝ Test header without, well, a header really. Should simply be ignored. Was once a bug.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'[parm]:verbose=0'
@@ -12,9 +12,9 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- expected←'<div class="h_tag">' '<a href="#Main" id="Main" class="autoheader_anchor">' '<h1>Main</h1>' '</a>' '</div>'
- expected,←'<p>A para.</p>' '<div class="h_tag">' '<a href="#section" id="section" class="autoheader_anchor">' '<h2></h2>' '</a>' '</div>'
- →PassesIf expected≡ns.html
- →PassesIf 4={↑↑(//)⎕VFI(↑'line \d*:'⎕S GetHit⊣⍵)~'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz:'}¨ns.report
+ expected←'<div class="h_tag">' '<a href="#Main" id="Main" class="autoheader_anchor">' '<h1 data-id="Main">Main</h1>' '</a>' '</div>'
+ expected,←'<p>A para.</p>' '<div class="h_tag">' '<a href="#section" id="section" class="autoheader_anchor">' '<h2 data-id="section"></h2>' '</a>' '</div>'
+ →T.PassesIf expected≡ns.html
+ →T.PassesIf 4={↑↑(//)⎕VFI(↑'line \d*:'⎕S GetHit⊣⍵)~'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz:'}¨ns.report
 
- R←∆OK
+ R←T._OK

@@ -1,7 +1,7 @@
  R←Test_Abbr_009(stopFlag batchFlag);⎕TRAP;ns;md
 ⍝ Test abbreviations with < and > in it
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'Tags'
@@ -11,6 +11,6 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →FailsIf'<p><abbr title="Contains &lt; and &gt;!">Tags</abbr></p>'≢↑ns.html
+ →T.FailsIf'<p><abbr title="Contains &lt; and &gt;!">Tags</abbr></p>'≢↑ns.html
 
- R←∆OK
+ R←T._OK

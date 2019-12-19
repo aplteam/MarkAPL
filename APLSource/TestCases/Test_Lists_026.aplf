@@ -1,7 +1,7 @@
  R←Test_Lists_026(stopFlag batchFlag);⎕TRAP;md;ns;parms;expected
 ⍝ Test a lazy nested list
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'* First'
@@ -30,8 +30,8 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<ul>' '<li>' '<ul>' '<li>' '<p>' '<p>' '<li>' '</ul>' '<li>' '</ul>' '<p>'
- →PassesIf expected≡{⍵↑⍨1+⍵⍳'>'}¨ns.html
- →PassesIf 4=+/'<li>'⍷∊ns.html
- →PassesIf 3=+/'<p>'⍷∊ns.html
+ →T.PassesIf expected≡{⍵↑⍨1+⍵⍳'>'}¨ns.html
+ →T.PassesIf 4=+/'<li>'⍷∊ns.html
+ →T.PassesIf 3=+/'<p>'⍷∊ns.html
 
- R←∆OK
+ R←T._OK

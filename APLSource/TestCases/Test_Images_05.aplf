@@ -1,9 +1,9 @@
  R←Test_Images_05(stopFlag batchFlag);⎕TRAP;ns;md;fn;expected
 ⍝ Test two images in a single para.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
- fn←#.FilesAndDirs.EnforceSlash'file://',#.FilesAndDirs.PWD,'\Files\KaiJaegerHeadVerySmall.png'
+ fn←##.FilesAndDirs.EnforceSlash'file://',##.FilesAndDirs.PWD,'\Files\KaiJaegerHeadVerySmall.png'
 
  md←''
  md,←⊂'Para with a pictures ![picture3](',fn,' "Kai Jaeger") in it.'
@@ -14,6 +14,6 @@
 
  expected←'<p>Para with a pictures <img src="',fn,'" alt="picture3" title="Kai Jaeger"> in it.'
  expected,←' Second picture in same para: <img src="',fn,'" alt="picture4" title="Another one"> in it.</p>'
- →PassesIf expected≡∊ns.html
+ →T.PassesIf expected≡∊ns.html
 
- R←∆OK
+ R←T._OK

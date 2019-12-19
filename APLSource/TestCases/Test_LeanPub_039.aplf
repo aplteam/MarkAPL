@@ -1,7 +1,7 @@
  R←Test_LeanPub_039(stopFlag batchFlag);⎕TRAP;ns;md;parms;expected
 ⍝ Test the leanpub extension "highlight lines of code" with the last line in a code block; was once a bug
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'~~~'
@@ -18,6 +18,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<pre><code>(+⌿⍵)÷⍴,⍵' '<span class="leanpub_code">{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}' '</span></code></pre>'
- →PassesIf∧/expected∊ns.html
+ →T.PassesIf∧/expected∊ns.html
 
- R←∆OK
+ R←T._OK

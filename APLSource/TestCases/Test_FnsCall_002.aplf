@@ -1,7 +1,7 @@
  R←Test_FnsCall_002(stopFlag batchFlag);⎕TRAP;md;ns;expected
 ⍝ Test function call in a paragraph
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
@@ -19,6 +19,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<p>This “— called in line 3 —” is the result of the function — really!</p>'
- →PassesIf expected≡1⊃ns.html
+ →T.PassesIf expected≡1⊃ns.html
 
- R←∆OK
+ R←T._OK

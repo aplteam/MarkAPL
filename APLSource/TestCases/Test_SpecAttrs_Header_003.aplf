@@ -1,7 +1,7 @@
  R←Test_SpecAttrs_Header_003(stopFlag batchFlag);⎕TRAP;md;ns;parms
 ⍝ Headers: several assignments for SeText headers for level one and two with `bookmarkLink←2`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'Title {#foo1 .header1}'
@@ -19,10 +19,10 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- →PassesIf(⊂'<a href="#foo1" id="foo1" class="autoheader_anchor">')∊ns.html
- →PassesIf(⊂'<h1 class="header1">Title</h1>')∊ns.html
- →PassesIf(⊂'<a href="#Sub-Title" id="Sub-Title" class="autoheader_anchor">')∊ns.html
- →PassesIf(⊂'<h2 class="foo2">Sub-Title</h2>')∊ns.html
- →PassesIf(⊂'<h3 id="goo" attr="123">Chapter 1</h3>')∊ns.html
+ →T.PassesIf(⊂'<a href="#foo1" id="foo1" class="autoheader_anchor">')∊ns.html
+ →T.PassesIf(⊂'<h1 data-id="foo1" class="header1">Title</h1>')∊ns.html
+ →T.PassesIf(⊂'<a href="#Sub-Title" id="Sub-Title" class="autoheader_anchor">')∊ns.html
+ →T.PassesIf(⊂'<h2 data-id="Sub-Title" class="foo2">Sub-Title</h2>')∊ns.html
+ →T.PassesIf(⊂'<h3 data-id="Chapter-1" id="goo" attr="123">Chapter 1</h3>')∊ns.html
 
- R←∆OK
+ R←T._OK

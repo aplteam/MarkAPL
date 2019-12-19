@@ -1,7 +1,7 @@
  R←Test_CodeBlock_027(stopFlag batchFlag);⎕TRAP;ns;parms;md;expected
 ⍝ Test that all indentation is removed from the code in a block (because it is less then the starting fence line)
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'   ~~~'
@@ -11,6 +11,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←,⊂'<pre><code>{+/⍵}</code></pre>'
- →PassesIf expected≡ns.html
+ →T.PassesIf expected≡ns.html
 
- R←∆OK
+ R←T._OK

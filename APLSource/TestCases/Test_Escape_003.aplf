@@ -1,7 +1,7 @@
  R←Test_Escape_003(stopFlag batchFlag);⎕TRAP;ns;md;expected
 ⍝ Test a paragraph that carries two HTML entities; one should be processed, the other one shown.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'This &curren; results in this: \&curren;'
@@ -10,6 +10,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<p>This &amp;curren; results in this: &curren;</p>'
- →PassesIf expected≡∊ns.html
+ →T.PassesIf expected≡∊ns.html
 
- R←∆OK
+ R←T._OK

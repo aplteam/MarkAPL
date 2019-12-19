@@ -1,7 +1,7 @@
  R←Test_Lists_055(stopFlag batchFlag);⎕TRAP;md;ns;expected
 ⍝ Test a list with a code block being part of one LI that has two empty lines; should not break the list
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'* This'
@@ -20,6 +20,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<ul>' '<li>This</li>' '<li>That' '<pre><code>{+⌿⍺,⍵} ⍝ 1.' '' '</code></pre></li>' '<li>More</li>' '</ul>'
- →PassesIf expected≡ns.html
+ →T.PassesIf expected≡ns.html
 
- R←∆OK
+ R←T._OK

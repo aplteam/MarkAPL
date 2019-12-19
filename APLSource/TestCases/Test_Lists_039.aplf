@@ -1,7 +1,7 @@
  R←Test_Lists_039(stopFlag batchFlag);⎕TRAP;md;ns;parms;noOfListItems;html
 ⍝ Test a paragraph following a list with just ONE empty line. Should still break the list because of missing indentation.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'* Alpha'
@@ -23,10 +23,10 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 1=+/'<ul>'⍷∊ns.html
- →PassesIf 7=+/'<li>'⍷∊ns.html
- →PassesIf 3=+/'<p>'⍷∊ns.html
- →PassesIf 7=+/'</li>'⍷∊ns.html
- →PassesIf 1=+/'</ul>' '<p>' '<ol start="1">'⍷{⍵↑⍨1+⍵⍳'>'}¨ns.html
+ →T.PassesIf 1=+/'<ul>'⍷∊ns.html
+ →T.PassesIf 7=+/'<li>'⍷∊ns.html
+ →T.PassesIf 3=+/'<p>'⍷∊ns.html
+ →T.PassesIf 7=+/'</li>'⍷∊ns.html
+ →T.PassesIf 1=+/'</ul>' '<p>' '<ol start="1">'⍷{⍵↑⍨1+⍵⍳'>'}¨ns.html
 
- R←∆OK
+ R←T._OK

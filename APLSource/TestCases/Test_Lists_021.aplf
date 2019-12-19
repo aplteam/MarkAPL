@@ -1,7 +1,7 @@
  R←Test_Lists_021(stopFlag batchFlag);⎕TRAP;md;ns;parms;expect
 ⍝ Test an ordered list with "." (rather than ")") as separator
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂' 1. List I.'
@@ -17,6 +17,6 @@
  ns←##.MarkAPL.Process ns
 
  expect←'<ol start="1">' '<li>' '<li>' '<p>' '</ol>' '<p>'
- →PassesIf expect≡{⍵↑⍨1+⍵⍳'>'}¨ns.html
+ →T.PassesIf expect≡{⍵↑⍨1+⍵⍳'>'}¨ns.html
 
- R←∆OK
+ R←T._OK

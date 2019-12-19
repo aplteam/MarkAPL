@@ -1,7 +1,7 @@
  R←Test_Table_028(stopFlag batchFlag);⎕TRAP;ns;mat;expected
 ⍝ Test table with a cell in the middle that has an odd number of ticks.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  mat←''
  mat,←⊂'|Language|Comment|Misc|'
@@ -20,6 +20,6 @@
  expected,←'<td> </td>' '</tr>' '<tr>' '<td>COBOL</td>'
  expected,←'<td>Outdated</td>' '<td>Goo</td>'
  expected,←'</tr>' '</tbody>' '</table>'
- →PassesIf expected≡ns.html
+ →T.PassesIf expected≡ns.html
 
- R←∆OK
+ R←T._OK

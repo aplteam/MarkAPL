@@ -27,22 +27,22 @@ The following table highlights the features supported in MarkAPL:
 |Automated links           |    X           |    X      |    X       |    X       |
 |Blockquotes               |    X           |    X      |    X       |    X       |
 |Calling APL functions     |                |           |            |    X       |
-|Code blocks (indented)    |    X           |    X      |    X       |            |
+|Code blocks (indented)    |    X           |    X      |    X       |  Never!    |
 |Code blocks (fenced)      |                |    X      |    X       |    X       |
 |Definition lists          |    X           |    X      |    X       |    X       |
 |Footnotes                 |    X           |    X      |    X       |    X       |
 |Headers                   |    X           |    X      |    X       |    X       |
 |HTML blocks               |    X           |    X      |    X       |    X       |
-|HR                        |    X           |    X      |    X       |    X       |
+|HR (horizontal rule)      |    X           |    X      |    X       |    X       |
 |Images                    |    X           |    X      |    X       |    X       |
 |Inline markup             |    X           |    X      |    X       |    X       |
-|Line breaks (two spaces)  |    X           |    X      |    X       |            |
+|Line breaks (two spaces)  |    X           |    X      |    X       |  Never!    |
 |Line breaks    (\)        |                |           |    X       |    X       |
 |Line breaks (`<<br>>`)    |                |           |            |    X       |
 |Links                     |    X           |    X      |    X       |    X       |
 |Link references           |    X           |    X      |    X       |    X       |
 |Lists                     |    X           |    X      |    X       |    X       |
-|"loose" / "tight" lists   |    X           |    X      |    X       |            |
+|Loose/tight lists         |    X           |    X      |    X       |            |
 |Markdown inside HTML      |                |    X      |    X       |            |
 |Paragraphs                |    X           |    X      |    X       |    X       |
 |Tables                    |    X           |    X      |    X       |    X       |

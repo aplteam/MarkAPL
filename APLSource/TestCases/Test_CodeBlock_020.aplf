@@ -1,7 +1,7 @@
  R←Test_CodeBlock_020(stopFlag batchFlag);⎕TRAP;ns;parms;md;expected
 ⍝ Test having a leading lamp symbol (`⍝`) inside a code block as well as comments outside that block
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'⍝ No 1'
@@ -22,6 +22,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<p>⍝ Yes 1</p>' '<pre><code>:Namespace MyApp' '⍝ Yes 2' 'A para' '⍝ Yes 3' ':EndNamespace</code></pre>' '<p>⍝ Yes 4</p>'
- →PassesIf expected≡ns.html
+ →T.PassesIf expected≡ns.html
 
- R←∆OK
+ R←T._OK

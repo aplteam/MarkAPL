@@ -1,14 +1,14 @@
  R←Test_SubToc_005(stopFlag batchFlag);⎕TRAP;md;ns;parms
 ⍝ Test <<SubTOC>> (not numbered) when there are two headers to be reported one of which has special attributes assigned.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'# Level 1{.center}'
  md,←⊂'<<SubTOC>>'
  md,←⊂'## Level 2'
  md,←⊂'This is a para'
- md,←⊂'## Level 3'
+ md,←⊂'### Level 3'
  md,←⊂'This is another para'
  md,←⊂''
 
@@ -18,12 +18,13 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 1=+/'<h1 '⍷∊ns.html
- →PassesIf 1=+/'<h3>'⍷∊ns.html
- →PassesIf 2=+/'<h2>'⍷∊ns.html
- →PassesIf 3=+/'<p>'⍷∊ns.html   ⍝ Caption of sub-toc is a para as well!
- →PassesIf 0=+/'<<SubTOC>>'⍷∊ns.html
- →PassesIf 2=⍴'<nav.*>'⎕S 0⍠('Greedy' 0)⊣ns.html
- →PassesIf 1=+/'<h1 class="center">1. Level 1</h1>'⍷∊ns.html
+ →T.PassesIf 1=+/'<h1 data-id="Level-1"'⍷∊ns.html
+ →T.PassesIf 1=+/'<h3>'⍷∊ns.html
+ →T.PassesIf 1=+/'<h2 data-id="Level-2"'⍷∊ns.html
+ →T.PassesIf 1=+/'<h3 data-id="Level-3"'⍷∊ns.html
+ →T.PassesIf 3=+/'<p>'⍷∊ns.html   ⍝ Caption of sub-toc is a para as well!
+ →T.PassesIf 0=+/'<<SubTOC>>'⍷∊ns.html
+ →T.PassesIf 2=⍴'<nav.*>'⎕S 0⍠('Greedy' 0)⊣ns.html
 
- R←∆OK
+ R←T._OK
+⍝Done

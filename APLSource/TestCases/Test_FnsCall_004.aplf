@@ -1,7 +1,7 @@
  R←Test_FnsCall_004(stopFlag batchFlag);⎕TRAP;md;ns
 ⍝ Test function call with an argument in a cell in both a table with and without column header
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
@@ -23,8 +23,8 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →PassesIf∨/'::''abc''::'⍷9⊃ns.html
- →PassesIf∨/'::6::'⍷10⊃ns.html
+ →T.PassesIf∨/'::''abc''::'⍷9⊃ns.html
+ →T.PassesIf∨/'::6::'⍷10⊃ns.html
 
 ⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝
 
@@ -36,7 +36,7 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →PassesIf∨/'::''abc''::'⍷3⊃ns.html
- →PassesIf∨/'::6::'⍷4⊃ns.html
+ →T.PassesIf∨/'::''abc''::'⍷3⊃ns.html
+ →T.PassesIf∨/'::6::'⍷4⊃ns.html
 
- R←∆OK
+ R←T._OK

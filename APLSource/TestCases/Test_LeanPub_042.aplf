@@ -1,7 +1,7 @@
  R←Test_LeanPub_042(stopFlag batchFlag);⎕TRAP;ns;md;expected;parms
 ⍝ Test whether the leanpub extension "Aside" (`A> `) is processed despite the first line not being `[parm:]`
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'{:: encoding="utf-8" /}'
@@ -15,6 +15,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<div class="leanpub_A"><p>An aside</p></div>' '<p>Another para</p>'
- →PassesIf≡/∊¨expected(ns.html~⊂'')
+ →T.PassesIf≡/∊¨expected(ns.html~⊂'')
 
- R←∆OK
+ R←T._OK

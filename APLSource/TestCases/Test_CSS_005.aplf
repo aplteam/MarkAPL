@@ -1,7 +1,7 @@
  R←Test_CSS_005(stopFlag batchFlag);⎕TRAP;md;parms;b;ns;html;expected
 ⍝ Assign a local URL to `cssURL` that does not have a trailing `/` - was once a bug
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  parms←##.MarkAPL.CreateParms
  parms.linkToCSS←1
@@ -10,11 +10,11 @@
  md←,⊂'> > This is a recursive blockquote.'
 
  ns←##.MarkAPL.Init parms md
- →PassesIf 0∊≢ns.report
+ →T.PassesIf 0∊≢ns.report
  ns←##.MarkAPL.Process ns
  ns.html←parms ##.MarkAPL.MakeHTML_Doc ns.html
 
  expected←'<link href="file:///C:/Temp/MarkAPL_screen.css" rel="stylesheet" media="screen">'
- →PassesIf(⊂expected)∊ns.html
+ →T.PassesIf(⊂expected)∊ns.html
 
- R←∆OK
+ R←T._OK

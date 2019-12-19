@@ -3,7 +3,7 @@
 ⍝ When a code block in an A> section contained an empty line things went awry because it was later not recognized any more as a single HTML block.
 ⍝ Fixed by replacing empty lines with " ".
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'[parm]:leanpubExtensions = 1'
@@ -24,6 +24,6 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 0=≢ns.report
+ →T.PassesIf 0=≢ns.report
 
- R←∆OK
+ R←T._OK

@@ -1,7 +1,7 @@
  R←Test_Table_021(stopFlag batchFlag);⎕TRAP;ns;parms;mat;html
 ⍝ Test table with footer
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  mat←''
  mat,←⊂'|Product name|Price| Units|  Total|'
@@ -15,6 +15,6 @@
  ns←##.MarkAPL.Init''mat
  ns←##.MarkAPL.Process ns
  html←1↓∊(⎕UCS 13),¨ns.html
- →FailsIf 0=+/'<tfoot>'⍷html
+ →T.FailsIf 0=+/'<tfoot>'⍷html
 
- R←∆OK
+ R←T._OK

@@ -1,7 +1,7 @@
  R←Test_Title_009(stopFlag batchFlag);⎕TRAP;md;ns;html;title;parms
 ⍝ Check whether `title` is taken from parms (rather than level-1 header) with method `MakeHTML_Doc`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'Pusemuckel'
@@ -16,6 +16,6 @@
  html←parms ##.MarkAPL.MakeHTML_Doc ns.html
 
  title←{⍵↑⍨⍵⍳'<'}(⍴'<title>')↓{⍵{⍵[1]↑⍵[0]↓⍺}↑'<title>.*</title>'⎕S 0 1⍠('Mode' 'D')⊣⍵}↑,/(⎕UCS 10),¨html
- →PassesIf title≡'Foo goo'
+ →T.PassesIf title≡'Foo goo'
 
- R←∆OK
+ R←T._OK

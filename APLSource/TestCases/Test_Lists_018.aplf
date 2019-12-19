@@ -2,7 +2,7 @@
 ⍝ Test invalid list: a list should be surrounded by empty lines.
 ⍝ However, we allow this kind of laziness.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
 ⍝ There is no closing empty line after List II.
  md←''
@@ -19,6 +19,6 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 3=+/'<ul>'⍷∊ns.html
+ →T.PassesIf 3=+/'<ul>'⍷∊ns.html
 
- R←∆OK
+ R←T._OK

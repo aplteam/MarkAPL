@@ -1,7 +1,7 @@
  R←Test_LeanPub_021(stopFlag batchFlag);⎕TRAP;ns;md;parms;expected
 ⍝ Test whether the leanpub extension "Discussion" works when there is an empty line before and after it. (It should)
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂''
@@ -21,6 +21,6 @@
  expected,←⊂'<h3>A Discussion!</h3>'
  expected,←⊂'</div>'
  expected,←⊂'</div>'
- →PassesIf expected≡ns.html~⊂''
+ →T.PassesIf expected≡ns.html~⊂''
 
- R←∆OK
+ R←T._OK

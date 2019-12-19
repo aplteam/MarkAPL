@@ -1,7 +1,7 @@
  R←Test_SmartTypo_006(stopFlag batchFlag);⎕TRAP;md;ns;parms;html;buff;expected
 ⍝ Test smart typography: " =>  “„  (or „“) but not in something like <div attr="foo"> of course.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'"This cannot be true" he said wearily.'
@@ -31,17 +31,17 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<p>“This cannot be true” he said wearily.</p>'
- →PassesIf expected≡0⊃ns.html
+ →T.PassesIf expected≡0⊃ns.html
  expected←'<p>The double quotes (<code>"</code>) are converted into curly quotes.</p>'
- →PassesIf expected≡1⊃ns.html
+ →T.PassesIf expected≡1⊃ns.html
  expected←'<pre><code> `"` are converted automatically into " and ".</code></pre>'
- →PassesIf expected≡3⊃ns.html
+ →T.PassesIf expected≡3⊃ns.html
  expected←'<p><code>"</code> are converted automatically into “ and ”.</p>'
- →PassesIf expected≡5⊃ns.html
- →PassesIf 2=+/'""'⍷6⊃ns.html
+ →T.PassesIf expected≡5⊃ns.html
+ →T.PassesIf 2=+/'""'⍷6⊃ns.html
  expected←'<div id="foo">This shows in red if okay</div>'
- →PassesIf(⊂expected)∊ns.html
+ →T.PassesIf(⊂expected)∊ns.html
  expected←⊂'<a href="#Level---2" id="Level---2" class="autoheader_anchor">'
- →PassesIf expected∊ns.html
+ →T.PassesIf expected∊ns.html
 
- R←∆OK
+ R←T._OK

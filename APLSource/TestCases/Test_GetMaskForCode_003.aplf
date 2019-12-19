@@ -1,7 +1,7 @@
  R←Test_GetMaskForCode_003(stopFlag batchFlag);⎕TRAP;mask;expected
 ⍝ Single backtick
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
@@ -9,6 +9,6 @@
  #.TEMP.m←'This is ` a backtick'
  mask←##.MarkAPL.Execute'GetMaskForCode #.TEMP.m'
  expected←0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
- →PassesIf mask≡expected
+ →T.PassesIf mask≡expected
 
- R←∆OK
+ R←T._OK

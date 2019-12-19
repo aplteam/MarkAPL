@@ -1,7 +1,7 @@
  R←Test_GetMaskForCode_007(stopFlag batchFlag);⎕TRAP;mask;expected
 ⍝ Paragraph that starts and ends with an escaped backtick and also contains an inline code block
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
@@ -9,6 +9,6 @@
  #.TEMP.m←'\`This is `{+/⍳≢⍵}` APL code\`'
  mask←##.MarkAPL.Execute'GetMaskForCode #.TEMP.m'
  expected←0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0
- →PassesIf mask≡expected
+ →T.PassesIf mask≡expected
 
- R←∆OK
+ R←T._OK

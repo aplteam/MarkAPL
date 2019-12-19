@@ -1,7 +1,7 @@
  R←Test_Lamp_003(stopFlag batchFlag);⎕TRAP;md;ns
 ⍝ Test whether a line that starts with a lamp WITHIN CODE survives (was once a bug)
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'Para 1'
@@ -21,10 +21,10 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →PassesIf'<p>Para 1</p>'≡0⊃ns.html
- →PassesIf'<pre><code>⍝ Should make it into the output</code></pre>'≡1⊃ns.html
- →PassesIf'<pre><code>⍝ Should also make it into the output</code></pre>'≡2⊃ns.html
- →PassesIf'<p>Para 2</p>'≡3⊃ns.html
- →PassesIf 4=⍴ns.html
+ →T.PassesIf'<p>Para 1</p>'≡0⊃ns.html
+ →T.PassesIf'<pre><code>⍝ Should make it into the output</code></pre>'≡1⊃ns.html
+ →T.PassesIf'<pre><code>⍝ Should also make it into the output</code></pre>'≡2⊃ns.html
+ →T.PassesIf'<p>Para 2</p>'≡3⊃ns.html
+ →T.PassesIf 4=⍴ns.html
 
- R←∆OK
+ R←T._OK

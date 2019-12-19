@@ -1,7 +1,7 @@
  R←Test_Footnotes_010(stopFlag batchFlag);⎕TRAP;md;ns;parms;html;buff;expected;ind
 ⍝ Test sequence in case several footnote are defined. The order in the document is decisive.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←⊂'First def[^def1].'
  md,←⊂''
@@ -21,7 +21,7 @@
  expected,←⊂'<li id="fnref2"><p>def3</p><a href="#fnref2" class="footnote_anchor"></a>'
  expected,←⊂'<li id="fnref3"><p>def1</p><a href="#fnref3" class="footnote_anchor"></a>'
  ind←ns.html⍳expected
- →PassesIf(⍴ns.html)∧.>ind
- →PassesIf∧/2{⍺<⍵}/ind
+ →T.PassesIf(⍴ns.html)∧.>ind
+ →T.PassesIf∧/2{⍺<⍵}/ind
 
- R←∆OK
+ R←T._OK

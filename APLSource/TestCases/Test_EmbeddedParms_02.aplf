@@ -1,7 +1,7 @@
  R←Test_EmbeddedParms_02(stopFlag batchFlag);⎕TRAP;md;parms;b;ns;html
 ⍝ Check embedded parms: should not be overwritten by a parameter space and show on `ns.embeddedParms`
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  parms←##.MarkAPL.CreateParms
  parms.title←'Foo'
@@ -14,7 +14,7 @@
  parms.createFullHtmlPage←1
  html←parms ##.MarkAPL.MakeHTML_Doc ns.html
 
- →PassesIf(⊂'<title>123</title>')∊html
- →PassesIf ns.embeddedParms≡2 2⍴'title' '123' 'subTocs' 0
+ →T.PassesIf(⊂'<title>123</title>')∊html
+ →T.PassesIf ns.embeddedParms≡2 2⍴'title' '123' 'subTocs' 0
 
- R←∆OK
+ R←T._OK

@@ -1,7 +1,7 @@
  R←Test_DefinitionList_007(stopFlag batchFlag);⎕TRAP;ns;parms;md
 ⍝ Test a complex definition list
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'Term 1'
@@ -30,6 +30,6 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →FailsIf 0
+ →T.FailsIf 0
 
- R←∆OK
+ R←T._OK

@@ -1,7 +1,7 @@
  R←Test_DefinitionList_005(stopFlag batchFlag);⎕TRAP;ns;parms;md;html
 ⍝ Test several terms. The definition list breaks at a header.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'Term 1'
@@ -13,7 +13,7 @@
  ns←##.MarkAPL.Process ns
 
  html←∊ns.html
- →PassesIf 1=+/'<h1>'⍷html
- →PassesIf 1=+/'<dd>'⍷html
+ →T.PassesIf 1=+/'<h1 '⍷html
+ →T.PassesIf 1=+/'<dd>'⍷html
 
- R←∆OK
+ R←T._OK

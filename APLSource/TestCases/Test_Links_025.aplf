@@ -1,7 +1,7 @@
  R←Test_Links_025(stopFlag batchFlag);⎕TRAP;ns;html;md;expected
 ⍝ Markdown in-line mark-up within a link text; was once a bug.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'[This **is** *really* ~~not~~ **_in-line_** mark-up](aplwiki.com/_/test.html)'
@@ -11,6 +11,6 @@
 
  expected←'<p><a href="http://aplwiki.com/_/test.html" class="external_link">This <strong>is</strong>'
  expected,←' <em>really</em> <del>not</del> <strong><em>in-line</em></strong> mark-up</a></p>'
- →PassesIf expected≡∊ns.html
+ →T.PassesIf expected≡∊ns.html
 
- R←∆OK
+ R←T._OK

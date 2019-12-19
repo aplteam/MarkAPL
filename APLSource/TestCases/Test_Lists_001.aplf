@@ -1,7 +1,7 @@
  R←Test_Lists_001(stopFlag batchFlag);⎕TRAP;md;ns;parms;expected
 ⍝ Test nested lists
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'* List I.'
@@ -16,6 +16,6 @@
 
  expected←'<ul>' '<li>List I.' '<ul>' '<li>List A</li>' '<li>List B' '<ul>' '<li>List 1</li>' '<li>List 2</li>' '</ul></li>' '</ul></li>'
  expected,←'<li>List II.</li>' '</ul>'
- →PassesIf expected≡ns.html
+ →T.PassesIf expected≡ns.html
 
- R←∆OK
+ R←T._OK

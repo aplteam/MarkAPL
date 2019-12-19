@@ -1,7 +1,7 @@
  R←Test_BR_015(stopFlag batchFlag);⎕TRAP;md;ns;parms;html;buff
 ⍝ Test replacing `<<br>>` by a `<br/>` tag. Also heavy tests for recognizing lists.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'First para<<br>>with a line break in between'
@@ -25,14 +25,14 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →PassesIf+/'<p>First para <br>with a line break in between</p>'⍷0⊃ns.html
- →PassesIf'<li>Any list item <br> with a <code>&lt;br/&gt;</code> tag in it</li>'≡2⊃ns.html
- →PassesIf'<li>Another one</li>'≡3⊃ns.html
- →PassesIf'<li>First <br> ordered list item'≡6⊃ns.html
- →PassesIf'<p>Second para of first item <br> with a <code>&lt;br/&gt;</code></p></li>'≡7⊃ns.html
- →PassesIf'<li>Second list item</li>'≡8⊃ns.html
+ →T.PassesIf+/'<p>First para <br>with a line break in between</p>'⍷0⊃ns.html
+ →T.PassesIf'<li>Any list item <br> with a <code>&lt;br/&gt;</code> tag in it</li>'≡2⊃ns.html
+ →T.PassesIf'<li>Another one</li>'≡3⊃ns.html
+ →T.PassesIf'<li>First <br> ordered list item'≡6⊃ns.html
+ →T.PassesIf'<p>Second para of first item <br> with a <code>&lt;br/&gt;</code></p></li>'≡7⊃ns.html
+ →T.PassesIf'<li>Second list item</li>'≡8⊃ns.html
  html←1↓↑,/(⎕UCS 13),¨ns.html
- →PassesIf 2=+/'<li>'⍷{⍵/⍨{⍵∨≠\⍵}↑∨/'<ul>' '</ul>'⍷¨⊂⍵}html  ⍝ First (bulleted) list has two items
- →PassesIf 2=+/'<li>'⍷{⍵/⍨{⍵∨≠\⍵}↑∨/'<ol' '</ol>'⍷¨⊂⍵}html  ⍝ Second (ordered) list has two items
+ →T.PassesIf 2=+/'<li>'⍷{⍵/⍨{⍵∨≠\⍵}↑∨/'<ul>' '</ul>'⍷¨⊂⍵}html  ⍝ First (bulleted) list has two items
+ →T.PassesIf 2=+/'<li>'⍷{⍵/⍨{⍵∨≠\⍵}↑∨/'<ol' '</ol>'⍷¨⊂⍵}html  ⍝ Second (ordered) list has two items
 
- R←∆OK
+ R←T._OK

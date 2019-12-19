@@ -1,7 +1,7 @@
  R←Test_Links_040(stopFlag batchFlag);⎕TRAP;ns;html;md;expecting
 ⍝ Test a "mailto" auto-link.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←⊂'Contact us via <mailto:kai@aplteam.com>.'
 
@@ -9,6 +9,6 @@
  ns←##.MarkAPL.Process ns
 
  expecting←,⊂'<p>Contact us via <a href="mailto:kai@aplteam.com" class="mailto_link">kai@aplteam.com</a>.</p>'
- →PassesIf expecting≡ns.html
+ →T.PassesIf expecting≡ns.html
 
- R←∆OK
+ R←T._OK

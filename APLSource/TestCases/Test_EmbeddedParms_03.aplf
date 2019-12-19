@@ -1,7 +1,7 @@
  R←Test_EmbeddedParms_03(stopFlag batchFlag);⎕TRAP;md;parms;b;ns;html
 ⍝ Check embedded parms: unknown parameters should be reported.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  parms←##.MarkAPL.CreateParms
 
@@ -9,6 +9,6 @@
  md,←'# External links' '' '<http://aplwiki.com>'
 
  ns←##.MarkAPL.Init parms md
- →PassesIf'Invalid embbed parameter: "titel"'≡0⊃ns.report
+ →T.PassesIf'Invalid embbed parameter: "titel"'≡0⊃ns.report
 
- R←∆OK
+ R←T._OK

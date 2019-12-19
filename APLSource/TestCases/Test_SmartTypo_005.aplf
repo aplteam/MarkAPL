@@ -1,7 +1,7 @@
  R←Test_SmartTypo_005(stopFlag batchFlag);⎕TRAP;md;ns;parms;html;buff;expected
 ⍝ Test smart typography: ... => ellipses
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md←⊂'First para...really! (as in `...`) ..., really (`...`)'
@@ -14,8 +14,8 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<p>First para…really! (as in <code>...</code>) …, really (<code>...</code>)</p>'
- →PassesIf expected≡0⊃ns.html
+ →T.PassesIf expected≡0⊃ns.html
  expected←'<pre><code> `...` are converted automatically into ...</code></pre>'
- →PassesIf expected≡1⊃ns.html
+ →T.PassesIf expected≡1⊃ns.html
 
- R←∆OK
+ R←T._OK

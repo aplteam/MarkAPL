@@ -1,7 +1,7 @@
  R←Test_Title_004(stopFlag batchFlag);⎕TRAP;md;ns;html;title;parms
 ⍝ Check whether `title` is as specified in `parms`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  parms←##.MarkAPL.CreateParms
  parms.title←'My title'
@@ -15,6 +15,6 @@
  html←ns.parms ##.MarkAPL.MakeHTML_Doc ns.html
 
  title←{⍵↑⍨⍵⍳'<'}(⍴'<title>')↓{⍵{⍵[1]↑⍵[0]↓⍺}↑'<title>.*</title>'⎕S 0 1⍠('Mode' 'D')⊣⍵}↑,/(⎕UCS 10),¨html
- →PassesIf title≡parms.title
+ →T.PassesIf title≡parms.title
 
- R←∆OK
+ R←T._OK

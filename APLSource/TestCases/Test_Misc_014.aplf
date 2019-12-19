@@ -1,7 +1,7 @@
  R←Test_Misc_014(stopFlag batchFlag);⎕TRAP;md;html;parms;buff;ns
 ⍝ Test whether createFullHtmlPage works fine.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'# Header'
@@ -10,51 +10,51 @@
 
 ⍝ Create just HTML without any parameters
  (html ns)←##.MarkAPL.Markdown2HTML md
- →PassesIf 6=⍴html
+ →T.PassesIf 6=⍴html
 
 ⍝ Create just HTML with default parameters
  parms←##.MarkAPL.CreateParms
  (html ns)←parms ##.MarkAPL.Markdown2HTML md
- →PassesIf 6=⍴html
+ →T.PassesIf 6=⍴html
 
 ⍝ Create fully fledged HTML but no file
  parms←##.MarkAPL.CreateParms
  parms.createFullHtmlPage←1
  (html ns)←parms ##.MarkAPL.Markdown2HTML md
- →PassesIf 6<⍴html
- →PassesIf 1=+/'<html'⍷∊html
+ →T.PassesIf 6<⍴html
+ →T.PassesIf 1=+/'<html'⍷∊html
 
 ⍝ Write to file but don't create a fully fledged HTML page
  parms←##.MarkAPL.CreateParms
  parms.createFullHtmlPage←0
- parms.outputFilename←#.FilesAndDirs.GetTempFilename''
+ parms.outputFilename←##.FilesAndDirs.GetTempFilename''
  (html ns)←parms ##.MarkAPL.Markdown2HTML md
- →PassesIf 6=⍴html
- →PassesIf 0=+/'<html>'⍷∊html
- →PassesIf ⎕NEXISTS parms.outputFilename
- buff←#.APLTreeUtils.ReadUtf8File parms.outputFilename
+ →T.PassesIf 6=⍴html
+ →T.PassesIf 0=+/'<html>'⍷∊html
+ →T.PassesIf ⎕NEXISTS parms.outputFilename
+ buff←##.APLTreeUtils.ReadUtf8File parms.outputFilename
  ⎕NDELETE parms.outputFilename
- →PassesIf~0∊⍴buff
+ →T.PassesIf~0∊⍴buff
 
 ⍝ Create a fully fledged HTML page and write it to a file
  parms←##.MarkAPL.CreateParms
- parms.outputFilename←#.FilesAndDirs.GetTempFilename''
+ parms.outputFilename←##.FilesAndDirs.GetTempFilename''
  (html ns)←parms ##.MarkAPL.Markdown2HTML md
- →PassesIf 6<⍴html
- →PassesIf 1=+/'<html'⍷∊html
- →PassesIf ⎕NEXISTS parms.outputFilename
- buff←#.APLTreeUtils.ReadUtf8File parms.outputFilename
- →PassesIf 4<⍴buff
+ →T.PassesIf 6<⍴html
+ →T.PassesIf 1=+/'<html'⍷∊html
+ →T.PassesIf ⎕NEXISTS parms.outputFilename
+ buff←##.APLTreeUtils.ReadUtf8File parms.outputFilename
+ →T.PassesIf 4<⍴buff
 
 ⍝ Again but this time we also set the explicit parameter accordingly
  parms←##.MarkAPL.CreateParms
  parms.createFullHtmlPage←1
- parms.outputFilename←#.FilesAndDirs.GetTempFilename''
+ parms.outputFilename←##.FilesAndDirs.GetTempFilename''
  (html ns)←parms ##.MarkAPL.Markdown2HTML md
- →PassesIf 6<⍴html
- →PassesIf 1=+/'<html'⍷∊html
- →PassesIf ⎕NEXISTS parms.outputFilename
- buff←#.APLTreeUtils.ReadUtf8File parms.outputFilename
- →PassesIf 4<⍴buff
+ →T.PassesIf 6<⍴html
+ →T.PassesIf 1=+/'<html'⍷∊html
+ →T.PassesIf ⎕NEXISTS parms.outputFilename
+ buff←##.APLTreeUtils.ReadUtf8File parms.outputFilename
+ →T.PassesIf 4<⍴buff
 
- R←∆OK
+ R←T._OK

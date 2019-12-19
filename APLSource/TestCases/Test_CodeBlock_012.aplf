@@ -2,7 +2,7 @@
 ⍝ Test code block with more than 3 leading spaces but because the code block belongs to a (nested) list item.
 ⍝ That is okay as long as the number of spaces is in line with the nesting, plus possibly up to three more spaces.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'* Level 1'
@@ -17,6 +17,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<pre><code>  {+/⍵}</code></pre></li>'
- →PassesIf(⊂expected)∊ns.html
+ →T.PassesIf(⊂expected)∊ns.html
 
- R←∆OK
+ R←T._OK

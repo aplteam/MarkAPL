@@ -1,7 +1,7 @@
  R←Test_Abbr_014(stopFlag batchFlag);⎕TRAP;ns;html;md
 ⍝ Test an abbreviation that itself contains another abbreviation. This was once buggy.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'_Active possession_ on a rod ... is _reachable_ by ... is no longer _reachable_. _Active possession_ is ...'
@@ -13,8 +13,8 @@
  ns←##.MarkAPL.Process ns
 
  html←1↓↑,/(⎕UCS 13),¨ns.html
- →FailsIf 4≠+/'<abbr'⍷html
- →FailsIf 4≠+/'<abbr title="'⍷html
- →FailsIf'<p><em></em> on a rod … is <em></em> by … is no longer <em></em>. <em></em> is …</p>'≢'<abbr .*>.*</abbr>'⎕R''⍠('Greedy' 0)⊣html
+ →T.FailsIf 4≠+/'<abbr'⍷html
+ →T.FailsIf 4≠+/'<abbr title="'⍷html
+ →T.FailsIf'<p><em></em> on a rod … is <em></em> by … is no longer <em></em>. <em></em> is …</p>'≢'<abbr .*>.*</abbr>'⎕R''⍠('Greedy' 0)⊣html
 
- R←∆OK
+ R←T._OK

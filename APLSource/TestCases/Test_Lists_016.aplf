@@ -1,7 +1,7 @@
  R←Test_Lists_016(stopFlag batchFlag);⎕TRAP;md;ns;noOfListItems;html;parms
 ⍝ Test that links in lists do work.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'# BookMark Link{id="foo2"}'
@@ -15,6 +15,6 @@
  ns←##.MarkAPL.Process ns
 
  html←1↓⊃,/(⎕UCS 13),¨ns.html
- →PassesIf 4=+/'<a href="'⍷html
+ →T.PassesIf 4=+/'<a href="'⍷html
 
- R←∆OK
+ R←T._OK

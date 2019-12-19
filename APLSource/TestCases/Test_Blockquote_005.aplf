@@ -1,7 +1,7 @@
  R←Test_Blockquote_005(stopFlag batchFlag);⎕TRAP;md;ns;parms;html
 ⍝ Test a blockquote that has a para spanning more than one line, all of wich start with '< '
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'> > Mad start!'
@@ -29,6 +29,6 @@
  ns←##.MarkAPL.Process ns
 
  html←1↓⊃,/(⎕UCS 13),¨ns.html
- →PassesIf 5=+/'<blockquote>'⍷html
+ →T.PassesIf 5=+/'<blockquote>'⍷html
 
- R←∆OK
+ R←T._OK

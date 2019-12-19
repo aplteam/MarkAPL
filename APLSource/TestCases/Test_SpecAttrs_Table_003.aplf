@@ -1,7 +1,7 @@
  R←Test_SpecAttrs_Table_003(stopFlag batchFlag);⎕TRAP;md;ns;expected
 ⍝ Table: empty special attributes
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'|Col A|Col B|  {}'
@@ -14,6 +14,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<table>'
- →PassesIf expected≡↑ns.html
+ →T.PassesIf expected≡↑ns.html
 
- R←∆OK
+ R←T._OK

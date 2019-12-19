@@ -1,7 +1,7 @@
  R←Test_Links_014(stopFlag batchFlag);⎕TRAP;ns;html;md;expected
 ⍝ Test external auto-links (<http://aplwiki.com) after a header (was one a bug)
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'Main Header'
@@ -11,6 +11,6 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
  expected←⊂'<p><a href="http://aplwiki.com/" class="external_link">http://aplwiki.com/</a></p>'
- →PassesIf expected∊ns.html
+ →T.PassesIf expected∊ns.html
 
- R←∆OK
+ R←T._OK

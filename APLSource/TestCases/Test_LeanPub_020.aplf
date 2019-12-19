@@ -1,7 +1,7 @@
  R←Test_LeanPub_020(stopFlag batchFlag);⎕TRAP;ns;md;parms;expected
 ⍝ Test whether the leanpub extension "Discussion" works when it's the last line (special!). It should.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'A para'
@@ -21,6 +21,6 @@
  expected,←⊂'<h3>A Discussion!</h3>'
  expected,←⊂'</div>'
  expected,←⊂'</div>'
- →PassesIf expected≡ns.html~⊂''
+ →T.PassesIf expected≡ns.html~⊂''
 
- R←∆OK
+ R←T._OK

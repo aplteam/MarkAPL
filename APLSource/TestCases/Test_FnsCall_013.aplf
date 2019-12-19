@@ -1,7 +1,7 @@
  R←Test_FnsCall_013(stopFlag batchFlag);⎕TRAP;md;ns
 ⍝ Test function call that returns a <pre> HTML block.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
@@ -13,6 +13,6 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →PassesIf'<pre><code>{(+/⍵)÷⍴,⍵}' '</code></pre>'≡ns.html
+ →T.PassesIf'<pre><code>{(+/⍵)÷⍴,⍵}' '</code></pre>'≡ns.html
 
- R←∆OK
+ R←T._OK

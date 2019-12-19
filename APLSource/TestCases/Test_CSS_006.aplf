@@ -1,7 +1,7 @@
  R←Test_CSS_006(stopFlag batchFlag);⎕TRAP;md;parms;b;ns;html;start;length;buff
 ⍝ Assign TWO CSS filenames to both `screenCSS` and `printCSS` with embedded CSS.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  parms←##.MarkAPL.CreateParms
  parms.cssURL←'file://Tests/'
@@ -11,18 +11,18 @@
  md←,⊂'A paragraph.'
 
  ns←##.MarkAPL.Init parms md
- →PassesIf 0∊≢ns.report
+ →T.PassesIf 0∊≢ns.report
  ns←##.MarkAPL.Process ns
  ns.html←parms ##.MarkAPL.MakeHTML_Doc ns.html
 
  (start length)←↑'<style media="screen">.*</style>'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣ns.html
  html←↑,/ns.html,¨⊂⎕UCS 10 13
  buff←length↑start↓html
- →PassesIf∧/∨/¨'p.myscreen{color:red;}' 'p.yourscreen{color:red;}'⍷¨⊂buff
+ →T.PassesIf∧/∨/¨'p.myscreen{color:red;}' 'p.yourscreen{color:red;}'⍷¨⊂buff
 
  (start length)←↑'<style media="print">.*</style>'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣ns.html
  html←↑,/ns.html,¨⊂⎕UCS 10 13
  buff←length↑start↓html
- →PassesIf∧/∨/¨'p.myprint{color:red;}' 'p.yourprint{color:red;}'⍷¨⊂buff
+ →T.PassesIf∧/∨/¨'p.myprint{color:red;}' 'p.yourprint{color:red;}'⍷¨⊂buff
 
- R←∆OK
+ R←T._OK

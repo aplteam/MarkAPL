@@ -2,7 +2,7 @@
 ⍝ Test having ` inside a code block. Was once a bug.
 ⍝ That is okay as long as the number of spaces is in line with the nesting, plus possibly up to three more spaces.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'~~~'
@@ -10,6 +10,6 @@
  md,←⊂'~~~'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- →PassesIf(,⊂'<pre><code>`{+/⍳⍴,w}</code></pre>')≡ns.html
+ →T.PassesIf(,⊂'<pre><code>`{+/⍳⍴,w}</code></pre>')≡ns.html
 
- R←∆OK
+ R←T._OK

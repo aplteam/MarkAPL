@@ -1,7 +1,7 @@
  R←Test_Title_001(stopFlag batchFlag);⎕TRAP;md;ns;html;title
 ⍝ Check whether `title` defaults to the level-1-header (there is only one!)
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'# Foo Goo'
@@ -12,6 +12,6 @@
  html←ns.parms ##.MarkAPL.MakeHTML_Doc ns.html
 
  title←{⍵↑⍨⍵⍳'<'}(⍴'<title>')↓{⍵{⍵[1]↑⍵[0]↓⍺}↑'<title>.*</title>'⎕S 0 1⍠('Mode' 'D')⊣⍵}↑,/(⎕UCS 10),¨html
- →PassesIf'Foo Goo'≡title
+ →T.PassesIf'Foo Goo'≡title
 
- R←∆OK
+ R←T._OK

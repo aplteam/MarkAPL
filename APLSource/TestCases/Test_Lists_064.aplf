@@ -1,7 +1,7 @@
  R←Test_Lists_064(stopFlag batchFlag);⎕TRAP;md;expected;ns
 ⍝ Test a list item that contains a code block with an info string.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'This is a para.'
@@ -18,6 +18,6 @@
 
  expected←'<p>This is a para.</p>' '<ul>' '<li>This</li>' '<li>That'
  expected,←'<pre class="Dyalog"><code>{+⌿⍺,⍵}</code></pre></li>' '<li>More</li>' '</ul>'
- →PassesIf expected≡ns.html
+ →T.PassesIf expected≡ns.html
 
- R←∆OK
+ R←T._OK

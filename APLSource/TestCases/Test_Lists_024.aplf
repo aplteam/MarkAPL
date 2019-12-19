@@ -1,7 +1,7 @@
  R←Test_Lists_024(stopFlag batchFlag);⎕TRAP;md;ns;parms;expected
 ⍝ Test list item contents that start with **
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'* List I.'
@@ -16,6 +16,6 @@
 
  expected←'<ul>' '<li>List I.</li>' '<li><strong>Bold</strong>, really!  (II)' '<ul>' '<li>List II-a</li>'
  expected,←'<li><strong>Also bold</strong>, really!  (II-b)</li>' '</ul></li>' '</ul>'
- →PassesIf expected≡ns.html
+ →T.PassesIf expected≡ns.html
 
- R←∆OK
+ R←T._OK

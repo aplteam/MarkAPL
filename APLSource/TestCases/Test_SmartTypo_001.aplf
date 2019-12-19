@@ -1,7 +1,7 @@
  R←Test_SmartTypo_001(stopFlag batchFlag);⎕TRAP;ns;html;md;two;parms
 ⍝ Test how a single double quote is dealt with.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'Header "one'
@@ -36,18 +36,18 @@
  ns←##.MarkAPL.Process ns
 
  html←1↓⊃,/(⎕UCS 13),¨ns.html
- →PassesIf 1=+/'Header "one'⍷html
- →PassesIf 1=+/'Header "two'⍷html
- →PassesIf 1=+/'First is odd"'⍷html
- →PassesIf 1=+/'This is "odd'⍷html
- →PassesIf 1=+/'This "is a blockquote'⍷html
- →PassesIf 1=+/'An ordinary para".'⍷html
- →PassesIf 1=+/'“'⍷html
- →PassesIf 1=+/'”'⍷html
- →PassesIf 1=+/'Col 1"'⍷html
- →PassesIf 1=+/'"First'⍷html
- →PassesIf 1=+/'"A1'⍷html
- →PassesIf 1=+/'"A2'⍷html
- →PassesIf 10=⊃⍴ns.report
+ →T.PassesIf 1=+/'Header "one'⍷html
+ →T.PassesIf 1=+/'Header "two'⍷html
+ →T.PassesIf 1=+/'First is odd"'⍷html
+ →T.PassesIf 1=+/'This is "odd'⍷html
+ →T.PassesIf 1=+/'This "is a blockquote'⍷html
+ →T.PassesIf 1=+/'An ordinary para".'⍷html
+ →T.PassesIf 1=+/'“'⍷html
+ →T.PassesIf 1=+/'”'⍷html
+ →T.PassesIf 1=+/'Col 1"'⍷html
+ →T.PassesIf 1=+/'"First'⍷html
+ →T.PassesIf 1=+/'"A1'⍷html
+ →T.PassesIf 1=+/'"A2'⍷html
+ →T.PassesIf 10=⊃⍴ns.report
 
- R←∆OK
+ R←T._OK

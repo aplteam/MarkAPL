@@ -1,7 +1,7 @@
  R←Test_LeanPub_019(stopFlag batchFlag);⎕TRAP;ns;md;parms;expected
 ⍝ Test whether the leanpub extension "Discussion" works when it's the first line. It shouldn't.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'D> # A Discussion!'
@@ -15,6 +15,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<p>D&gt; # A Discussion!</p>' '<p>A para</p>'
- →PassesIf expected≡ns.html
+ →T.PassesIf expected≡ns.html
 
- R←∆OK
+ R←T._OK

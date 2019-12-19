@@ -1,7 +1,7 @@
  R←Test_Lists_015(stopFlag batchFlag);⎕TRAP;md;ns;parms;noOfListItems;html
 ⍝ Test that a link between `` within <LI> is not actually a link at all. (was once a bug)
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'* `<http://aplwiki.com{id="foo1"}>`'
@@ -12,6 +12,6 @@
  ns←##.MarkAPL.Process ns
 
  html←1↓⊃,/(⎕UCS 13),¨ns.html
- →PassesIf 0=+/'<a href="'⍷html
+ →T.PassesIf 0=+/'<a href="'⍷html
 
- R←∆OK
+ R←T._OK

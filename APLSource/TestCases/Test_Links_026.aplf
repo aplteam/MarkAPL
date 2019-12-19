@@ -1,7 +1,7 @@
  R←Test_Links_026(stopFlag batchFlag);⎕TRAP;ns;html;md;expected
 ⍝ Markdown with code in the link text that can be mistaken as "italic"; was once a bug.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'[Code: `{{2=+⌿0=⍵∘.|⍵}⍳⍵} _italic_?!`](aplwiki.com/_/test.html)'
@@ -10,6 +10,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<p><a href="http://aplwiki.com/_/test.html" class="external_link">Code: <code>{{2=+⌿0=⍵∘.|⍵}⍳⍵} _italic_?!</code></a></p>'
- →PassesIf expected≡↑ns.html
+ →T.PassesIf expected≡↑ns.html
 
- R←∆OK
+ R←T._OK

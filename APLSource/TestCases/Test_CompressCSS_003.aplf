@@ -1,7 +1,7 @@
  R←Test_CompressCSS_003(stopFlag batchFlag);⎕TRAP;css;css2
 ⍝ Try to compress CSS with invalid comment definition; must fail
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  css←''
  css,←⊂'/*multi'
@@ -14,9 +14,9 @@
 
  :Trap 11
      css2←##.MarkAPL.CompressCSS css
-     →FailsIf 1
+     →T.FailsIf 1
  :Else
-     →PassesIf'Cannot compress CSS:'{⍺≡(⍴⍺)↑⍵}↑⎕DM
+     →T.PassesIf'Cannot compress CSS:'{⍺≡(⍴⍺)↑⍵}↑⎕DM
  :EndTrap
 
- R←∆OK
+ R←T._OK

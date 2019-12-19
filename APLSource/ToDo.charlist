@@ -1,0 +1,12 @@
+## Technical debt: Toc!
+
+The vars is initialised **not** with all its columns right from the start. Instead stuff is appended later on. Bad idea!
+
+By appending new stuff I confused myself and later indexed the wrong column.
+
+Next time we do this:
+
+1. Initialize the variable with the correct number of columns
+2. Create a namespace TocIndex which we use to keep index variables for indexing the Toc.
+
+That makes the code far more readable **and** avoids bugs like the aforementioned one.

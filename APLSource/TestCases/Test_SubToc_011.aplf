@@ -1,7 +1,7 @@
  R←Test_SubToc_011(stopFlag batchFlag);⎕TRAP;md;ns;parms
 ⍝ A subToc is not going to be inserted if there are zero or just one sub header
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'# Mast Head'
@@ -23,6 +23,6 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 1=+/'No SubTOC injected for "Level 3-a": just one sub-header found'⍷∊ns.report
+ →T.PassesIf 1=+/'No SubTOC injected for "Level 3-a": just one sub-header found'⍷∊ns.report
 
- R←∆OK
+ R←T._OK

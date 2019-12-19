@@ -1,7 +1,7 @@
  R←Test_LeanPub_031(stopFlag batchFlag);⎕TRAP;ns;md;parms;expected;html;home
 ⍝ Test the leanpub extension "highlight lines of code" with a non-default CSS file.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'A para'
@@ -26,9 +26,9 @@
  html←parms ##.MarkAPL.MakeHTML_Doc ns.html
 
  expected←''
- home←#.FilesAndDirs.EnforceSlash #.FilesAndDirs.PWD,'/'
+ home←##.FilesAndDirs.EnforceSlash ##.FilesAndDirs.PWD,'/'
  expected,←⊂'<link href="file:///',home,'Dark_Screen.css" rel="stylesheet" media="screen">'
  expected,←⊂'<link href="file:///',home,'Dark_Print.css" rel="stylesheet" media="print">'
- →PassesIf∧/expected∊html
+ →T.PassesIf∧/expected∊html
 
- R←∆OK
+ R←T._OK

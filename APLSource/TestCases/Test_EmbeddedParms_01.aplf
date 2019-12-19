@@ -1,7 +1,7 @@
  R←Test_EmbeddedParms_01(stopFlag batchFlag);⎕TRAP;md;parms;html;b
 ⍝ Set the `ignoreEmbeddedParms` property.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  parms←##.MarkAPL.CreateParms
  parms.title←'Foo'
@@ -11,7 +11,7 @@
 
  html←↑parms ##.MarkAPL.Markdown2HTML md
 
- →PassesIf(⊂'<title>123</title>')∊html
+ →T.PassesIf(⊂'<title>123</title>')∊html
 
  parms←##.MarkAPL.CreateParms
  parms.title←'Foo'
@@ -19,6 +19,6 @@
  parms.ignoreEmbeddedParms←1
 
  html←↑parms ##.MarkAPL.Markdown2HTML md
- →PassesIf(⊂'<title>Foo</title>')∊html
+ →T.PassesIf(⊂'<title>Foo</title>')∊html
 
- R←∆OK
+ R←T._OK

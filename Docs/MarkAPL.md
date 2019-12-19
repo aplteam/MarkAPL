@@ -5,21 +5,14 @@
 [parm]:width           = 1000
 [parm]:reportLinks     = 1
 [parm]:collapsibleTOC  = 1
-⍝[parm]:printCSS        = 'BlackOnWhite_print.css'
-⍝[parm]:screenCSS       = 'BlackOnWhite_screen.css'
+[parm]:printCSS        = 'BlackOnWhite_print.css'
+[parm]:screenCSS       = 'BlackOnWhite_screen.css'
 [parm]:smoothScrolling = 1
-
-⍝[parm]:linkToCSS       = 1
-⍝[parm]:printCSS        = 'MarkAPL_print.css'
-⍝[parm]:screenCSS       = 'MarkAPL_print.css'
-
-
-
+[parm]:saveHTML        = 0
 
 
 MarkAPL Reference
 =================
-
 
 Overview
 --------
@@ -249,17 +242,17 @@ The following table categorizes the different mark-ups into "Original", "Extra",
 | Abbreviations             |           |         |    X      |    X    |
 | Automated links           |   X       |   X     |    X      |    X    |
 | Blockquotes               |   X       |   X     |    X      |    X    |
-| Calling functions         |           |         |           |    X    |
-| Code blocks (indented)    |   X       |   X     |    X      |         |
+| Calling APL functions     |           |         |           |    X    |
+| Code blocks (indented)    |   X       |   X     |    X      |  Never! |
 | Code blocks (fenced)      |           |   X     |    X      |    X    |
 | Definition lists          |   X       |   X     |    X      |    X    |
 | Footnotes                 |   X       |   X     |    X      |    X    |
 | Headers                   |   X       |   X     |    X      |    X    |
 | HTML blocks               |   X       |   X     |    X      |    X    |
-| HR                        |   X       |   X     |    X      |    X    |
+| HR (horizontal rule)      |   X       |   X     |    X      |    X    |
 | Images                    |   X       |   X     |    X      |    X    |
 | In-line mark-up           |   X       |   X     |    X      |    X    |
-| Line breaks (two spaces)  |   X       |   X     |    X      |         |
+| Line breaks (two spaces)  |   X       |   X     |    X      |  Never! |
 | Line breaks    (`\`)      |           |         |    X      |    X    |
 | Line breaks (`<<br>>`)    |           |         |           |    X    |
 | Links                     |   X       |   X     |    X      |    X    |
@@ -2359,7 +2352,7 @@ An integer or integer vector that defaults to 0, meaning that headers are not nu
 
 * Setting this to 3 means that all headers of level 1 to 3 will be numbered.
 * Setting this to 2 3 4 will number all headers of level 2, 3 and 4.
-* In order to number only a single level, say 2, you need to specify the 2 twice (`2 2`) because a single 2 would be interpreted as "number all headers _up to_ 2.
+* In order to number only a single level, say 2, you need to specify the 2 twice (`2 2`) because a single 2 would be interpreted as "number all headers _up to_ 2".
   
 
 #### outputFilename
@@ -2548,9 +2541,9 @@ If you cannot work out why it goes wrong report it to me -- see the previous top
 Version information
 -------------------
 
-This document refers to version 8.0.0 of **_MarkAPL_**.
+This document refers to version 8.1.0 of **_MarkAPL_**.
 
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-10-21
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-12-17
 
 [^meddy]: The Markdown editor Meddy on GitHub:<<br>><https://github.com/aplteam/Meddy>
 [^abandon]: Wikipedia definition of abandonware:<<br>><https://www.wikiwand.com/en/Abandonware>

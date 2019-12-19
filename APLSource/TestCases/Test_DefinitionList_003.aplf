@@ -1,7 +1,7 @@
  R←Test_DefinitionList_003(stopFlag batchFlag);⎕TRAP;ns;parms;md
 ⍝ Test in-line mark-up in definition list
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'Term **1**'
@@ -12,8 +12,8 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 1=+/'<strong>'⍷∊ns.html
- →PassesIf 1=+/'<code>'⍷∊ns.html
- →PassesIf 1=+/'<em>'⍷∊ns.html
+ →T.PassesIf 1=+/'<strong>'⍷∊ns.html
+ →T.PassesIf 1=+/'<code>'⍷∊ns.html
+ →T.PassesIf 1=+/'<em>'⍷∊ns.html
 
- R←∆OK
+ R←T._OK

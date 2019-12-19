@@ -2,7 +2,7 @@
 ⍝ Test <div> and </div> block as used in PresentAPL
 ⍝ This was once a bug: having TWO empty lines before an HTML block did not work!
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'This is a para.'
@@ -19,7 +19,7 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 1=+/'<div class="handout">'⍷∊ns.html
- →PassesIf 1=+/'<strong>with</strong>'⍷∊ns.html
+ →T.PassesIf 1=+/'<div class="handout">'⍷∊ns.html
+ →T.PassesIf 1=+/'<strong>with</strong>'⍷∊ns.html
 
- R←∆OK
+ R←T._OK

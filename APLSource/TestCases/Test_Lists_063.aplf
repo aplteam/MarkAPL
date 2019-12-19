@@ -1,7 +1,7 @@
  R←Test_Lists_063(stopFlag batchFlag);⎕TRAP;md;ns;parms;noOfListItems;expected;html
 ⍝ Test nested list that was once buggy
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'* First paragraph has to be long'
@@ -16,6 +16,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<ul>' '<li>First paragraph has to be long' '<p>Para 1</p>' '<p>Para 2</p></li>' '</ul>'
- →FailsIf expected≢ns.html
+ →T.FailsIf expected≢ns.html
 
- R←∆OK
+ R←T._OK

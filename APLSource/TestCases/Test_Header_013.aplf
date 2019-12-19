@@ -1,7 +1,7 @@
  R←Test_Header_013(stopFlag batchFlag);⎕TRAP;md;ns;parms
 ⍝ Test numbering of headers that do not exist (although there are headers). Crashed once.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'Level 1 Header'
@@ -18,4 +18,4 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- R←∆OK
+ R←T._OK

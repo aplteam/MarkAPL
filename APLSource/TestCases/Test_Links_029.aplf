@@ -1,7 +1,7 @@
  R←Test_Links_029(stopFlag batchFlag);⎕TRAP;ns;html;md
 ⍝ Markdown with a link to a file as in `C:\Temp\thisfile.html`.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'A link: [](C:\Temp\thisfile.html) this is.'
@@ -9,6 +9,6 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →PassesIf∨/'<a href="C:/Temp/thisfile.html"'⍷∊ns.html
+ →T.PassesIf∨/'<a href="C:/Temp/thisfile.html"'⍷∊ns.html
 
- R←∆OK
+ R←T._OK

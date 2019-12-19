@@ -1,7 +1,7 @@
  R←Test_Header_016(stopFlag batchFlag);⎕TRAP;md;ns;parms
 ⍝ Test header anchors with a " in an ATX header. Was once a bug.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'# The "=" and "-" syntax (SeText)'
@@ -14,6 +14,6 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 1=+/'<a href="#The--and---syntax" id="The--and---syntax" class="autoheader_anchor">'⍷∊ns.html
+ →T.PassesIf 1=+/'<a href="#The--and---syntax" id="The--and---syntax" class="autoheader_anchor">'⍷∊ns.html
 
- R←∆OK
+ R←T._OK

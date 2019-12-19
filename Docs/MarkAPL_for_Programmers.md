@@ -8,6 +8,8 @@
 [parm]:printCSS        = 'BlackOnWhite_print.css'
 [parm]:screenCSS       = 'BlackOnWhite_screen.css'
 [parm]:smoothScrolling = 0
+[parm]:saveHTML        = 0
+
 
 MarkAPL for Programmers
 =======================
@@ -556,9 +558,9 @@ Before reporting a bug please check carefully your Markdown. More often than not
 
 If you cannot work out why it goes wrong report it to me -- see the previous topic for how to report a problem.
 
-This document refers to version 8.0.0 of **_MarkAPL_**.
+This document refers to version 8.1.0 of **_MarkAPL_**.
 
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-10-21
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-12-17
 
 [^meddy]: The Markdown editor Meddy on GitHub:<<br>><https://github.com/aplteam/Meddy>
 [^abandon]: Wikipedia definition of abandonware:<<br>><https://www.wikiwand.com/en/Abandonware>

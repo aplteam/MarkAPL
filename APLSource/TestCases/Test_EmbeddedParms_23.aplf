@@ -1,7 +1,7 @@
  R←Test_EmbeddedParms_23(stopFlag batchFlag);⎕TRAP;md;b;ns;html;hits;filenames;path;parms
 ⍝ Check that a parameter definition together with data definitions.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'[parm]:cssURL      = ''Firlefanz'''
@@ -14,12 +14,12 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 0=≢ns.report
- →PassesIf 1=≢ns.embeddedParms
- →PassesIf 1=≢ns.data
- →PassesIf 1=+/'Firlefanz'⍷ns.parms.cssURL
- →PassesIf'Kai Jaeger'≡0 1⊃ns.data
- →PassesIf 0=+/'<p>A oaragraph</p>'⍷∊ns.html
- →PassesIf 1=+/'<p>'⍷∊ns.html
+ →T.PassesIf 0=≢ns.report
+ →T.PassesIf 1=≢ns.embeddedParms
+ →T.PassesIf 1=≢ns.data
+ →T.PassesIf 1=+/'Firlefanz'⍷ns.parms.cssURL
+ →T.PassesIf'Kai Jaeger'≡0 1⊃ns.data
+ →T.PassesIf 0=+/'<p>A oaragraph</p>'⍷∊ns.html
+ →T.PassesIf 1=+/'<p>'⍷∊ns.html
 
- R←∆OK
+ R←T._OK

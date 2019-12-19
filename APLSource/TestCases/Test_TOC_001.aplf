@@ -1,7 +1,7 @@
  R←Test_TOC_001(stopFlag batchFlag);⎕TRAP;md;ns;parms
 ⍝ Test TOC generation without numbering the headers.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
@@ -17,9 +17,9 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- →FailsIf 0=⍴'<nav.*>'⎕S 0⍠('Greedy' 0)⊣ns.html
- →FailsIf 3≠+/'<ul>'⍷∊ns.html
- →FailsIf 3≠+/'</ul>'⍷∊ns.html
- →FailsIf 6≠+/'<li>'⍷∊ns.html
+ →T.FailsIf 0=⍴'<nav.*>'⎕S 0⍠('Greedy' 0)⊣ns.html
+ →T.FailsIf 3≠+/'<ul>'⍷∊ns.html
+ →T.FailsIf 3≠+/'</ul>'⍷∊ns.html
+ →T.FailsIf 6≠+/'<li>'⍷∊ns.html
 
- R←∆OK
+ R←T._OK

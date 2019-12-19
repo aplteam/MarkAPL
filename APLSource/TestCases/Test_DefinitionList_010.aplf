@@ -1,7 +1,7 @@
  R←Test_DefinitionList_010(stopFlag batchFlag);⎕TRAP;ns;parms;md
 ⍝ Test a definition list with sub paragraphs due to indentation (was once a bug).
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'Term'
@@ -16,6 +16,6 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →FailsIf~(⊂'<p>Independent para</p>')∊ns.html
+ →T.FailsIf~(⊂'<p>Independent para</p>')∊ns.html
 
- R←∆OK
+ R←T._OK

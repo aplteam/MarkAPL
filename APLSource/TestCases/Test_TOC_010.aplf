@@ -1,7 +1,7 @@
  R←Test_TOC_010(stopFlag batchFlag);⎕TRAP;md;ns;parms
 ⍝ Test collapsible toc
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'# Level 1 A'
@@ -20,6 +20,6 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- →PassesIf(⍴,ns.headerLineNos)=↑⍴ns.headers
+ →T.PassesIf(⍴,ns.headerLineNos)=↑⍴ns.headers
 
- R←∆OK
+ R←T._OK

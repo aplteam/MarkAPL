@@ -1,7 +1,7 @@
  R←Test_HTML_017(stopFlag batchFlag);⎕TRAP;md;ns;expected
 ⍝ Test two <div> blocks in sucession with several empty lines before, after and between.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂''
@@ -25,6 +25,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<div>' '<p>A **paragraph**</p>' '</div>' '<div>' '<p>This is **another** para.</p>' '</div>' '<p>One <strong>more</strong>.</p>'
- →PassesIf expected≡ns.html~⊂''
+ →T.PassesIf expected≡ns.html~⊂''
 
- R←∆OK
+ R←T._OK

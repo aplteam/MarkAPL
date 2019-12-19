@@ -1,7 +1,7 @@
  R←Test_SubToc_010(stopFlag batchFlag);⎕TRAP;md;ns;parms
 ⍝ Test <<SubTOC>> with toc←0 (Sub TOCs won't be injected then)
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'# Level 1'
@@ -15,8 +15,8 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- →PassesIf 1=+/'<h1>Level 1</h1>'⍷∊ns.html
- →PassesIf 0=+/'SubTOC'⍷∊ns.html
- →PassesIf 1=+/'<p>This is a para</p>'⍷∊ns.html
+ →T.PassesIf 1=+/'<h1 data-id="Level-1">Level 1</h1>'⍷∊ns.html
+ →T.PassesIf 0=+/'SubTOC'⍷∊ns.html
+ →T.PassesIf 1=+/'<p>This is a para</p>'⍷∊ns.html
 
- R←∆OK
+ R←T._OK

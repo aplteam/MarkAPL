@@ -1,7 +1,7 @@
  R←Test_DefinitionList_011(stopFlag batchFlag);⎕TRAP;ns;parms;md;expected
 ⍝ Test a definition  with special attributes.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'First'
@@ -16,6 +16,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<dt>First</dt>' '<dd><p>First Def.</p></dd>' '<dt id="Foo">Second</dt>' '<dd><p>Second Def.</p></dd>'
- →PassesIf∧/expected∊ns.html
+ →T.PassesIf∧/expected∊ns.html
 
- R←∆OK
+ R←T._OK

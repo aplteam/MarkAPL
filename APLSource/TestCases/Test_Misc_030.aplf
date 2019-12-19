@@ -1,7 +1,7 @@
  R←Test_Misc_030(stopFlag batchFlag);⎕TRAP;md;parms;ns;html;b
 ⍝ Set the `reportLinks` with three external links: automatic, reference and standard. "mailto" shall be ignored.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  parms←##.MarkAPL.CreateParms
  parms.toc←1+⍳6
@@ -29,7 +29,8 @@
  html←parms ##.MarkAPL.MakeHTML_Doc ns.html
  html←(ns.html⍳⊂'<p><strong>Link report</strong></p>')↓ns.html
 
- →PassesIf 3=+/∨/¨'http://aplwiki.com' 'http://aplteam.com' 'http://Trello.com'⍷¨⊂∊html
- →PassesIf 0∊⍴ns.report
+ →T.PassesIf 3=+/∨/¨'http://aplwiki.com' 'http://aplteam.com' 'http://Trello.com'⍷¨⊂∊html
+ →T.PassesIf 0∊⍴ns.report
 
- R←∆OK
+ R←T._OK
+⍝Done

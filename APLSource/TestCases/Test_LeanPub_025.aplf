@@ -1,7 +1,7 @@
  R←Test_LeanPub_025(stopFlag batchFlag);⎕TRAP;ns;md;parms;expected
 ⍝ Test whether two specialties in succession with just one blank line in between work fine. Was once a bug.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'A para'
@@ -32,6 +32,6 @@
  expected,←⊂'</div>'
  expected,←⊂'</div>'
  expected,←⊂'<p>Another para</p>'
- →PassesIf expected≡ns.html~⊂''
+ →T.PassesIf expected≡ns.html~⊂''
 
- R←∆OK
+ R←T._OK

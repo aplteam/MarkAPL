@@ -1,7 +1,7 @@
  R←Test_CompressCSS_001(stopFlag batchFlag);⎕TRAP;css;css2;expected
 ⍝ Compress very simple CSS
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  css←''
  css,←⊂'/* Single line comment */'
@@ -18,6 +18,6 @@
  css2←##.MarkAPL.CompressCSS css
 
  expected←'p{font-size:19pt;font-family:"Foo Goo";}img{border:0;margin:10px 20px 30px 0;}'
- →PassesIf expected≡css2
+ →T.PassesIf expected≡css2
 
- R←∆OK
+ R←T._OK

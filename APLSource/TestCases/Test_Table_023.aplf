@@ -1,10 +1,10 @@
  R←Test_Table_023(stopFlag batchFlag);⎕TRAP;ns;parms;mat;html
 ⍝ Test table with colspan support.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  :If 1
-     R←∆Inactive   ⍝ Not implemented yet.
+     R←T._Inactive   ⍝ Not implemented yet.
  :Else
      mat←''
      mat,←⊂'|This  ||||'        ⍝ Three consecutive pipe symbols mean "span over two columns" and so on.
@@ -18,7 +18,7 @@
      ns←##.MarkAPL.Init''mat
      ns←##.MarkAPL.Process ns
      html←1↓∊(⎕UCS 13),¨ns.html
-     →FailsIf 2≠+/'colspan=4'⍷html
+     →T.FailsIf 2≠+/'colspan=4'⍷html
 
-     R←∆OK
+     R←T._OK
  :EndIf

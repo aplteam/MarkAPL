@@ -1,7 +1,7 @@
  R←Test_Misc_044(stopFlag batchFlag);⎕TRAP;md;ns;parms;expected;buff
 ⍝ Test whether line number in ns.report are correct. HTML block and LeanPub extension make things interesting.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
- R←∆Failed
+ R←T._Failed
 
  md←''
  md,←⊂'Paragraph 1"'
@@ -26,8 +26,8 @@
  ns←##.MarkAPL.Process ns
 
  expected←,¨'3-5' '1' '13' '[-]'
- buff←{⍵~⎕A,' ().:',#.APLTreeUtils.Lowercase ⎕A}¨ns.report
- →PassesIf↑=/⍴¨expected buff
- →PassesIf∧/expected{(⍺∊⍵)∨(⍵∊⍺)}buff
+ buff←{⍵~⎕A,' ().:',##.APLTreeUtils.Lowercase ⎕A}¨ns.report
+ →T.PassesIf↑=/⍴¨expected buff
+ →T.PassesIf∧/expected{(⍺∊⍵)∨(⍵∊⍺)}buff
 
- R←∆OK
+ R←T._OK
