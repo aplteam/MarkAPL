@@ -61,19 +61,13 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'8.1.0.133' '2019-12-17'
+      r←(Last⍕⎕THIS)'8.1.1.135' '2020-01-22'
     ∇
 
     ∇ History
       :Access Public Shared
-      ⍝ * 8.1.0
-      ⍝   * Headers (<h1> to <h6>) had no ID assigned in case auto-anchoring for <h{n}> tags was switched off.
-      ⍝     Now the ID is assigned as `data-id="{...}`, taking advantage of the uiser-defined attributes introduced
-      ⍝     with HTML5: those need to start with "data-" in order to avoid name clashes.
-      ⍝   * Functions are not compiled any longer (400⌶) in order to avoid stability problems.
-      ⍝   * Bug fixes
-      ⍝     * Superfluous "s" removed from message 'Single double quotes`
-      ⍝     * When `bookmarkLink` was restricted the TOC was not always compiled correctly
+      ⍝ * 8.1.1
+      ⍝   * Bug fix: there were some problems related to function calls with an argument.
       ⍝\\
       ⍝ For information regarding older versions see <https://github.com/aplteam/MarkAPL/releases>
     ∇
@@ -1202,7 +1196,11 @@
       para←sa DropSpecialAttributes⍣(0<⊃⍴sa)⊣para
       (para isHtmlBlock)←ns ProcessInlineMarkUp para
       :If 0≠≢para
-          ns.html,←Nest sa{2=≡⍵:⍺∘∇¨⍵ ⋄ '<p',({0=≢⍵:'>' ⋄ ⍵,'>'}⍺),⍵,'</p>'}para
+          :If isHtmlBlock
+              ns.html,←para
+          :Else
+              ns.html,←Nest sa{2=≡⍵:⍺∘∇¨⍵ ⋄ '<p',({0=≢⍵:'>' ⋄ ⍵,'>'}⍺),⍵,'</p>'}para
+          :EndIf
       :EndIf
       ns←Drop ns
     ∇
@@ -2216,7 +2214,7 @@
       ns.topOfDocument←1
       :Repeat
           :If 0≠≢'^⍎⍎[#_A-Za-z∆⍙].*⍎⍎$'⎕S 0⍠('Greedy' 0)⊣⊃ns.markdown ⍝  Does the line call an embedded function but nothing else?
-          :AndIf 3=⎕NC{⍵↑⍨¯1+⍵⍳'⍎'}2↓⊃ns.markdown
+          :AndIf 3=⎕NC{⍵↑⍨¯1+⌊/⍵⍳'⍎ '''}2↓⊃ns.markdown
               (html isHtmlBlock)←ns ProcessFunctionCalls⊃ns.markdown
           :AndIf 0≠≢html
               :If 0=isHtmlBlock

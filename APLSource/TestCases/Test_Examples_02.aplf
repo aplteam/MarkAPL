@@ -6,7 +6,7 @@
  md←'This is a paragraph that' 'stretches over 2 lines.' '' 'Single-line paragraph.'
 
  parms←##.MarkAPL.CreateParms
- parms.outputFilename←(¯3↓##.FilesAndDirs.GetTempFilename''),'html'
+ parms.outputFilename←∆GetTempHtmlFileName
 
  (html ns)←parms ##.MarkAPL.Markdown2HTML md
  →T.GoToTidyUp~0∊⍴ns.report

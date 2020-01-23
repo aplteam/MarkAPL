@@ -1242,6 +1242,8 @@ That will result in a bookmark link as well.
 
 Note that this is a **_MarkAPL_**-only feature.
 
+Do not use this feature if your document will also be rendered by other means than **_MarkAPL_**, most notably GitHub and the likes (ReadMe.md!) because that would not work.
+
 There are times when the actual title of the header you are linking to does not fit as a link text. In that case you can specify an alternative link text:
 
 ~~~
@@ -2541,9 +2543,9 @@ If you cannot work out why it goes wrong report it to me -- see the previous top
 Version information
 -------------------
 
-This document refers to version 8.1.0 of **_MarkAPL_**.
+This document refers to version 8.1.1 of **_MarkAPL_**.
 
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-12-17
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2020-01-22
 
 [^meddy]: The Markdown editor Meddy on GitHub:<<br>><https://github.com/aplteam/Meddy>
 [^abandon]: Wikipedia definition of abandonware:<<br>><https://www.wikiwand.com/en/Abandonware>

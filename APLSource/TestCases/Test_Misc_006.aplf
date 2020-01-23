@@ -12,12 +12,14 @@
  md,←⊂'Another paragraph.'
 
  parms←##.MarkAPL.CreateParms
- parms.outputFilename←{(¯4↓⍵),'.html'}##.FilesAndDirs.GetTempFilename''
- →T.FailsIf ⎕NEXISTS parms.outputFilename
+ parms.outputFilename←∆GetTempHtmlFileName
 
  parms ##.MarkAPL.Markdown2HTML md
- →T.FailsIf 0=⎕NEXISTS parms.outputFilename
+ →T.GoToTidyUp 0=⎕NEXISTS parms.outputFilename
 
  html←##.APLTreeUtils.ReadUtf8File parms.outputFilename
 
  R←T._OK
+
+∆TidyUp:
+ :Trap 0 ⋄ ##.FilesAndDirs.DeleteFile parms.outputFilename ⋄ :EndTrap

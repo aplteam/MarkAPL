@@ -1,4 +1,4 @@
- R←Test_FnsCall_009(stopFlag batchFlag);⎕TRAP;md;ns;html
+ R←Test_FnsCall_009(stopFlag batchFlag);⎕TRAP;md;ns;html;expected
 ⍝ Test function call that returns an HTML block (Markdown should NOT be processed).
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
@@ -19,11 +19,22 @@
 
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
- #.TEMP.MyFns←{'' '<p>**bold** --- </p>' ''}
+ #.TEMP.MyFns←{'' '<pre><code>1' '20' '300' '4000' '</code><pre>' ''}
+ md←''
+ md,←⊂''
+ md,←⊂'⍎⍎#.TEMP.MyFns⍎⍎'
+ md,←⊂''
+ md,←⊂'** Bold **'
+ ns←##.MarkAPL.Init''md
+ ns←##.MarkAPL.Process ns
+ expected←'' '<pre><code>1' '20' '300' '4000' '</code><pre>' '' '<p>** Bold **</p>'
+ →T.FailsIf expected≢ns.html
 
+ #.⎕SHADOW'TEMP'
+ 'TEMP'#.⎕NS''
+ #.TEMP.MyFns←{'' '<p>**bold** --- </p>' ''}
  md←''
  md,←⊂'This is the result: ⍎⍎#.TEMP.MyFns⍎⍎'
-
  ns←##.MarkAPL.Init''md
  :Trap 0
      ns←##.MarkAPL.Process ns

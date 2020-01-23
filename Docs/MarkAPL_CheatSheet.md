@@ -449,6 +449,8 @@ You can link to such a header in the current document with a simplified syntax i
 Link to the [headers](#) section.
 ~~~
 
+Do not use this **_MarkAPL_**-specific feature if your document will be rendered by other means than **_MarkAPL_**, most notably GitHub and the likes (ReadMe.md!) because that would not work.
+
 Link to the [Headers](#) section.
 
 Naturally it is important that every single header has a unique ID in order to make this work. Therefore **_MarkAPL_** converts any header to an ID. **_MarkAPL_** has quite a complex set of rules for how to do this. See [**_MarkAPL_**'s full documentation](http://download.aplteam.com/MarkAPL.html) for details.
@@ -616,8 +618,8 @@ For details refer to the [**_MarkAPL_** reference document](http://download.aplt
 
 ## Version
 
-This document refers to version 8.1.0 of **_MarkAPL_**.<<br>>
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2019-12-17
+This document refers to version 8.1.1 of **_MarkAPL_**.<<br>>
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2020-01-22
 
 ⍝ The link references:
 [1]:      https://aplwiki.com

@@ -5,7 +5,7 @@
 
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
- #.TEMP.MyFns←{'<pre><code>{(+/⍵)÷⍴,⍵}' '</code></pre>'}
+ #.TEMP.MyFns←{'' '' '<pre><code>{(+/⍵)÷⍴,⍵}' '</code></pre>' '' ''}
 
  md←''
  md,←⊂'⍎⍎#.TEMP.MyFns⍎⍎'
@@ -13,6 +13,6 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →T.PassesIf'<pre><code>{(+/⍵)÷⍴,⍵}' '</code></pre>'≡ns.html
+ →T.PassesIf'<pre><code>{(+/⍵)÷⍴,⍵}' '</code></pre>'≡ns.html~⊂''
 
  R←T._OK

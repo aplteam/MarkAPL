@@ -27,34 +27,36 @@
 ⍝ Write to file but don't create a fully fledged HTML page
  parms←##.MarkAPL.CreateParms
  parms.createFullHtmlPage←0
- parms.outputFilename←##.FilesAndDirs.GetTempFilename''
+ parms.outputFilename←∆GetTempHtmlFileName
  (html ns)←parms ##.MarkAPL.Markdown2HTML md
  →T.PassesIf 6=⍴html
  →T.PassesIf 0=+/'<html>'⍷∊html
  →T.PassesIf ⎕NEXISTS parms.outputFilename
  buff←##.APLTreeUtils.ReadUtf8File parms.outputFilename
  ⎕NDELETE parms.outputFilename
- →T.PassesIf~0∊⍴buff
+ →T.PassesIf 0≠≢buff
 
 ⍝ Create a fully fledged HTML page and write it to a file
  parms←##.MarkAPL.CreateParms
- parms.outputFilename←##.FilesAndDirs.GetTempFilename''
+ parms.outputFilename←∆GetTempHtmlFileName
  (html ns)←parms ##.MarkAPL.Markdown2HTML md
  →T.PassesIf 6<⍴html
  →T.PassesIf 1=+/'<html'⍷∊html
  →T.PassesIf ⎕NEXISTS parms.outputFilename
  buff←##.APLTreeUtils.ReadUtf8File parms.outputFilename
+ ⎕NDELETE parms.outputFilename
  →T.PassesIf 4<⍴buff
 
 ⍝ Again but this time we also set the explicit parameter accordingly
  parms←##.MarkAPL.CreateParms
  parms.createFullHtmlPage←1
- parms.outputFilename←##.FilesAndDirs.GetTempFilename''
+ parms.outputFilename←∆GetTempHtmlFileName
  (html ns)←parms ##.MarkAPL.Markdown2HTML md
  →T.PassesIf 6<⍴html
  →T.PassesIf 1=+/'<html'⍷∊html
  →T.PassesIf ⎕NEXISTS parms.outputFilename
  buff←##.APLTreeUtils.ReadUtf8File parms.outputFilename
+ ⎕NDELETE parms.outputFilename
  →T.PassesIf 4<⍴buff
 
  R←T._OK
