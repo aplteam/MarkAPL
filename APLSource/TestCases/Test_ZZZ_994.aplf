@@ -5,11 +5,8 @@
 
  md←'flat'##.APLTreeUtils.ReadUtf8File'Docs\LeanPubExtensions.md'
  buff←'This document refers to version '
- buff,←↑{⍺,'.',⍵}/3↑'.'##.APLTreeUtils.Split 1⊃##.MarkAPL.Version
+ buff,←↑{⍺,'.',⍵}/2↑'.'##.APLTreeUtils.Split 1⊃##.MarkAPL.Version
  buff,←' of **_MarkAPL_**.'
- →T.PassesIf 1=+/buff⍷md
-
- buff←2⊃##.MarkAPL.Version
  →T.PassesIf 1=+/buff⍷md
 
  R←T._OK

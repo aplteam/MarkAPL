@@ -249,7 +249,7 @@ Because HTML blocks are left alone when the actual markdown is processed that wo
 
 As a side effect of this technique multi-line code blocks loose their newline characters because the HTML is converted into a single line. For that reason `<br>` tags are inserted to preserve those newlines.
 
-This document refers to version 8.1.1 of **_MarkAPL_**.
+This document refers to version 8.1 of **_MarkAPL_**.
 
 Kai Jaeger ⋄ APL Team Ltd ⋄ 2020-01-22
 

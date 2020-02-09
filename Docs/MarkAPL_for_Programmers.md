@@ -558,7 +558,7 @@ Before reporting a bug please check carefully your Markdown. More often than not
 
 If you cannot work out why it goes wrong report it to me -- see the previous topic for how to report a problem.
 
-This document refers to version 8.1.1 of **_MarkAPL_**.
+This document refers to version 8.1 of **_MarkAPL_**.
 
 Kai Jaeger ⋄ APL Team Ltd ⋄ 2020-01-22
 

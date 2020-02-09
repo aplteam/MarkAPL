@@ -618,7 +618,7 @@ For details refer to the [**_MarkAPL_** reference document](http://download.aplt
 
 ## Version
 
-This document refers to version 8.1.1 of **_MarkAPL_**.<<br>>
+This document refers to version 8.1 of **_MarkAPL_**.<<br>>
 Kai Jaeger ⋄ APL Team Ltd ⋄ 2020-01-22
 
 ⍝ The link references:
