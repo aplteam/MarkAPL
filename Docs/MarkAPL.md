@@ -2167,15 +2167,6 @@ This feature does not require any JavaScript: it's a pure CSS solution.
 One might be able to overcome these obstacles by restricting the level of headlines that go into the main TOC and introduce sub-TOCs where appropriate. This document uses this technique.
 
 
-#### compileFunctions
-
-This parameter is of interest only to APL programmers.
-
-Boolean that defaults to 1. There is just one reason to prevent any function from being compiled: performance measurements.
-
-However, with version 1.8.3 **_MarkAPL_** does not compile its functions any more because this caused trouble under some circumstances while the performance gains are limited: **_MarkAPL_** spends most of its time in `⎕S` and `⎕R`, and compiling does not help.
-
-
 #### compressCSS
 
 This parameter is of interest only to APL programmers.

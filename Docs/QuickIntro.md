@@ -92,7 +92,7 @@ If those assumptions don't work you must tell `Help` (or `Reference`) where to f
 
 ~~~
       parms←MarkAPL.CreateHelpParms
-      parms.homeFolder←'C:\Where_MarkAPLs_HTML_lives'
+      parms.homeFolder←'C:\Where_MarkAPL_HTML_lives'
       parms MarkAPL.Help 0
 ~~~
 
