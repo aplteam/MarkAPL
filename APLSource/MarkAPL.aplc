@@ -61,7 +61,7 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'9.0.0.140' '2020-03-23'
+      r←(Last⍕⎕THIS)'9.0.0.143' '2020-03-23'
     ∇
 
     ∇ History
