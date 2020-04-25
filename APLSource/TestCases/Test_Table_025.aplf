@@ -14,7 +14,7 @@
  expected←⊂'<table>'
  expected,←⊂'<thead>'
  expected,←⊂'<tr>'
- expected,←'<th>Language </th>' '<th> Comment  </th>'
+ expected,←'<th style="text-align: left;">Language </th>' '<th style="text-align: left;"> Comment  </th>'
  expected,←⊂'</tr>'
  expected,←⊂'</thead>'
  expected,←⊂'<tbody>'

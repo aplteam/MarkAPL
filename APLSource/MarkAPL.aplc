@@ -61,11 +61,17 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'9.0.0.143' '2020-03-23'
+      r←(Last⍕⎕THIS)'9.1.0.154' '2020-04-25'
     ∇
 
     ∇ History
       :Access Public Shared
+      ⍝ * 9.1.0
+      ⍝   * Both sets of CSS files improved regarding tables and lists for both screen and print.
+      ⍝   * The warning regarding an ill-formed TOC is now more specific about the level at fault.
+      ⍝   * Bug fixes:
+      ⍝     * Default alignment for text columns in tables was "center" but should have been "left".
+      ⍝     * Column header with aligned to the right in case all cells start with a digit.
       ⍝ * 9.0.0
       ⍝   * BREAKING CHANGE: File extension is now .aplc rather than .dyalog
       ⍝\\
@@ -934,7 +940,9 @@
                   :If noOfCols∨.≠≢¨cells
                       cells←noOfCols↑¨cells,¨noOfCols⍴¨⊂,' '
                   :EndIf
-                  (b/align)←('left' 'right')[{{0=≢⍵~' ':1 ⋄ 1+⊃∧\⊃⎕VFI ⍵}⊃,/' ',¨⍵}¨↓⍉↑b∘/¨cells]
+                  buff←⍉↑b∘/¨cells
+                  buff[;Where∧⌿buff∧.=¨'=']←'0'
+                  (b/align)←('left' 'right')[{{0=≢⍵~' ':1 ⋄ 1+⊃∧/⊃⎕VFI ⍵}⊃,/' ',¨⍵}¨↓buff]
               :EndIf
           :Else
               :If ∨/b←∨/¨'?'=align
@@ -944,12 +952,6 @@
      
           :If 2=drop
               buff←('th'∘{⍺,⍵}¨1 AddAlignStyle¨align)Tag¨(≢align)↑head,(≢align)⍴⊂''
-              :If 0=≢specialAttrs
-              :OrIf ~∨/'class="center"'⍷specialAttrs
-                  buff←' style="text-align: left;"'⎕R''⊣buff        ⍝ Because that is the default anyway
-              :Else
-                  buff←' style="text-align: center;"'⎕R''⊣buff      ⍝ Because that is inherited anyway
-              :EndIf
               ns.html,←buff
               ns.html,←⊂'</tr>'
               ns.html,←⊂'</thead>'
@@ -957,12 +959,6 @@
           (footer cells)←ns.parms.markdownStrict GetFooter cells
           ns.html,←⊂'<tbody>'
           rows←{('td'∘{⍺,⍵}¨2 AddAlignStyle¨align)Tag¨⍵}¨(≢align)↑¨cells
-          :If 0=≢specialAttrs
-          :OrIf ~∨/'class="center"'⍷specialAttrs
-              rows←{' style="text-align: left;"'⎕R''⊣⍵}¨rows        ⍝ Because that is the default anyway
-          :Else
-              rows←{' style="text-align: center;"'⎕R''⊣⍵}¨rows      ⍝ Because that is inherited anyway
-          :EndIf
           ns.html,←⊃,/{(⊂'<tr>'),⍵,⊂'</tr>'}¨rows
           ns.html,←⊂'</tbody>'
           :If 0≠≢footer
@@ -2634,7 +2630,7 @@
           :For i :In ⍳≢ns.headers
               (level header no)←ns.headers[i;1 3 4]
               :If level∊levelsToBeNumbered
-                  searchFor←dmb '>',header,'</h',(⍕level),'>'
+                  searchFor←dmb'>',header,'</h',(⍕level),'>'
               :AndIf 1=+/bool←searchFor⍷html
                   ind←bool⍳1
                   length←{¯1+⍵⍳'<'}{m←~GetMaskForCodeTags ⍵ ⋄ m\m/⍵}ind↓html
@@ -2648,7 +2644,7 @@
 
     ∇ ns←CalculateHeaderNumbers ns;nos;current;level;lastLevel;i;bool;headers
       current←6⍴0
-      :If CheckHeaders ns
+      :If ∧/bool←CheckHeaders ns
           bool←ns.headers[;1]∊{1=≢⍵:⍳⍵ ⋄ ⍵}ns.parms.numberHeaders
           :If 0≠≢headers←bool⌿ns.headers
               headers[;1]-←(⊃headers)-1
@@ -2666,15 +2662,14 @@
               (bool⌿ns.headers)[;4]←{⊃,/(⍕¨⍵),¨'.'}¨nos
           :EndIf
       :Else
-          ns.report,←⊂'Headers are ill-nested and need correction!'
+          ns.report,←⊂'Headers are ill-nested and need correction - check level(s) ',⍕⍸~bool
       :EndIf
     ∇
 
       CheckHeaders←{
           ns←⍵
           bool←({1=≢⍵:⍳⍵ ⋄ ⍵}ns.parms.numberHeaders)∊ns.headers[;1]
-          bool←(-+/∧\~⌽bool)↓bool   ⍝ The highest levels might not be in use, so we need to drop them
-          ∧/bool
+          (-+/∧\~⌽bool)↓bool   ⍝ The highest levels might not be in use, so we need to drop them
       }
 
       GetSpecialAttributes←{
@@ -3303,11 +3298,12 @@
       }
 
       AddAlignStyle←{
+      ⍝ ⍺←1 : it is for <th>
+      ⍝ ⍺←2 : it is for <td>  (default)
           ⍺←2
-⍝          (⍺=2)∧'left'≡⍵:''                 ⍝ For <th> ⍺←→1: headers default to center rather than left!
-⍝          ' style="text-align: ',⍵,';"'     ⍝ For "center" and "right"
-          (⍺=2)≡⍵:''                        ⍝ For <th> ⍺←→1: headers default to center rather than left!
-          ' style="text-align: ',⍵,';"'     ⍝ For "center" and "right"
+          (⍺=1)∧⍵≡'center':''                ⍝ For ⍺←→1 (th): headers default to center anyway
+          (⍺=2)∧⍵≡'left':''                  ⍝ For ⍺←→2 (td): headers default to left anyway
+          ' style="text-align: ',⍵,';"'      
       }
 
     ∇ toc←CollectToc ns;ind;buff;level;caption;IDs;bool

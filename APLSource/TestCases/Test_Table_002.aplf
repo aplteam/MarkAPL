@@ -11,7 +11,7 @@
  ns←##.MarkAPL.Init''mat
  ns←##.MarkAPL.Process ns
  html←1↓∊(⎕UCS 13),¨ns.html
- →T.FailsIf 6≠+/'<td style="text-align: left;">'⍷html
+ →T.FailsIf 6≠+/'<td>'⍷html
  →T.FailsIf 3≠+/'<td style="text-align: right;">'⍷html
  →T.FailsIf 9≠+/'</td>'⍷html
  →T.FailsIf 0≠+/'<th>'⍷html

@@ -10,7 +10,7 @@
  ns←##.MarkAPL.Process ns
 
  html←1↓∊(⎕UCS 13),¨ns.html
- →T.PassesIf 1=+/'<td style="text-align: left;">&lt;Brilliant&gt;</td>'⍷html
+ →T.PassesIf 1=+/'<td>&lt;Brilliant&gt;</td>'⍷html
  →T.PassesIf 1=+/'<blockquote>'⍷html
 
  R←T._OK

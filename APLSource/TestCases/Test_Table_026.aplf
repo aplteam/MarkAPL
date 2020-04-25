@@ -9,9 +9,9 @@
 
  ns←##.MarkAPL.Init''mat
  ns←##.MarkAPL.Process ns
- expected←'<table>' '<tbody>' '<tr>' '<td style="text-align: left;">APL</td>'
- expected,←'<td style="text-align: left;">Powerful</td>' '</tr>' '<tr>' '<td style="text-align: left;">COBOL</td>'
- expected,←⊂'<td style="text-align: left;"><code>Outdated |</code></td>'
+ expected←'<table>' '<tbody>' '<tr>' '<td>APL</td>'
+ expected,←'<td>Powerful</td>' '</tr>' '<tr>' '<td>COBOL</td>'
+ expected,←⊂'<td><code>Outdated |</code></td>'
  expected,←'</tr>' '</tbody>' '</table>'
  →T.PassesIf expected≡ns.html
 

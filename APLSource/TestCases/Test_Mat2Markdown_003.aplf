@@ -15,7 +15,8 @@
 
  →T.FailsIf'<table>'≢0⊃ns.html
  →T.FailsIf'<thead>'≢1⊃ns.html
- →T.FailsIf 3≠+/∨/¨'<th '∘⍷¨ns.html
+ →T.FailsIf 1≠+/∨/¨'<th>'∘⍷¨ns.html
+ →T.FailsIf 2≠+/∨/¨'<th '∘⍷¨ns.html
  →T.FailsIf'</thead>'≢7⊃ns.html
  →T.FailsIf'<tbody>'≢8⊃ns.html
  →T.FailsIf 9≠+/∨/¨'<td '∘⍷¨ns.html
@@ -27,7 +28,7 @@
 
  →T.FailsIf 1≠+/(⊂'<th style="text-align: right;">Lang</th>')≡¨ns.html
  →T.FailsIf 1≠+/(⊂'<th style="text-align: right;">Prod:Rank</th>')≡¨ns.html
- →T.FailsIf 1≠+/(⊂'<th style="text-align: center;">Comment</th>')≡¨ns.html
+ →T.FailsIf 1≠+/(⊂'<th>Comment</th>')≡¨ns.html
 
  →T.FailsIf 1≠+/(⊂'<td style="text-align: right;">APL</td>')≡¨ns.html
  →T.FailsIf 1≠+/(⊂'<td style="text-align: right;">99</td>')≡¨ns.html

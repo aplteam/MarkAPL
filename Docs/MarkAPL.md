@@ -9,6 +9,8 @@
 [parm]:screenCSS       = 'BlackOnWhite_screen.css'
 [parm]:smoothScrolling = 1
 [parm]:saveHTML        = 0
+[parm]:linkToCSS       = 1
+
 
 
 MarkAPL Reference
@@ -2534,9 +2536,9 @@ If you cannot work out why it goes wrong report it to me -- see the previous top
 Version information
 -------------------
 
-This document refers to version 9.0 of **_MarkAPL_**.
+This document refers to version 9.1 of **_MarkAPL_**.
 
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2020-03-23
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2020-04-25
 
 [^meddy]: The Markdown editor Meddy on GitHub:<<br>><https://github.com/aplteam/Meddy>
 [^abandon]: Wikipedia definition of abandonware:<<br>><https://www.wikiwand.com/en/Abandonware>

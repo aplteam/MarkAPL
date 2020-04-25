@@ -16,6 +16,6 @@
  →T.PassesIf 1=+/'</table>'⍷html
  →T.PassesIf 2=+/'<td>'⍷html
  →T.PassesIf 2=+/'<tr>'⍷html
- →T.PassesIf 2=+/'<th>'⍷html
+ →T.PassesIf 2=+/'<th style="text-align: left;">'⍷html
 
  R←T._OK

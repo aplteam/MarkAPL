@@ -14,7 +14,7 @@
  ns←##.MarkAPL.Init''md
 
  ns←##.MarkAPL.Process ns
- →T.PassesIf 1=+/'<td style="text-align: left;">{foo="123}</td>'⍷∊ns.html
+ →T.PassesIf 1=+/'<td>{foo="123}</td>'⍷∊ns.html
  →T.PassesIf 0=≢'<th[ >]'⎕S 0⊣ns.html
 
  R←T._OK

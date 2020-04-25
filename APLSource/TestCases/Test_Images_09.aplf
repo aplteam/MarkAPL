@@ -10,7 +10,7 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →T.PassesIf∨/'<td style="text-align: left;"><img src="file://'⍷∊ns.html
+ →T.PassesIf∨/'<td><img src="file://'⍷∊ns.html
  →T.PassesIf∨/'Files/KaiJaegerHeadVerySmall.png" height="100" width="120" alt="picture3" title="Kai Jaeger"></td>'⍷∊ns.html
 
  R←T._OK

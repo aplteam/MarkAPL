@@ -13,9 +13,9 @@
  ns←##.MarkAPL.Process ns
 
  →T.PassesIf 0=+/'<table class="center">'⍷∊ns.html
- →T.PassesIf 0=+/'text-align: left;"'⍷∊ns.html
+ →T.PassesIf 1=+/'<th style="text-align: left;"'⍷∊ns.html
  →T.PassesIf 3=+/'text-align: right;"'⍷∊ns.html
- →T.PassesIf 3=+/'text-align: center;"'⍷∊ns.html
+ →T.PassesIf 2=+/'text-align: center;"'⍷∊ns.html
 
  md←''
  md,←⊂'|Language|Comment|Misc|{.center}'
@@ -27,9 +27,9 @@
  ns←##.MarkAPL.Process ns
 
  →T.PassesIf 1=+/'<table class="center">'⍷∊ns.html
- →T.PassesIf 3=+/'text-align: left;"'⍷∊ns.html
+ →T.PassesIf 1=+/'text-align: left;"'⍷∊ns.html
  →T.PassesIf 3=+/'text-align: right;"'⍷∊ns.html
- →T.PassesIf 0=+/'text-align: center;"'⍷∊ns.html
+ →T.PassesIf 2=+/'text-align: center;"'⍷∊ns.html
 
 
  md←''
@@ -40,7 +40,7 @@
  ns←##.MarkAPL.Process ns
 
  →T.PassesIf 0=+/'<table class="center">'⍷∊ns.html
- →T.PassesIf 6=+/'text-align: left;"'⍷∊ns.html
+ →T.PassesIf 0=+/'text-align: left;"'⍷∊ns.html
  →T.PassesIf 0=+/'text-align: right;"'⍷∊ns.html
  →T.PassesIf 0=+/'text-align: center;"'⍷∊ns.html
 
