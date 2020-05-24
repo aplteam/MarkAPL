@@ -1,5 +1,5 @@
- R←Test_Para_012(stopFlag batchFlag);⎕TRAP;md;ns
-⍝ Test a n intended code block that is actually a paragraph. Was once a bug because wrongly interpreted as a table (|)
+ R←Test_HTML_026(stopFlag batchFlag);⎕TRAP;md;ns;expected
+⍝ Test a <pre> block whith <code> being on a separate line (was once a bug)
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 
@@ -13,6 +13,6 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- ⍝ We are happy enough if this does not crash (garbage anyway)
+ ⍝ The result is garbage in any case because it's ill-formed markdown, but it should not crash
 
  R←T._OK

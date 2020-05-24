@@ -1,4 +1,4 @@
- R←Test_ZZZ_999(stopFlag batchFlag);v;n;d;xml;rf;f1;f2;f4;buffer;is;shouldBe;⎕TRAP
+ R←Test_ZZZ_999(stopFlag batchFlag);v;n;d;xml;rf;f1;f2;⎕TRAP
 ⍝ Check the "Version" function and publish.config.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
@@ -7,20 +7,20 @@
 
 ⍝ First we check whether "Version" returns a valid result:
  (n v d)←rf.Version
- f1←n≢##.APLTreeUtils.Last⍕rf
- f1∨←~5≤⍴v
- f1∨←3≠'.'+.=v
+ d←{⍵/⍨3>+\'-'=⍵}d      ⍝ Remove trailing stuff like "-beta"
+ v←{⍵/⍨3>+\'.'=⍵}v      ⍝ Remove build ID
+ f1←~5≤⍴v
+ f1∨←2≠'.'+.=v
  f1∨←~∧/⎕D∊⍨v~'.'
 
  f1∨←10≠⍴d
- f1∨←d[4 7]∨.≠'-'
+ f1∨←d[4 7+⎕IO]∨.≠'-'
  f1∨←~∧/⎕D∊⍨d~'-'
 
- v←↑{⍺,'.',⍵}/⍕¨3↑'.'##.APLTreeUtils.Split v
 ⍝ publish.config must be in line with what "Version" returns of course:
  xml←⎕XML'flat'##.APLTreeUtils.ReadUtf8File'publish.config'
- f2←v≢2⊃xml[xml[;1]⍳⊂'version';]
- f2∨←d≢2⊃xml[xml[;1]⍳⊂'date';]
+ f2←v≢(2+⎕IO)⊃xml[xml[;1+⎕IO]⍳⊂'version';]
+ f2∨←d≢(2+⎕IO)⊃xml[xml[;1+⎕IO]⍳⊂'date';]
 
  :If f1
      ⎕←'Result of the "Version" function is invalid.'
@@ -32,4 +32,3 @@
  →T.FailsIf f1∨f2
 
  R←T._OK
-⍝Done

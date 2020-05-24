@@ -61,11 +61,14 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'9.1.0.154' '2020-04-25'
+      r←(Last⍕⎕THIS)'9.1.1.156' '2020-05-20-beta'
     ∇
 
     ∇ History
       :Access Public Shared
+      ⍝ * 9.1.1
+      ⍝   * Ill-formed markdown wrongly interpreted as a table could crash MarkAPL
+      ⍝   * Ill-formed markdown wrongly interpreted as a code block could crash MarkAPL
       ⍝ * 9.1.0
       ⍝   * Both sets of CSS files improved regarding tables and lists for both screen and print.
       ⍝   * The warning regarding an ill-formed TOC is now more specific about the level at fault.
@@ -984,10 +987,10 @@
           ((1+ind)↓cells)(ind↑cells)
       }
 
-    ∇ r←ProcessTableWithoutColTitles ns;specialAttrs;cells;footer;rows;align;hasFooter
+    ∇ r←ProcessTableWithoutColTitles ns;specialAttrs;cells;footer;rows;align;hasFooter;html
       r←1
       specialAttrs←GetSpecialAttributes⊃ns.markdown
-      ns.html,←⊂{0=≢⍵:'<table>' ⋄ '<table',⍵,'>'}specialAttrs
+      html←⊂{0=≢⍵:'<table>' ⋄ '<table',⍵,'>'}specialAttrs
       cells←SplitTableRowButMaskCode¨{(⊂specialAttrs DropSpecialAttributes⊃⍵),1↓⍵}ns.noOf↑ns.markdown
       cells←{dlb∘dtb ⍵}¨¨cells
       cells←ns{⍺ CheckOddNumberOfDoubleQuotes ⍵'header'}¨¨cells
@@ -998,17 +1001,22 @@
       :EndIf
       cells←⊃¨¨ns ProcessInlineMarkUp¨¨cells
       (footer cells)←ns.parms.markdownStrict GetFooter cells
-      :If 0≠≢footer
-          ns.html,←⊂'<tfoot>'
-          ns.html,←⊃,/{(⊂'<tr>'),⍵,⊂'</tr>'}¨{('td'∘{⍺,⍵}¨2 AddAlignStyle¨align)Tag¨⍵}¨(≢align)↑¨footer
-          ns.html,←⊂'</tfoot>'
+      :If 0=≢cells
+          r←0
+      :Else
+          :If 0≠≢footer
+              html,←⊂'<tfoot>'
+              html,←⊃,/{(⊂'<tr>'),⍵,⊂'</tr>'}¨{('td'∘{⍺,⍵}¨2 AddAlignStyle¨align)Tag¨⍵}¨(≢align)↑¨footer
+              html,←⊂'</tfoot>'
+          :EndIf
+          html,←⊂'<tbody>'
+          rows←{('td'∘{⍺,⍵}¨AddAlignStyle¨align)Tag¨⍵}¨(⊃⌈/≢¨cells)↑¨cells
+          html,←⊃,/{(⊂'<tr>'),⍵,⊂'</tr>'}¨rows
+          html,←⊂'</tbody>'
+          html,←⊂'</table>'
+          ns.html,←html
+          ns←Drop ns
       :EndIf
-      ns.html,←⊂'<tbody>'
-      rows←{('td'∘{⍺,⍵}¨AddAlignStyle¨align)Tag¨⍵}¨(⊃⌈/≢¨cells)↑¨cells
-      ns.html,←⊃,/{(⊂'<tr>'),⍵,⊂'</tr>'}¨rows
-      ns.html,←⊂'</tbody>'
-      ns.html,←⊂'</table>'
-      ns←Drop ns
     ∇
 
       ProcessHeaders←{
@@ -1670,11 +1678,11 @@
           :EndIf
           md[1]←⊂first
           md[≢md]←⊂last
-          :If {(≢⍵)=+/∧\2≥+\⍵='>'}1⊃md  ⍝ Do <pre> and <code> stand on their own?
-              md←(,/2↑md),2↓md
+          :If 0=≢'<code>'{⍵↓⍨(¯1+≢⍺)+1⍳⍨⍺⍷⍵}1⊃md        ⍝ Do <pre> and <code> stand on their own?
+              md←(,/2↑md),2↓md                          ⍝ Then connect the HTML with the first line of code
           :EndIf
-          :If {(≢⍵)=+/∧\2≥+\⍵='>'}(≡md)⊃md  ⍝ Do </pre> and </code> stand on their own?
-              md←(¯2↓md),,/¯2↑md
+          :If ≢'^</code></pre>$'⎕S 0⊣{⍵↓⍨-+/∧\' '=⌽⍵}{⍵/⍨~∨\⍵='⍝'}(≢md)⊃md  ⍝ Do </pre> and </code> stand on their own? (Comments are ignored)
+              md←(¯2↓md),,/¯2↑md                        ⍝ Then connect the HTML with the last line of code
           :EndIf
       :EndIf
       md←'</pre>'DropTailAfterClosingTag md
@@ -3303,7 +3311,7 @@
           ⍺←2
           (⍺=1)∧⍵≡'center':''                ⍝ For ⍺←→1 (th): headers default to center anyway
           (⍺=2)∧⍵≡'left':''                  ⍝ For ⍺←→2 (td): headers default to left anyway
-          ' style="text-align: ',⍵,';"'      
+          ' style="text-align: ',⍵,';"'
       }
 
     ∇ toc←CollectToc ns;ind;buff;level;caption;IDs;bool

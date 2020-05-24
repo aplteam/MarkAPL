@@ -39,6 +39,6 @@
  #.TEMP.md←'<pre>' '' '{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}' '' '</pre>'
  md2←##.MarkAPL.Execute'Process_PRE #.TEMP.md'
  expect←'<pre><code>' '{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}' '</code></pre>'
- →T.PassesIf expect≡md2
+ →T.PassesIf expect≡md2~⊂''
 
  R←T._OK
