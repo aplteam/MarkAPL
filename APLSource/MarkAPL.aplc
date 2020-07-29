@@ -61,11 +61,13 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←(Last⍕⎕THIS)'9.1.1.158' '2020-05-24'
+      r←(Last⍕⎕THIS)'9.1.2.159' '2020-07-29'
     ∇
 
     ∇ History
       :Access Public Shared
+      ⍝ * 9.1.2
+      ⍝   * Any italic header with at least one space in it was not processed correctly.
       ⍝ * 9.1.1
       ⍝   * Ill-formed markdown wrongly interpreted as a table could crash MarkAPL
       ⍝   * Ill-formed markdown wrongly interpreted as a code block could crash MarkAPL
@@ -2641,7 +2643,7 @@
                   searchFor←dmb'>',header,'</h',(⍕level),'>'
               :AndIf 1=+/bool←searchFor⍷html
                   ind←bool⍳1
-                  length←{¯1+⍵⍳'<'}{m←~GetMaskForCodeTags ⍵ ⋄ m\m/⍵}ind↓html
+                  length←¯1+1⍳⍨'</h'⍷{m←~GetMaskForCodeTags ⍵ ⋄ m\m/⍵}ind↓html
                   new←no,((0<≢no)/' '),header
                   html←(-ind)⌽new,length↓ind⌽html
               :EndIf

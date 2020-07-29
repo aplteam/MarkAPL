@@ -1,3 +1,4 @@
  Prepare
  T←⎕NEW ##.Tester2 ⎕THIS
+ T.codeCoverage←⎕NEW ##.CodeCoverage(,⊂'#.MarkAPL.MarkAPL')
  T.exec_after_each_test←(⍕⎕THIS),'.∆After'
