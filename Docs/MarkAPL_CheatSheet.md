@@ -1,12 +1,13 @@
-[parm]:toc            = 2 3                       
-[parm]:numberHeaders  = 2 3 4 5 6                 
-[parm]:bookmarkLink   = 6                         
-[parm]:collapsibleTOC = 1                         
-[parm]:title          = 'MarkAPL CheatSheet'      
-[parm]:width          = 1000 
+[parm]:toc            = 2 3
+[parm]:numberHeaders  = 2 3 4 5 6
+[parm]:bookmarkLink   = 6
+[parm]:collapsibleTOC = 1
+[parm]:title          = 'MarkAPL CheatSheet'
+[parm]:width          = 1000
 [parm]:printCSS       = 'BlackOnWhite_print.css'
-[parm]:screenCSS      = 'BlackOnWhite_screen.css'                     
+[parm]:screenCSS      = 'BlackOnWhite_screen.css'
 [parm]:saveHTML       = 0
+[parm]:linkToCSS      = 0
 
 
 MarkAPL Cheatsheet
@@ -618,8 +619,8 @@ For details refer to the [**_MarkAPL_** reference document](http://download.aplt
 
 ## Version
 
-This document refers to version 9.1 of **_MarkAPL_**.<<br>>
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2020-04-25
+This document refers to version 10.0 of **_MarkAPL_**.<<br>>
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2020-10-31
 
 ⍝ The link references:
 [1]:      https://aplwiki.com

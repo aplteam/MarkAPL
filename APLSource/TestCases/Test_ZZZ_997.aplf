@@ -1,42 +1,24 @@
- R←Test_ZZZ_997(stopFlag batchFlag);⎕IO;⎕ML;⎕TRAP;xml;report;buff;row;source;Find
-⍝ Checks on two text vectors: "⍝TODO⍝" and "⍝CHECK⍝"; This test case never fails, it just reports findings to the session.
- ⎕IO←0 ⋄ ⎕ML←3
+ R←Test_ZZZ_997(stopFlag batchFlag);⎕IO;⎕ML;⎕TRAP;report;buff;rf
+⍝ Checks on two text vectors: "⍝TODO⍝" and "⍝CHECK⍝"; never fails, just reports.
+ ⎕IO←1 ⋄ ⎕ML←1
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._OK
- Find←⎕SE.acre._code.UT.fi
-
  report←''
- report,←⊂'Checking '{⍵↑,'--- ',⍺,' ',⍵⍴'-'}80⌊⎕PW-1
- report,←⊂'*** Scan ',⍕⎕THIS
+ rf←##.MarkAPL
 
- buff←(⎕THIS Find'⍝CHECK⍝')~⊂(⍕⎕THIS),'.',↑⎕SI
- :If ~0∊⍴buff
-     report,←(⊂' ⍝CHECK⍝ found:'),(⊂'   '),¨buff
+ buff←rf T.FindSpecialString'⍝CHECK⍝'
+ buff←(buff[;1]≢¨⎕XSI[1])⌿buff ⍝ remove caller
+ :If 0≠≢buff
+     report,←↓(⊂' ⍝CHECK⍝ found:'),(⊂'   '),¨buff
  :EndIf
-
- buff←(⎕THIS Find'⍝TODO⍝')~⊂(⍕⎕THIS),'.',↑⎕SI
- :If ~0∊⍴buff
-     report,←(⊂' ⍝TODO⍝ found:'),(⊂'   '),¨buff
+ buff←rf T.FindSpecialString'⍝TODO⍝'
+ buff←(buff[;1]≢¨⎕XSI[1])⌿buff ⍝ remove caller
+ :If 0≠≢buff
+     report,←↓(⊂' ⍝TODO⍝ found:'),(⊂'   '),¨buff
  :EndIf
-
- xml←⎕XML'flat'##.APLTreeUtils.ReadUtf8File'publish.config'
- :If (↑⍴xml)>row←xml[;1]⍳⊂'main'
-     source←2⊃xml[row;]
-     report,←⊂'*** Scan ',source
-     source←','##.APLTreeUtils.Split source
-     source←{(('#.'≢2⍴⍵)/'#.'),⍵}¨source
-
-     buff←source Find'⍝CHECK⍝'
-     :If ~0∊⍴buff
-         report,←(⊂' ⍝CHECK⍝ found:'),(⊂'   '),¨buff
-     :EndIf
-
-     buff←source Find'⍝TODO⍝'
-     :If ~0∊⍴buff
-         report,←(⊂' ⍝TODO⍝ found:'),(⊂'   '),¨buff
-     :EndIf
-
+ :If 1=≢report
+     report,←⊂'    Nothing found!'
+ :Else
+     ⎕←'Checking for ⍝TODO⍝ and ⍝CHECK⍝ '{⍵↑,'--- ',⍺,' ',⍵⍴'-'}80⌊⎕PW-1
+     ⎕←⊃report
  :EndIf
-
- ⎕←⍪report
-⍝Done

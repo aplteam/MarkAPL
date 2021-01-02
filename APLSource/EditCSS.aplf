@@ -37,6 +37,6 @@
 
 ∆Go:
  ns←1↓parms MarkAPL.Markdown2HTML''
- APLTreeUtils.GoToWebPage'file://',folder,'/MarkAPL_CheatSheet.html'
+ APLTreeUtils2.GoToWebPage'file://',folder,'/MarkAPL_CheatSheet.html'
  .   ⍝ You might restart with →∆Go
 ⍝Done

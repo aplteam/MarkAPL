@@ -3,7 +3,7 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 
- fn←##.FilesAndDirs.EnforceSlash'"',##.FilesAndDirs.PWD,'\Files\Kai Jaeger Head Very Small 2014.jpg"'
+ fn←##.FilesAndDirs.EnforceSlash'"',##.FilesAndDirs.PWD,'\Images\Kai Jaeger Head Very Small 2014.jpg"'
 
  md←''
  md,←⊂'This is a para with an embedded ![](',fn,') in it.'

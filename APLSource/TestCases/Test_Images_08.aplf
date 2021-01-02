@@ -3,7 +3,7 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 
- fn←##.FilesAndDirs.EnforceSlash'file://',##.FilesAndDirs.PWD,'\Files\KaiJaegerHeadVerySmall.png'
+ fn←##.FilesAndDirs.EnforceSlash'file://',##.FilesAndDirs.PWD,'\images\KaiJaegerHeadVerySmall.png'
  md←''
  md,←⊂'|Kai Jaeger | ![picture3](',fn,' "Kai Jaeger")|'
 
@@ -11,6 +11,6 @@
  ns←##.MarkAPL.Process ns
 
  →T.PassesIf∨/'<td><img src="file://'⍷∊ns.html
- →T.PassesIf∨/'Files/KaiJaegerHeadVerySmall.png" alt="picture3" title="Kai Jaeger"></td>'⍷∊ns.html
+ →T.PassesIf∨/'images/KaiJaegerHeadVerySmall.png" alt="picture3" title="Kai Jaeger"></td>'⍷∊ns.html
 
  R←T._OK

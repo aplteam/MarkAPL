@@ -3,7 +3,8 @@
 [parm]:leanpubExtensions = 1
 [parm]:printCSS          = 'BlackOnWhite_print.css'
 [parm]:screenCSS         = 'BlackOnWhite_screen.css'
-
+[parm]:linkToCSS         = 0
+[parm]:saveHTML          = 0
 
 
 Quick introduction to MarkAPL

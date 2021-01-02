@@ -1,5 +1,5 @@
  R←Test_Blockquote_003(stopFlag batchFlag);⎕TRAP;md;ns;parms
-⍝ Test a blockquotes that has a para spanning more than one line.
+⍝ Test a blockquote that has a para spanning more than one line.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 

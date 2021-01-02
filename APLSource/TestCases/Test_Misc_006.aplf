@@ -17,7 +17,7 @@
  parms ##.MarkAPL.Markdown2HTML md
  →T.GoToTidyUp 0=⎕NEXISTS parms.outputFilename
 
- html←##.APLTreeUtils.ReadUtf8File parms.outputFilename
+ html←⎕NGET parms.outputFilename 1
 
  R←T._OK
 

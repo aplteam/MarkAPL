@@ -6,7 +6,7 @@
  md←''
  md,←⊂'[parm]:cssURL         = '''''
  md,←⊂'[parm]:linkToCSS      = 1'
- path←##.FilesAndDirs.PWD,'\'
+ path←##.FilesAndDirs.PWD,'/CSS/'
  md,←⊂'[parm]:printCSS       = ''',path,'BlackOnWhite_print.css'''
  md,←⊂'[parm]:screenCSS      = ''',path,'BlackOnWhite_print.css'''
  md,←⊂''

@@ -10,7 +10,7 @@
  ##.FilesAndDirs.MkDir path
  filename←path,'\Test_Misc_018.md'
  md←'[parm]:verbose=0' '# Test' '' '* This' '* That' '* More' '' '# Test'
- ##.APLTreeUtils.WriteUtf8File filename md
+ (⊂md)⎕NPUT filename 1
 
  report←##.MarkAPL.ConvertMarkdownFile filename
  →T.GoToTidyUp 0∊⍴report

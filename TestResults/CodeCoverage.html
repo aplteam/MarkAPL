@@ -111,50 +111,34 @@ ul li, ol li {margin: 8pt 3pt;}
 </head>
 <body>
 <h1 id="top">Coverage Report</h1>
-<p>Watched: 191 fns/opr within <code>#.MarkAPL.MarkAPL</code></p>
-<p>Overall 94% of the testable code is  covered.</p>
-<p>(Testable: comment lines, empty lines, all <code>:End</code>* lines etc. are all ignored)</p>
-<p>155 of the fns/opr are 100% covered.</p>
-<p>8 are not covered at all:</p>
-<table>
-<tbody>
-<tr><td>#.MarkAPL.MarkAPL.ProcessATX_HeaderLink</td></tr>
-<tr><td>#.MarkAPL.MarkAPL.EscapeSpecialCharsOutsideCode</td></tr>
-<tr><td>#.MarkAPL.MarkAPL.DeleteTrailingWhiteSpace</td></tr>
-<tr><td>#.MarkAPL.MarkAPL.IsGlued</td></tr>
-<tr><td>#.MarkAPL.MarkAPL.IdentifyBulletedList</td></tr>
-<tr><td>#.MarkAPL.MarkAPL.IdentifyOrderedList</td></tr>
-<tr><td>#.MarkAPL.MarkAPL.IdentifyList__</td></tr>
-<tr><td>#.MarkAPL.MarkAPL.IsStyleBlockStart</td></tr>
-</tbody>
-</table>
-<div id="partly-covered" class="keep-together">
-<p>28 are partly covered:</p>
+<p>Watched: 105 fns/opr within <code>#.MarkAPL.MarkAPL</code></p>
+<p>The test test suite was execute once:</p>
 <table>
 <thead>
-<tr><th>Function/Operator</th><th>Lines not executed</th><th>Coverage</th><th>≢</th></tr>
+<tr><th>Executed at</th><th>APLVersion</th><th>Memory (MB)</th></tr>
+<thead>
+</tbody>
+<tr><td>2020-12-31 13:30:35</td><td>Windows-64 ⋄ 18.0.39659.0 ⋄ W ⋄ Development</td><td>52</td></tr>
+</tbody>
+</table>
+<p>Overall 98% of the testable code is  covered.</p>
+<p>(Comment lines, empty lines, all <code>:End</code>* lines etc. are all ignored)</p>
+<p>89 of the fns/opr are 100% covered.</p>
+<div id="partly-covered" class="keep-together">
+<p>16 are partly covered:</p>
+<table>
+<thead>
+<tr><th style="text-align:left;">Function/Operator</th><th style="text-align:left;">Lines not executed</th><th style="text-align:left;">Coverage</th><th style="text-align:right;">≢</th></tr>
 </thead>
 <tbody>
-<tr><td>#.MarkAPL.MarkAPL.EstablishDefaultHomeFolder</td><td>11←≢7-17</td><td>35%</td><td class="align-right">17</td></tr>
-<tr><td>#.MarkAPL.MarkAPL.SetTitle</td><td>3,4,5</td><td>40%</td><td class="align-right">5</td></tr>
-<tr><td>#.MarkAPL.MarkAPL.ReplaceQTC_byBlank</td><td>3,4</td><td>50%</td><td class="align-right">4</td></tr>
-<tr><td>#.MarkAPL.MarkAPL.RemoveLeanpubEncoding</td><td>2</td><td>50%</td><td class="align-right">2</td></tr>
-<tr><td>#.MarkAPL.MarkAPL.WhereAreCodeBlocks</td><td>11←≢16-19,21-22,24-26,28,31</td><td>52%</td><td class="align-right">23</td></tr>
-<tr><td>#.MarkAPL.MarkAPL.LookForEmbeddedParm</td><td>5←≢7-11</td><td>55%</td><td class="align-right">11</td></tr>
-<tr><td>#.MarkAPL.MarkAPL.Reference</td><td>12,13,15</td><td>57%</td><td class="align-right">7</td></tr>
-<tr><td>#.MarkAPL.MarkAPL.Help</td><td>12,13,15</td><td>57%</td><td class="align-right">7</td></tr>
-<tr><td>#.MarkAPL.MarkAPL.MaskFunctionCall</td><td>5,6,7</td><td>57%</td><td class="align-right">7</td></tr>
-<tr><td>#.MarkAPL.MarkAPL.AddBookmarkClassName</td><td>3</td><td>67%</td><td class="align-right">3</td></tr>
-<tr><td>#.MarkAPL.MarkAPL.CompileHelp</td><td>5←≢10,13,17,20,27</td><td>74%</td><td class="align-right">19</td></tr>
-<tr><td>#.MarkAPL.MarkAPL.CollectItemPara</td><td>12,13</td><td>75%</td><td class="align-right">8</td></tr>
-<tr><td>#.MarkAPL.MarkAPL.ProcessHtmlBlock_ScriptStylePre</td><td>4←≢17-20</td><td>76%</td><td class="align-right">17</td></tr>
+<tr><td>#.MarkAPL.MarkAPL.ShowHtml</td><td>3,8,13</td><td>67%</td><td class="align-right">9</td></tr>
+<tr><td>#.MarkAPL.MarkAPL.CompileHelp</td><td>6←≢10,14,17,21,24,31</td><td>71%</td><td class="align-right">21</td></tr>
 <tr><td>#.MarkAPL.MarkAPL.ExecExternalFns</td><td>5←≢8,20,30-31,34</td><td>79%</td><td class="align-right">24</td></tr>
 <tr><td>#.MarkAPL.MarkAPL.ScanForBlockQuotes</td><td>14,15,16</td><td>80%</td><td class="align-right">15</td></tr>
 <tr><td>#.MarkAPL.MarkAPL.ProcessEmeddedHTML</td><td>11,12</td><td>80%</td><td class="align-right">10</td></tr>
-<tr><td>#.MarkAPL.MarkAPL.EscapeSpecialChars</td><td>11</td><td>80%</td><td class="align-right">5</td></tr>
-<tr><td>#.MarkAPL.MarkAPL.BuildColumnHeader</td><td>6</td><td>83%</td><td class="align-right">6</td></tr>
 <tr><td>#.MarkAPL.MarkAPL.CopyTo</td><td>4</td><td>86%</td><td class="align-right">7</td></tr>
-<tr><td>#.MarkAPL.MarkAPL.Markdown2HTML</td><td>15</td><td>92%</td><td class="align-right">12</td></tr>
+<tr><td>#.MarkAPL.MarkAPL.Help</td><td>17</td><td>88%</td><td class="align-right">8</td></tr>
+<tr><td>#.MarkAPL.MarkAPL.Markdown2HTML</td><td>15</td><td>92%</td><td class="align-right">13</td></tr>
 <tr><td>#.MarkAPL.MarkAPL.ProcessParagraph</td><td>11</td><td>92%</td><td class="align-right">13</td></tr>
 <tr><td>#.MarkAPL.MarkAPL.InjectCssIntoHtml</td><td>9</td><td>94%</td><td class="align-right">17</td></tr>
 <tr><td>#.MarkAPL.MarkAPL.Init</td><td>14</td><td>95%</td><td class="align-right">19</td></tr>
@@ -168,7 +152,7 @@ ul li, ol li {margin: 8pt 3pt;}
 </div>
 <div id="footer">
 <hr>
-<p>Created by Tester2 version 1.0.0.3 from 2020-07-14</p>
+<p>Created by "CodeCoverage" version 0.7.1.37 from 2020-12-20</p>
 </div>
 </body>
 </html>

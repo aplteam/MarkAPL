@@ -1,5 +1,5 @@
  R←Test_Misc_016(stopFlag batchFlag);⎕TRAP;md;parms;ns;buff
-⍝ Converts the MarkAPL_CheatSheet.md document and checks `report` aftwerwards.
+⍝ Converts the MarkAPL_CheatSheet.md document and checks `report` afterwards.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 
@@ -13,7 +13,7 @@
 
  ns←parms ##.MarkAPL.Help 1
 
- buff←(~↑∧/∨/¨'warning' 'ambiguous'⍷¨⊂##.APLTreeUtils.Lowercase⊃ns.report)/ns.report
+ buff←(~↑∧/∨/¨'warning' 'ambiguous'⍷¨⊂⎕C⊃ns.report)/ns.report
  →T.GoToTidyUp 0≠≢buff
 
  R←T._OK

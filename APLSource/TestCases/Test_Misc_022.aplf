@@ -10,7 +10,7 @@
  ##.FilesAndDirs.MkDir path
  filename←path,'\Test_Misc_018.md'
  md←'# Test' '' '* This' '* That' '* More'
- ##.APLTreeUtils.WriteUtf8File filename md
+ (⊂md)⎕NPUT filename 1
  parms←##.MarkAPL.CreateParms
  parms.inputFilename←filename
 

@@ -14,7 +14,7 @@
 
  ns←parms ##.MarkAPL.Reference 1
 
- buff←(~↑∧/∨/¨'warning' 'ambiguous'⍷¨⊂##.APLTreeUtils.Lowercase⊃ns.report)/ns.report
+ buff←(~↑∧/∨/¨'warning' 'ambiguous'⍷¨⊂⎕C⊃ns.report)/ns.report
 
  R←T._OK
 

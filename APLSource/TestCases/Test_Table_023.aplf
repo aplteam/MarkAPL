@@ -1,5 +1,5 @@
  R←Test_Table_023(stopFlag batchFlag);⎕TRAP;ns;parms;mat;html
-⍝ Test table with colspan support.
+⍝ Test table with colspan support. (not implemented yet)
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 

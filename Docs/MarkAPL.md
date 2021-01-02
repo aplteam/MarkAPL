@@ -9,8 +9,7 @@
 [parm]:screenCSS       = 'BlackOnWhite_screen.css'
 [parm]:smoothScrolling = 1
 [parm]:saveHTML        = 0
-[parm]:linkToCSS       = 1
-
+[parm]:linkToCSS       = 0
 
 
 MarkAPL Reference
@@ -2253,18 +2252,21 @@ Note that any tags added by the `head` parameter are injected **after** any sub 
 
 #### homeFolder
 
+
 This points to the folder where MarkAPL.html and MarkAPL_CheatSheet.html and the default CSS files live. If this is not set then **_MarkAPL_** tries to find it:
 
-1. First it tries to find the two HTML files in the current directory. 
-2. Next it tries to find them in a sub-folder `Files\` within the current 
+1. First it checks whether MarkAPL was loaded as a Tatin package. If that's the case then the parent space's name is `_tatin`, and it carries a variable `∆HOME` that points to where the `files/` folder lives which contains the documents required.
+1. Next it tries to find the two HTML files in the current directory. 
+1. Next it tries to find them in a sub-folder `Files\` within the current 
    directory.
-3. Next it investigates whether **_MarkAPL_** was loaded with SALT. If so it 
+1. Next it investigates whether **_MarkAPL_** was loaded with SALT. If so it 
    tries to find those files from the folder SALT has loaded the script from.
-4. Finally it tries to find them in a sub-folder `Files\` within the SALT 
+1. Finally it tries to find them in a sub-folder `Files\` within the SALT 
    source folder.
-5. If that fails `homefolder` is set to the current directory. However, that means that some functionality might not work.
+1. If that fails `homefolder` is set to the current directory. However, that means that some functionality might not work.
    It might be better to set `homeFolder` in such cases.
 
+Note that with version 9.3 the search strategy for the home folder has changed: now MarkAPL first checks whether MarkAPL is a [Tatin](https://github.com/aplteam/Tatin "Link to Tatin on GitHub") package.
 
 #### ignoreEmbeddedParms
 
@@ -2536,9 +2538,9 @@ If you cannot work out why it goes wrong report it to me -- see the previous top
 Version information
 -------------------
 
-This document refers to version 9.1 of **_MarkAPL_**.
+This document refers to version 10.0 of **_MarkAPL_**.
 
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2020-04-25
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2021-01-01
 
 [^meddy]: The Markdown editor Meddy on GitHub:<<br>><https://github.com/aplteam/Meddy>
 [^abandon]: Wikipedia definition of abandonware:<<br>><https://www.wikiwand.com/en/Abandonware>

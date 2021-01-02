@@ -1,7 +1,7 @@
  StartExplorer←{
      path←⍵
-     parms←WinSys.CreateParms_ShellExecute
+     parms←##.OS.CreateParms_ShellExecute
      parms.file←'Explorer'
      parms.lpParms←'/e',(~0∊⍴path)/' /select,',FilesAndDirs.NormalizePath path
-     WinSys.ShellExecute parms
+     ##.OS.ShellExecute parms
  }

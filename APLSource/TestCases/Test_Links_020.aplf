@@ -8,7 +8,7 @@
  md,←⊂'[parm]:toc=1'
  md,←⊂'[parm]:subTocs=1'
  md,←⊂'[parm]:noCSS=1'
- md,←⊂'[parm]:title=',↑⌽'.'##.APLTreeUtils.Split↑⎕XSI
+ md,←⊂'[parm]:title=',↑⌽'.'##.APLTreeUtils2.Split↑⎕XSI
  md,←⊂'# Main menu'
  md,←⊂'<<subTOC>>'
  md,←⊂'## Code: the `<pre>` tag'

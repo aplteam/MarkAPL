@@ -7,10 +7,8 @@
 [parm]:numberHeaders     = 6
 [parm]:printCSS          = 'BlackOnWhite_screen.css'
 [parm]:screenCSS         = 'BlackOnWhite_screen.css'
-[parm]:linkToCSS         = 1
-[parms]:saveHTML          = 0
-⍝[parm]:printCSS           = 'BlackOnWhite_print.css'
-⍝[parm]:screenCSS          = 'BlackOnWhite_screen.css'
+[parm]:linkToCSS         = 0
+[parm]:saveHTML          = 0
 
 
 MarkAPL Styles

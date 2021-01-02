@@ -26,7 +26,7 @@
  ns←##.MarkAPL.Process ns
 
  expected←,¨'3-5' '1' '13' '[-]'
- buff←{⍵~⎕A,' ().:',##.APLTreeUtils.Lowercase ⎕A}¨ns.report
+ buff←{⍵~⎕A,' ().:',⎕C ⎕A}¨ns.report
  →T.PassesIf↑=/⍴¨expected buff
  →T.PassesIf∧/expected{(⍺∊⍵)∨(⍵∊⍺)}buff
 

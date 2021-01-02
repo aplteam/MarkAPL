@@ -3,9 +3,9 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 
- md←'flat'##.APLTreeUtils.ReadUtf8File'Docs\MarkAPL_for_Programmers.md'
+ md←↑⎕NGET'Docs/MarkAPL_for_Programmers.md'
  buff←'This document refers to version '
- buff,←↑{⍺,'.',⍵}/2↑'.'##.APLTreeUtils.Split 1⊃##.MarkAPL.Version
+ buff,←↑{⍺,'.',⍵}/2↑'.'##.APLTreeUtils2.Split 1⊃##.MarkAPL.Version
  buff,←' of **_MarkAPL_**.'
  →T.PassesIf 1=+/buff⍷md
 

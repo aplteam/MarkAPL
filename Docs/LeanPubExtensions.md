@@ -4,7 +4,9 @@
 [parm]:width             = 1000
 [parm]:collapsibleTOC    = 1
 [parm]:toc               = 2 3
-[parm]:saveHTML        = 0
+[parm]:saveHTML          = 0
+[parm]:linkToCSS         = 0
+
 
 
 LeanPub Extensions
@@ -249,9 +251,9 @@ Because HTML blocks are left alone when the actual markdown is processed that wo
 
 As a side effect of this technique multi-line code blocks loose their newline characters because the HTML is converted into a single line. For that reason `<br>` tags are inserted to preserve those newlines.
 
-This document refers to version 9.1 of **_MarkAPL_**.
+This document refers to version 10.0 of **_MarkAPL_**.
 
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2020-01-22
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2020-10-31
 
 Last Update: 2020-04-25
 
