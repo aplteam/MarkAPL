@@ -59,7 +59,7 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←'MarkAPL' '10.0.0.192' '2020-12-31'
+      r←'MarkAPL' '10.0.0.198' '2020-12-31'
     ∇
 
     ∇ History
