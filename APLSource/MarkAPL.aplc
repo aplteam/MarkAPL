@@ -59,11 +59,14 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←'MarkAPL' '10.0.0.198' '2020-12-31'
+      r←'MarkAPL' '10.0.1.202' '2021-01-17'
     ∇
 
     ∇ History
       :Access Public Shared
+      ⍝ * 10.0.1
+      ⍝   * `CreateParms` did not reflect the now flat folder structure of "files/" making `MakeHTML_Doc` fail
+      ⍝     to find the default CSS files.
       ⍝ * 10.0.0
       ⍝   * BREAKING CHANGES:
       ⍝     * Dyalog 18.0 is required by `MarkAPL`
@@ -137,7 +140,7 @@
       parms←EstablishDefaultHomeFolder parms
       :If 0=parms.noCSS
           :If ⎕NULL≡parms.cssURL
-              parms.cssURL←parms.homeFolder,'/CSS'
+              parms.cssURL←parms.homeFolder
           :EndIf
           parms.cssURL~←'"'
           :If 0≠≢parms.cssURL
@@ -345,7 +348,7 @@
       :EndIf
       parms←EstablishDefaultHomeFolder parms
       :If ⎕NULL≡parms.cssURL
-          parms.cssURL←'file:///',##.FilesAndDirs.NormalizePath parms.homeFolder,'/CSS'
+          parms.cssURL←'file:///',##.FilesAndDirs.NormalizePath parms.homeFolder
       :EndIf
       ((parms.cssURL='\')/parms.cssURL)←'/'
       ((parms.leanpubIconsUrl='\')/parms.leanpubIconsUrl)←'/'
@@ -3248,7 +3251,7 @@
       ns←⍬
       parms←EstablishDefaultHomeFolder parms
       :If ⎕NULL≡parms.cssURL
-          parms.cssURL←parms.homeFolder,'/CSS'
+          parms.cssURL←parms.homeFolder
       :EndIf
       :If (':'∊filename)∨'/'=1⍴filename
           fn←CorrectSlash filename

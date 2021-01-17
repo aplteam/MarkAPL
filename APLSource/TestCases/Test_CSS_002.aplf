@@ -4,7 +4,7 @@
  R←T._Failed
 
  parms←##.MarkAPL.CreateParms
- parms.cssURL←'file://',##.FilesAndDirs.PWD,'/CSS'
+ parms.cssURL←'file://',##.FilesAndDirs.PWD,'/'
 
  md←,⊂'> > This is a recursive blockquote.'
 

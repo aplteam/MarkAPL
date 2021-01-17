@@ -4,7 +4,7 @@
  R←T._Failed
 
  parms←##.MarkAPL.CreateParms
- parms.cssURL←##.FilesAndDirs.PWD,'/CSS'
+ parms.cssURL←##.FilesAndDirs.PWD,'/'
 
  md←,⊂'This is a para.'
 

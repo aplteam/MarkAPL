@@ -4,7 +4,7 @@
  R←T._Failed
 
  md←''
- md,←⊂'[parm]:cssURL         = ''',##.FilesAndDirs.PWD,'/CSS'''
+ md,←⊂'[parm]:cssURL         = ''',##.FilesAndDirs.PWD,''''
  md,←⊂'[parm]:linkToCSS      = 1'
  md,←⊂'[parm]:printCSS       = ''BlackOnWhite_print.css'''
  md,←⊂'[parm]:screenCSS      = ''BlackOnWhite_print.css'''

@@ -1,6 +1,6 @@
  Prepare;testPath;testFilename;ask;answer
 ⍝ Useful to prepare test cases for execution
- T←⎕NEW ##.Tester2 ⎕THIS
+ T←⎕NEW Tester2 ⎕THIS
  testPath←(⊃1 ⎕NPARTS''),'TestResults'
  testFilename←testPath,'/CodeCoverage'
  :If ⎕NEXISTS testPath
@@ -13,7 +13,7 @@
      :EndIf
  :EndIf
  3 ⎕MKDIR testPath  ⍝
- T.codeCoverage←⎕NEW ##.CodeCoverage(,⊂'#.',{⍵,'.',⍵}2↓⍕⎕THIS.##)
+ T.codeCoverage←⎕NEW CodeCoverage(,⊂'#.',{⍵,'.',⍵}2↓⍕⎕THIS.##)
  T.codeCoverage.filename←testFilename
  T.exec_after_each_test←(⍕⎕THIS),'.∆After'
 ⍝Done
