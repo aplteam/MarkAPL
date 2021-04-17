@@ -21,10 +21,10 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →T.PassesIf'<p>Para 1</p>'≡0⊃ns.html
- →T.PassesIf'<pre><code>⍝ Should make it into the output</code></pre>'≡1⊃ns.html
- →T.PassesIf'<pre><code>⍝ Should also make it into the output</code></pre>'≡2⊃ns.html
- →T.PassesIf'<p>Para 2</p>'≡3⊃ns.html
- →T.PassesIf 4=⍴ns.html
+ →T.PassesIf'<p>Para 1</p>'≡1⊃ns.html
+ →T.PassesIf'<pre><code>⍝ Should make it into the output</code></pre>'≡2⊃ns.html
+ →T.PassesIf'<pre><code>⍝ Should also make it into the output</code></pre>'≡3⊃ns.html
+ →T.PassesIf'<p>Para 2</p>'≡4⊃ns.html
+ →T.PassesIf 4=≢ns.html
 
  R←T._OK

@@ -12,6 +12,6 @@
 
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- →T.PassesIf'<table>'≡↑ns.html
+ →T.PassesIf'<table>'≡⊃ns.html
 
  R←T._OK

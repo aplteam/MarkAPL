@@ -14,18 +14,18 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →T.PassesIf 1=+/'the ` is removed'⍷0⊃ns.html
- →T.PassesIf 0=+/'<code>'⍷0⊃ns.html
+ →T.PassesIf 1=+/'the ` is removed'⍷1⊃ns.html
+ →T.PassesIf 0=+/'<code>'⍷1⊃ns.html
 
- →T.PassesIf 1=+/'this ` is '⍷1⊃ns.html
- →T.PassesIf 2=+/'<code>'⍷1⊃ns.html
- →T.PassesIf 2=+/'</code>'⍷1⊃ns.html
+ →T.PassesIf 1=+/'this ` is '⍷2⊃ns.html
+ →T.PassesIf 2=+/'<code>'⍷2⊃ns.html
+ →T.PassesIf 2=+/'</code>'⍷2⊃ns.html
 
- →T.PassesIf 1=+/'the ` are removed'⍷3⊃ns.html
- →T.PassesIf 0=+/'<code>'⍷3⊃ns.html
+ →T.PassesIf 1=+/'the ` are removed'⍷4⊃ns.html
+ →T.PassesIf 0=+/'<code>'⍷4⊃ns.html
 
- →T.PassesIf 1=+/'this ` is '⍷4⊃ns.html
- →T.PassesIf 2=+/'<code>'⍷4⊃ns.html
- →T.PassesIf 2=+/'</code>'⍷4⊃ns.html
+ →T.PassesIf 1=+/'this ` is '⍷5⊃ns.html
+ →T.PassesIf 2=+/'<code>'⍷5⊃ns.html
+ →T.PassesIf 2=+/'</code>'⍷5⊃ns.html
 
  R←T._OK

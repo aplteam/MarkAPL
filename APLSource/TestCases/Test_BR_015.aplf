@@ -25,12 +25,12 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →T.PassesIf+/'<p>First para <br>with a line break in between</p>'⍷0⊃ns.html
- →T.PassesIf'<li>Any list item <br> with a <code>&lt;br/&gt;</code> tag in it</li>'≡2⊃ns.html
- →T.PassesIf'<li>Another one</li>'≡3⊃ns.html
- →T.PassesIf'<li>First <br> ordered list item'≡6⊃ns.html
- →T.PassesIf'<p>Second para of first item <br> with a <code>&lt;br/&gt;</code></p></li>'≡7⊃ns.html
- →T.PassesIf'<li>Second list item</li>'≡8⊃ns.html
+ →T.PassesIf+/'<p>First para <br>with a line break in between</p>'⍷1⊃ns.html
+ →T.PassesIf'<li>Any list item <br> with a <code>&lt;br/&gt;</code> tag in it</li>'≡3⊃ns.html
+ →T.PassesIf'<li>Another one</li>'≡4⊃ns.html
+ →T.PassesIf'<li>First <br> ordered list item'≡7⊃ns.html
+ →T.PassesIf'<p>Second para of first item <br> with a <code>&lt;br/&gt;</code></p></li>'≡8⊃ns.html
+ →T.PassesIf'<li>Second list item</li>'≡9⊃ns.html
  html←1↓↑,/(⎕UCS 13),¨ns.html
  →T.PassesIf 2=+/'<li>'⍷{⍵/⍨{⍵∨≠\⍵}↑∨/'<ul>' '</ul>'⍷¨⊂⍵}html  ⍝ First (bulleted) list has two items
  →T.PassesIf 2=+/'<li>'⍷{⍵/⍨{⍵∨≠\⍵}↑∨/'<ol' '</ol>'⍷¨⊂⍵}html  ⍝ Second (ordered) list has two items

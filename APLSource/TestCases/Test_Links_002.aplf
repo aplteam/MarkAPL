@@ -7,19 +7,19 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
  expected←'<p>Link: <a href="http://aplwiki.com" class="external_link">http://aplwiki.com</a></p>'
- →T.PassesIf expected≡↑ns.html
+ →T.PassesIf expected≡⊃ns.html
 
  md←⊂'Link: <http://aplwiki.com{id="foo" style="color:red;"}>'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
  expected←'<p>Link: <a href="http://aplwiki.com" class="external_link" id="foo" style="color:red;">http://aplwiki.com</a></p>'
- →T.PassesIf expected≡↑ns.html
+ →T.PassesIf expected≡⊃ns.html
 
  md←⊂'<http://aplwiki.com/UserCommands/Adoc>'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
  expected←'<p><a href="http://aplwiki.com/UserCommands/Adoc" class="external_link">http://aplwiki.com/UserCommands/Adoc</a></p>'
- →T.PassesIf expected≡↑ns.html
+ →T.PassesIf expected≡⊃ns.html
 
  md←⊂'<kai@aplteam.com>'                ⍝ mailto: link
  ns←##.MarkAPL.Init''md

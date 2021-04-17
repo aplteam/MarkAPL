@@ -19,6 +19,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<p>This “— called in line 3 —” is the result of the function — really!</p>'
- →T.PassesIf expected≡1⊃ns.html
+ →T.PassesIf expected≡2⊃ns.html
 
  R←T._OK

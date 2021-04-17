@@ -22,4 +22,4 @@
  R←T._OK
 
 ∆TidyUp:
- :Trap 0 ⋄ ##.FilesAndDirs.DeleteFile parms.outputFilename ⋄ :EndTrap
+ :Trap 0 ⋄ FilesAndDirs.DeleteFile parms.outputFilename ⋄ :EndTrap

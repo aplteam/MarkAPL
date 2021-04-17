@@ -18,7 +18,7 @@
  →T.PassesIf 1=≢ns.embeddedParms
  →T.PassesIf 1=≢ns.data
  →T.PassesIf 1=+/'Firlefanz'⍷ns.parms.cssURL
- →T.PassesIf'Kai Jaeger'≡0 1⊃ns.data
+ →T.PassesIf'Kai Jaeger'≡1 2⊃ns.data
  →T.PassesIf 0=+/'<p>A oaragraph</p>'⍷∊ns.html
  →T.PassesIf 1=+/'<p>'⍷∊ns.html
 

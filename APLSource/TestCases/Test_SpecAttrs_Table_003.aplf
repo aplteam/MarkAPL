@@ -14,6 +14,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<table>'
- →T.PassesIf expected≡↑ns.html
+ →T.PassesIf expected≡⊃ns.html
 
  R←T._OK

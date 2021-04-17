@@ -16,6 +16,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<p><img src="http://download.aplwiki.com/LeanPub/Images/error.png" alt="This is the ''Error'' icon" title="This is the ''Error'' icon"> This is a para This is a para</p>'
- →T.PassesIf expected≡0⊃ns.html
+ →T.PassesIf expected≡1⊃ns.html
 
  R←T._OK

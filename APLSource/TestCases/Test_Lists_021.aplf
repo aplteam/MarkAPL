@@ -17,6 +17,6 @@
  ns←##.MarkAPL.Process ns
 
  expect←'<ol start="1">' '<li>' '<li>' '<p>' '</ol>' '<p>'
- →T.PassesIf expect≡{⍵↑⍨1+⍵⍳'>'}¨ns.html
+ →T.PassesIf expect≡{⍵↑⍨⍵⍳'>'}¨ns.html
 
  R←T._OK

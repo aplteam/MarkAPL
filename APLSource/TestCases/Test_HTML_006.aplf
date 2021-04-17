@@ -47,9 +47,9 @@
      ns←##.MarkAPL.Init''md
      ns←##.MarkAPL.Process ns
      :If 'pre'≢this     ⍝ Because <pre> gets attached a <code> if missing
-         →T.PassesIf 1=⍴ns.html~⊂''
+         →T.PassesIf 1=≢ns.html~⊂''
      :EndIf
-     →T.PassesIf('<',this,'>')≡{⍵↑⍨1+⍵⍳'>'}0⊃ns.html~⊂''
+     →T.PassesIf('<',this,'>')≡{⍵↑⍨⍵⍳'>'}1⊃ns.html~⊂''
 
      md←''('</',this,'>')''
      ns←##.MarkAPL.Init''md

@@ -24,6 +24,6 @@
  expect←'<ul>' '<li>' '<ul>' '<li>' '<ul>' '<li>' '<ol start="1">' '<li>' '<ul>' '<li>' '</ul>'
 ⍝                     a-1-1-2       a-1-1             a-1           a
  expect,←'<p>' '<li>' '</ol>' '<p>' '</ul>' '<li>' '</ul>' '<li>' '</ul>'
- →T.PassesIf expect≡{⍵↑⍨1+⍵⍳'>'}¨ns.html
+ →T.PassesIf expect≡{⍵↑⍨⍵⍳'>'}¨ns.html
 
  R←T._OK

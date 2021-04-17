@@ -16,7 +16,7 @@
      css2←##.MarkAPL.CompressCSS css
      →T.FailsIf 1
  :Else
-     →T.PassesIf'Cannot compress CSS:'{⍺≡(⍴⍺)↑⍵}↑⎕DM
+     →T.PassesIf'Cannot compress CSS:'{⍺≡(⍴⍺)↑⍵}⊃⎕DM
  :EndTrap
 
  R←T._OK

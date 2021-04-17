@@ -7,6 +7,6 @@
 
  md←##.MarkAPL.Matrix2MarkdownTable m
  →T.PassesIf 4=⍴md
- →T.PassesIf'|'∧.=↑¨md
+ →T.PassesIf'|'∧.=⊃¨md
 
  R←T._OK

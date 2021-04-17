@@ -15,7 +15,7 @@
  m,←⊂1 2 'Level 3 c num'
  m,←⊂0 1 'Level 2 b bull'
 
- md←##.MarkAPL.Matrix2MarkdownList⊃m
+ md←##.MarkAPL.Matrix2MarkdownList↑m
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 

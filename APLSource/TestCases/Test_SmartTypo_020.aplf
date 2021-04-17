@@ -14,8 +14,8 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<p>First para&lt;==&gt;really! (as in <code>&lt;==&gt;</code>) ↔, really (<code>&lt;==&gt;</code>)</p>'
- →T.PassesIf expected≡0⊃ns.html
- expected←'<pre><code> `&lt;==&gt;` are converted automatically into &lt;==&gt;</code></pre>'
  →T.PassesIf expected≡1⊃ns.html
+ expected←'<pre><code> `&lt;==&gt;` are converted automatically into &lt;==&gt;</code></pre>'
+ →T.PassesIf expected≡2⊃ns.html
 
  R←T._OK

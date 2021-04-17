@@ -20,6 +20,6 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- →T.PassesIf(⍴,ns.headerLineNos)=↑⍴ns.headers
+ →T.PassesIf(≢ns.headerLineNos)=≢ns.headers
 
  R←T._OK

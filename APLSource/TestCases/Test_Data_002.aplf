@@ -14,9 +14,9 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →T.FailsIf 4≠⊃⍴ns.data
- data←⊃ns.data
- →T.FailsIf('author' 'Date' 'Copies' 'sequence')≢data[;0]
- →T.FailsIf('Kai Jaeger' '2016-02-19' 112(1 2 3))≢data[;1]
+ →T.FailsIf 4≠↑⍴ns.data
+ data←↑ns.data
+ →T.FailsIf('author' 'Date' 'Copies' 'sequence')≢data[;1]
+ →T.FailsIf('Kai Jaeger' '2016-02-19' 112(1 2 3))≢data[;2]
 
  R←T._OK

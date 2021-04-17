@@ -1,2 +1,2 @@
  r←∆GetTempHtmlFileName
- r←'html'##.FilesAndDirs.GetTempFilename2'MarkAPLTest_',⎕AN
+ r←'html'FilesAndDirs.GetTempFilename2'MarkAPLTest_',⎕AN

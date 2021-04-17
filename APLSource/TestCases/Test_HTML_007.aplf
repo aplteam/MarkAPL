@@ -25,18 +25,18 @@
  md←'This is a para.' '' '<My-Tag>' 'That''s embraced by `<My-Tag>`' '</My-Tag>' '' 'Another para'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- →T.PassesIf'<My-Tag>'{⍺≡(⍴⍺)↑⍵}1⊃ns.html
- →T.PassesIf'That''s embraced by `<My-Tag>`'{⍺≡(⍴⍺)↑⍵}2⊃ns.html
- →T.PassesIf'</My-Tag>'≡3⊃ns.html
- →T.PassesIf'<p>Another para</p>'{⍺≡(-⍴⍺)↑⍵}↑¯1↑ns.html
+ →T.PassesIf'<My-Tag>'{⍺≡(⍴⍺)↑⍵}2⊃ns.html
+ →T.PassesIf'That''s embraced by `<My-Tag>`'{⍺≡(⍴⍺)↑⍵}3⊃ns.html
+ →T.PassesIf'</My-Tag>'≡4⊃ns.html
+ →T.PassesIf'<p>Another para</p>'{⍺≡(-⍴⍺)↑⍵}⊃¯1↑ns.html
 
  md←'This is a para.' '' '<My-Tag>' '' 'That''s embraced by `<My-Tag>`' '' '</My-Tag>' '' 'Another para'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- →T.PassesIf'<My-Tag>'{⍺≡(⍴⍺)↑⍵}1⊃ns.html
- →T.PassesIf'<p>That''s embraced by <code>&lt;My-Tag&gt;</code></p>'{⍺≡(⍴⍺)↑⍵}2⊃ns.html~⊂''
- →T.PassesIf'</My-Tag>'≡3⊃ns.html~⊂''
- →T.PassesIf'<p>Another para</p>'{⍺≡(-⍴⍺)↑⍵}↑¯1↑ns.html
+ →T.PassesIf'<My-Tag>'{⍺≡(⍴⍺)↑⍵}2⊃ns.html
+ →T.PassesIf'<p>That''s embraced by <code>&lt;My-Tag&gt;</code></p>'{⍺≡(⍴⍺)↑⍵}3⊃ns.html~⊂''
+ →T.PassesIf'</My-Tag>'≡4⊃ns.html~⊂''
+ →T.PassesIf'<p>Another para</p>'{⍺≡(-⍴⍺)↑⍵}⊃¯1↑ns.html
 
  md←'<My-Tag>' '' 'That''s embraced by `<My-Tag>`' '' '</My-Tag>' '' 'A para'
  ns←##.MarkAPL.Init''md

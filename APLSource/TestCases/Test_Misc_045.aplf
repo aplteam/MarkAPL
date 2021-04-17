@@ -19,7 +19,7 @@
  ns←##.MarkAPL.Process ns
 
  →T.PassesIf 1=⍴ns.report
- buff←↑(//)⎕VFI(↑ns.report)~⎕A,' ().:',⎕C ⎕A
+ buff←⊃(//)⎕VFI(⊃ns.report)~⎕A,' ().:',⎕C ⎕A
  →T.PassesIf 5=buff
 
  R←T._OK

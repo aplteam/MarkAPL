@@ -15,6 +15,6 @@
  expected←'<div class="h_tag">' '<a href="#Main" id="Main" class="autoheader_anchor">' '<h1 data-id="Main">Main</h1>' '</a>' '</div>'
  expected,←'<p>A para.</p>' '<div class="h_tag">' '<a href="#section" id="section" class="autoheader_anchor">' '<h2 data-id="section"></h2>' '</a>' '</div>'
  →T.PassesIf expected≡ns.html
- →T.PassesIf 4={↑↑(//)⎕VFI(↑'line \d*:'⎕S GetHit⊣⍵)~'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz:'}¨ns.report
+ →T.PassesIf 4={⊃⊃(//)⎕VFI(⊃'line \d*:'⎕S GetHit⊣⍵)~'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz:'}¨ns.report
 
  R←T._OK

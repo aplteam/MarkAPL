@@ -9,7 +9,7 @@
 
  md←'[parm]:title=''123''' '# External links' '' '<http://aplwiki.com>'
 
- html←↑parms ##.MarkAPL.Markdown2HTML md
+ html←⊃parms ##.MarkAPL.Markdown2HTML md
 
  →T.PassesIf(⊂'<title>123</title>')∊html
 
@@ -18,7 +18,7 @@
  parms.createFullHtmlPage←1
  parms.ignoreEmbeddedParms←1
 
- html←↑parms ##.MarkAPL.Markdown2HTML md
+ html←⊃parms ##.MarkAPL.Markdown2HTML md
  →T.PassesIf(⊂'<title>Foo</title>')∊html
 
  R←T._OK

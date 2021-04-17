@@ -13,7 +13,7 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- →T.PassesIf'Invalid internal link: [doesnotexist]'≡0⊃ns.report
+ →T.PassesIf'Invalid internal link: [doesnotexist]'≡1⊃ns.report
 
  md←''
  md,←⊂'This is a paragraph'

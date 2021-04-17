@@ -10,6 +10,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<p><a href="http://aplwiki.com/_/test.html" class="external_link">Code: <code>{{2=+⌿0=⍵∘.|⍵}⍳⍵} _italic_?!</code></a></p>'
- →T.PassesIf expected≡↑ns.html
+ →T.PassesIf expected≡⊃ns.html
 
  R←T._OK

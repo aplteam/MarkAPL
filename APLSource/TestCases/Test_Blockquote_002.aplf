@@ -11,6 +11,6 @@
 
  →T.PassesIf 1=+/'<blockquote>'⍷∊ns.html
  →T.PassesIf 1=+/'</blockquote>'⍷∊ns.html
- →T.PassesIf'<p>This <strong>is</strong> a para; it <em>also</em> (<code>(+/⍵)÷,⍴⍵</code>) contains code.</p>'≡1⊃ns.html
+ →T.PassesIf'<p>This <strong>is</strong> a para; it <em>also</em> (<code>(+/⍵)÷,⍴⍵</code>) contains code.</p>'≡2⊃ns.html
 
  R←T._OK

@@ -26,8 +26,8 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- →T.PassesIf 8 4≡⍴⊃ns.toc
- →T.PassesIf 1 2 3 3 4 4 2 2≡↑¨ns.toc
+ →T.PassesIf 8 4≡⍴↑ns.toc
+ →T.PassesIf 1 2 3 3 4 4 2 2≡⊃¨ns.toc
  →T.PassesIf(⊂'<li><a href="#4-1">4-1</a></li>')∊ns.html
  →T.PassesIf(⊂'<li><a href="#42">4.2</a></li>')∊ns.html
 

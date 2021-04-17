@@ -7,6 +7,6 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
  expected←'<p>Inserting this: <code>&lt;br&gt;</code> leads to a &lt;br&gt; tag in the HTML code.</p>'
- →T.PassesIf expected≡↑ns.html
+ →T.PassesIf expected≡⊃ns.html
 
  R←T._OK

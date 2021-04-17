@@ -8,23 +8,23 @@
      :Return
  :EndIf
 
- :If 1 ∆YesOrNo'This test will open an HTML document in your default browser; continue?'
+ :If 1 ∆YesOrNo'   This test will open an HTML document in your default browser; continue?'
 
      parms←##.MarkAPL.CreateHelpParms
      parms.verbose←0
-     tempFolder←##.FilesAndDirs.GetTempPath,'\MarkAPL_Tests\',(↑⎕SI)
+     tempFolder←FilesAndDirs.GetTempPath,'\MarkAPL_Tests\',(⊃⎕SI)
      tempFilename←tempFolder,'/MarkAPL.html'
      parms.outputFilename←tempFilename
-     'Create!'##.FilesAndDirs.CheckPath↑⎕NPARTS parms.outputFilename
-     tempFilename ⎕NCOPY'./HTML/MarkAPL.html'
+     'Create!'FilesAndDirs.CheckPath⊃⎕NPARTS parms.outputFilename
+     tempFilename ⎕NCOPY'./Files/MarkAPL.html'
      parms.inputFilename←tempFilename,'/MarkAPL.html'
      parms ##.MarkAPL.Reference 0
 
-     →T.GoToTidyUp 0=1 ∆YesOrNo'Did "MarkAPL Reference" appear in your default browser?'
+     →T.GoToTidyUp 0=1 ∆YesOrNo'   Did "MarkAPL Reference" appear in your default browser?'
 
      R←T._OK
 
 ∆TidyUp:
-     ##.FilesAndDirs.RmDir↑⎕NPARTS tempFilename
+     FilesAndDirs.RmDir⊃⎕NPARTS tempFilename
 
  :EndIf

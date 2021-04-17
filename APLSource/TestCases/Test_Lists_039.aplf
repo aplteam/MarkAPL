@@ -27,6 +27,6 @@
  →T.PassesIf 7=+/'<li>'⍷∊ns.html
  →T.PassesIf 3=+/'<p>'⍷∊ns.html
  →T.PassesIf 7=+/'</li>'⍷∊ns.html
- →T.PassesIf 1=+/'</ul>' '<p>' '<ol start="1">'⍷{⍵↑⍨1+⍵⍳'>'}¨ns.html
+ →T.PassesIf 1=+/'</ul>' '<p>' '<ol start="1">'⍷{⍵↑⍨⍵⍳'>'}¨ns.html
 
  R←T._OK

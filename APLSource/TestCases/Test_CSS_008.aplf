@@ -4,7 +4,7 @@
  R←T._Failed
 
  parms←##.MarkAPL.CreateParms
- parms.cssURL←##.FilesAndDirs.PWD
+ parms.cssURL←FilesAndDirs.PWD
  parms.screenCSS←'BlackOnWhite_screen.css'
  parms.printCSS←'BlackOnWhite_print.css'
  parms.linkToCSS←1
@@ -16,10 +16,10 @@
  ns←##.MarkAPL.Process ns
  ns.html←parms ##.MarkAPL.MakeHTML_Doc ns.html
 
- expected←##.FilesAndDirs.EnforceSlash'expand'##.FilesAndDirs.NormalizePath parms.(cssURL,'/',screenCSS)
+ expected←FilesAndDirs.EnforceSlash'expand'FilesAndDirs.NormalizePath parms.(cssURL,'/',screenCSS)
  →T.PassesIf∨/expected⍷∊ns.html
 
- expected←##.FilesAndDirs.EnforceSlash'expand'##.FilesAndDirs.NormalizePath parms.(cssURL,'/',printCSS)
+ expected←FilesAndDirs.EnforceSlash'expand'FilesAndDirs.NormalizePath parms.(cssURL,'/',printCSS)
  →T.PassesIf∨/expected⍷∊ns.html
 
  R←T._OK

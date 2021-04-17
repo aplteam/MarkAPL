@@ -12,7 +12,7 @@
  md,←⊂''
  md,←⊂': This way!'
 
- ns←##.MarkAPL.Init''(↓⊃md)
+ ns←##.MarkAPL.Init''(↓↑md)
  ns←##.MarkAPL.Process ns
 
  expected←'<dl>' '<dt>Definitions</dt>' '<dd><p>This way!</p></dd>' '</dl>'

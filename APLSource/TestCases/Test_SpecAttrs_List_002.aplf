@@ -20,9 +20,9 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- →T.PassesIf'<ol start="3" class="goo" id="foo" style="color:red;">'≡0⊃ns.html
- →T.PassesIf'<ul class="goo">'≡3⊃ns.html
- →T.PassesIf'<ul class="poo">'≡7⊃ns.html
+ →T.PassesIf'<ol start="3" class="goo" id="foo" style="color:red;">'≡1⊃ns.html
+ →T.PassesIf'<ul class="goo">'≡4⊃ns.html
+ →T.PassesIf'<ul class="poo">'≡8⊃ns.html
  →T.PassesIf(⊂'<li>More 2')∊ns.html
  →T.PassesIf(⊂'<li>One</li>')∊ns.html
  →T.PassesIf(⊂'<li>Two</li>')∊ns.html

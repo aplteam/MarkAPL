@@ -11,7 +11,7 @@
  ns←##.MarkAPL.Process ns
 
  →T.PassesIf 1 2≡⍴ns.footnoteDefs
- →T.PassesIf'csv'≡↑ns.footnoteDefs
+ →T.PassesIf'csv'≡⊃ns.footnoteDefs
  html←1↓∊(⎕UCS 13),¨ns.html
  →T.PassesIf 1=+/'[<a href="#fnref1" class="footnote_link"><sup>1</sup></a>]'⍷html
  →T.PassesIf 1=+/'<li id="fnref1"><p>With version 16.0 Dyalog has introduced <code>{(+⌿⍵)÷⍴,⍵}</code>…</p><a href="#fnref1" class="footnote_anchor"></a>'⍷html

@@ -30,7 +30,7 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<ul>' '<li>' '<ul>' '<li>' '<p>' '<p>' '<li>' '</ul>' '<li>' '</ul>' '<p>'
- →T.PassesIf expected≡{⍵↑⍨1+⍵⍳'>'}¨ns.html
+ →T.PassesIf expected≡{⍵↑⍨⍵⍳'>'}¨ns.html
  →T.PassesIf 4=+/'<li>'⍷∊ns.html
  →T.PassesIf 3=+/'<p>'⍷∊ns.html
 

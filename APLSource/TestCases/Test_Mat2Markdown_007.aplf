@@ -4,7 +4,7 @@
  R←T._Failed
 
  m←?10000 10⍴10000
- b←1 0⍴⍨1⊃⍴m
+ b←1 0⍴⍨2⊃⍴m
  (b/m)←⍕¨b/m            ⍝ Make half of it char
 
  md←##.MarkAPL.Matrix2MarkdownTable m

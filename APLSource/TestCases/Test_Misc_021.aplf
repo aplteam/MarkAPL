@@ -3,19 +3,19 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 
- path←##.FilesAndDirs.GetTempPath,'\Test_ConvertMarkdownFile'
- :If ##.FilesAndDirs.IsDir path
-     ##.FilesAndDirs.RmDir path
+ path←FilesAndDirs.GetTempPath,'\MarkAPL_Tests\',⊃⎕SI
+ :If FilesAndDirs.IsDir path
+     FilesAndDirs.RmDir path
  :EndIf
- ##.FilesAndDirs.MkDir path
+ FilesAndDirs.MkDir path
  filename←path,'\Test_Misc_018.md'
  md←'[parm]:verbose=0' '# Test' '' '* This' '* That' '* More' '' '# Test'
  (⊂md)⎕NPUT filename 1
 
  report←##.MarkAPL.ConvertMarkdownFile filename
  →T.GoToTidyUp 0∊⍴report
- →T.GoToTidyUp~##.FilesAndDirs.IsFile(¯3↓filename),'.html'
+ →T.GoToTidyUp~FilesAndDirs.IsFile(¯3↓filename),'.html'
  R←T._OK
 
 ∆TidyUp:
- ##.FilesAndDirs.RmDir path
+ FilesAndDirs.RmDir path

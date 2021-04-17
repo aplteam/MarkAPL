@@ -29,11 +29,11 @@
  ns←##.MarkAPL.Process ns
 
  →T.PassesIf 4 2≡⍴ns.footnoteDefs
- →T.PassesIf'pandoc.org'≡↑↑ns.footnoteDefs[0;1]
- →T.PassesIf'Second one;'≡↑↑ns.footnoteDefs[1;1]
- →T.PassesIf'Third one'≡↑↑ns.footnoteDefs[2;1]
- buff←↑ns.footnoteDefs[3;1]
- →T.PassesIf 3=⍴buff
+ →T.PassesIf'pandoc.org'≡⊃⊃ns.footnoteDefs[1;2]
+ →T.PassesIf'Second one;'≡⊃⊃ns.footnoteDefs[2;2]
+ →T.PassesIf'Third one'≡⊃⊃ns.footnoteDefs[3;2]
+ buff←⊃ns.footnoteDefs[4;2]
+ →T.PassesIf 3=≢buff
  html←1↓∊(⎕UCS 13),¨ns.html
  →T.PassesIf 2=+/'<a href="#fnref1" class="footnote_link"'⍷html
  →T.PassesIf 1=+/'<a href="#fnref2" class="footnote_link"'⍷html

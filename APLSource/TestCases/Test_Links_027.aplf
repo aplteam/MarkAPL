@@ -11,6 +11,6 @@
 
  expected←'<p><a href="http://aplwiki.com/foo.html" class="external_link" style="font-size:400%;">'
  expected,←'This <strong>is</strong> code: <code>{{2=+⌿0=⍵∘.|⍵}⍳⍵}</code></a>, rest assured</p>'
- →T.PassesIf expected≡↑ns.html
+ →T.PassesIf expected≡⊃ns.html
 
  R←T._OK

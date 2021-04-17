@@ -13,7 +13,7 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<table class="class2" id="foo" foo="123">'
- →T.PassesIf expected≡↑ns.html
+ →T.PassesIf expected≡⊃ns.html
  →T.PassesIf~∨/'<td>———–</td>'⍷∊ns.html
  →T.PassesIf∨/'<td style="text-align: right;">300</td>'⍷∊ns.html
 

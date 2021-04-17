@@ -18,17 +18,17 @@
  parms.leanpubExtensions←1
  parms.createFullHtmlPage←1
  parms.linkToCSS←1
- parms.screenCSS←'Dark_Screen.css'
- parms.printCSS←'Dark_Print.css'
+ parms.screenCSS←'MoreCSS/Dark_Screen.css'
+ parms.printCSS←'MoreCSS/Dark_Print.css'
 
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
  html←parms ##.MarkAPL.MakeHTML_Doc ns.html
 
+ home←FilesAndDirs.EnforceSlash FilesAndDirs.PWD,'/'
  expected←''
- home←##.FilesAndDirs.EnforceSlash ##.FilesAndDirs.PWD,'/'
- expected,←⊂'<link href="file:///',home,'Dark_Screen.css" rel="stylesheet" media="screen">'
- expected,←⊂'<link href="file:///',home,'Dark_Print.css" rel="stylesheet" media="print">'
+ expected,←⊂'<link href="file:///',home,'Files/MoreCSS/Dark_Screen.css" rel="stylesheet" media="screen">'
+ expected,←⊂'<link href="file:///',home,'Files/MoreCSS/Dark_Print.css" rel="stylesheet" media="print">'
  →T.PassesIf∧/expected∊html
 
  R←T._OK

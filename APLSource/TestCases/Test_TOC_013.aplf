@@ -16,7 +16,7 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- →T.PassesIf(⍴,ns.headerLineNos)=↑⍴ns.headers
+ →T.PassesIf(≢ns.headerLineNos)=≢ns.headers
  html←parms ##.MarkAPL.MakeHTML_Doc ns.html
 
  R←T._OK

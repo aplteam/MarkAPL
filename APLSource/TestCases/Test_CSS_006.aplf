@@ -4,7 +4,7 @@
  R←T._Failed
 
  parms←##.MarkAPL.CreateParms
- parms.cssURL←'file://Tests/'
+ parms.cssURL←'file://./Tests/'
  parms.screenCSS←'MyScreen.CSS,YourScreen.css'
  parms.printCSS←'MyPrint.CSS,YourPrint.css'
 
@@ -15,12 +15,12 @@
  ns←##.MarkAPL.Process ns
  ns.html←parms ##.MarkAPL.MakeHTML_Doc ns.html
 
- (start length)←↑'<style media="screen">.*</style>'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣ns.html
+ (start length)←⊃'<style media="screen">.*</style>'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣ns.html
  html←↑,/ns.html,¨⊂⎕UCS 10 13
  buff←length↑start↓html
  →T.PassesIf∧/∨/¨'p.myscreen{color:red;}' 'p.yourscreen{color:red;}'⍷¨⊂buff
 
- (start length)←↑'<style media="print">.*</style>'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣ns.html
+ (start length)←⊃'<style media="print">.*</style>'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣ns.html
  html←↑,/ns.html,¨⊂⎕UCS 10 13
  buff←length↑start↓html
  →T.PassesIf∧/∨/¨'p.myprint{color:red;}' 'p.yourprint{color:red;}'⍷¨⊂buff

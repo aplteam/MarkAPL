@@ -12,6 +12,6 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<p>Link to <a href="http://aplwiki.com" class="external_link">http://aplwiki.com</a>.</p>'
- →T.PassesIf expected≡0⊃ns.html
+ →T.PassesIf expected≡1⊃ns.html
 
  R←T._OK

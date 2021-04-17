@@ -14,11 +14,11 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- →T.PassesIf'<ul class="increment">'≡0⊃ns.html
- →T.PassesIf'<li>item 1</li>'≡1⊃ns.html
- →T.PassesIf'<li>item 2 {#foo}</li>'≡2⊃ns.html
- →T.PassesIf'<li>item 3</li>'≡3⊃ns.html
- →T.PassesIf'<li>item 4 {color=“red”;}</li>'≡4⊃ns.html
- →T.PassesIf 6=⍴ns.html
+ →T.PassesIf'<ul class="increment">'≡1⊃ns.html
+ →T.PassesIf'<li>item 1</li>'≡2⊃ns.html
+ →T.PassesIf'<li>item 2 {#foo}</li>'≡3⊃ns.html
+ →T.PassesIf'<li>item 3</li>'≡4⊃ns.html
+ →T.PassesIf'<li>item 4 {color=“red”;}</li>'≡5⊃ns.html
+ →T.PassesIf 6=≢ns.html
 
  R←T._OK

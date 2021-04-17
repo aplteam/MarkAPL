@@ -9,12 +9,12 @@
  m,←⊂'code scalar' '`|`'
  m,←⊂'code vector' 'Code: `{⍵∘.|⍵}`'
 
- md←##.MarkAPL.Matrix2MarkdownTable⊃m
+ md←##.MarkAPL.Matrix2MarkdownTable↑m
 
- →T.PassesIf':-|:-'≡0⊃md
- →T.PassesIf'text scalar|\|'≡1⊃md
- →T.PassesIf'text vector|12\|34'≡2⊃md
- →T.PassesIf'code scalar|`|`'≡3⊃md
- →T.PassesIf'code vector|Code: `{⍵∘.|⍵}`'≡4⊃md
+ →T.PassesIf':-|:-'≡1⊃md
+ →T.PassesIf'text scalar|\|'≡2⊃md
+ →T.PassesIf'text vector|12\|34'≡3⊃md
+ →T.PassesIf'code scalar|`|`'≡4⊃md
+ →T.PassesIf'code vector|Code: `{⍵∘.|⍵}`'≡5⊃md
 
  R←T._OK

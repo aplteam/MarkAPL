@@ -37,9 +37,9 @@
  ns←##.MarkAPL.Init parms md
  ns←##.MarkAPL.Process ns
 
- →T.PassesIf 18=↑⍴ns.headers
- →T.PassesIf{(⍴∪⍵)=⍴⍵}ns.headers[;1]
- →T.PassesIf 0∊⍴{⍵/⍨~∨/¨'Warning'∘⍷¨⍵}ns.report
+ →T.PassesIf 18=≢ns.headers
+ →T.PassesIf{(≢∪⍵)=⍴⍵}ns.headers[;2]
+ →T.PassesIf 0=≢{⍵/⍨~∨/¨'Warning'∘⍷¨⍵}ns.report
  →T.PassesIf 17 18 19 21≡∆GetLineNumber¨ns.report
 
  R←T._OK

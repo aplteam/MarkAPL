@@ -22,7 +22,7 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →T.PassesIf'The APL wiki… is great'≡0⊃↑ns.footnoteDefs[0;1]
- →T.PassesIf'The wiki contains…'≡1⊃↑ns.footnoteDefs[0;1]
+ →T.PassesIf'The APL wiki… is great'≡1⊃⊃ns.footnoteDefs[1;2]
+ →T.PassesIf'The wiki contains…'≡2⊃⊃ns.footnoteDefs[1;2]
 
  R←T._OK

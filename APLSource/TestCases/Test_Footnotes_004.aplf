@@ -23,9 +23,9 @@
  ns←##.MarkAPL.Process ns
 
  →T.PassesIf 2 2≡⍴ns.footnoteDefs
- →T.PassesIf'First footnote.'≡0⊃↑ns.footnoteDefs[0;1]
- buff←↑ns.footnoteDefs[1;1]
- →T.PassesIf'The APL wiki… is great'≡0⊃buff
- →T.PassesIf'The wiki contains…'≡1⊃↑ns.footnoteDefs[1;1]
+ →T.PassesIf'First footnote.'≡1⊃⊃ns.footnoteDefs[1;2]
+ buff←⊃ns.footnoteDefs[2;2]
+ →T.PassesIf'The APL wiki… is great'≡1⊃buff
+ →T.PassesIf'The wiki contains…'≡2⊃⊃ns.footnoteDefs[2;2]
 
  R←T._OK

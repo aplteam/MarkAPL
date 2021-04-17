@@ -7,6 +7,6 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
  expected←'<p>This link: <a href="http://aplteam.com" class="external_link" title="Link to the <em>APL Wiki</em>">The APL Wiki URL</a> takes you</p>'
- →T.FailsIf expected≢↑ns.html
+ →T.FailsIf expected≢⊃ns.html
 
  R←T._OK

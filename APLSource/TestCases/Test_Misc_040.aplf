@@ -6,16 +6,16 @@
  parms←##.MarkAPL.CreateHelpParms
  parms.viewInBrowser←0
  parms.verbose←0
- tempFilename←##.FilesAndDirs.GetTempPath,'\MarkAPL_Tests\',(↑⎕SI),'\MarkAPL.html'
+ tempFilename←FilesAndDirs.GetTempPath,'\MarkAPL_Tests\',(⊃⎕SI),'\MarkAPL.html'
  parms.outputFilename←tempFilename
- 'Create!'##.FilesAndDirs.CheckPath↑⎕NPARTS parms.outputFilename
+ 'Create!'FilesAndDirs.CheckPath⊃⎕NPARTS parms.outputFilename
 
  parms ##.MarkAPL.Help 0
 
  parms←##.MarkAPL.CreateHelpParms
  parms.viewInBrowser←0
  parms.verbose←0
- tempFilename←##.FilesAndDirs.GetTempPath,'\MarkAPL_Tests\',(↑⎕SI),'\MarkAPL.html'
+ tempFilename←FilesAndDirs.GetTempPath,'\MarkAPL_Tests\',(⊃⎕SI),'\MarkAPL.html'
  parms.outputFilename←tempFilename
 
  parms ##.MarkAPL.Help 1
@@ -23,4 +23,4 @@
  R←T._OK
 
 ∆TidyUp:
- ##.FilesAndDirs.RmDir↑⎕NPARTS tempFilename
+ FilesAndDirs.RmDir⊃⎕NPARTS tempFilename

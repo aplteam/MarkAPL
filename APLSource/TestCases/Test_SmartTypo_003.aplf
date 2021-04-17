@@ -16,10 +16,10 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<p>First para – really! – with n-dashes – (as in <code>--</code>) –, really (<code>--</code>)</p>'
- →T.PassesIf expected≡0⊃ns.html
- expected←'<p>Second para–really!</p>'
  →T.PassesIf expected≡1⊃ns.html
- expected←'<pre><code> `--` are converted -- automatically! -- with a RegEx.</code></pre>'
+ expected←'<p>Second para–really!</p>'
  →T.PassesIf expected≡2⊃ns.html
+ expected←'<pre><code> `--` are converted -- automatically! -- with a RegEx.</code></pre>'
+ →T.PassesIf expected≡3⊃ns.html
 
  R←T._OK

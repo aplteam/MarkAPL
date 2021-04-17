@@ -13,7 +13,7 @@
  md,←⊂'## Level 2C'
 
  parms←##.MarkAPL.CreateParms
- parms.toc←1↓1+⍳6
+ parms.toc←1↓⍳6
  parms.numberHeaders←2 3 4 5
  parms.verbose←0
 
@@ -23,7 +23,7 @@
  toc←'<nav.*>.*</nav>'⎕R'&'⍠('Greedy' 0)('DotAll' 1)('Mode' 'M')⊣ns.html
  →T.PassesIf 3=+/∊'<ul>'∘⍷¨toc
  →T.PassesIf 3=+/∊'</ul>'∘⍷¨toc
- tags←{⍵↑⍨⍵⍳'>'}¨toc
+ tags←{⍵↑⍨¯1+⍵⍳'>'}¨toc
  expected←'<nav id="main_nav_no_collapse"' '<ul' '<li' '<ul' '<li' '<ul' '<li' '<li' '</ul' '</ul'
  expected,←'<li' '<li' '</ul' '</nav'
  →T.PassesIf∧/expected∊tags

@@ -9,6 +9,6 @@
  md,←'# External links' '' '<http://aplwiki.com>'
 
  ns←##.MarkAPL.Init parms md
- →T.PassesIf'Invalid embbed parameter: "titel"'≡0⊃ns.report
+ →T.PassesIf'Invalid embbed parameter: "titel"'≡1⊃ns.report
 
  R←T._OK

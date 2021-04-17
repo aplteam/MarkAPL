@@ -14,8 +14,8 @@
  ns←##.MarkAPL.Process ns
 
  expected←'<p>Link to the <a href="http://aplwiki.com" class="external_link" title="Link to the APL wiki" target="_blank">APL wiki</a>.</p>'
- →T.PassesIf expected≡0⊃ns.html
- expected←'<p>The APLTree project is <a href="http://aplwiki.com" class="external_link" title="Link to the APL wiki" target="_blank">hosted on the APL wiki</a>.</p>'
  →T.PassesIf expected≡1⊃ns.html
+ expected←'<p>The APLTree project is <a href="http://aplwiki.com" class="external_link" title="Link to the APL wiki" target="_blank">hosted on the APL wiki</a>.</p>'
+ →T.PassesIf expected≡2⊃ns.html
 
  R←T._OK

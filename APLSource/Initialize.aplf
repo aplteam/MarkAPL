@@ -1,7 +1,9 @@
  {r}←Initialize;⎕TRAP;parent
  ⎕TRAP←0 'S'
  r←⍬
- {}⎕SE.UCMD'cd ',AcreConfig.ProjectFolder
+ HOME←AcreConfig.ProjectFolder  ⍝ Required by MarkAPL
+ {}⎕SE.UCMD'cd ',HOME
+ ⎕WSID←AcreConfig.ProjectFolder,'project.dws'
  parent←⍕⎕THIS
  {}⎕SE.Tatin.LoadDependencies'./packages/'parent
  parent,←'.TestCases'

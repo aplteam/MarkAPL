@@ -14,7 +14,7 @@
  ns←##.MarkAPL.Process ns
 
  →T.PassesIf 2 2≡⍴ns.footnoteDefs
- →T.PassesIf'github1' 'github2'≡ns.footnoteDefs[;0]
+ →T.PassesIf'github1' 'github2'≡ns.footnoteDefs[;1]
  html←1↓∊(⎕UCS 13),¨ns.html
  →T.PassesIf 2=+/'<br>'⍷html
 

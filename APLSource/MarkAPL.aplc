@@ -59,11 +59,20 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←'MarkAPL' '10.0.1.207' '2021-01-17'
+      r←'MarkAPL' '11.0.0+224' '2021-04-17'
     ∇
 
     ∇ History
       :Access Public Shared
+      ⍝ * 11.0.0
+      ⍝   * HTML and CSS but also Markdown documents (though only in develoment mode, read as part of the project
+      ⍝     rather than the package "MarkAPL" now always live in a sub folder Files/.
+      ⍝   * Both the project and the package require a variable `HOME`. While this variable always exists for 
+      ⍝     the MarkAPL package (because its a Tatin convention) it needs to be injected for the project.
+      ⍝ * 10.1.0
+      ⍝   Tatin system vars got renamed from `∆HOME` to `HOME`
+      ⍝ * 10.0.2
+      ⍝   * Package config corrected
       ⍝ * 10.0.1
       ⍝   * `CreateParms` did not reflect the now flat folder structure of "files/" making `MakeHTML_Doc` fail
       ⍝     to find the default CSS files.
@@ -140,7 +149,7 @@
       parms←EstablishDefaultHomeFolder parms
       :If 0=parms.noCSS
           :If ⎕NULL≡parms.cssURL
-              parms.cssURL←parms.homeFolder
+              parms.cssURL←parms.homeFolder,'/Files/'
           :EndIf
           parms.cssURL~←'"'
           :If 0≠≢parms.cssURL
@@ -271,7 +280,7 @@
       'enforceEdge'SetTo 1
       'footnotesCaption'SetTo'Footnotes'
       'head'SetTo''
-      'homeFolder'SetTo ⎕NULL
+      'homeFolder'SetTo Get_HOME
       'ignoreEmbeddedParms'SetTo 0
       'imageURL'SetTo''
       'inputFilename'SetTo''
@@ -348,7 +357,7 @@
       :EndIf
       parms←EstablishDefaultHomeFolder parms
       :If ⎕NULL≡parms.cssURL
-          parms.cssURL←'file:///',##.FilesAndDirs.NormalizePath parms.homeFolder
+          parms.cssURL←'file:///',##.FilesAndDirs.NormalizePath parms.homeFolder,'/Files/'
       :EndIf
       ((parms.cssURL='\')/parms.cssURL)←'/'
       ((parms.leanpubIconsUrl='\')/parms.leanpubIconsUrl)←'/'
@@ -416,19 +425,17 @@
     ∇ {ns}←{parms}Reference recompileFlag;filename;folder
     ⍝ Displays the file MarkAPL.html with your default browser.\\
     ⍝ `recompileFlag`:
-    ⍝ - A zero shows the file as it stands.
-    ⍝ - A 1 lets MarkAPL recompile it from MarkAPL.md first.
+    ⍝ * A zero shows the file as it stands.
+    ⍝ * A 1 lets MarkAPL recompile it from MarkAPL.md first.
+    ⍝ However, if the markdown file does not exist then `recompileFlag` has no effect (is always 0).
     ⍝ Returns either `⍬` or the `ns` namespace created by `Init` and modified by `Process`.
       :Access Public Shared
       parms←{0<⎕NC ⍵:⍎⍵ ⋄ CreateHelpParms}'parms'
       parms←EstablishDefaultHomeFolder parms
-      :If 0<##.⎕NC'∆HOME'
-      :AndIf 0<≢##.∆HOME
-          folder←##.∆HOME,'/Files/'
-          ns←CompileHelp(folder,'MarkAPL.html')recompileFlag parms
-      :Else
-          ns←CompileHelp(parms.homeFolder,'/Docs/MarkAPL.html')recompileFlag parms
+      :If ~⎕NEXISTS parms.homeFolder,'/Files/MarkAPL.md'
+          recompileFlag←0
       :EndIf
+      ns←CompileHelp(parms.homeFolder,'/Files/MarkAPL')recompileFlag parms
       :If ¯1≠×recompileFlag  ⍝ This syntax is used only by the `Make` workspace and test cases, therefore it is not documented.
       :AndIf parms.viewInBrowser
           ns ShowHtml parms.outputFilename
@@ -436,30 +443,19 @@
      
     ∇
 
-    ∇ {ns}←{parms}Help recompileFlag;folder
+    ∇ {ns}←{parms}Help recompileFlag
     ⍝ Displays the file MarkAPL_CheatSheet.html with your default browser.\\
     ⍝ `recompileFlag`:
-    ⍝ - A zero shows the file as it stands.
-    ⍝ - A 1 lets MarkAPL recompile it from MarkAPL_CheatSheet.md first.
+    ⍝ * 0 shows the file as it stands.
+    ⍝ * 1 lets MarkAPL recompile it from MarkAPL_CheatSheet.md first.
     ⍝ Returns either `⍬` or the `ns` namespace created by `Init` and modified by `Process`.
+    ⍝ However, if the markdown file does not exist then `recompileFlag` has no effect (is always 0).
       :Access Public Shared
       parms←{0<⎕NC ⍵:⍎⍵ ⋄ CreateHelpParms}'parms'
-      :If ⎕NULL≡parms.homeFolder
-          :If 0=##.FilesAndDirs.IsDir folder←##.FilesAndDirs.PWD,'/Files'
-              folder←##.FilesAndDirs.PWD
-          :EndIf
-      :Else
-          folder←parms.homeFolder
+      :If ~⎕NEXISTS parms.homeFolder,'/Files/MarkAPL_CheatSheet.md'
+          recompileFlag←0
       :EndIf
-      :If 0<##.⎕NC'∆HOME'
-      :AndIf 0<≢##.∆HOME
-          folder←##.∆HOME,'/Files/'
-          ns←CompileHelp(folder,'MarkAPL_CheatSheet.html')recompileFlag parms
-      :ElseIf recompileFlag
-          ns←CompileHelp(folder,'/Docs/MarkAPL_CheatSheet.md')recompileFlag parms
-      :Else
-          ns←CompileHelp(folder,'/HTML/MarkAPL_CheatSheet.html')recompileFlag parms
-      :EndIf
+      ns←CompileHelp(parms.homeFolder,'/Files/MarkAPL_CheatSheet')recompileFlag parms
       :If ¯1≠×recompileFlag  ⍝ This syntax is used only by the `Make` workspace and test cases, therefore it is not documented.
       :AndIf parms.viewInBrowser
           ns ShowHtml parms.outputFilename
@@ -3208,16 +3204,7 @@
           p←⍵
           ⎕NULL≢p.homeFolder:p
           this←⍕⎕THIS
-          f1←∨/'MarkAPL'⍷A.Last⍕##.⎕THIS
-          f2←2=##.⎕NC'∆HOME'
-          f1∧f2:p⊣p.homeFolder←##.∆HOME ⍝ It's a Tatin package!
-          p.homeFolder←GetCurrentDir
-          f←∨/##.FilesAndDirs.Exists¨p.homeFolder∘,¨'/Docs/MarkAPL.html' '/Docs/MarkAPL_CheatSheet.html'
-          f:p
-          p.homeFolder←GetCurrentDir,'/Files'
-          f←∨/##.FilesAndDirs.Exists¨p.homeFolder∘,¨'/Docs/MarkAPL.html' '/Docs/MarkAPL_CheatSheet.html'
-          f:p
-          p.homeFolder←GetCurrentDir,'/'
+          p.homeFolder←Get_Home
           p
       }
 
@@ -3251,13 +3238,15 @@
       ns←⍬
       parms←EstablishDefaultHomeFolder parms
       :If ⎕NULL≡parms.cssURL
-          parms.cssURL←parms.homeFolder
+          parms.cssURL←parms.homeFolder,'/Files'
       :EndIf
       :If (':'∊filename)∨'/'=1⍴filename
           fn←CorrectSlash filename
       :Else
           fn←CorrectSlash ##.FilesAndDirs.PWD,'/',filename
       :EndIf
+      filename←recompileFlag{0<≢3⊃⎕NPARTS ⍵:⍵ ⋄ ⍵,(1+⍺)⊃'.html' '.md'}filename
+      parms.inputFilename←filename
       :If 0=≢parms.inputFilename
       :AndIf 0=##.FilesAndDirs.IsFile parms.inputFilename←(⊃,/2↑⎕NPARTS fn),(1+recompileFlag)⊃'.html' '.md'
           ('Could not find "',parms.inputFilename,'"')⎕SIGNAL 6
@@ -3575,6 +3564,16 @@
 
     ∇ r←A
       r←##.APLTreeUtils2
+    ∇
+
+    ∇ r←Get_HOME
+    ⍝ In the "MarkAPL" project "HOME" is a sibling of "MarkAPL" while when a Tatin package it's in ##.##
+    ⍝ because ## is the standard Tatin namespace `code`.
+      :If 0<##.⎕NC'HOME'
+          r←##.HOME
+      :Else
+          r←##.##.HOME
+      :EndIf
     ∇
 
 :EndClass

@@ -9,6 +9,6 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →T.PassesIf∨/'<code>&lt;&lt;br&gt;&gt;</code>'⍷0⊃ns.html
+ →T.PassesIf∨/'<code>&lt;&lt;br&gt;&gt;</code>'⍷1⊃ns.html
 
  R←T._OK

@@ -10,7 +10,7 @@
  md,←⊂''
  md,←⊂'  Para 2'
 
- md←↓⊃md   ⍝ This introduces trailing blanks that once caused havoc
+ md←↓↑md   ⍝ This introduces trailing blanks that once caused havoc
 
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns

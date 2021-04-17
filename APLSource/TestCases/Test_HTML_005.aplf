@@ -26,29 +26,29 @@
  md←'This is a para.' '' '<![CDATA[This]]> ignored' '' 'Another para'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- →T.PassesIf'<![CDATA['{⍺≡(⍴⍺)↑⍵}1⊃ns.html
- →T.PassesIf∨/']]>'⍷1⊃ns.html
- →T.PassesIf'<p>Another para</p>'{⍺≡(-⍴⍺)↑⍵}↑¯1↑ns.html
+ →T.PassesIf'<![CDATA['{⍺≡(⍴⍺)↑⍵}2⊃ns.html
+ →T.PassesIf∨/']]>'⍷2⊃ns.html
+ →T.PassesIf'<p>Another para</p>'{⍺≡(-⍴⍺)↑⍵}⊃¯1↑ns.html
 
  md←'This is a para.' '' '<![CDATA[' 'This' 'That' ']]>' '' 'Another para'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- →T.PassesIf'<![CDATA['≡1⊃ns.html
- →T.PassesIf']]>'≡4⊃ns.html
- →T.PassesIf'<p>Another para</p>'≡↑¯1↑ns.html
+ →T.PassesIf'<![CDATA['≡2⊃ns.html
+ →T.PassesIf']]>'≡5⊃ns.html
+ →T.PassesIf'<p>Another para</p>'≡⊃¯1↑ns.html
 
  md←'This is a para.' '' '<![CDATA[' 'This' 'That' ']]> This will be ignored' '' 'Another para'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- →T.PassesIf'<![CDATA['≡1⊃ns.html
- →T.PassesIf']]>'≡4⊃ns.html
- →T.PassesIf'<p>Another para</p>'≡↑¯1↑ns.html
+ →T.PassesIf'<![CDATA['≡2⊃ns.html
+ →T.PassesIf']]>'≡5⊃ns.html
+ →T.PassesIf'<p>Another para</p>'≡⊃¯1↑ns.html
 
  md←'This is a para.' '' '<![CDATA[' 'This' 'That' 'More ]]>' '' 'Another para'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- →T.PassesIf'<![CDATA['≡1⊃ns.html
- →T.PassesIf'More ]]>'≡4⊃ns.html
- →T.PassesIf'<p>Another para</p>'≡↑¯1↑ns.html
+ →T.PassesIf'<![CDATA['≡2⊃ns.html
+ →T.PassesIf'More ]]>'≡5⊃ns.html
+ →T.PassesIf'<p>Another para</p>'≡⊃¯1↑ns.html
 
  R←T._OK

@@ -21,6 +21,6 @@
  →T.PassesIf(⊂'<h5 data-id="Level-5">Level 5</h5>')∊ns.html
  →T.PassesIf(⊂'<h4 data-id="Level-4">Level 4</h4>')∊ns.html
  →T.PassesIf 1=≢ns.report
- →T.PassesIf'Headers are ill-nested and need correction'{⍺≡(≢⍺)↑⍵}0⊃ns.report
+ →T.PassesIf'Headers are ill-nested and need correction'{⍺≡(≢⍺)↑⍵}1⊃ns.report
 
  R←T._OK

@@ -15,6 +15,6 @@
  ns←##.MarkAPL.Process ns
 
  →T.PassesIf 1=⍴ns.report
- →T.PassesIf 41='^Warning: single double quotes found in paragraph \(line' '\).*$'∆GetLineNumber↑ns.report
+ →T.PassesIf 41='^Warning: single double quotes found in paragraph \(line' '\).*$'∆GetLineNumber⊃ns.report
 
  R←T._OK

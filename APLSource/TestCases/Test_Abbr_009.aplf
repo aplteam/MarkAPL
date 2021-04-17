@@ -11,6 +11,6 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →T.FailsIf'<p><abbr title="Contains &lt; and &gt;!">Tags</abbr></p>'≢↑ns.html
+ →T.FailsIf'<p><abbr title="Contains &lt; and &gt;!">Tags</abbr></p>'≢⊃ns.html
 
  R←T._OK

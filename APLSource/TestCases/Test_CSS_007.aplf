@@ -16,25 +16,25 @@
  ns←##.MarkAPL.Process ns
  ns.html←parms ##.MarkAPL.MakeHTML_Doc ns.html
 
- (start length)←↓⍉⊃'<link href="[^"]*".*media="screen"'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣ns.html
+ (start length)←↓⍉↑'<link href="[^"]*".*media="screen"'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣ns.html
  html←↑,/ns.html,¨⊂⎕UCS 10 13
 
- buff←(⍴'<link ')↓length[0]↑start[0]↓html
+ buff←(⍴'<link ')↓length[1]↑start[1]↓html
  expected←'href="file://C:/Temp/MyScreen.CSS"'
  →T.PassesIf∨/expected⍷buff
 
- buff←(⍴'<link ')↓length[1]↑start[1]↓html
+ buff←(⍴'<link ')↓length[2]↑start[2]↓html
  expected←'href="file://C:/Temp/YourScreen.css"'
  →T.PassesIf∨/expected⍷buff
 
- (start length)←↓⍉⊃'<link href="[^"]*".*media="print"'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣ns.html
+ (start length)←↓⍉↑'<link href="[^"]*".*media="print"'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣ns.html
  html←↑,/ns.html,¨⊂⎕UCS 10 13
 
- buff←(⍴'<link ')↓length[0]↑start[0]↓html
+ buff←(⍴'<link ')↓length[1]↑start[1]↓html
  expected←'href="file://C:/Temp/MyPrint.CSS"'
  →T.PassesIf∨/expected⍷buff
 
- buff←(⍴'<link ')↓length[1]↑start[1]↓html
+ buff←(⍴'<link ')↓length[2]↑start[2]↓html
  expected←'href="file://C:/Temp/YourPrint.css"'
  →T.PassesIf∨/expected⍷buff
 

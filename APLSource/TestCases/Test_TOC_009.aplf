@@ -16,6 +16,6 @@
 
  →T.PassesIf 1=⍴ns.toc
  expected←'Contains <, > and &, really'
- →T.PassesIf expected≡0 1⊃ns.toc
+ →T.PassesIf expected≡1 2⊃ns.toc
 
  R←T._OK

@@ -43,7 +43,7 @@
  →T.PassesIf 6<⍴html
  →T.PassesIf 1=+/'<html'⍷∊html
  →T.PassesIf ⎕NEXISTS parms.outputFilename
- buff←↑⎕NGET parms.outputFilename 1
+ buff←⊃⎕NGET parms.outputFilename 1
  ⎕NDELETE parms.outputFilename
  →T.PassesIf 4<≢buff
 
@@ -52,10 +52,10 @@
  parms.createFullHtmlPage←1
  parms.outputFilename←∆GetTempHtmlFileName
  (html ns)←parms ##.MarkAPL.Markdown2HTML md
- →T.PassesIf 6<⍴html
+ →T.PassesIf 6<≢html
  →T.PassesIf 1=+/'<html'⍷∊html
  →T.PassesIf ⎕NEXISTS parms.outputFilename
- buff←↑⎕NGET parms.outputFilename 1
+ buff←⊃⎕NGET parms.outputFilename 1
  ⎕NDELETE parms.outputFilename
  →T.PassesIf 4<≢buff
 

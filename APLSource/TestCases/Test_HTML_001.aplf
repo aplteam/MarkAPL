@@ -10,9 +10,9 @@
  md,←⊂'Another para'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- →T.PassesIf'<scriPt>'{⍺≡(⍴⍺)↑⍵}1⊃ns.html
- →T.PassesIf∨/'</Script>'⍷1⊃ns.html
- →T.PassesIf'<p>Another para</p>'≡↑¯1↑ns.html
+ →T.PassesIf'<scriPt>'{⍺≡(⍴⍺)↑⍵}2⊃ns.html
+ →T.PassesIf∨/'</Script>'⍷2⊃ns.html
+ →T.PassesIf'<p>Another para</p>'≡⊃¯1↑ns.html
 
  md←''
  md,←⊂'This is a para.'
@@ -25,9 +25,9 @@
  md,←⊂'Another para'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- →T.PassesIf'<scriPt lang="en" type="this and that">'≡1⊃ns.html
- →T.PassesIf'</Script>'≡5⊃ns.html
- →T.PassesIf'<p>Another para</p>'≡↑¯1↑ns.html
+ →T.PassesIf'<scriPt lang="en" type="this and that">'≡2⊃ns.html
+ →T.PassesIf'</Script>'≡6⊃ns.html
+ →T.PassesIf'<p>Another para</p>'≡⊃¯1↑ns.html
 
  md←''
  md,←⊂'This is a para.'
@@ -38,8 +38,8 @@
  md,←⊂'Another para'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- →T.PassesIf'<script>'≡1⊃ns.html
- →T.PassesIf'More Javascript</Script>'≡3⊃ns.html
+ →T.PassesIf'<script>'≡2⊃ns.html
+ →T.PassesIf'More Javascript</Script>'≡4⊃ns.html
 
  md←''
  md,←⊂'This is a para.'
@@ -50,8 +50,8 @@
  md,←⊂'Another para'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- →T.PassesIf'<script>'≡1⊃ns.html
- →T.PassesIf'More Javascript</Script>'≡3⊃ns.html
+ →T.PassesIf'<script>'≡2⊃ns.html
+ →T.PassesIf'More Javascript</Script>'≡4⊃ns.html
 
  md←''
  md,←⊂'This is a para.'
@@ -63,8 +63,8 @@
  md,←⊂'Another para'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- →T.PassesIf'<script lang="apl">'≡1⊃ns.html
- →T.PassesIf'</Script>'≡4⊃ns.html
+ →T.PassesIf'<script lang="apl">'≡2⊃ns.html
+ →T.PassesIf'</Script>'≡5⊃ns.html
 
  md←''
  md,←⊂'This is a para.'
@@ -76,7 +76,7 @@
  md,←⊂'Another para'
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
- →T.PassesIf'<scriPt>'≡1⊃ns.html
- →T.PassesIf'</Script>'≡4⊃ns.html
+ →T.PassesIf'<scriPt>'≡2⊃ns.html
+ →T.PassesIf'</Script>'≡5⊃ns.html
 
  R←T._OK

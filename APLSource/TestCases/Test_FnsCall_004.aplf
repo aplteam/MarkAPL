@@ -23,8 +23,8 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →T.PassesIf∨/'::''abc''::'⍷9⊃ns.html
- →T.PassesIf∨/'::6::'⍷10⊃ns.html
+ →T.PassesIf∨/'::''abc''::'⍷10⊃ns.html
+ →T.PassesIf∨/'::6::'⍷11⊃ns.html
 
 ⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝⍝
 
@@ -36,7 +36,7 @@
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →T.PassesIf∨/'::''abc''::'⍷3⊃ns.html
- →T.PassesIf∨/'::6::'⍷4⊃ns.html
+ →T.PassesIf∨/'::''abc''::'⍷4⊃ns.html
+ →T.PassesIf∨/'::6::'⍷5⊃ns.html
 
  R←T._OK

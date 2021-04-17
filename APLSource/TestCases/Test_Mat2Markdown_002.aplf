@@ -9,21 +9,21 @@
  m,←⊂'Cobol' 1 'Oh|dear'
  ch←'Language' 'Productivity' 'Comment'
 
- md←ch ##.MarkAPL.Matrix2MarkdownTable⊃m
+ md←ch ##.MarkAPL.Matrix2MarkdownTable↑m
  ns←##.MarkAPL.Init''md
  ns←##.MarkAPL.Process ns
 
- →T.FailsIf'<table>'≢0⊃ns.html
- →T.FailsIf'<thead>'≢1⊃ns.html
+ →T.FailsIf'<table>'≢1⊃ns.html
+ →T.FailsIf'<thead>'≢2⊃ns.html
  →T.FailsIf 3≠≢'<th[ >]'⎕S 0⊣ns.html
- →T.FailsIf'</thead>'≢7⊃ns.html
- →T.FailsIf'<tbody>'≢8⊃ns.html
+ →T.FailsIf'</thead>'≢8⊃ns.html
+ →T.FailsIf'<tbody>'≢9⊃ns.html
  →T.FailsIf 6≠+/∨/¨'<td>'∘⍷¨ns.html
  →T.FailsIf 3≠+/∨/¨'<td '∘⍷¨ns.html
  →T.FailsIf 4≠+/∨/¨'<tr>'∘⍷¨ns.html
  →T.FailsIf 4≠+/∨/¨'</tr>'∘⍷¨ns.html
- →T.FailsIf'</table>'≢↑¯1↑ns.html
- →T.FailsIf'</tbody>'≢↑¯2↑ns.html
+ →T.FailsIf'</table>'≢⊃¯1↑ns.html
+ →T.FailsIf'</tbody>'≢⊃¯2↑ns.html
 
  →T.FailsIf 6≠+/∨/¨(⊂'<td>')⍷¨ns.html
  →T.FailsIf 3≠+/∨/¨(⊂'<td style="text-align: right;">')⍷¨ns.html

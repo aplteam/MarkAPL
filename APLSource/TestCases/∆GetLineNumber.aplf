@@ -4,5 +4,5 @@
  ⍝ and returns the line number(s), here 5.
      ⍺←'^.*line ' ':.*$'
      buff←⍺ ⎕R'' ''⊣⍵
-     ↑↑(//)⎕VFI buff
+     ⊃⊃(//)⎕VFI buff
  }

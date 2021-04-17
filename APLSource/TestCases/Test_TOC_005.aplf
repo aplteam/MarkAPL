@@ -9,7 +9,7 @@
  md,←⊂'Ordinary paragraph'
 
  parms←##.MarkAPL.CreateParms
- parms.toc←1+⍳6
+ parms.toc←⍳6
  parms.verbose←0
 
  ns←##.MarkAPL.Init parms md
@@ -18,7 +18,7 @@
  toc←'<nav.*>.*</nav>'⎕R'&'⍠('Greedy' 0)('DotAll' 1)('Mode' 'M')⊣ns.html
  →T.PassesIf 1=+/∊'<ul>'∘⍷¨toc
  →T.PassesIf 1=+/∊'</ul>'∘⍷¨toc
- tags←{⍵↑⍨⍵⍳'>'}¨toc
+ tags←{⍵↑⍨¯1+⍵⍳'>'}¨toc
  expected←'<nav id="main_nav_no_collapse"' '<ul' '<li' '</ul' '</nav'
  →T.PassesIf∧/expected∊tags
  →T.PassesIf 1=+/'<li><a href="#Main">Main <code>{+/⍵}<'⍷∊ns.html
