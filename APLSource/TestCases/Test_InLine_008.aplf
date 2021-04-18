@@ -4,8 +4,8 @@
  R←T._Failed
 
  md←⊂'This link: [The APL Wiki URL](http://aplteam.com "Link to the *APL Wiki*") takes you'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
  expected←'<p>This link: <a href="http://aplteam.com" class="external_link" title="Link to the <em>APL Wiki</em>">The APL Wiki URL</a> takes you</p>'
  →T.FailsIf expected≢⊃ns.html
 

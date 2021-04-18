@@ -9,8 +9,8 @@
  md,←⊂': Definition _of the_ term'
  md,←⊂'    APL code: `{+/⍺ ⍵}`'
  md,←⊂''
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 1=+/'<strong>'⍷∊ns.html
  →T.PassesIf 1=+/'<code>'⍷∊ns.html

@@ -15,8 +15,8 @@
  md,←⊂'  * List item b-2'
  md,←⊂'* List item b'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
 ⍝          a            a-1         a-1-1         a-1-1-1      a-1-1-1-1      a-1-1-1-1      a-1-1-1  a-1-1                 a-1            a
  expect←'<ul>' '<li>' '<ul>' '<li>' '<ul>' '<li>' '<ul>' '<li>' '<ul>' '<li>' '</ul>' '<li>' '</ul>' '</ul>' '<p>' '<li>' '</ul>' '<li>' '</ul>'

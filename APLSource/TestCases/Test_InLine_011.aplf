@@ -4,8 +4,8 @@
  R←T._Failed
 
  md←⊂'&amp; &copy; &gt; AT&T &lt; `&<>` &#123;'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
  expected←'<p>&amp;amp; &amp;copy; &amp;gt; AT&amp;T &amp;lt; <code>&amp;&lt;&gt;</code> &amp;#123;</p>'
  →T.PassesIf expected≡⊃ns.html
 

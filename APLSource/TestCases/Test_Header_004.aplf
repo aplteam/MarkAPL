@@ -9,8 +9,8 @@
  md,←⊂'# Second level-2 Header'
  md,←⊂'# Third level-2 Header!'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.FailsIf~∨/'<a href="#Main-Header" id="Main-Header" class="autoheader_anchor">'⍷∊ns.html
  →T.FailsIf~∨/'<a href="#First-level-2-Header" id="First-level-2-Header" class="autoheader_anchor">'⍷∊ns.html

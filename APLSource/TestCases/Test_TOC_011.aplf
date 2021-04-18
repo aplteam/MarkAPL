@@ -25,13 +25,13 @@
  md,←⊂'### IIc'
 
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.toc←⍳6
  parms.verbose←0
  parms.leanpubExtensions←1
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  expected←'# Ia' '## Ib' '### Ic' 'IIa' 'IIb' '### IIc'
  →T.PassesIf expected≡md[ns.headerLineNos]

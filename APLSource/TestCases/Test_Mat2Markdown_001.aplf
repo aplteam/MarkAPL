@@ -8,9 +8,9 @@
  m,←⊂'Python' 70 'Nice'
  m,←⊂'Cobol' 1 'Oh dear'
 
- md←##.MarkAPL.Matrix2MarkdownTable↑m
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ md←MarkAPL.Matrix2MarkdownTable↑m
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.FailsIf'<table>'≢1⊃ns.html
  →T.FailsIf'<tbody>'≢2⊃ns.html

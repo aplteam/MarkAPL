@@ -6,8 +6,8 @@
  md←''
  md,←⊂'This is a path: C:\Users\\{yourname}'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf'<p>This is a path: C:\Users\{yourname}</p>'≡∊ns.html
 

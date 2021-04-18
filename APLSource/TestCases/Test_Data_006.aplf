@@ -9,11 +9,11 @@
  md,←⊂''
  md,←⊂'This is a para.'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.verbose←0
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.FailsIf'Kai Jaeger'≢1 2⊃ns.data
  →T.FailsIf 19491203≢2 2⊃ns.data

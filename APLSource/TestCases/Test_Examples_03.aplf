@@ -5,8 +5,8 @@
 
  md←'This is a paragraph that' 'stretches over 2 lines.' '' 'Single-line paragraph.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.FailsIf 2≠≢ns.html
  →T.FailsIf(1⊃ns.html)≢'<p>',(1↓⊃,/' ',¨2↑md),'</p>'

@@ -12,11 +12,11 @@
  md,←⊂''
  md,←⊂'Another para'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.leanpubExtensions←0
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  expected←'<p>A para</p>' '<div class="leanpub_A">' '<p>An aside</p>' '</div>' '<p>Another para</p>'
  →T.PassesIf≡/∊¨expected(ns.html~⊂'')

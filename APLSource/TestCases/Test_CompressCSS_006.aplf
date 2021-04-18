@@ -8,7 +8,7 @@
  css,←⊂'  font-family:"APL385 Unicode";'
  css,←⊂'}'
 
- css2←##.MarkAPL.CompressCSS css
+ css2←MarkAPL.CompressCSS css
 
  expected←'p{font-family:"APL385 Unicode";}'
  →T.PassesIf css2≡expected

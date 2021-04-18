@@ -8,12 +8,12 @@
  md,←⊂''
  md,←⊂'Ordinary paragraph'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.toc←1+⍳6
  parms.verbose←0
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 1=+/'<h1 data-id="All-R-topics">All <em>R</em> topics</h1>'⍷∊ns.html
  →T.PassesIf 1=+/'<p>Ordinary paragraph</p>'⍷∊ns.html

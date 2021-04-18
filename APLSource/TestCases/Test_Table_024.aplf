@@ -8,8 +8,8 @@
  mat,←⊂'|Card reader |   1 | 62.00|  62.00|'
  mat,←⊂'|'
 
- ns←##.MarkAPL.Init''mat
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''mat
+ ns←MarkAPL.Process ns
  expected←'<table>' '<tbody>'
  expected,←⊂'<tr>'
  expected,←'<td>This</td>' '<td style="text-align: right;"></td>' '<td style="text-align: right;"></td>' '<td style="text-align: right;"></td>'

@@ -13,8 +13,8 @@
  md,←⊂'[^def3]:def3'
  md,←⊂'[^def1]:def1'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←''
  expected,←⊂'<li id="fnref1"><p>def2</p><a href="#fnref1" class="footnote_anchor"></a>'

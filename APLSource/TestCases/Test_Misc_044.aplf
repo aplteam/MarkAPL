@@ -18,12 +18,12 @@
  md,←⊂''
  md,←⊂'Para with odd number of "'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.leanpubExtensions←1
  parms.verbose←0
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  expected←,¨'3-5' '1' '13' '[-]'
  buff←{⍵~⎕A,' ().:',⎕C ⎕A}¨ns.report

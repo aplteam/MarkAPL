@@ -20,8 +20,8 @@
  md,←⊂'    '
  md,←⊂'A paragraph independent from the list'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 1=+/'<ul>'⍷∊ns.html
  →T.PassesIf 7=+/'<li>'⍷∊ns.html

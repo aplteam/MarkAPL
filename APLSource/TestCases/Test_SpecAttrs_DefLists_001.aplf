@@ -9,11 +9,11 @@
  md,←⊂''
  md,←⊂': Explenation2'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.verbose←0
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf∨/'<dt class="foo" id="#goo" style="color:red;">'⍷∊ns.html
 

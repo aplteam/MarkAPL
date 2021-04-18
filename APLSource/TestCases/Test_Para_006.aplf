@@ -9,8 +9,8 @@
  md,←⊂''
  md,←⊂'The name of the variable is \_HTML\_, which is a reserved name.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 1=+/'<em>'⍷∊ns.html
 

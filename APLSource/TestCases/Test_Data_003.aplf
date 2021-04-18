@@ -8,8 +8,8 @@
  md,←⊂''
  md,←⊂'This is a para.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.FailsIf 1≠≢ns.data
  →T.FailsIf'author' 'Kai Jaeger''; Date=''2016-02-19'≢1⊃ns.data

@@ -11,10 +11,10 @@
  md,←⊂'--------'
  md,←⊂'### Chapter 1 {attr=123 #goo}'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.bookmarkLink←0
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.FailsIf(⊂'<a id="foo1" class="autoheaderlink">')∊ns.html
  →T.PassesIf(⊂'<h1 id="foo1">Title</h1>')∊ns.html

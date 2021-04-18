@@ -6,11 +6,11 @@
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
  #.TEMP.m←'*** This is a paragraph ***'
- result←##.MarkAPL.Execute'ProcessAsterisks #.TEMP.m'
+ result←MarkAPL.Execute'ProcessAsterisks #.TEMP.m'
  →T.FailsIf #.TEMP.m≢result
 
  #.TEMP.m←'___ This is a paragraph ___'
- result←##.MarkAPL.Execute'ProcessAsterisks #.TEMP.m'
+ result←MarkAPL.Execute'ProcessAsterisks #.TEMP.m'
  →T.FailsIf #.TEMP.m≢result
 
  R←T._OK

@@ -6,8 +6,8 @@
  md←''
  md,←⊂'<http://aplwiki.com {target="_blank"}>'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 1=+/'target="_blank">'⍷∊ns.html
 

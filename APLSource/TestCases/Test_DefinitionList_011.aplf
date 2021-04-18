@@ -12,8 +12,8 @@
  md,←⊂''
  md,←⊂': Second Def.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<dt>First</dt>' '<dd><p>First Def.</p></dd>' '<dt id="Foo">Second</dt>' '<dd><p>Second Def.</p></dd>'
  →T.PassesIf∧/expected∊ns.html

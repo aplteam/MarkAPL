@@ -8,7 +8,7 @@
  css,←⊂'  content : "That''s fine; always";'
  css,←⊂'}'
 
- css2←##.MarkAPL.CompressCSS css
+ css2←MarkAPL.CompressCSS css
 
  expected←'p::before{content:"That''s fine; always";}'
  →T.PassesIf css2≡expected

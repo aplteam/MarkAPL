@@ -8,8 +8,8 @@
  md,←⊂''
  md,←⊂'[aplwiki]: http://aplwiki.com'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<p>Link to <a href="http://aplwiki.com" class="external_link">http://aplwiki.com</a>.</p>'
  →T.PassesIf expected≡1⊃ns.html

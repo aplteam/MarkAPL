@@ -7,8 +7,8 @@
  md,←⊂'\_ \* \| \< \~ \{ \} \( \\ \'
  md,←⊂'\T\h\i\s \i\s a path: C:\Temp\MyFoo.txt C:\\Temp\\My.txt'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<p>_ * | &lt; ~ { } ( \ <br/>\T\h\i\s \i\s a path: C:\Temp\MyFoo.txt. _  C:\Temp\My.txt</p>'
  →T.PassesIf≡expected∊ns.html

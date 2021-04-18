@@ -27,8 +27,8 @@
  md,←⊂''
  md,←⊂'## Level-  2'   ⍝ Transforms into "---"!
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<p>“This cannot be true” he said wearily.</p>'
  →T.PassesIf expected≡1⊃ns.html

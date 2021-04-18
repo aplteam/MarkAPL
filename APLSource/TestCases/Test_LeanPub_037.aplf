@@ -16,14 +16,14 @@
  md,←⊂''
  md,←⊂'Another para'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.leanpubExtensions←1
  parms.createFullHtmlPage←1
  parms.screenCSS←'Dark_Screen.css'
  parms.printCSS←'Dark_Print.css'
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  expected←'<p>A para</p>' '<pre><code>' '<span class="leanpub_code">{(+⌿⍵)÷≢⍵}' '&lt;/span&gt;' '</span></code></pre>' '<p>Another para</p>'
  →T.PassesIf expected≡ns.html

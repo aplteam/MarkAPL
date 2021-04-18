@@ -12,7 +12,7 @@
  md←'[parm]:verbose=0' '# Test' '' '* This' '* That' '* More' '' '# Test'
  (⊂md)⎕NPUT filename 1
 
- report←##.MarkAPL.ConvertMarkdownFile filename
+ report←MarkAPL.ConvertMarkdownFile filename
  →T.GoToTidyUp 0∊⍴report
  →T.GoToTidyUp~FilesAndDirs.IsFile(¯3↓filename),'.html'
  R←T._OK

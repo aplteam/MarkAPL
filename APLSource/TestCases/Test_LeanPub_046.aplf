@@ -20,8 +20,8 @@
  md,←⊂''
  md,←⊂'Another para.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 3=+/'<h3>'⍷∊ns.html
  →T.PassesIf 1=+/'<h4>'⍷∊ns.html

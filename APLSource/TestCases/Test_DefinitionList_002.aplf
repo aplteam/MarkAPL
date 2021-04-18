@@ -8,8 +8,8 @@
  md,←⊂''
  md,←⊂':Definition'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.FailsIf'<p>Term</p>' '<p>:Definition</p>'≢ns.html
 

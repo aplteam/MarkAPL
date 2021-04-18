@@ -15,9 +15,9 @@
  md,←⊂'* List II.'
  md,←⊂'Para'
 
- parms←##.MarkAPL.CreateParms
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ parms←MarkAPL.CreateParms
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 3=+/'<ul>'⍷∊ns.html
 

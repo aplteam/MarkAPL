@@ -9,8 +9,8 @@
  mat,←⊂'|APL      | Powerful |'
  mat,←⊂'|COBOL    | Outdated.<<br>>There is little hope for revival.<<br>>And there probably shouldn''t be.'
 
- ns←##.MarkAPL.Init''mat
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''mat
+ ns←MarkAPL.Process ns
  expected←⊂'<table>'
  expected,←⊂'<thead>'
  expected,←⊂'<tr>'

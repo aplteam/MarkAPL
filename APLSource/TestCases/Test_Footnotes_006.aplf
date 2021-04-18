@@ -16,10 +16,10 @@
  md,←⊂''
  md,←⊂'[^doesnotexist]: The APL wiki...'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.verbose←0
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 2=⍴ns.report
  →T.PassesIf 2=+/∨/¨'doesnotex' 'footnote'⍷¨⊂∊ns.report

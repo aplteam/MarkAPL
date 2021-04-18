@@ -7,8 +7,8 @@
  md,←⊂'~~~'
  md,←⊂'<<Guillemets>>'
  md,←⊂'~~~'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf(,⊂'<pre><code>&lt;&lt;Guillemets&gt;&gt;</code></pre>')≡ns.html
 

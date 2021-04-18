@@ -8,8 +8,8 @@
  md,←⊂''
  md,←⊂'> In IT, arrogance is measured in nano-Dijkstras {.myclass1 .myclass2 #foo}'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf∨/'<blockquote class="myclass1 myclass2" id="foo">'⍷∊ns.html
 

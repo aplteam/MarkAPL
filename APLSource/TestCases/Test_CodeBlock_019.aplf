@@ -12,8 +12,8 @@
  md,←⊂':EndNamespace'
  md,←⊂'~~~'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<pre><code>:Namespace MyApp' '⍝ First comment' 'A para' '⍝ Second comment' ':EndNamespace</code></pre>'
  →T.PassesIf expected≡ns.html

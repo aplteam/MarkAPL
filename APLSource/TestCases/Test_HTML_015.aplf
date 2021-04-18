@@ -17,8 +17,8 @@
  md,←⊂'This is **another** para.'
  md,←⊂''
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<div>' '<p>HTML block</p>' '<div>' '<div>' '<p>A **paragraph**</p>' '</div>' '</div>' '</div>' '<p>This is <strong>another</strong> para.</p>'
  →T.PassesIf expected≡ns.html~⊂''

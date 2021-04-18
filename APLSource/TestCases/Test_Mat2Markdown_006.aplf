@@ -7,7 +7,7 @@
  m,←⊂'text scalar' '|'
  m,←⊂'text vector' '12|34'
 
- md←##.MarkAPL.Matrix2MarkdownTable↑m
+ md←MarkAPL.Matrix2MarkdownTable↑m
 
  →T.PassesIf 3=≢md
  →T.PassesIf':-|:-'≡1⊃md

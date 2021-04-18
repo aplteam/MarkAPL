@@ -5,8 +5,8 @@
  R←T._Failed
 
  md←⊂'~~~{(+/⍵)÷⍴,⍵}~~~'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<p>~~~{(+/⍵)÷⍴,⍵}~~~</p>'
  →T.PassesIf expected≡∊ns.html

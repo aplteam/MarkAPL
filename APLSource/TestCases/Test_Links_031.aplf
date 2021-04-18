@@ -7,8 +7,8 @@
  md,←⊂'[parm]:reportLinks     =  1'
  md,←⊂'See [**_MarkAPL_**''s full documentation & details \n\n\n](http://download.aplteam.com/MarkAPL.html) for details.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf∨/'<a href="http://download.aplteam.com/MarkAPL.html" class="external_link">'⍷∊ns.html
  →T.PassesIf∨/1=⍴'<li>.*http://download.aplteam.com/MarkAPL.html'⎕S 1⍠('Greedy' 0)⊣ns.html

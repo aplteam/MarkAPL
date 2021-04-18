@@ -11,10 +11,10 @@
  filename←path,'\Test_Misc_018.md'
  md←'# Test' '' '* This' '* That' '* More'
  (⊂md)⎕NPUT filename 1
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.inputFilename←filename
 
- report←parms ##.MarkAPL.ConvertMarkdownFile filename
+ report←parms MarkAPL.ConvertMarkdownFile filename
  R←T._OK
 
 ∆TidyUp:

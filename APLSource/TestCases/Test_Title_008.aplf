@@ -6,11 +6,11 @@
  md←''
  md,←⊂'A paragraph'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
- parms←##.MarkAPL.CreateParms
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
+ parms←MarkAPL.CreateParms
  parms.title←'Foo goo'
- html←parms ##.MarkAPL.MakeHTML_Doc ns.html
+ html←parms MarkAPL.MakeHTML_Doc ns.html
 
  title←{⍵↑⍨¯1+⍵⍳'<'}(≢'<title>')↓{⍵{⍵[2]↑⍵[1]↓⍺}⊃'<title>.*</title>'⎕S 0 1⍠('Mode' 'D')⊣⍵}⊃,/(⎕UCS 10),¨html
  →T.PassesIf title≡'Foo goo'

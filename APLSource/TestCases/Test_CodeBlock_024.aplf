@@ -8,8 +8,8 @@
  md,←⊂'~~~'
  md,←⊂'Another para'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<p>A para</p>' '<pre><code>Another para</code></pre>'
  →T.PassesIf expected≡ns.html

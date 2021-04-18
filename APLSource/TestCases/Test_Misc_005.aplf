@@ -11,8 +11,8 @@
  md,←⊂'This is <span class="foo">inline HTML</span>. "Yes"'
  md,←'' 'Another paragraph.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf∨/' &lt;span class=“foo”&gt;inline HTML&lt;/span&gt;.'⍷∊ns.html
 

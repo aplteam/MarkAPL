@@ -5,8 +5,8 @@
  R←T._Failed
 
  md←'This is a para.' '' '<a href="http://aplwiki.com">The APL wiki</a>' '' 'Another para'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
  expected←'<p>This is a para.</p>' '<a href="http://aplwiki.com">The APL wiki</a>' '<p>Another para</p>'
  →T.PassesIf expected≡ns.html~⊂''
 

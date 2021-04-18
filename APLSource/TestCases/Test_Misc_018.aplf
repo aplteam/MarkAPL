@@ -12,7 +12,7 @@
  md←'# Test' '' '* This' '* That' '* More'
  (⊂md)⎕NPUT filename 1
 
- report←##.MarkAPL.ConvertMarkdownFile filename
+ report←MarkAPL.ConvertMarkdownFile filename
  →T.GoToTidyUp~0∊⍴report
 
  R←T._OK

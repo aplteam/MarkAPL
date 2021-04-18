@@ -8,8 +8,8 @@
  md,←⊂''
  md,←⊂'Defining data: any line that starts with `[data]:` defines a key-value pair of data. See [Data](#) for details.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expecting←''
  expecting,←⊂'<div class="h_tag">'

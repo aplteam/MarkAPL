@@ -16,11 +16,11 @@
  md,←⊂''
  md,←⊂'Some text'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.verbose←0
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf(⊂'<pre><code id="mylicode">{+/⍳⍴⍵}</code></pre>')∊ns.html
  →T.PassesIf(⊂'<p id="mylipara">This is a sub-paragraph</p></li>')∊ns.html

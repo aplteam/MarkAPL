@@ -9,9 +9,9 @@
  m,←⊂1 2('Level 2 a num' '' 'Another para' '' '~~~' '{+⌿⍵}' '~~~')
  m,←⊂1 2 'Level 2 a num'
 
- md←##.MarkAPL.Matrix2MarkdownList↑m
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ md←MarkAPL.Matrix2MarkdownList↑m
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<ul>' '<li>Level 1 a bull' '<ol start="1">' '<li>Level 2 a num</li>' '<li>Level 2 a num'
  expected,←'<p>Another para</p>' '<pre><code>{+⌿⍵}</code></pre></li>' '<li>Level 2 a num</li>'

@@ -9,11 +9,11 @@
  md,←⊂' 1/a|1/B'
  md,←⊂' 2/a|2/B'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.verbose←0
- ns←##.MarkAPL.Init parms md
+ ns←MarkAPL.Init parms md
 
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Process ns
  →T.PassesIf'Unknown external function: <UnknownFns>'≡1⊃ns.report
 
  R←T._OK

@@ -14,11 +14,11 @@
  md,←⊂'     1. Two'
  md,←⊂'1. Third'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.verbose←0
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf'<ol start="3" class="goo" id="foo" style="color:red;">'≡1⊃ns.html
  →T.PassesIf'<ul class="goo">'≡4⊃ns.html

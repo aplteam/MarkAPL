@@ -10,8 +10,8 @@
  md,←⊂''
  md,←⊂'A paragraph.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  ⍝ The result is garbage in any case because it's ill-formed markdown, but it should not crash
 

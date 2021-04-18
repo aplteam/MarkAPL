@@ -10,8 +10,8 @@
  md←''
  md,←⊂'⍎⍎#.TEMP.MyFns⍎⍎'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<p>&lt;p&gt;This</p>' '<p><strong>is</strong> a paragraph.&lt;/p&gt;</p>'
  →T.PassesIf expected≡ns.html

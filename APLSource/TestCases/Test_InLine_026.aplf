@@ -5,8 +5,8 @@
 
  md←⊂'`\` should not influence **_MarkAPL_**'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←,⊂'<p><code>\</code> should not influence <strong><em>MarkAPL</em></strong></p>'
  →T.PassesIf expected≡ns.html

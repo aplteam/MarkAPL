@@ -11,13 +11,13 @@
  md,←⊂'-----------------------------'
  md,←⊂''
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.numberHeaders←6                  ⍝ Number ALL headers
  parms.verbose←0
  parms.toc←6
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf(⊂'<a href="#The--and---syntax" id="The--and---syntax" class="autoheader_anchor">')∊ns.html
  →T.PassesIf'<h1[^>]*>1. The “=” and “-” syntax \(SeText\)</h1>'∆FoundIn ns.html

@@ -7,8 +7,8 @@
  md,←⊂'# 32/64-bit nightmares'
  md,←⊂'A para.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<div class="h_tag">' '<a href="#3264-bit-nightmares" id="3264-bit-nightmares" class="autoheader_anchor">'
  expected,←'<h1 data-id="3264-bit-nightmares">32/64-bit nightmares</h1>' '</a>' '</div>' '<p>A para.</p>'

@@ -7,11 +7,11 @@
  md←''
  md,←⊂'This is a para with an embedded ![Error Image](error.png) in it.'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.imageURL←'http://download.aplwiki.com/LeanPub/Images'
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  expected←'<p>This is a para with an embedded <img src="http://download.aplwiki.com/LeanPub/Images/error.png" alt="Error Image" title="Error Image"> in it.</p>'
  →T.PassesIf(⊂expected)∊ns.html

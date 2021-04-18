@@ -11,8 +11,8 @@
  md,←⊂''
  md,←⊂'Another para'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<div class="leanpub_A"><p>An aside</p></div>' '<p>Another para</p>'
  →T.PassesIf≡/∊¨expected(ns.html~⊂'')

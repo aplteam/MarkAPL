@@ -10,8 +10,8 @@
  md,←⊂'Instead a backslash at the end of a line \'
  md,←⊂'has the same effect.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<p>Instead a backslash at the end of a line  <br> has the same effect.</p>'
  →T.PassesIf(⊂expected)∊ns.html

@@ -12,15 +12,15 @@
  md,←⊂'## Level 2 A'
  md,←⊂''
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.toc←6
  parms.collapsibleTOC←1
  parms.verbose←0
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf(≢ns.headerLineNos)=≢ns.headers
- html←parms ##.MarkAPL.MakeHTML_Doc ns.html
+ html←parms MarkAPL.MakeHTML_Doc ns.html
 
  R←T._OK

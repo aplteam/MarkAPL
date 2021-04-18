@@ -9,10 +9,10 @@
  md,←⊂'* [BookMark Link](# {id="foo2"})'
  md,←⊂'* [APL wiki](http://aplwiki.com {id="foo3"})'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.verbose←0
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  html←1↓⊃,/(⎕UCS 13),¨ns.html
  →T.PassesIf 4=+/'<a href="'⍷html

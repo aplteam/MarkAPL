@@ -6,8 +6,8 @@
  md←''
  md,←⊂'Term 1'
  md,←⊂': Definition of the term'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<dl>' '<dt>Term 1</dt>' '<dd>Definition of the term</dd>' '</dl>'
  →T.FailsIf expected≢ns.html

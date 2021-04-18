@@ -12,8 +12,8 @@
  md,←⊂'Call 2/A<<br>>new line| Call 2 B '
  md,←⊂'Call 3/A| Call 3 B<<br>>new line '
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf∨/'<table>'⍷∊ns.html
  →T.PassesIf 3=+/'<br>'⍷∊ns.html

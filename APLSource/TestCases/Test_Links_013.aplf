@@ -10,8 +10,8 @@
  md,←⊂''
  md,←⊂'See ["More"](#∆_123) for details.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf∨/'<p>See <a href="#∆_123" class="bookmark_link">"More"</a> for details.</p>'⍷∊ns.html
 

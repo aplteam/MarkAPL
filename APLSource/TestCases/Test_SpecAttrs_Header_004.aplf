@@ -12,10 +12,10 @@
  md,←⊂''
  md,←⊂'A paragraph'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.bookmarkLink←2
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf(⊂'<a href="#foo1" id="foo1" class="autoheader_anchor">')∊ns.html
  →T.PassesIf(⊂'<h1 data-id="foo1" class="header1">Title</h1>')∊ns.html

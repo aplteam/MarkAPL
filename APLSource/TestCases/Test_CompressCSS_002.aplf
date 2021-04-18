@@ -12,7 +12,7 @@
  css,←⊂'  font-size : 19pt;'
  css,←⊂'}'
 
- css2←##.MarkAPL.CompressCSS css
+ css2←MarkAPL.CompressCSS css
 
  expected←'p{font-size:19pt;}'
  →T.PassesIf expected≡css2

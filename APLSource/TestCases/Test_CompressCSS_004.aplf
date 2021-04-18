@@ -13,7 +13,7 @@
  css,←⊂'}'
 
  :Trap 11
-     css2←##.MarkAPL.CompressCSS css
+     css2←MarkAPL.CompressCSS css
      →T.FailsIf 1
  :Else
      →T.PassesIf'Cannot compress CSS:'{⍺≡(⍴⍺)↑⍵}⊃⎕DM

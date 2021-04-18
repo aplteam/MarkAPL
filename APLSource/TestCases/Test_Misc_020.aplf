@@ -11,10 +11,10 @@
  filename←path,'\Test_Misc_018.md'
  md←'# Test' '' '* This' '* That' '* More'
  (⊂md)⎕NPUT filename 1
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.outputFilename←path,'\MyOutput.htm'
 
- report←parms ##.MarkAPL.ConvertMarkdownFile filename
+ report←parms MarkAPL.ConvertMarkdownFile filename
  →T.GoToTidyUp~0∊⍴report
  →T.GoToTidyUp~FilesAndDirs.IsFile parms.outputFilename
  html←⊃⎕NGET parms.outputFilename 1

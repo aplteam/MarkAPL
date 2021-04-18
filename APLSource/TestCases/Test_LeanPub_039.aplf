@@ -11,11 +11,11 @@
  md,←⊂'leanpub-end-insert'
  md,←⊂'~~~'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.leanpubExtensions←1
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  expected←'<pre><code>(+⌿⍵)÷⍴,⍵' '<span class="leanpub_code">{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}' '</span></code></pre>'
  →T.PassesIf∧/expected∊ns.html

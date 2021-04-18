@@ -15,7 +15,7 @@
  css,←⊂'  margin: 10px 20px 30px 0;'
  css,←⊂'}'
 
- css2←##.MarkAPL.CompressCSS css
+ css2←MarkAPL.CompressCSS css
 
  expected←'p{font-size:19pt;font-family:"Foo Goo";}img{border:0;margin:10px 20px 30px 0;}'
  →T.PassesIf expected≡css2

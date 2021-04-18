@@ -6,8 +6,8 @@
  md←''
  md,←⊂'The first folder is "C:\Temp1\" and the second "C:\Temp1\"'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<p>The first folder is “C:\Temp1\” and the second “C:\Temp1\”</p>'
  →T.PassesIf expected≡∊ns.html

@@ -7,8 +7,8 @@
  mat,←⊂'|`APL|Powerful|'
  mat,←⊂'|COBOL|Outdated|'
 
- ns←##.MarkAPL.Init''mat
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''mat
+ ns←MarkAPL.Process ns
  expected←'<table>' '<tbody>' '<tr>' '<td><code>APL|Powerful|</code></td>'
  expected,←'<td>                          </td>' '</tr>' '<tr>' '<td>COBOL</td>'
  expected,←⊂'<td>Outdated</td>'

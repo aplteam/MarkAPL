@@ -14,8 +14,8 @@
  md,←⊂(24⍴' '),'1) List B11111'
  md,←⊂'* List II.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<ul>' '<li>List I.' '<ul>' '<li>List A</li>' '<li>List B' '<ul>' '<li>List B1'
  expected,←'<ol start="1">' '<li>List B11' '<ol start="1">' '<li>List B111'

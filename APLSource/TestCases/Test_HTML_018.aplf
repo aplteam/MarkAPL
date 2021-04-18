@@ -14,8 +14,8 @@
  md,←⊂''
  md,←⊂'A paragraph.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<pre><code>{{⍵/⍨2=+⌿0=⍵∘.|⍵}}⍳⍵}' '⍝ Prime numbers</code></pre>' '<p>A paragraph.</p>'
  →T.PassesIf expected≡ns.html~⊂''

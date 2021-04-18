@@ -7,8 +7,8 @@
  md,←⊂'_An ordinary para._'
  md,←⊂'... (tm) (c) --- -- ""'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<p><i>An ordinary para.</i> &hellip; ™ © &mdash; &ndash; &ldquo;&rdquo;</p>'
  →T.PassesIf≡expected∊ns.html

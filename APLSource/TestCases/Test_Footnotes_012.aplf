@@ -7,8 +7,8 @@
  md,←⊂''
  md,←⊂'[^aplwiki]:The ::APL:: wiki:<<br>><https://aplwiki.com>'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<li id="fnref1"><p>The ::APL:: wiki: <br><a href="https://aplwiki.com" class="external_link">https://aplwiki.com</a></p><a href="#fnref1" class="footnote_anchor"></a>'
  →T.PassesIf∨/expected⍷∊ns.html

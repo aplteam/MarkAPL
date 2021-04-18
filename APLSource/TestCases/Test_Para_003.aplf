@@ -6,16 +6,16 @@
  md←''
  md,←⊂'This is a paragraph. {.class1 .class2}'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf'<p class="class1 class2">This is a paragraph.</p>'≡↑,/ns.html
 
  md←''
  md,←'This is a paragraph that' 'stretches over 2 lines.{.class1 .class2}'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf'<p class="class1 class2">This is a paragraph that stretches over 2 lines.</p>'≡↑,/ns.html
 

@@ -164,7 +164,7 @@ Compatibility, features, bugs
 * Typographical sugar. This can be switched off by setting [`syntaxSugar`](#) to 0. For details see [Syntax sugar](#).
 
   * `(c)` becomes (c)
-  * `(tm) becomes (tm)
+  * `(tm)` becomes (tm)
   * `...` becomes ...
   * `<<` becomes <<
   * `>>` becomes >>
@@ -177,7 +177,7 @@ Compatibility, features, bugs
 
 * Assigning ID names, class names and attributes to certain elements as in:\
   `{#foo .my_class .another_class style="display:none;" target="_blank"}`\
-  is implemented for most but not all elements. This idea was taken from Markdown Extra but with a slightly different syntax, and with good reason.
+  is implemented for most though not all elements. This idea was taken from Markdown Extra but with a slightly different syntax, and with good reason.
   
   See [Special attributes](#) for details.
 

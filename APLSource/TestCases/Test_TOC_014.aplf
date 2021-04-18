@@ -9,10 +9,10 @@
  md,←⊂'# Change History  `({+/⍳⍵})`'
  md,←⊂''
  md,←⊂'Some paragraph'
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf(⍴,ns.headerLineNos)=≢ns.headers
  →T.PassesIf 1=+/'<h1 data-id="Change-History">1. Change History  <code>({+/⍳⍵})</code></h1>'⍷∊ns.html

@@ -6,20 +6,20 @@
  md←''
  md,←⊂'This is a para. This is a para. This is a para.'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.head←'<meta name="author" content="Kai Jaeger">'
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
- ns.html←ns.parms ##.MarkAPL.MakeHTML_Doc ns.html
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
+ ns.html←ns.parms MarkAPL.MakeHTML_Doc ns.html
 
  expected←'<meta name="author" content="Kai Jaeger">'
  →T.PassesIf∨/expected⍷∊ns.html
 
  parms.head←'<meta name="author" content="Kai Jaeger">' '<meta http-equiv="X-UA-Compatible" content="IE=Edge">'
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
- ns.html←ns.parms ##.MarkAPL.MakeHTML_Doc ns.html
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
+ ns.html←ns.parms MarkAPL.MakeHTML_Doc ns.html
 
  expected←'<meta name="author" content="Kai Jaeger">'
  →T.PassesIf∨/expected⍷∊ns.html

@@ -10,8 +10,8 @@
  md,←⊂''
  md,←⊂'[Link](#x86) to the definition.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf∨/'<dt id="x86">'⍷∊ns.html
  →T.PassesIf∨/'<p><a href="#x86" class="bookmark_link">Link</a> to the definition.</p>'⍷∊ns.html

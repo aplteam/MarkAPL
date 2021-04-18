@@ -6,8 +6,8 @@
  md←''
  md,←⊂'## Header level 2 \{author\}'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf∨/' {author}'⍷∊ns.html
 

@@ -9,8 +9,8 @@
  md,←⊂'|APL|`Powerful|Foo|'
  md,←⊂'|COBOL|Outdated|Goo|'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 0=+/'<table class="center">'⍷∊ns.html
  →T.PassesIf 1=+/'<th style="text-align: left;"'⍷∊ns.html
@@ -23,8 +23,8 @@
  md,←⊂'|APL|`Powerful|Foo|'
  md,←⊂'|COBOL|Outdated|Goo|'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 1=+/'<table class="center">'⍷∊ns.html
  →T.PassesIf 1=+/'text-align: left;"'⍷∊ns.html
@@ -36,8 +36,8 @@
  md,←⊂'|APL|`Powerful|Foo|'
  md,←⊂'|COBOL|Outdated|Goo|'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 0=+/'<table class="center">'⍷∊ns.html
  →T.PassesIf 0=+/'text-align: left;"'⍷∊ns.html

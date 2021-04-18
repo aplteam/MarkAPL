@@ -12,13 +12,13 @@
  md,←⊂'## Level 2B'
  md,←⊂'## Level 2C'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.toc←1↓⍳6
  parms.numberHeaders←2 3 4 5
  parms.verbose←0
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  toc←'<nav.*>.*</nav>'⎕R'&'⍠('Greedy' 0)('DotAll' 1)('Mode' 'M')⊣ns.html
  →T.PassesIf 3=+/∊'<ul>'∘⍷¨toc

@@ -8,8 +8,8 @@
  md,←⊂''
  md,←⊂'A> # An aside'
 
- ns←##.MarkAPL.Init ⍬ md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init ⍬ md
+ ns←MarkAPL.Process ns
 
  expected←'<div class="leanpub_A">' '<h3>An aside</h3>' '</div>'
  →T.PassesIf≡/∊¨expected(ns.html~⊂'')

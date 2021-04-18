@@ -8,8 +8,8 @@
  md,←⊂''
  md,←⊂'Inside a \___Word__\_.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<p>Inside a _<strong>Word_</strong>.</p>' '<p>Inside a _<strong>Word</strong>_.</p>'
  →T.PassesIf expected≡ns.html

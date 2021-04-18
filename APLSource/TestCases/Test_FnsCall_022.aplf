@@ -9,8 +9,8 @@
  #.TEMP.⎕FX'r←CalledFns' 'r←''<pre><code>{(+/⍵)÷⍴,⍵}'' ''</code></pre>'''
  md←''
  md,←⊂'⍎⍎#.TEMP.MyFns #.TEMP.CalledFns⍎⍎'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
  →T.PassesIf'<pre><code>{(+/⍵)÷⍴,⍵}' '</code></pre>'≡ns.html
 
  #.⎕SHADOW'TEMP'
@@ -19,8 +19,8 @@
  #.TEMP.⎕FX'r←CalledFns' 'r←''<pre><code>{(+/⍵)÷⍴,⍵}'' ''</code></pre>'''
  md←''
  md,←⊂'⍎⍎#.TEMP.MyFns ''#.TEMP.CalledFns''⍎⍎'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
  →T.PassesIf'<pre><code>{(+/⍵)÷⍴,⍵}' '</code></pre>'≡ns.html
 
  R←T._OK

@@ -12,8 +12,8 @@
  md,←⊂'* Alpha'
  md,←⊂'* Beta'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<ul>' '<li>First</li>' '<li>Second</li>' '<li>Third</li>' '</ul>' '<ul>' '<li>Alpha</li>' '<li>Beta</li>' '</ul>'
  →T.PassesIf expected≡ns.html

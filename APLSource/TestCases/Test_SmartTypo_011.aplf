@@ -6,8 +6,8 @@
  md←''
  md,←⊂'[parm]:lang=''de'''
  md,←⊂'APL is a "modern language".'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf(,⊂'<p>APL is a „modern language“.</p>')≡ns.html
 

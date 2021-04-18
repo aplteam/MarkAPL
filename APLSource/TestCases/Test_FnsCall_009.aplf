@@ -10,8 +10,8 @@
  md←''
  md,←⊂'⍎⍎#.TEMP.MyFns⍎⍎'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
  html←1↓↑,/(⎕UCS 13),¨ns.html
 
  →T.PassesIf 2=+/'**'⍷html
@@ -25,8 +25,8 @@
  md,←⊂'⍎⍎#.TEMP.MyFns⍎⍎'
  md,←⊂''
  md,←⊂'** Bold **'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
  expected←'' '<pre><code>1' '20' '300' '4000' '</code><pre>' '' '<p>** Bold **</p>'
  →T.FailsIf expected≢ns.html
 
@@ -35,9 +35,9 @@
  #.TEMP.MyFns←{'' '<p>**bold** --- </p>' ''}
  md←''
  md,←⊂'This is the result: ⍎⍎#.TEMP.MyFns⍎⍎'
- ns←##.MarkAPL.Init''md
+ ns←MarkAPL.Init''md
  :Trap 0
-     ns←##.MarkAPL.Process ns
+     ns←MarkAPL.Process ns
      →T.FailsIf 1
  :Else
      →T.FailsIf'Called function returned an HTML block but does not stand on its own'≢1⊃⎕DM

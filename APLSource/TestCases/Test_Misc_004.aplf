@@ -6,11 +6,11 @@
  md←'H. level 1' '==' 'H. A level 2' '--' 'H. B level 2' '--'
  md,←('### A',⎕UCS 0)'### B' '### C'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.toc←6
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.FailsIf(⎕UCS 0)∊∊ns.html
  →T.FailsIf~(⎕UCS 65533)∊∊ns.html ⍝ Because of the replacement

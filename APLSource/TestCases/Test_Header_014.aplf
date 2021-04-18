@@ -8,12 +8,12 @@
  md,←⊂'======================='
  md,←⊂''
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.numberHeaders←6                  ⍝ Number ALL headers
  parms.verbose←0
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 1=+/'<a href="#The--and---syntax" id="The--and---syntax" class="autoheader_anchor">'⍷∊ns.html
 

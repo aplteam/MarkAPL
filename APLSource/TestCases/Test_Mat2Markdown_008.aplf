@@ -5,7 +5,7 @@
 
  m←⍪'Kai' 'Thomas' 'Max'
 
- md←##.MarkAPL.Matrix2MarkdownTable m
+ md←MarkAPL.Matrix2MarkdownTable m
  →T.PassesIf 4=⍴md
  →T.PassesIf'|'∧.=⊃¨md
 

@@ -11,8 +11,8 @@
  md,←⊂' <p>This is para</p>'                   ⍝ One leading blank - not an HTML block!
  md,←⊂''
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<p>HTML block 1</p>' '<p>&lt;p&gt;This is para&lt;/p&gt;</p>'
  →T.PassesIf expected≡ns.html~⊂''

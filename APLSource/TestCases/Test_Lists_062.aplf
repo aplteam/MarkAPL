@@ -12,8 +12,8 @@
 
  md←↓↑md   ⍝ This introduces trailing blanks that once caused havoc
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<ul>' '<li>First paragraph has to be long' '<p>Para 1</p>' '<p>Para 2</p></li>' '</ul>'
  →T.FailsIf expected≢ns.html

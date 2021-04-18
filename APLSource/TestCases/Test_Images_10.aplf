@@ -6,8 +6,8 @@
  md←''
  md,←⊂'![](fig3.png{.pct15em}) <<br>> Figure 3. Random {.caption .right}'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←,⊂'<p class="caption right"><img src="fig3.png" class="pct15em" alt="">  <br> Figure 3. Random</p>'
  →T.PassesIf expected≡ns.html

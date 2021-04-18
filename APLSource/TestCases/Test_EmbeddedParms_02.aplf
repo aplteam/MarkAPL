@@ -3,16 +3,16 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.title←'Foo'
 
  md←'[parm]:title=''123''' '[parm]:subTocs=0'
  md,←'# External links' '' '<http://aplwiki.com>'
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
  parms.createFullHtmlPage←1
- html←parms ##.MarkAPL.MakeHTML_Doc ns.html
+ html←parms MarkAPL.MakeHTML_Doc ns.html
 
  →T.PassesIf(⊂'<title>123</title>')∊html
  →T.PassesIf ns.embeddedParms≡2 2⍴'title' '123' 'subTocs' 0

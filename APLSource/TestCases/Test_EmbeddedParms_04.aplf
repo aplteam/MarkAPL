@@ -7,8 +7,8 @@
  md,←⊂'[parms]:subTocs=0'      ⍝ Deliberate typo: [parms] rather than [parm]
  md,←⊂'An ordinary para.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf(,⊂'<p>[parms]:subTocs=0 An ordinary para.</p>')≡ns.html
 

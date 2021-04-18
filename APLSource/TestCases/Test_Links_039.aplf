@@ -5,8 +5,8 @@
 
  md←⊂'Contact us via [email](mailto:kai@aplteam.com).'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expecting←,⊂'<p>Contact us via <a href="mailto:kai@aplteam.com" class="mailto_link">email</a>.</p>'
  →T.PassesIf expecting≡ns.html

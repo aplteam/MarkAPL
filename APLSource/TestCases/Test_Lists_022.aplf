@@ -15,9 +15,9 @@
  md,←⊂' 1) List III.'
  md,←⊂'Another para'
 
- parms←##.MarkAPL.CreateParms
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ parms←MarkAPL.CreateParms
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  expected←'<ol start="1">' '<li>' '<li>' '<p>' '<p>' '<p>' '<li>' '</ol>'
  →T.PassesIf expected≡{⍵↑⍨⍵⍳'>'}¨ns.html

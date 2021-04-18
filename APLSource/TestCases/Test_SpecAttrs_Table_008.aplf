@@ -9,8 +9,8 @@
  md,←⊂'|Row 1/Col A|Row 1/Col B|2   |'
  md,←⊂'|Row 1/Col A|Row 1/Col B|300 |'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<table class="class2" id="foo" foo="123">'
  →T.PassesIf expected≡⊃ns.html

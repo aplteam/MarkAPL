@@ -9,8 +9,8 @@
  md,←⊂'~~~'
  md,←⊂'{+/⍳⍴,w}'
  md,←⊂'```'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
  expected←'<pre><code>{+/⍳⍴,w}' '```</code></pre>'
  →T.PassesIf expected≡ns.html
 
@@ -18,8 +18,8 @@
  md,←⊂'```'
  md,←⊂'{+/⍳⍴,w}'
  md,←⊂'~~~'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
  expected←'<pre><code>{+/⍳⍴,w}' '~~~</code></pre>'
  →T.PassesIf expected≡ns.html
 

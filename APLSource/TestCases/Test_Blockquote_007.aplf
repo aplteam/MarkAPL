@@ -9,11 +9,11 @@
  md,←⊂'> # Header 1'
  md,←⊂'> ## Header 2'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.toc←6
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  html←1↓⊃,/(⎕UCS 13),¨ns.html
  →T.PassesIf 4=+/'<a href="#Header'⍷html  ⍝ Header 1, header 2 and two entries in the TOC

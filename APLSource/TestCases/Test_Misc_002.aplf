@@ -8,10 +8,10 @@
  md,←⊂''
  md,←⊂'This [doesnotexist](#)'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.verbose←0
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf'Invalid internal link: [doesnotexist]'≡1⊃ns.report
 
@@ -21,8 +21,8 @@
  md,←⊂'This [doesnotexist](#).'
  md,←⊂'And this [doesnotexist](#) either.'
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf('Invalid internal link: [doesnotexist]' 'Invalid internal link: [doesnotexist]')≡ns.report
 
@@ -32,8 +32,8 @@
  md,←⊂'This [doesnotexist](#).'
  md,←⊂'And this [doesnotexisteither](#) either.'
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  expected←'Invalid internal link: [doesnotexist]' 'Invalid internal link: [doesnotexisteither]'
  →T.PassesIf expected≡ns.report

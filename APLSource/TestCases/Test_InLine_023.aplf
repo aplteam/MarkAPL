@@ -8,8 +8,8 @@
  md,←⊂''
  md,←⊂'Another Paragraph.*'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<p>*A Paragraph.</p>' '<p>Another Paragraph.*</p>'
  →T.PassesIf expected≡ns.html

@@ -8,8 +8,8 @@
  md,←⊂''
  md,←⊂'  More {#myid style="color:red; background-color:silver; font-family:''APL385 Unicode''" .class1 .class2}'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf∨/'class="class1 class2"'⍷∊ns.html
  →T.PassesIf∨/'id="myid"'⍷∊ns.html

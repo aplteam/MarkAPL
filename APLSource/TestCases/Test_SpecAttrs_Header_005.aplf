@@ -14,8 +14,8 @@
  md,←⊂''
  md,←⊂'A paragraph'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf(⊂'<h1 data-id="foo1" class="header1" style="text-align:center;">Title Level 1</h1>')∊ns.html
  →T.PassesIf(⊂'<a href="#Sub-Title" id="Sub-Title" class="autoheader_anchor">')∊ns.html

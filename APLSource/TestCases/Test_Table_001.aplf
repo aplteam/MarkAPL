@@ -10,8 +10,8 @@
  mat,←⊂'|COBOL & Pascal|1 Old|14000001|'
  mat,←⊂'|F#|0 New|3400|'
 
- ns←##.MarkAPL.Init''mat
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''mat
+ ns←MarkAPL.Process ns
  html←1↓∊(⎕UCS 13),¨ns.html
  →T.FailsIf 6≠+/'<td>'⍷html
  →T.FailsIf 3≠+/'<td style'⍷html

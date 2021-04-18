@@ -6,17 +6,17 @@
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
  #.TEMP.m←'This is a simple paragraph'
- mask←##.MarkAPL.Execute'GetMaskForCode #.TEMP.m'
+ mask←MarkAPL.Execute'GetMaskForCode #.TEMP.m'
  →T.PassesIf 0=+/mask
  →T.PassesIf=/≢¨mask #.TEMP.m
 
  #.TEMP.m←'This ` has a single backtick'
- mask←##.MarkAPL.Execute'GetMaskForCode #.TEMP.m'
+ mask←MarkAPL.Execute'GetMaskForCode #.TEMP.m'
  →T.PassesIf 0=+/mask
  →T.PassesIf=/≢¨mask #.TEMP.m
 
  #.TEMP.m←'This has two \` \` backtick with a spcase in between'
- mask←##.MarkAPL.Execute'GetMaskForCode #.TEMP.m'
+ mask←MarkAPL.Execute'GetMaskForCode #.TEMP.m'
  →T.PassesIf 0=+/mask
  →T.PassesIf=/≢¨mask #.TEMP.m
 

@@ -18,8 +18,8 @@
  md,←⊂''
  md,←⊂': Def os term 2.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.FailsIf'<dl>'≢1⊃ns.html
  →T.FailsIf'<dt>Term 1</dt>'≢2⊃ns.html

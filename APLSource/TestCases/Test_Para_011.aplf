@@ -6,8 +6,8 @@
  md←''
  md,←⊂'`*/⍳8` should be a paragraph'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<p><code>*/⍳8</code> should be a paragraph</p>'
  →T.PassesIf expected≡∊ns.html

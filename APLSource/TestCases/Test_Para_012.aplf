@@ -10,8 +10,8 @@
  md,←⊂''
  md,←⊂'A paragraph.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  ⍝ We are happy enough if this does not crash (garbage anyway)
 

@@ -10,8 +10,8 @@
  md,←⊂''
  md,←⊂'New --- non-blockquote -- para.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf'<blockquote>'≡1⊃ns.html
  →T.PassesIf'<p>This is a para. Still the same blockquote. Keeps going.</p>'≡2⊃ns.html

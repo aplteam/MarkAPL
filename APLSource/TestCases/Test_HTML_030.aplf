@@ -4,8 +4,8 @@
  R←T._Failed
 
  md←'This is a para.' '' '<style>' 'p {font-size: xx-large; color:red;}' '</style>' 'Another para'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<style>' 'p {font-size: xx-large; color:red;}' '</style>'
  →T.PassesIf∧/expected∊ns.html

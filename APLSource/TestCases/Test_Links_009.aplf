@@ -8,8 +8,8 @@
  md,←⊂''
  md,←⊂'# Link to a header `em`'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf∨/'<a href="#Link-to-a-header-em" class="bookmark_link">'⍷∊ns.html
 

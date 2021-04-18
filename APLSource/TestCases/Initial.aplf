@@ -1,3 +1,12 @@
- Initial
+ r←Initial;zipFilename;version1;version2
  ⎕IO←1
  ⎕ML←1
+ zipFilename←⊃FilesAndDirs.ListFiles'./Dist/*.zip'
+ version1←{1↓⍵/⍨2=+\⍵='-'}2⊃⎕NPARTS zipFilename
+ version2←{⍵/⍨3>+\⍵∊'.+'}2⊃##.MarkAPL.Version
+ :If r←version1≡version2
+     #.⎕EX'#._tatin'
+     ⎕←'Now loading the package "MarkAPL" and its dependencies...'
+     ∆TempFilename←⎕SE.Tatin.LoadPackage zipFilename ⎕THIS
+ :EndIf
+⍝Done

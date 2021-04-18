@@ -14,8 +14,8 @@
  md,←⊂''
  md,←⊂'* That'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<ul>' '<li>This' '<pre><code>   {(+/⍵)÷⍴⍵}100 200' '150</code></pre></li>' '<li>That</li>' '</ul>'
  →T.PassesIf expected≡ns.html

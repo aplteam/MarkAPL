@@ -21,9 +21,9 @@
  md,←⊂''
  md,←⊂'An ordinary paragraph'
 
- parms←##.MarkAPL.CreateParms
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ parms←MarkAPL.CreateParms
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 2=+/'<li>'⍷∊ns.html
  →T.PassesIf 3=+/'<p>'⍷∊ns.html

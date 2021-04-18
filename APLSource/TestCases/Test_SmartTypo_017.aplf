@@ -4,10 +4,10 @@
  R←T._Failed
 
  md←⊂'`"This: \" is an escaped double quote"` will result in "This: \" is an escaped double quote".'
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.verbose←0
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  expected←,⊂'<p><code>"This: \" is an escaped double quote"</code> will result in “This: \” is an escaped double quote".</p>'
  →T.PassesIf expected≡ns.html

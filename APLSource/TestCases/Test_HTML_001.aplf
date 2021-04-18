@@ -8,8 +8,8 @@
  md,←⊂''
  md,←⊂'<scriPt>Some Javascript</Script>'
  md,←⊂'Another para'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
  →T.PassesIf'<scriPt>'{⍺≡(⍴⍺)↑⍵}2⊃ns.html
  →T.PassesIf∨/'</Script>'⍷2⊃ns.html
  →T.PassesIf'<p>Another para</p>'≡⊃¯1↑ns.html
@@ -23,8 +23,8 @@
  md,←⊂'More Javascript'
  md,←⊂'</Script>'
  md,←⊂'Another para'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
  →T.PassesIf'<scriPt lang="en" type="this and that">'≡2⊃ns.html
  →T.PassesIf'</Script>'≡6⊃ns.html
  →T.PassesIf'<p>Another para</p>'≡⊃¯1↑ns.html
@@ -36,8 +36,8 @@
  md,←⊂'Some Javascript'
  md,←⊂'More Javascript</Script>'
  md,←⊂'Another para'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
  →T.PassesIf'<script>'≡2⊃ns.html
  →T.PassesIf'More Javascript</Script>'≡4⊃ns.html
 
@@ -48,8 +48,8 @@
  md,←⊂'Some Javascript'
  md,←⊂'More Javascript</Script> This will be ignored'
  md,←⊂'Another para'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
  →T.PassesIf'<script>'≡2⊃ns.html
  →T.PassesIf'More Javascript</Script>'≡4⊃ns.html
 
@@ -61,8 +61,8 @@
  md,←⊂'More Javascript'
  md,←⊂'</Script>'
  md,←⊂'Another para'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
  →T.PassesIf'<script lang="apl">'≡2⊃ns.html
  →T.PassesIf'</Script>'≡5⊃ns.html
 
@@ -74,8 +74,8 @@
  md,←⊂'More Javascript'
  md,←⊂'</Script>'
  md,←⊂'Another para'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
  →T.PassesIf'<scriPt>'≡2⊃ns.html
  →T.PassesIf'</Script>'≡5⊃ns.html
 

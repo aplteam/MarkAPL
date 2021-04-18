@@ -17,8 +17,8 @@
  md,←⊂'|||'
  md,←⊂''
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←''
  expected,←⊂'<pre><code>a←1</code></pre>'

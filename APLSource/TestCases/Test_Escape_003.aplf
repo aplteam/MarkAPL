@@ -6,8 +6,8 @@
  md←''
  md,←⊂'This &curren; results in this: \&curren;'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<p>This &amp;curren; results in this: &curren;</p>'
  →T.PassesIf expected≡∊ns.html

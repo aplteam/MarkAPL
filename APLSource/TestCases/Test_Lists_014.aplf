@@ -8,8 +8,8 @@
  md,←⊂'   1. Bookmark name'
  md,←⊂'   1. Caption'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<ol start="1">' '<li>Running number, starting from 1.</li>' '<li>Bookmark name</li>'
  expected,←'<li>Caption</li>' '</ol>'

@@ -12,8 +12,8 @@
  md,←⊂'   * Magenta'
  md,←⊂'* Third line'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<ul>' '<li>First line</li>' '<li>Second line' '<ul>' '<li>Yellow This is NOT a para.</li>' '<li>Brown</li>'
  expected,←'<li>Magenta</li>' '</ul></li>' '<li>Third line</li>' '</ul>'

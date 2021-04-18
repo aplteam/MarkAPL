@@ -6,8 +6,8 @@
  md←''
  md,←⊂'[This **is** code: `{{2=+⌿0=⍵∘.|⍵}⍳⍵}`](aplwiki.com/foo.html{style="font-size:400%;"}), rest assured'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<p><a href="http://aplwiki.com/foo.html" class="external_link" style="font-size:400%;">'
  expected,←'This <strong>is</strong> code: <code>{{2=+⌿0=⍵∘.|⍵}⍳⍵}</code></a>, rest assured</p>'

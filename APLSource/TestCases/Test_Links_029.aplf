@@ -6,8 +6,8 @@
  md←''
  md,←⊂'A link: [](C:\Temp\thisfile.html) this is.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf∨/'<a href="C:/Temp/thisfile.html"'⍷∊ns.html
 

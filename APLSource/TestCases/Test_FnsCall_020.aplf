@@ -12,8 +12,8 @@
  md,←⊂''
  md,←⊂'⍎⍎#.TEMP.Foo.MyFns⍎⍎'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'External function <#.TEMP.Foo.MyFns> is niladic but must not!'
  →T.PassesIf expected≡∊ns.report

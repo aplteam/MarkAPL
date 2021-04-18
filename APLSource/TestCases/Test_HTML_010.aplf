@@ -22,8 +22,8 @@
  md,←⊂''
  md,←⊂'This is a second para.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 1=+/'<div id="abc">'⍷∊ns.html
  →T.PassesIf 1=+/'<div id="xy">'⍷∊ns.html

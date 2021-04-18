@@ -7,22 +7,22 @@
  'TEMP'#.⎕NS''
 
  #.TEMP.m←'This is `{+/⍳≢⍵}` APL code'
- mask←##.MarkAPL.Execute'GetMaskForCode #.TEMP.m'
+ mask←MarkAPL.Execute'GetMaskForCode #.TEMP.m'
  expected←0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0
  →T.PassesIf mask≡expected
 
  #.TEMP.m←'This is `{+/⍳≢⍵}` APL code `{⍵}`'
- mask←##.MarkAPL.Execute'GetMaskForCode #.TEMP.m'
+ mask←MarkAPL.Execute'GetMaskForCode #.TEMP.m'
  expected←0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1
  →T.PassesIf mask≡expected
 
  #.TEMP.m←'`{⍵}` This is `{+/⍳≢⍵}` APL code'
- mask←##.MarkAPL.Execute'GetMaskForCode #.TEMP.m'
+ mask←MarkAPL.Execute'GetMaskForCode #.TEMP.m'
  expected←1 1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0
  →T.PassesIf mask≡expected
 
  #.TEMP.m←'`{⍵}` This is `{+/⍳≢⍵}` APL code `{⍵}`'
- mask←##.MarkAPL.Execute'GetMaskForCode #.TEMP.m'
+ mask←MarkAPL.Execute'GetMaskForCode #.TEMP.m'
  expected←1 1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1
  →T.PassesIf mask≡expected
 

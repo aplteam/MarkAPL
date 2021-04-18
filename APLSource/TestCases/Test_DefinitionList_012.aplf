@@ -10,8 +10,8 @@
  md,←⊂''
  md,←⊂'*[First]: This and that'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<dl>' '<dt>First</dt>' '<dd><p>This is a Definition.</p></dd>' '</dl>'
  →T.PassesIf expected≡(⍴expected)↑ns.html

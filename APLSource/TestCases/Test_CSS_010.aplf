@@ -11,12 +11,12 @@
  md,←⊂''
  md,←⊂'This is a para.'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
 
- ns←##.MarkAPL.Init''md
+ ns←MarkAPL.Init''md
  →T.PassesIf 0∊≢ns.report
- ns←##.MarkAPL.Process ns
- ns.html←ns.parms ##.MarkAPL.MakeHTML_Doc ns.html
+ ns←MarkAPL.Process ns
+ ns.html←ns.parms MarkAPL.MakeHTML_Doc ns.html
 
  expected←'href="C:/BlackOnWhite_screen.css"'
  →T.PassesIf∨/expected⍷∊ns.html

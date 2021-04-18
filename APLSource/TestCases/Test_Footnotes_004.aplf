@@ -19,8 +19,8 @@
  md,←⊂''
  md,←'' 'The last para'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 2 2≡⍴ns.footnoteDefs
  →T.PassesIf'First footnote.'≡1⊃⊃ns.footnoteDefs[1;2]

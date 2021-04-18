@@ -16,12 +16,12 @@
  md,←⊂''
  md,←⊂'### Level 3-b'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.subTocs←1
  parms.toc←1
  parms.verbose←0
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 1=+/'No SubTOC injected for "Level 3-a": just one sub-header found'⍷∊ns.report
 

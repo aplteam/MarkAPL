@@ -4,8 +4,8 @@
  R←T._Failed
 
  m←'Level 1' '=' 'Level 2' '-'
- ns←##.MarkAPL.Init''m
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''m
+ ns←MarkAPL.Process ns
  →T.FailsIf 2≠≢{⊃⊃(//)⎕VFI 1↑2↓⍵}¨ns.html∘{⊃⍵ ⎕S{⍵.Match}⊣⍺}¨'12'{'<h',⍺,'[^>]*>',⍵,'</h',⍺,'>'}¨m[1 3]
 
  R←T._OK

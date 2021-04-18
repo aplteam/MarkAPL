@@ -16,8 +16,8 @@
  md,←⊂'One **more**.'
  md,←⊂''
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<div>' '<p>A **paragraph**</p>' '</div>' '<div>' '<p>This is **another** para.</p>' '</div>' '<p>One <strong>more</strong>.</p>'
  →T.PassesIf expected≡ns.html~⊂''

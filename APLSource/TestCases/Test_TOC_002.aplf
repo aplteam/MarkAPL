@@ -6,12 +6,12 @@
  md←'H. level 1' '==' 'H. A level 2' '--' 'H. B level 2 `<em>`' '--'
  md,←'### A' '### B' '### C'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.toc←6
  parms.numberHeaders←6
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.FailsIf 0=⍴'<nav.*>'⎕S 0⍠('Greedy' 0)⊣ns.html
  →T.FailsIf 3≠+/'<ul>'⍷∊ns.html

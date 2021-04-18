@@ -14,8 +14,8 @@
  md,←⊂''
  md,←⊂'⍎⍎#.TEMP.MyFns⍎⍎'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<p>This is a para. This is a para. This is a para.</p>' '<p>This comes from an “APL” function call</p>'
  →T.PassesIf expected≡ns.html

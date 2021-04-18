@@ -12,10 +12,10 @@
  md,←⊂'* This'
  md,←⊂'* That'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.numberHeaders←2 3 4   ⍝ There are no such headers!
  parms.verbose←0
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  R←T._OK

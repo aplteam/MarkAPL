@@ -12,10 +12,10 @@
  md,←⊂''
  md,←⊂'Another para.'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.verbose←0
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  expected←'<p>===================</p>' '<p>A para.</p>' '<div class="h_tag">' '<a href="#section" id="section" class="autoheader_anchor">' '<h2 data-id="section"></h2>' '</a>' '</div>' '<p>Another para.</p>'
  →T.PassesIf expected≡ns.html

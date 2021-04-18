@@ -6,8 +6,8 @@
  md←''
  md,←⊂'First para`<<br>>`with a line break in between'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf∨/'<code>&lt;&lt;br&gt;&gt;</code>'⍷1⊃ns.html
 

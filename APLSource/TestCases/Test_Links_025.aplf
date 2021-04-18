@@ -6,8 +6,8 @@
  md←''
  md,←⊂'[This **is** *really* ~~not~~ **_in-line_** mark-up](aplwiki.com/_/test.html)'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<p><a href="http://aplwiki.com/_/test.html" class="external_link">This <strong>is</strong>'
  expected,←' <em>really</em> <del>not</del> <strong><em>in-line</em></strong> mark-up</a></p>'

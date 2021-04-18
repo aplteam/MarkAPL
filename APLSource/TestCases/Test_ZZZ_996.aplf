@@ -5,7 +5,7 @@
 
  md←⊃⎕NGET'Files\MarkAPL_CheatSheet.md'
  buff←'This document refers to version '
- buff,←⊃{⍺,'.',⍵}/2↑'.'##.APLTreeUtils2.Split 2⊃##.MarkAPL.Version
+ buff,←⊃{⍺,'.',⍵}/2↑'.'##.APLTreeUtils2.Split 2⊃MarkAPL.Version
  buff,←' of **_MarkAPL_**.'
  →T.PassesIf 1=+/buff⍷md
 

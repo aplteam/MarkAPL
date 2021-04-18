@@ -12,8 +12,8 @@
  md,←⊂'           1. Seventh level'
  md,←⊂'        * Fifth level again'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<ul>' '<li>First level' '<ul>' '<li>Second level' '<ul>' '<li>Third level' '<ul>' '<li>Fourth level' '<ul>' '<li>Fifth level'
  expected,←'<ol start="1">' '<li>Seventh level</li>' '</ol></li>' '<li>Fifth level again</li>' '</ul></li>' '</ul></li>' '</ul></li>'

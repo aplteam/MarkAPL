@@ -6,9 +6,9 @@
  md←''
  md,←⊂'A paragraph'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
- html←ns.parms ##.MarkAPL.MakeHTML_Doc ns.html
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
+ html←ns.parms MarkAPL.MakeHTML_Doc ns.html
 
  title←{⍵↑⍨¯1+⍵⍳'<'}(≢'<title>')↓{⍵{⍵[2]↑⍵[1]↓⍺}⊃'<title>.*</title>'⎕S 0 1⍠('Mode' 'D')⊣⍵}⊃,/(⎕UCS 10),¨html
  →T.PassesIf'MarkAPL'≡title

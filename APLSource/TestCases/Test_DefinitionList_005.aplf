@@ -9,8 +9,8 @@
  md,←⊂'    Def 2'
  md,←⊂'# Header'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  html←∊ns.html
  →T.PassesIf 1=+/'<h1 '⍷html

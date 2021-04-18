@@ -6,8 +6,8 @@
  md←''
  md,←⊂'# Main 1 `{+/⍳⍴⍵}` more'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  html←ns.html
  expected←'<div class="h_tag">' '<a href="#Main-1--more" id="Main-1--more" class="autoheader_anchor">' '<h1 data-id="Main-1--more">Main 1 <code>{+/⍳⍴⍵}</code> more</h1>' '</a>' '</div>'

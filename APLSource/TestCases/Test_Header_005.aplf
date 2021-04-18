@@ -6,8 +6,8 @@
  md←'H. level 1' '==' 'H. A level 2' '--' 'H. B level 2' '--'
  md,←'### A' '### B' '### C'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
  →T.PassesIf∧/∨/¨' id="'∘⍷¨{⍵/⍨'<a '∘≡¨3↑¨⍵}ns.html
 
  R←T._OK

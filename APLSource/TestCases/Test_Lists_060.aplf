@@ -23,8 +23,8 @@
  md,←⊂'  Para 2 still belonging to ''First level B'''
  md,←⊂'* First level C'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<ul>' '<li>First level A</li>' '<li>First level B' '<p>Para 1 belonging to ''First level B''</p>'
  expected,←'<ol start="1">' '<li>First</li>'

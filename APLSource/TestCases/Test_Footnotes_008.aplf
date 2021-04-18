@@ -7,8 +7,8 @@
  md,←⊂''
  md,←⊂'[^csv]: With version 16.0 Dyalog has introduced `{(+⌿⍵)÷⍴,⍵}`...'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 1 2≡⍴ns.footnoteDefs
  →T.PassesIf'csv'≡⊃ns.footnoteDefs

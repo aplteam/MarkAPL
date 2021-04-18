@@ -23,8 +23,8 @@
  md,←⊂'  stretches over'
  md,←⊂'  several lines in the code but results in a single line in the output.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←''
  expected,←⊂'<ul>'

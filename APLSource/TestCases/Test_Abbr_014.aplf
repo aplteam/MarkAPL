@@ -9,8 +9,8 @@
  md,←⊂'*[Active possession]: During active play, active possession begins when the ball is reachable and ends when...'
  md,←⊂'*[reachable]: A ball is reachable from a rod if a figure on that rod can contact it without flexing the rod.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  html←1↓↑,/(⎕UCS 13),¨ns.html
  →T.FailsIf 4≠+/'<abbr'⍷html

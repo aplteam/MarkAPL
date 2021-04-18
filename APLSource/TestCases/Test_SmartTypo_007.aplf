@@ -4,14 +4,14 @@
  R←T._Failed
 
  md←⊂'IBM (tm) and this paper ((c) APL Team Ltd) both ...'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf∧/'™' '©'∊∊ns.html
 
  md←⊂'IBM (TM) and this paper ((C) APL Team Ltd) both ...'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf∧/'™' '©'∊∊ns.html
 

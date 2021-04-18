@@ -14,8 +14,8 @@
  md,←⊂' * This'
  md,←⊂' * ⍎⍎#.TEMP.MyFns2 123⍎⍎'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<ol start="1">' '<li>First</li>' '<li>abc' '<ul>' '<li>This</li>' '<li>1 2 3</li>' '</ul></li>' '</ol>'
  →T.PassesIf expected≡ns.html

@@ -12,9 +12,9 @@
  md,←⊂''
  md,←⊂'Another para'
 
- parms←##.MarkAPL.CreateParms
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ parms←MarkAPL.CreateParms
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  expected←'<ol start="1">' '<li>' '<li>' '</ol>' '<ol start="2">' '<li>' '</ol>' '<p>'
  →T.PassesIf expected≡{⍵↑⍨⍵⍳'>'}¨ns.html

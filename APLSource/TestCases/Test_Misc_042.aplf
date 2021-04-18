@@ -12,8 +12,8 @@
  md,←⊂''
  md,←⊂': This way!'
 
- ns←##.MarkAPL.Init''(↓↑md)
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''(↓↑md)
+ ns←MarkAPL.Process ns
 
  expected←'<dl>' '<dt>Definitions</dt>' '<dd><p>This way!</p></dd>' '</dl>'
  →T.PassesIf∧/expected∊ns.html

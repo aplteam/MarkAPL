@@ -12,11 +12,11 @@
  md,←⊂'This is another para'
  md,←⊂''
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.numberHeaders←1
  parms.toc←1
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 1=+/'<h1 data-id="Level-1">'⍷∊ns.html
  →T.PassesIf 1=+/'<h2 data-id="Level-2">'⍷∊ns.html

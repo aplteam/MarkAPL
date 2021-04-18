@@ -7,7 +7,7 @@
  'TEMP'#.⎕NS''
 
  #.TEMP.m←'This is ` a backtick'
- mask←##.MarkAPL.Execute'GetMaskForCode #.TEMP.m'
+ mask←MarkAPL.Execute'GetMaskForCode #.TEMP.m'
  expected←0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
  →T.PassesIf mask≡expected
 

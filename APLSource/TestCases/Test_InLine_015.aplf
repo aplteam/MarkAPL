@@ -11,8 +11,8 @@
  md,←⊂'C. Some text. This is okay: _italic_.'
  md,←⊂''
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 1=+/'<em>'⍷∊ns.html
 

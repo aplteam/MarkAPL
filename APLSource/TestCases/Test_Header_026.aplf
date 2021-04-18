@@ -9,8 +9,8 @@
  md,←⊂'## Page <https://britishaplassociation.org/about-british-apl-association>'
  md,←⊂''
 
- ns←##.MarkAPL.Init ⍬ md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init ⍬ md
+ ns←MarkAPL.Process ns
 
  expected←''
  expected,←⊂'<a href="#Level-one-header" id="Level-one-header" class="autoheader_anchor">'

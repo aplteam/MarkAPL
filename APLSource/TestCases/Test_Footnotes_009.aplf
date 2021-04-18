@@ -9,9 +9,9 @@
  md,←⊂'[^github1]: GitHub web address<<br>><https://github.com>'
  md,←⊂'[^github2]: GitHub web address:<<br>><https://github.com>'
 
- parms←##.MarkAPL.CreateParms
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ parms←MarkAPL.CreateParms
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 2 2≡⍴ns.footnoteDefs
  →T.PassesIf'github1' 'github2'≡ns.footnoteDefs[;1]

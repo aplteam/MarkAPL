@@ -5,21 +5,21 @@
  R←T._Failed
 
  md←'# Test' '' '* This' '* That' '* More'
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.createFullHtmlPage←1
  parms.compressCSS←1
  tempFilename←FilesAndDirs.GetTempPath,'\MarkAPL_Tests\',(⊃⎕SI),'\MarkAPL.html'
  parms.outputFilename←tempFilename
  'Create!'FilesAndDirs.CheckPath⊃⎕NPARTS parms.outputFilename
- html←1⊃parms ##.MarkAPL.Markdown2HTML md
+ html←1⊃parms MarkAPL.Markdown2HTML md
  start←html∊'<style media="screen">' '<style media="print">'
  end←html≡¨⊂'</style>'
  →T.GoToTidyUp 2≠+/0 1 1 0⍷(+\start)-+\end
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.createFullHtmlPage←1
  parms.compressCSS←0
- html←1⊃parms ##.MarkAPL.Markdown2HTML md
+ html←1⊃parms MarkAPL.Markdown2HTML md
  start←html∊'<style media="screen">' '<style media="print">'
  end←html≡¨⊂'</style>'
  →T.GoToTidyUp 100≥+/(+\start)-+\end  ⍝ At least 100 lines (probably MUCH more, but things might change in the future)

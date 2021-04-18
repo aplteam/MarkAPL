@@ -8,8 +8,8 @@
  md,←⊂''
  md,←⊂'# aplwiki'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←⊂'<p>Link to <a href="#aplwiki" class="bookmark_link">Link to the [aplwiki]</a>.</p>'
  expected,←⊂'<div class="h_tag">'

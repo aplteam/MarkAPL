@@ -8,8 +8,8 @@
  md,←⊂''
  md,←⊂'See [](#Header) for details.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<p>See <a href="#Header" class="bookmark_link">Header</a> for details.</p>'
  →T.PassesIf 1=+/expected⍷∊ns.html

@@ -16,8 +16,8 @@
  md,←⊂' 1/a|1/B'
  md,←⊂' 2/a|2/B'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf∨/'>Col 2<'⍷∊ns.html
 

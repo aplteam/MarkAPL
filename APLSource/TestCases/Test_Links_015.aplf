@@ -7,10 +7,10 @@
  md,←⊂'# This2That'
  md,←⊂''
  md,←⊂'Go to [This2That](#).'
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.numberHeaders←1
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  expected←'<a href="#This2That" class="bookmark_link">'
  →T.PassesIf∨/expected⍷∊ns.html

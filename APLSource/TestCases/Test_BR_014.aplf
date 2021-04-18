@@ -32,8 +32,8 @@
  md,←⊂'+ More'
  md,←⊂''
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 4=+/'<ul>'⍷∊ns.html
  →T.PassesIf 1=+/'<ol'⍷∊ns.html

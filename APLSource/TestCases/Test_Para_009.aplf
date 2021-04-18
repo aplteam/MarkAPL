@@ -6,8 +6,8 @@
  md←''
  md,←⊂'`{+/⍳⍴⍵}` should be a paragraph [APL wiki](http://aplwiki.com)'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<p><code>{+/⍳⍴⍵}</code> should be a paragraph <a href="http://aplwiki.com" class="external_link">APL wiki</a></p>'
  →T.PassesIf expected≡∊ns.html

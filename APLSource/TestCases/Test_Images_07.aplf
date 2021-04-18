@@ -7,8 +7,8 @@
  md←''
  md,←⊂'![picture3](',fn,' "Kai Jaeger"{width="140" height="120"})'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<p><img src="',fn,'" width="140" height="120" alt="picture3" title="Kai Jaeger"></p>'
  →T.PassesIf expected≡∊ns.html

@@ -25,8 +25,8 @@
  md,←⊂'Independent para'
 
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<ul>' '<li>This</li>' '<li>That' '<pre><code>{+⌿⍺,⍵} ⍝ 1.</code></pre>'
  expected,←'<p>Para 1</p>' '<pre><code>{+⌿⍺,⍵} ⍝ 2.</code></pre>'

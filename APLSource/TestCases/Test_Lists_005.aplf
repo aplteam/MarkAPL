@@ -9,9 +9,9 @@
  md,←⊂'  * List 1-b'
  md,←⊂'  2. List 2-a'
 
- parms←##.MarkAPL.CreateParms
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ parms←MarkAPL.CreateParms
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  expected←'<ul>' '<li>List 1-a</li>' '</ul>' '<ul>' '<li>List 2-b' '<ul>' '<li>List 1-b</li>' '</ul>' '<ol start="2">'
  expected,←'<li>List 2-a</li>' '</ol></li>' '</ul>'

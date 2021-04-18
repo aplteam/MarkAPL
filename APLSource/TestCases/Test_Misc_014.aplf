@@ -9,26 +9,26 @@
  md,←⊂'This is a paragraph'
 
 ⍝ Create just HTML without any parameters
- (html ns)←##.MarkAPL.Markdown2HTML md
+ (html ns)←MarkAPL.Markdown2HTML md
  →T.PassesIf 6=⍴html
 
 ⍝ Create just HTML with default parameters
- parms←##.MarkAPL.CreateParms
- (html ns)←parms ##.MarkAPL.Markdown2HTML md
+ parms←MarkAPL.CreateParms
+ (html ns)←parms MarkAPL.Markdown2HTML md
  →T.PassesIf 6=⍴html
 
 ⍝ Create fully fledged HTML but no file
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.createFullHtmlPage←1
- (html ns)←parms ##.MarkAPL.Markdown2HTML md
+ (html ns)←parms MarkAPL.Markdown2HTML md
  →T.PassesIf 6<⍴html
  →T.PassesIf 1=+/'<html'⍷∊html
 
 ⍝ Write to file but don't create a fully fledged HTML page
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.createFullHtmlPage←0
  parms.outputFilename←∆GetTempHtmlFileName
- (html ns)←parms ##.MarkAPL.Markdown2HTML md
+ (html ns)←parms MarkAPL.Markdown2HTML md
  →T.PassesIf 6=⍴html
  →T.PassesIf 0=+/'<html>'⍷∊html
  →T.PassesIf ⎕NEXISTS parms.outputFilename
@@ -37,9 +37,9 @@
  →T.PassesIf 0≠≢buff
 
 ⍝ Create a fully fledged HTML page and write it to a file
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.outputFilename←∆GetTempHtmlFileName
- (html ns)←parms ##.MarkAPL.Markdown2HTML md
+ (html ns)←parms MarkAPL.Markdown2HTML md
  →T.PassesIf 6<⍴html
  →T.PassesIf 1=+/'<html'⍷∊html
  →T.PassesIf ⎕NEXISTS parms.outputFilename
@@ -48,10 +48,10 @@
  →T.PassesIf 4<≢buff
 
 ⍝ Again but this time we also set the explicit parameter accordingly
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.createFullHtmlPage←1
  parms.outputFilename←∆GetTempHtmlFileName
- (html ns)←parms ##.MarkAPL.Markdown2HTML md
+ (html ns)←parms MarkAPL.Markdown2HTML md
  →T.PassesIf 6<≢html
  →T.PassesIf 1=+/'<html'⍷∊html
  →T.PassesIf ⎕NEXISTS parms.outputFilename

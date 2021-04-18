@@ -13,10 +13,10 @@
  md,←⊂''
  md,←⊂'A paragraph'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.verbose←0
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 0=≢ns.report
  →T.PassesIf 2=≢ns.embeddedParms

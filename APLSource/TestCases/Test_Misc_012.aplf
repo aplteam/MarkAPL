@@ -4,32 +4,32 @@
  R←T._Failed
 
  link←'[](#This)'
- buff←##.MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
+ buff←MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
  expect←'#This' ''
  →T.PassesIf expect≡buff
 
  link←'[This](#)'
- buff←##.MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
+ buff←MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
  expect←,¨'#' ''
  →T.PassesIf expect≡buff
 
  link←'[](#This "That")'
- buff←##.MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
+ buff←MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
  expect←'#This' 'That'
  →T.PassesIf expect≡buff
 
  link←'[This](# "That")'
- buff←##.MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
+ buff←MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
  expect←,¨'#' 'That'
  →T.PassesIf expect≡buff
 
  link←'[](#This is a ##complex## example "That")'
- buff←##.MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
+ buff←MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
  expect←'#This is a ##complex## example' 'That'
  →T.PassesIf expect≡buff
 
  link←'[](  #This is a ##complex## example    "That")'
- buff←##.MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
+ buff←MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
  expect←'#This is a ##complex## example' 'That'
  →T.PassesIf expect≡buff
 

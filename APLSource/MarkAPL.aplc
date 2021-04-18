@@ -59,7 +59,7 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←'MarkAPL' '11.0.0+224' '2021-04-17'
+      r←'MarkAPL' '11.0.0+226' '2021-04-17'
     ∇
 
     ∇ History
@@ -67,7 +67,7 @@
       ⍝ * 11.0.0
       ⍝   * HTML and CSS but also Markdown documents (though only in develoment mode, read as part of the project
       ⍝     rather than the package "MarkAPL" now always live in a sub folder Files/.
-      ⍝   * Both the project and the package require a variable `HOME`. While this variable always exists for 
+      ⍝   * Both the project and the package require a variable `HOME`. While this variable always exists for
       ⍝     the MarkAPL package (because its a Tatin convention) it needs to be injected for the project.
       ⍝ * 10.1.0
       ⍝   Tatin system vars got renamed from `∆HOME` to `HOME`
@@ -435,15 +435,17 @@
       :If ~⎕NEXISTS parms.homeFolder,'/Files/MarkAPL.md'
           recompileFlag←0
       :EndIf
-      ns←CompileHelp(parms.homeFolder,'/Files/MarkAPL')recompileFlag parms
+      filename←parms.homeFolder,'/Files/MarkAPL'
+      filename←recompileFlag AddAppropriateExtension filename
+      ns←CompileHelp filename recompileFlag parms
       :If ¯1≠×recompileFlag  ⍝ This syntax is used only by the `Make` workspace and test cases, therefore it is not documented.
       :AndIf parms.viewInBrowser
-          ns ShowHtml parms.outputFilename
+          ns ShowHtml filename
       :EndIf
      
     ∇
 
-    ∇ {ns}←{parms}Help recompileFlag
+    ∇ {ns}←{parms}Help recompileFlag;filename
     ⍝ Displays the file MarkAPL_CheatSheet.html with your default browser.\\
     ⍝ `recompileFlag`:
     ⍝ * 0 shows the file as it stands.
@@ -455,10 +457,12 @@
       :If ~⎕NEXISTS parms.homeFolder,'/Files/MarkAPL_CheatSheet.md'
           recompileFlag←0
       :EndIf
-      ns←CompileHelp(parms.homeFolder,'/Files/MarkAPL_CheatSheet')recompileFlag parms
+      filename←parms.homeFolder,'/Files/MarkAPL_CheatSheet'
+      filename←recompileFlag AddAppropriateExtension filename
+      ns←CompileHelp filename recompileFlag parms
       :If ¯1≠×recompileFlag  ⍝ This syntax is used only by the `Make` workspace and test cases, therefore it is not documented.
       :AndIf parms.viewInBrowser
-          ns ShowHtml parms.outputFilename
+          ns ShowHtml filename
       :EndIf
     ∇
 
@@ -3245,7 +3249,6 @@
       :Else
           fn←CorrectSlash ##.FilesAndDirs.PWD,'/',filename
       :EndIf
-      filename←recompileFlag{0<≢3⊃⎕NPARTS ⍵:⍵ ⋄ ⍵,(1+⍺)⊃'.html' '.md'}filename
       parms.inputFilename←filename
       :If 0=≢parms.inputFilename
       :AndIf 0=##.FilesAndDirs.IsFile parms.inputFilename←(⊃,/2↑⎕NPARTS fn),(1+recompileFlag)⊃'.html' '.md'
@@ -3573,6 +3576,13 @@
           r←##.HOME
       :Else
           r←##.##.HOME
+      :EndIf
+    ∇
+
+    ∇ filename←recompileFlag AddAppropriateExtension filename
+      ⍝ If ⍵ (a filename) has an extension it's just returned.
+      :If 0=≢3⊃⎕NPARTS filename
+          filename,←(1+recompileFlag)⊃'.html' '.md'
       :EndIf
     ∇
 

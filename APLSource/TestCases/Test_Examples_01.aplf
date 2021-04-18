@@ -5,7 +5,7 @@
 
  md←'This is a paragraph that' 'stretches over 2 lines.' '' 'Single-line paragraph.'
 
- (html ns)←##.MarkAPL.Markdown2HTML md
+ (html ns)←MarkAPL.Markdown2HTML md
 
  →T.FailsIf 2≠≢html
  →T.FailsIf(1⊃html)≢'<p>',(1↓⊃,/' ',¨2↑md),'</p>'

@@ -10,8 +10,8 @@
  mat,←⊂'⍝Foo|<What''s that?!>|0'
  mat,←⊂'Cobol|<Oh dear>|100'
 
- ns←##.MarkAPL.Init''mat
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''mat
+ ns←MarkAPL.Process ns
 
  html←1↓∊(⎕UCS 13),¨ns.html
  →T.PassesIf 3=≢'<th[ >]'⎕S 0⊣html

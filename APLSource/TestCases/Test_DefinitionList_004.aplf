@@ -8,8 +8,8 @@
  md,←⊂''
  md,←⊂': Definition of the term'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  html←∊ns.html
  →T.PassesIf 1=+/'<dd><p>'⍷html   ⍝ The blank line causes thje definition it to be enclosed in a <p> tag
@@ -20,8 +20,8 @@
  md,←⊂'Term 1'
  md,←⊂': Definition of the term'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  html←∊ns.html
  →T.PassesIf 0=+/'<dd><p>'⍷html   ⍝ No <p> tag at all

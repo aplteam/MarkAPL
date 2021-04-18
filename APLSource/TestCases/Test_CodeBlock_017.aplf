@@ -9,8 +9,8 @@
  md,←⊂'  ~~~'
  md,←⊂'  <<MailTo(askom AT SPAM obninsk SPAM SPAM DOT SPAM com SPAMMMMMM)>>'
  md,←⊂'  ~~~'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<ul>' '<li>Code within a list:'
  expected,←'<pre><code>&lt;&lt;MailTo(askom AT SPAM obninsk SPAM SPAM DOT SPAM com SPAMMMMMM)&gt;&gt;</code></pre></li>' '</ul>'

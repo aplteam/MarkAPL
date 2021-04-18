@@ -7,8 +7,8 @@
  md←''
  md,←⊂'|Kai Jaeger | ![picture3](',fn,' "Kai Jaeger"{height="100" width="120"})|'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf∨/'<td><img src="file://'⍷∊ns.html
  →T.PassesIf∨/'images/KaiJaegerHeadVerySmall.png" height="100" width="120" alt="picture3" title="Kai Jaeger"></td>'⍷∊ns.html

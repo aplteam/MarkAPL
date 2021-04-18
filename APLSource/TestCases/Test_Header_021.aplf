@@ -9,8 +9,8 @@
  md,←⊂'A para.'
  md,←⊂'##'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<div class="h_tag">' '<a href="#Main" id="Main" class="autoheader_anchor">' '<h1 data-id="Main">Main</h1>' '</a>' '</div>'
  expected,←'<p>A para.</p>' '<div class="h_tag">' '<a href="#section" id="section" class="autoheader_anchor">' '<h2 data-id="section"></h2>' '</a>' '</div>'

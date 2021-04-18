@@ -10,9 +10,9 @@
  md,←⊂'  * **Also bold**, really!  (II-b)'
  md,←⊂''
 
- parms←##.MarkAPL.CreateParms
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ parms←MarkAPL.CreateParms
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  expected←'<ul>' '<li>List I.</li>' '<li><strong>Bold</strong>, really!  (II)' '<ul>' '<li>List II-a</li>'
  expected,←'<li><strong>Also bold</strong>, really!  (II-b)</li>' '</ul></li>' '</ul>'

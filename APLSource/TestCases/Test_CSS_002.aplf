@@ -3,15 +3,15 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.cssURL←'file://',FilesAndDirs.PWD,'/Files/'
 
  md←,⊂'> > This is a recursive blockquote.'
 
- ns←##.MarkAPL.Init parms md
+ ns←MarkAPL.Init parms md
  →T.PassesIf 0∊≢ns.report
- ns←##.MarkAPL.Process ns
- ns.html←parms ##.MarkAPL.MakeHTML_Doc ns.html
+ ns←MarkAPL.Process ns
+ ns.html←parms MarkAPL.MakeHTML_Doc ns.html
 
  R←T._OK
 ⍝Done

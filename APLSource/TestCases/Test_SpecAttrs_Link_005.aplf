@@ -11,8 +11,8 @@
  md,←⊂'[apl]: https://aplwiki.com {style="color:red;"}'
  md,←⊂'[git]: https://github.com "Linus'' brain child" {style="color:red;"}'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'style="color:red;"'
  →T.PassesIf 2=+/expected⍷∊ns.html

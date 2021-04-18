@@ -16,8 +16,8 @@
  md,←⊂''
  md,←⊂''
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 1=+/'<div class="handout">'⍷∊ns.html
  →T.PassesIf 1=+/'<strong>with</strong>'⍷∊ns.html

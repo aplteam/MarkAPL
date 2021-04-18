@@ -8,11 +8,11 @@
  md,←⊂''
  md,←⊂'D> # A Discussion!'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.leanpubExtensions←1
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  expected←⊂'<p>A para</p>'
  expected,←⊂'<div class="leanpub">'

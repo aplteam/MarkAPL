@@ -16,8 +16,8 @@
  md,←⊂'    10. Eleventh'
 
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<ul>' '<li>This</li>' '<li>That' '<ol start="1">' '<li>First</li>' '<li>Second</li>' '</ol>'
  expected,←'<p>Para that belongs to “that”.</p></li>' '<li>More' '<ol start="10">'

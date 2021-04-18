@@ -8,8 +8,8 @@
  md,←⊂''
  md,←⊂'[aplwiki]: http://aplwiki.com'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<p>This: <code>Link to the [APL wiki][aplwiki].</code> has this effect: Link to the '
  expected,←'<a href="http://aplwiki.com" class="external_link">APL wiki</a>.</p>'

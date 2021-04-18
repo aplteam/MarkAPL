@@ -7,10 +7,10 @@
  md,←⊂'[parm]:cssURL            = '''''
  md,←⊂'[parm]:leanpubIconsUrl   = ''Goo'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.verbose←0
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.FailsIf 1≠⍴ns.report
  →T.FailsIf 2≠'^Data value definition for line ' 'is invalid.*$'∘∆GetLineNumber¨ns.report

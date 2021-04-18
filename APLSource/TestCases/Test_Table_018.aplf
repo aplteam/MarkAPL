@@ -6,8 +6,8 @@
  mat←''
  mat,←⊂'|1000|'
 
- ns←##.MarkAPL.Init''mat
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''mat
+ ns←MarkAPL.Process ns
  html←1↓∊(⎕UCS 13),¨ns.html
  →T.PassesIf 1=+/'style="text-align: right;"'⍷html
  →T.PassesIf 0=+/'style="text-align: center;"'⍷html

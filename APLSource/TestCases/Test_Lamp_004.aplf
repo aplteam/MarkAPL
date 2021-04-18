@@ -13,11 +13,11 @@
  mat,←⊂''
  mat,←⊂'"That is a problem.'   ⍝ Odd number of double-quotes!
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.verbose←0
 
- ns←##.MarkAPL.Init parms mat
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms mat
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 1=⍴ns.report
  →T.PassesIf(,8)≡,'^.*line ' '\).*$'∘∆GetLineNumber¨ns.report

@@ -1,3 +1,8 @@
  Cleanup
  ##.FilesAndDirs.RmDir ##.FilesAndDirs.GetTempPath,'/MarkAPL_Tests'
+ :If 0<⎕NC'∆TempFilename'
+     ##.FilesAndDirs.RmDir ∆TempFilename
+     ⎕EX'∆TempFilename'
+ :EndIf
+ ⎕EX'MarkAPL'
 ⍝Done

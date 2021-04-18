@@ -13,8 +13,8 @@
  md,←⊂'  ~~~'
  md,←⊂'* More '
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<p>This is a para.</p>' '<ul>' '<li>This</li>' '<li>That' '<pre><code>{+⌿⍺,⍵}</code></pre></li>' '<li>More</li>' '</ul>'
  →T.PassesIf expected≡ns.html

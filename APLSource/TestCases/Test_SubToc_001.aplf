@@ -11,8 +11,8 @@
  md,←⊂''
  md,←⊂'<<SubTOC>>'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 1=+/'<h1 data-id="Level-1">'⍷∊ns.html
  →T.PassesIf 1=+/'<h2 data-id="Level-2">'⍷∊ns.html

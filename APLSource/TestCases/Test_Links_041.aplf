@@ -4,14 +4,14 @@
  R←T._Failed
 
  md←⊂'Link to the [APL](./apl.html) page.'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
  expected←'<p>Link to the <a href="./apl.html" class="external_link">APL</a> page.</p>'
  →T.PassesIf expected≡⊃ns.html
 
  md←⊂'Link to the [APL](./apl.html#mybookmark) page.'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
  expected←'<p>Link to the <a href="./apl.html#mybookmark" class="external_link">APL</a> page.</p>'
  →T.PassesIf expected≡⊃ns.html
 

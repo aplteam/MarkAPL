@@ -15,9 +15,9 @@
  m,←⊂1 2 'Level 3 c num'
  m,←⊂0 1 'Level 2 b bull'
 
- md←##.MarkAPL.Matrix2MarkdownList↑m
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ md←MarkAPL.Matrix2MarkdownList↑m
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<ul>' '<li>Level 1 a bull' '<ul>' '<li>Level 2 a bull' '<ol start="1">' '<li>Level 3 a num' '<ul>'
  expected,←'<li>Level 4a a bull</li>' '<li>Level 4a b bull</li>' '</ul></li>' '<li>Level 3 b num' '<ul>'

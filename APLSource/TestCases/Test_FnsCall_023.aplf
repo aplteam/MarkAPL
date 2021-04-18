@@ -9,8 +9,8 @@
  #.TEMP.⎕FX'r←CalledFns' 'r←''This is **bold** and this _italic_'''
  md←''
  md,←⊂'⍎⍎#.TEMP.MyFns #.TEMP.CalledFns⍎⍎'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
  →T.PassesIf(,⊂'<p>This is <strong>bold</strong> and this <em>italic</em></p>')≡ns.html
 
  R←T._OK

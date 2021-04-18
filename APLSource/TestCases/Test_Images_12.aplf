@@ -8,8 +8,8 @@
  md←''
  md,←⊂'This is a para with an embedded ![](',fn,') in it.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<p>This is a para with an embedded <img src="" alt=',fn,' title=',fn,'> in it.</p>'
  →T.PassesIf(⊂expected)∊ns.html

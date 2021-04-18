@@ -8,11 +8,11 @@
  md,←⊂''
  md,←⊂'A para'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.toc←⍳6
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 1=⍴ns.toc
  expected←'Contains <, > and &, really'

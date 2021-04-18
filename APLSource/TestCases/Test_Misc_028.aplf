@@ -3,7 +3,7 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.toc←1+⍳6
  parms.numberHeaders←1
  parms.createFullHtmlPage←1
@@ -11,9 +11,9 @@
 
  md←'# Header' '' 'Any para'
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
- html←parms ##.MarkAPL.MakeHTML_Doc ns.html
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
+ html←parms MarkAPL.MakeHTML_Doc ns.html
 
  →T.PassesIf 0=+/∨/¨'Edge'∘⍷¨html
 

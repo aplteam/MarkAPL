@@ -20,11 +20,11 @@
  md,←⊂'This is a para'
  md,←⊂''
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.numberHeaders←1
  parms.toc←6
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 1=+/'<h1 data-id="Level-1">1. Level 1</h1>'⍷∊ns.html
  →T.PassesIf 1=+/'<h3>'⍷∊ns.html                      ⍝ For Main TOC

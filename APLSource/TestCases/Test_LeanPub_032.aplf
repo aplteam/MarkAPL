@@ -14,11 +14,11 @@
  md,←⊂'~~~'
  md,←⊂'Another para'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.leanpubExtensions←1
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  expected←'<p>A para</p>' '<pre><code>(+⌿⍵)÷⍴,⍵' ' leanpub-start-insert' '{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}' ' leanpub-end-insert' '(+⌿⍵)÷⍴,⍵</code></pre>' '<p>Another para</p>'
  →T.PassesIf∧/expected∊ns.html

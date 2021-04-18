@@ -8,8 +8,8 @@
  md,←⊂'ordered list item'
  md,←⊂''
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf'<ul>' '<li>First <br> ordered list item</li>' '</ul>'≡ns.html
 

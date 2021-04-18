@@ -11,8 +11,8 @@
  md,←⊂'* In the second expression the \` are removed...'
  md,←⊂'* This `{⍺+⍵}` is APL, this \` is a backtick and this: `¯1⍉vars` is APL again'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 1=+/'the ` is removed'⍷1⊃ns.html
  →T.PassesIf 0=+/'<code>'⍷1⊃ns.html

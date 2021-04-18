@@ -12,8 +12,8 @@
  md,←⊂'   * * * {#Foo2}'
  md,←⊂'This is a para. This is a para. This is a para. This is a para. This is a para. This is a para. '
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf(⊂'<hr id="foo1">')∊ns.html
  →T.PassesIf(⊂'<hr id="Foo2">')∊ns.html

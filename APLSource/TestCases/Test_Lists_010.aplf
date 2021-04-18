@@ -23,8 +23,8 @@
  md,←⊂'      * Fourth level -2-'
  md,←⊂'        * Fith level -3-'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<ul>' '<li>' '<ul>' '<li>' '<ol start="1">' '<li>' '<p>' '<ul>' '<li>' '<ul>' '<li>' '<ul>' '<li>' '<p>' '</ul>' '<li>' '<li>' '<ul>' '<li>' '<li>' '<p>' '</ul>' '</ul>' '<li>' '<ul>' '<li>' '</ul>' '</ul>' '</ol>' '</ul>' '</ul>'
  →T.FailsIf expected≢{⍵↑⍨⍵⍳'>'}¨ns.html

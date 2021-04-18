@@ -11,10 +11,10 @@
  md,←⊂''
  md,←⊂'Another paragraph.'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.outputFilename←∆GetTempHtmlFileName
 
- parms ##.MarkAPL.Markdown2HTML md
+ parms MarkAPL.Markdown2HTML md
  →T.GoToTidyUp 0=⎕NEXISTS parms.outputFilename
 
  html←⎕NGET parms.outputFilename 1

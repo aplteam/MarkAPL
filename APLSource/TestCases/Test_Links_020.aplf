@@ -16,9 +16,9 @@
  md,←⊂''
  md,←⊂'We link to [Code: the `<pre>` tag](#).'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
- html←ns.parms ##.MarkAPL.MakeHTML_Doc ns.html
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
+ html←ns.parms MarkAPL.MakeHTML_Doc ns.html
 
  →T.PassesIf 0=+/'<<SubTOC>>'⍷∊html
  →T.PassesIf 2=⍴'<nav.*>'⎕S 0⍠('Greedy' 0)⊣html   ⍝ Just the sub TOC but no main toc!

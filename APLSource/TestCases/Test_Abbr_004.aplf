@@ -8,8 +8,8 @@
  md,←⊂''
  md,←⊂'*[TCP/IP]: The Internet protocol'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  html←1↓↑,/(⎕UCS 13),¨ns.html
  →T.FailsIf 1≠+/'<abbr'⍷html

@@ -17,8 +17,8 @@
  md,←⊂''
  md,←⊂'* Foo'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<ul>' '<li>This</li>' '<li>That' '<pre><code>{+⌿⍺,⍵} ⍝ first</code></pre>'
  expected,←'<pre><code>{+⌿⍺,⍵} ⍝ second</code></pre></li>' '<li>Foo</li>' '</ul>'

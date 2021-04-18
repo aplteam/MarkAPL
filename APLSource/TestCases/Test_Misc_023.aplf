@@ -4,25 +4,25 @@
  R←T._Failed
 
  md←'# Test' '' '* This' '* That' '* More'
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.width←234
  parms.createFullHtmlPage←1
 
- html←parms ##.MarkAPL.Markdown2HTML md
+ html←parms MarkAPL.Markdown2HTML md
  →T.PassesIf 1=+/'max-width:234px;'⍷(∊html)~' '
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.width←'234'
  parms.createFullHtmlPage←1
 
- html←parms ##.MarkAPL.Markdown2HTML md
+ html←parms MarkAPL.Markdown2HTML md
  →T.PassesIf 1=+/'max-width:234px;'⍷(∊html)~' '
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.width←'234em'
  parms.createFullHtmlPage←1
 
- html←parms ##.MarkAPL.Markdown2HTML md
+ html←parms MarkAPL.Markdown2HTML md
  →T.PassesIf 1=+/'max-width:234em;'⍷(∊html)~' '
 
  R←T._OK

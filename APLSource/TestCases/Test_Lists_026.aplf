@@ -25,9 +25,9 @@
  md,←⊂''
  md,←⊂'An ordinary paragraph (two two empty lines above break the list)'
 
- parms←##.MarkAPL.CreateParms
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ parms←MarkAPL.CreateParms
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  expected←'<ul>' '<li>' '<ul>' '<li>' '<p>' '<p>' '<li>' '</ul>' '<li>' '</ul>' '<p>'
  →T.PassesIf expected≡{⍵↑⍨⍵⍳'>'}¨ns.html

@@ -15,9 +15,9 @@
  md,←⊂'* List item 1-b with'
  md,←⊂'* List item 2'
 
- parms←##.MarkAPL.CreateParms
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ parms←MarkAPL.CreateParms
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 3=+/'<ul>'⍷∊ns.html
  →T.PassesIf 1=+/'<p>'⍷∊ns.html

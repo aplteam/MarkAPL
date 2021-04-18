@@ -3,17 +3,17 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.cssURL←'file://./Tests/'
  parms.screenCSS←'MyScreen.CSS,YourScreen.css'
  parms.printCSS←'MyPrint.CSS,YourPrint.css'
 
  md←,⊂'A paragraph.'
 
- ns←##.MarkAPL.Init parms md
+ ns←MarkAPL.Init parms md
  →T.PassesIf 0∊≢ns.report
- ns←##.MarkAPL.Process ns
- ns.html←parms ##.MarkAPL.MakeHTML_Doc ns.html
+ ns←MarkAPL.Process ns
+ ns.html←parms MarkAPL.MakeHTML_Doc ns.html
 
  (start length)←⊃'<style media="screen">.*</style>'⎕S 0 1⍠('Greedy' 0)('Mode' 'M')('DotAll' 1)⊣ns.html
  html←↑,/ns.html,¨⊂⎕UCS 10 13

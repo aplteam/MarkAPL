@@ -1,15 +1,17 @@
-[parm]:toc             = 2 3
-[parm]:numberHeaders   = 2 3 4 5 6
-[parm]:bookmarkLink    = 6
-[parm]:title           = 'MarkAPL for programmers'
-[parm]:width           = 1000
-[parm]:reportLinks     = 1
-[parm]:collapsibleTOC  = 1
-[parm]:printCSS        = 'BlackOnWhite_print.css'
-[parm]:screenCSS       = 'BlackOnWhite_screen.css'
-[parm]:smoothScrolling = 1
-[parm]:saveHTML        = 0
-[parm]:linkToCSS       = 0
+[parm]:toc               = 2 3
+[parm]:numberHeaders     = 2 3 4 5 6
+[parm]:bookmarkLink      = 6
+[parm]:title             = 'MarkAPL for programmers'
+[parm]:width             = 1000
+[parm]:reportLinks       = 1
+[parm]:collapsibleTOC    = 1
+[parm]:printCSS          = 'BlackOnWhite_print.css'
+[parm]:screenCSS         = 'BlackOnWhite_screen.css'
+[parm]:smoothScrolling   = 1
+[parm]:saveHTML          = 0
+[parm]:linkToCSS         = 0
+[parm]:leanpubExtensions = 1
+
 
 
 
@@ -30,23 +32,36 @@ How to
 
 One way to study how to make use of **_MarkAPL_** is to trace through the method `MarkAPL.Help`. This should clarify the principles.
 
-Another way is to look at the test cases named `Test_Examples_01` etc. in `#.TestCases` in the workspace MarkAPL.DWS. You can execute them with:
 
-~~~
-TestCases.RunThese 'Examples'
-~~~
-
-You can trace through them with
-
-~~~
-TestCases.RunThese 'Examples' (-⍳1000)
-~~~
-
-The numbers select the test cases of the given group (here "Examples") to be executed. `⍳1000` is just a fancy way to make sure that you catch all of them.
-
-Negative numbers tell the test framework to stop right before a particular test function is going to be executed. That gives you the opportunity to trace through that function without tracing through the actual test framework. 
-
-
+A> ### The MarkAPL project
+A>
+A> Another way is to look at the test cases named `Test_Examples_01` etc. in `#.TestCases` in the workspace MarkAPL.DWS. However, in order to be able to do that you need to take a copy of the [MarkAPL project on GitHub](https://github.com/aplteam/MarkAPL).
+A> 
+A> In order to run those test cases you first need to prepare the test suite:
+A>
+A> ```
+A> )CS #.MarkAPL.TestCases
+A> Prepare
+A> ```
+A> Now you can execute them with:
+A> 
+A> ~~~
+A> T.RunThese 'Examples'
+A> ~~~
+A>
+A> You can execute specific ones:
+A>
+A> ~~~
+A> T.RunThese 'Examples' (1 3)
+A> ~~~
+A>
+A> You can trace through them with
+A>
+A> ~~~
+A> 1 T.RunThese 'Examples'
+A> ~~~
+A> 
+A> The left argument makes sure that the test suite stops just before any test case is executed.
 
 
 Methods
@@ -57,7 +72,7 @@ Methods
 Note that all [helpers](#Helpers) are discussed separately.
 
 
-### ConvertMarkdownFile
+### `ConvertMarkdownFile`
 
 Takes a filename as right argument. The file is expected to hold Markdown. By default a fully-fledged HTML page is created from that Markdown file with exactly the same filename except that the file extension is `.html` rather than `.md`.
 
@@ -72,26 +87,28 @@ and then specify different parameters within `parms`. That parameter space `parm
 Note that `inputFilename` **must not** be specified, otherwise an error is signalled. This is because the input file is already defined by the right argument.
 
 
-### CreateParms
+### `CreateParms`
 
-Niladic function that returns a namespace populated with parameters carrying their default values. `CreateParms` tries to find for every parameter a value from the command line or environment variables. If it cannot find them it will establish a default value.
+Niladic function that returns a namespace populated with parameters carrying their default values. 
+
+`CreateParms` tries to find for every parameter a value from the command line or environment variables. If it cannot find them it will establish a default value.
 
 The namespace returned by the `CreateParms` method has a built-in method `∆List` which is niladic and will return a matrix with two columns, the parameter name in the first column and the default value in the second column.
 
-Note that a value of `¯1` means that there is not really a default available but a reasonable value will be determined at a later stage.
+Note that a value of `¯1` means that there is not really a default available but a reasonable value will be determined at a later stage, usually depending on the context.
 
 
-### CreateHelpParms
+### `CreateHelpParms`
 
 Niladic function that returns a namespace populated with parameters carrying their default values. Internally it calls `CreateParms` and then adds some parameters that are needed by the [`Help`](#) and [`Reference`](#ref_method) methods.
   
     
-### Execute
+### `Execute`
 
 This function is used exclusively by test cases.
   
         
-### Help
+### `Help`
 
 The function takes a Boolean right argument: 
 * A 0 just views "MarkAPL_CheatSheet.html" with your default browser.
@@ -103,9 +120,11 @@ You might specify an optional left argument: a parameter space, typically create
 Note that the file "MarkAPL_CheatSheet.html" carries several embedded parameters --- those cannot be overridden by a parameter namespace unless you assign a 1 to `ignoreEmbeddedParms`.
 
 In order to enable `Help` to find the file "Markdown_CheatSheet.html" (in case the defaults don't work) you must create a parameter space and then set `homeFolder` accordingly.
+
+If you specify a 1 as right argument but `Help` can only find the HTML file but not the markdown file it will ignore the right argument and just put the file on display with your default browser.
  
             
-### Init
+### `Init`
 
 Takes a two-item-vector as right argument:
 
@@ -115,12 +134,12 @@ Takes a two-item-vector as right argument:
 Returns [The "ns" namespace](#).  
 
              
-### MakeHTML_Doc
+### `MakeHTML_Doc`
 
 Takes HTML, typically created by calling `Process`, and makes it a fully fledged HTML document by adding <body>, <head> --- with <title> --- and <html> with the DocType.
  
     
-### MarkDown2HTML
+### `MarkDown2HTML`
 
 This ambivalent function requires some Markdown as right argument.
 
@@ -140,12 +159,12 @@ Internally it calls `Init` & `Process` & `MakeHTML_Doc`.
 Note that in case the parameter `createFullHtmlPage` is `¯1` (the default value which means "undefiend") the default behaviour of `MarkDown2HTML` is defined by the setting of the parameter `outputFilename`: if `outputFilename` is not empty then `createFullHtmlPage` will default to 1, otherwise to 0, and that's what `Markdown2HTML` will take into account.
 
 
-### Process          
+### `Process`
 
 This function takes --- and returns --- an `ns` namespace which was typically created by calling `Init`. 
 
 
-### Reference{#ref_method}
+### `Reference` {#ref_method}
 
 The function takes a Boolean right argument: 
 * A 0 just views "MarkAPL.html" with your default browser.
@@ -156,11 +175,11 @@ You might specify an optional left argument: a parameter space, typically create
 Note that the file "MarkAPL.html" carries several
 embedded parameters --- those cannot be overridden by a parameter namespace unless you assign a 1 to `ignoreEmbeddedParms`.
 
-In order to enable `Reference` to find the file "MarkAPL.html" (in case the defaults don't work) you must create a parameter space and then set 
-`homeFolder`.
+In order to enable `Reference` to find the file "MarkAPL.html" (in case the defaults don't work) you must create a parameter space and then set `homeFolder`.
 
+If you specify a 1 as right argument but `Reference` can only find the HTML file but not the markdown file it will ignore the right argument and just put the file on display with your default browser.
  
-### Version
+### `Version`
 
 Returns the name, the version number --- including the built-ID --- and the version date of **_MarkAPL_**.
 
@@ -288,7 +307,11 @@ The `ns` namespace.
 
 The `ns` namespace is returned (created) by the `Init` method and modified by the `Process` method. It contains both input and output variables.
 
-Before `Process` is run the variables `emptyLines`, `leadingChars`, `markdown`, `markdownLC `and `withoutBlanks` hold data that is extracted from the Markdown. When `Process` is running block by block is processed and removed from these variables. At the same time the variable `parms.html` is collecting the resulting html. Other variables (`abbreviations`, `data`, `footnoteDefs`, `headers`, `linkRefs`, `parms`, `subToc` and `toc`) may or may not collect data in the process as well.
+Before `Process` is run the variables `emptyLines`, `leadingChars`, `markdown`, `markdownLC `and `withoutBlanks` hold data that is extracted from the Markdown. 
+
+`Process` then splits the markdown into appropriate blocks, and processes them one after the other, and removes from these variables. 
+
+At the same time the variable `parms.html` is collecting the resulting html. Other variables (`abbreviations`, `data`, `footnoteDefs`, `headers`, `linkRefs`, `parms`, `subToc` and `toc`) may or may not collect data in the process as well.
 
 The two variables `report` and `lineNumber` are special, see there.
 
@@ -455,11 +478,11 @@ Note that the table must have three columns:
 2. Nesting level. The first row must start with nesting level 0 or 1.
 3. Either a text vector or a vector of text vectors.
 
-Example; this:
+Example:
 
 ~~~
  m←''
- m,←⊂0 1 'Level 1 a bull'
+ m,←⊂0 1 'Level 1 a bullet point'
  m,←⊂2 2 'Level 2 a num'
  m,←⊂2 2('Level 2 b num' '' 'Another para' '' '~~~' '{+⌿⍵}' '~~~')
  m,←⊂2 2 'Level 2 c num'
@@ -470,7 +493,7 @@ Example; this:
 
 leads to this list:
 
-* Level 1 a bull  
+* Level 1 a bullet point  
   2. Level 2 a num 
   2. Level 2 b num 
                    
@@ -492,7 +515,7 @@ Without a left argument there are no column headers, and alignment is ruled by d
 ~~~
       M←('APL' 99 'Really great')('Python' 70 'Nice')('Cobol' 1 'Oh dear')
       ⎕←MarkAPL.Matrix2MarkdownTable M
-|-|-:|-|
+|-|--|-|
 | APL | 99 | Really great |
 | Python | 70 | Nice |
 | Cobol | 1 | Oh dear |
@@ -500,7 +523,7 @@ Without a left argument there are no column headers, and alignment is ruled by d
 
 This results in this:
 
-| :- | -: | :- |            
+| :- | --: | :- |            
 | APL | 99 | Really great | 
 | Python | 70 | Nice |      
 | Cobol | 1 | Oh dear |     
@@ -514,7 +537,7 @@ Note that any `|` in the matrix is automatically escaped except when it appears 
       M←('APL' 99 'Really great')('Python' 70 'Nice')('Cobol' 1 'Oh|dear')
       ⎕←MarkAPL.Matrix2MarkdownTable M
 | Lang | Prod:Rank | Comment |
-|-|-:|:-:|
+|-|-|:-:|
 | APL | 99 | Really great |
 | Python | 70 | Nice `|`|
 | Cobol | 1 | Oh\|dear |
@@ -547,7 +570,9 @@ Please report any bugs to <mailto:kai@aplteam.com>. I appreciate:
 * Any non-default settings of parameters
 * A short description of the problem (not as short as "It did not work!")
 
-  This is particularly important because I have received a number of bug reports where **_MarkAPL_** did _exactly_ what it was supposed to do, so without knowing what the user expected I cannot explain why it did not fulfil the user's expectations, because it _did_ work! One gentleman even insisted that there was nothing to explain because it was a no-brainer. Well, it wasn't.
+  This is particularly important because I have received a number of bug reports where **_MarkAPL_** did _exactly_ what it was supposed to do, so without knowing what the user expected I cannot explain why it did not fulfil the user's expectations, because it _did_ work! 
+
+  One gentleman even insisted that there was nothing to explain because it was a no-brainer. Well, it wasn't.
   
   So please tell me what you expect to see.
   

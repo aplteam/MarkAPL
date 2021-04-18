@@ -4,32 +4,32 @@
  R←T._Failed
 
  link←'[](http://aplwiki.com)'
- buff←##.MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
+ buff←MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
  expect←'http://aplwiki.com' ''
  →T.PassesIf expect≡buff
 
  link←'[](http://aplwiki.com  "The title")'
- buff←##.MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
+ buff←MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
  expect←'http://aplwiki.com' 'The title'
  →T.PassesIf expect≡buff
 
  link←'[](http://aplwiki.com  "The title") {target="_blank"}'
- buff←##.MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
+ buff←MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
  expect←'http://aplwiki.com' 'The title'
  →T.PassesIf expect≡buff
 
  link←'[Link text](http://aplwiki.com)'
- buff←##.MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
+ buff←MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
  expect←'http://aplwiki.com' ''
  →T.PassesIf expect≡buff
 
  link←'[Link (really!) text](http://aplwiki.com)'
- buff←##.MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
+ buff←MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
  expect←'http://aplwiki.com' ''
  →T.PassesIf expect≡buff
 
  link←'[Link "really" text](http://aplwiki.com)'
- buff←##.MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
+ buff←MarkAPL.Execute'GetUrlAndTitleFromLink ''',link,''''
  expect←'http://aplwiki.com' ''
  →T.PassesIf expect≡buff
 

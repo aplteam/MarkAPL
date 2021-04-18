@@ -3,7 +3,7 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.title←'My title'
 
  md←''
@@ -11,9 +11,9 @@
  md,←⊂'# Foo Goo'
  md,←⊂'A paragraph'
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
- html←ns.parms ##.MarkAPL.MakeHTML_Doc ns.html
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
+ html←ns.parms MarkAPL.MakeHTML_Doc ns.html
 
  title←{⍵↑⍨¯1+⍵⍳'<'}(≢'<title>')↓{⍵{⍵[2]↑⍵[1]↓⍺}⊃'<title>.*</title>'⎕S 0 1⍠('Mode' 'D')⊣⍵}⊃,/(⎕UCS 10),¨html
  →T.PassesIf title≡'Pusemuckel'

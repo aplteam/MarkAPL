@@ -13,8 +13,8 @@
  md,←⊂''
  md,←⊂'[Link to level-2-header](#Level-2-header{target="_blank"})'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.PassesIf 1=+/'<a href="#Level-1-header" target="_blank" class="bookmark_link">'⍷∊ns.html
  →T.PassesIf 1=+/'<a href="#Level-2-header" target="_blank" class="bookmark_link">'⍷∊ns.html

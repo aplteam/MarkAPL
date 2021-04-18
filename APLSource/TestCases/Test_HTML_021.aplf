@@ -8,8 +8,8 @@
  md,←'<a href="http://aplwiki.com/KaiJaeger">' '<img src="http://aplteam.com/wp-content/uploads/2015/02/KaiJaegerHeadMedium75perc.png" title="logo">' '</a>'
  md,←'' 'Another para'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
  expected←⊂'<p>This is a para.</p>'
  expected,←⊂'<a href="http://aplwiki.com/KaiJaeger">'
  expected,←⊂'<img src="http://aplteam.com/wp-content/uploads/2015/02/KaiJaegerHeadMedium75perc.png" title="logo">'

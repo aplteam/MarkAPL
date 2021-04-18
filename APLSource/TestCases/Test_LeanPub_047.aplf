@@ -14,11 +14,11 @@
  md,←⊂''
  md,←⊂'Another para'
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.leanpubExtensions←1
 
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  expected←'<p>A para</p>' '<div class="leanpub">'
  expected,←⊂'<img src="https://download.aplwiki.com/LeanPub/Images/warning.png" alt="Warning">'

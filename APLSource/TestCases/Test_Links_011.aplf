@@ -8,10 +8,10 @@
  md,←⊂''
  md,←⊂'See [SeText header](#The “=” and “-” syntax SeText) for (important) details.'  ⍝ Missing () around "SeText" make the link invalid
 
- parms←##.MarkAPL.CreateParms
+ parms←MarkAPL.CreateParms
  parms.verbose←0
- ns←##.MarkAPL.Init parms md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init parms md
+ ns←MarkAPL.Process ns
 
  expected←'Invalid internal link: [The--and---syntax-SeText]'
  →T.PassesIf 1=+/expected⍷∊ns.report

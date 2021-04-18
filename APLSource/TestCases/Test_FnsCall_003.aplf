@@ -15,8 +15,8 @@
  md,←⊂''
  md,←⊂'This "⍎⍎#.TEMP.MyFns 123⍎⍎" is the result of the function --- really!'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<p>This “— 123 —” is the result of the function — really!</p>'
  →T.PassesIf expected≡2⊃ns.html

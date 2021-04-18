@@ -4,8 +4,8 @@
  R←T._Failed
 
  md←⊂'Inserting this: `<br>` leads to a <br> tag in the HTML code.'
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
  expected←'<p>Inserting this: <code>&lt;br&gt;</code> leads to a &lt;br&gt; tag in the HTML code.</p>'
  →T.PassesIf expected≡⊃ns.html
 

@@ -12,8 +12,8 @@
  md,←⊂' `--` are converted -- automatically! -- with a RegEx.'
  md,←⊂'~~~'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<p>First para – really! – with n-dashes – (as in <code>--</code>) –, really (<code>--</code>)</p>'
  →T.PassesIf expected≡1⊃ns.html

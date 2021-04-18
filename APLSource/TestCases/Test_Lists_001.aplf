@@ -11,8 +11,8 @@
  md,←⊂(3⍴' '),'* List 2'
  md,←⊂'* List II.'
 
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  expected←'<ul>' '<li>List I.' '<ul>' '<li>List A</li>' '<li>List B' '<ul>' '<li>List 1</li>' '<li>List 2</li>' '</ul></li>' '</ul></li>'
  expected,←'<li>List II.</li>' '</ul>'

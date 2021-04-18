@@ -9,9 +9,9 @@
  m,←⊂'Cobol' 1 'Oh|dear'
  ch←'Language' 'Productivity' 'Comment'
 
- md←ch ##.MarkAPL.Matrix2MarkdownTable↑m
- ns←##.MarkAPL.Init''md
- ns←##.MarkAPL.Process ns
+ md←ch MarkAPL.Matrix2MarkdownTable↑m
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
 
  →T.FailsIf'<table>'≢1⊃ns.html
  →T.FailsIf'<thead>'≢2⊃ns.html
