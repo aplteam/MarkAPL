@@ -1,7 +1,11 @@
- R←Test_Misc_041(stopFlag batchFlag);⎕TRAP;parms;tempFilename
-⍝ Exercise the `Reference` method.
+ R←Test_Misc_062(stopFlag batchFlag);⎕TRAP;parms;tempFilename
+⍝ Set MarkAPL's property "HOME" and check whether MarkAPL finds its assets.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
+
+ #.⎕SHADOW'HOME'
+ #.MarkAPL.⎕SHADOW'HOME'
+ MarkAPL.HOME←'Files'
 
  parms←MarkAPL.CreateHelpParms
  parms.viewInBrowser←0
@@ -10,13 +14,10 @@
  parms.outputFilename←tempFilename
  'Create!'FilesAndDirs.CheckPath⊃⎕NPARTS parms.outputFilename
 
- parms MarkAPL.Reference 1
-
- #.MarkAPL.⎕SHADOW'HOME'
- #.MarkAPL.HOME←'Files'
- parms MarkAPL.Reference 0
+ parms MarkAPL.Help 1
 
  R←T._OK
 
 ∆TidyUp:
+ MarkAPL.HOME←''
  FilesAndDirs.RmDir⊃⎕NPARTS tempFilename

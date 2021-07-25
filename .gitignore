@@ -1,5 +1,5 @@
-.acre/
-aplcore
-change_history/
-Dist/
-.gitignore
+./.acre/
+./aplcore
+./change_history/
+./Dist/
+./.gitignore

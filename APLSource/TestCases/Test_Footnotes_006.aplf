@@ -21,7 +21,7 @@
  ns←MarkAPL.Init parms md
  ns←MarkAPL.Process ns
 
- →T.PassesIf 2=⍴ns.report
- →T.PassesIf 2=+/∨/¨'doesnotex' 'footnote'⍷¨⊂∊ns.report
+ →T.PassesIf 3=⍴ns.report
+ →T.PassesIf 3=+/∨/¨'doesnotex' 'footnote' 'doesnotexist'⍷¨⊂∊ns.report
 
  R←T._OK

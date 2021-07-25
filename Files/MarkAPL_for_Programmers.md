@@ -133,6 +133,10 @@ Takes a two-item-vector as right argument:
 
 Returns [The "ns" namespace](#).  
 
+Note that after executing `Init` [`ns.report`](#report) might well carry warnings that are misleading. An example for this are links inside a LeanPub block: because the LeanPub stuff is already converted in `Init` MarkAPL cannot (yet) judge whether the links are okay or not.
+
+Therefore at the end of converting the full document the warnings are investigated again, and any warnigns that are now obsolete are removed.
+
              
 ### `MakeHTML_Doc`
 
@@ -431,7 +435,7 @@ The parameters that were passed to `Init`.
       
 #### report
 
-After having created the `ns` namespace by calling `CreateParms` this variable is empty. The `Process` method might add remarks to this variable in case it finds something to complain about or comment on.
+After having created the `ns` namespace by calling `CreateParms` this variable is empty. Both the `Init` and the `Process` method might add remarks to this variable in case it finds something to complain about or comment on. However, you are advised to ignore warnings after having executed just `Init`. 
 
 Some methods print what they assign to `report` also to the session in case the parameter `verbose` is 1.
 
@@ -585,9 +589,9 @@ Before reporting a bug please check carefully your Markdown. More often than not
 
 If you cannot work out why it goes wrong report it to me -- see the previous topic for how to report a problem.
 
-This document refers to version 11.0 of **_MarkAPL_**.
+This document refers to version 11.1 of **_MarkAPL_**.
 
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2021-04-14
+Kai Jaeger ⋄ APL Team Ltd ⋄ 2021-07-25
 
 [^meddy]: The Markdown editor Meddy on GitHub:<<br>><https://github.com/aplteam/Meddy>
 [^abandon]: Wikipedia definition of abandonware:<<br>><https://www.wikiwand.com/en/Abandonware>

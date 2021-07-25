@@ -4,5 +4,6 @@
      ##.FilesAndDirs.RmDir ∆TempFilename
      ⎕EX'∆TempFilename'
  :EndIf
+ MarkAPL.HOME←''
  ⎕EX'MarkAPL'
 ⍝Done
