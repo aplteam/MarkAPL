@@ -1,12 +1,8 @@
- {r}←Initialize;⎕TRAP;parent
+ {r}←Initialize;⎕TRAP
  ⎕TRAP←0 'S'
  r←⍬
  'TatinVars'⎕NS''
- TatinVars.HOME←AcreConfig.ProjectFolder  ⍝ Required by MarkAPL
+ TatinVars.HOME←CiderConfig.HOME
  {}⎕SE.UCMD'cd ',TatinVars.HOME
- ⎕WSID←AcreConfig.ProjectFolder,'project.dws'
- parent←⍕⎕THIS
- {}⎕SE.Tatin.LoadDependencies'./packages/'parent
- parent,←'.TestCases'
- {}⎕SE.Tatin.LoadDependencies'./packages_dev/'parent
+ ⎕WSID←CiderConfig.HOME,'project.dws'
 ⍝Done
