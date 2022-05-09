@@ -118,20 +118,18 @@ ul li, ol li {margin: 8pt 3pt;}
 <body>
 <h1 id="top">Coverage Report</h1>
 <p>Watched: 109 fns/opr within <code>#.MarkAPL.MarkAPL</code></p>
-<p>The test suite was executed 3 times:</p>
+<p>The test suite was executed once:</p>
 <table>
 <thead>
 <tr><th>Executed at</th><th>APLVersion</th><th>Memory (MB)</th></tr>
 </thead>
 <tbody>
-<tr><td>2021-10-12 08:44:13</td><td>Windows-64 ⋄ 18.0.44437.0 ⋄ W ⋄ Development</td><td>50</td></tr>
-<tr><td>2021-10-12 08:46:07</td><td>Windows-64 ⋄ 18.0.44437.0 ⋄ W ⋄ Development</td><td>50</td></tr>
-<tr><td>2021-10-12 09:13:15</td><td>Windows-64 ⋄ 18.0.44437.0 ⋄ W ⋄ Development</td><td>50</td></tr>
+<tr><td>2022-05-09 19:11:06</td><td>Windows-64 ⋄ 18.2.45580.0 ⋄ W ⋄ Development</td><td>53</td></tr>
 </tbody>
 </table>
-<p>Overall 97% of the testable code is covered.</p>
+<p>Overall 98% of the testable code is covered.</p>
 <p>(Comment lines, empty lines, all <code>:End</code>* lines etc. are ignored)</p>
-<p>90 of the fns/opr are 100% covered.</p>
+<p>91 of the fns/opr are 100% covered.</p>
 <div id="partly-covered" class="keep-together">
 <table id="percent">
 <thead>
@@ -153,7 +151,6 @@ ul li, ol li {margin: 8pt 3pt;}
 <tr><td>#.MarkAPL.MarkAPL.Init</td><td>14</td><td>95</td><td>19</td></tr>
 <tr><td>#.MarkAPL.MarkAPL.ProcessTable_</td><td>30, 67, 68</td><td>95</td><td>55</td></tr>
 <tr><td>#.MarkAPL.MarkAPL.ProcessEmbeddedParms_</td><td>20</td><td>95</td><td>20</td></tr>
-<tr><td>#.MarkAPL.MarkAPL.GetBookMarkNameFromCaption</td><td>23</td><td>95</td><td>21</td></tr>
 <tr><td>#.MarkAPL.MarkAPL.ProcessTableWithoutColTitles</td><td>10</td><td>96</td><td>25</td></tr>
 <tr><td>#.MarkAPL.MarkAPL.ProcessList</td><td>4←≢12,83,87,186</td><td>97</td><td>144</td></tr>
 <tr><td>#.MarkAPL.MarkAPL.CreateParms</td><td>24</td><td>98</td><td>46</td></tr>
@@ -205,6 +202,7 @@ ul li, ol li {margin: 8pt 3pt;}
 <tr class="fullyCovered"><td>#.MarkAPL.MarkAPL.ProcessDoubleTildes</td><td></td><td>100</td><td>17</td></tr>
 <tr class="fullyCovered"><td>#.MarkAPL.MarkAPL.GetMaskForCode</td><td></td><td>100</td><td>25</td></tr>
 <tr class="fullyCovered"><td>#.MarkAPL.MarkAPL.NotWithinWord</td><td></td><td>100</td><td>10</td></tr>
+<tr class="fullyCovered"><td>#.MarkAPL.MarkAPL.GetBookMarkNameFromCaption</td><td></td><td>100</td><td>20</td></tr>
 <tr class="fullyCovered"><td>#.MarkAPL.MarkAPL.InjectTOC</td><td></td><td>100</td><td>15</td></tr>
 <tr class="fullyCovered"><td>#.MarkAPL.MarkAPL.ScanMarkdown</td><td></td><td>100</td><td>38</td></tr>
 <tr class="fullyCovered"><td>#.MarkAPL.MarkAPL.RemoveEscapeChars</td><td></td><td>100</td><td>10</td></tr>
@@ -266,7 +264,7 @@ $(document).ready(function() {
         dom: "Bft",
         buttons: [
         {
-            text: "Partly covered (18)",
+            text: "Partly covered (17)",
             titleAttr: "50%",
             className: "active",
             action: function ( e, dt, node, config ) {
@@ -294,7 +292,7 @@ $(document).ready(function() {
             }
         },
         {
-            text: "Fully covered (90)",
+            text: "Fully covered (91)",
             titleAttr: "100%",
             className: "active",
             action: function ( e, dt, node, config ) {
