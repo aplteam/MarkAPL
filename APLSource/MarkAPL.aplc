@@ -59,7 +59,7 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←'MarkAPL' '11.0.3+239' '2022-05-09'
+      r←'MarkAPL' '11.0.3+242' '2022-05-09'
     ∇
 
     ∇ History

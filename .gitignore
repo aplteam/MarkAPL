@@ -1,5 +1,5 @@
-./.acre/
-./aplcore
-./change_history/
-./Dist/
-./.gitignore
+aplcore
+/Dist/
+CONTINUE.dws
+conga.crash
+/TestResults/
