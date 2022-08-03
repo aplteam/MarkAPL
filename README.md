@@ -5,6 +5,8 @@
 
 MarkAPL is a converter that converts [Markdown ](https://daringfireball.net/projects/markdown/ "The original Markdown specification") into valid HTML5. It is written in Dyalog.
 
+**Note:** `MarkAPL` releases are published as [Tatin](https://tatin.dev "Link to the principal Tatin Registry") packages, see there.
+
 Markdown aims to make the process of writing for the web much easier by improving readability and, as a consequence, maintainability.
 
 [This is an example on the Wikipedia](https://www.wikiwand.com/en/Markdown#Example) comparing Markdown with HTML.
