@@ -15,7 +15,7 @@ With MarkAPL you can either use variables or files or any combination of the two
 
 Note that the original design of Markdown has proven to be an excellent idea but too limited for widespread use. Therefore extensions were implemented. Over time two approaches have proven to be particularly successful: [Markdown Extra](https://michelf.ca/projects/php-markdown/extra/) and [PanDoc](http://pandoc.org/README.html).
 
-For several years it seemed that the segmentation of the different implementations would be a problem, but over time the implementations got closer. There is also the [CommonMark](http://commonmark.org/) initiative which aims to standardize Markdown. MarkAPL tries to be compliant with Commonmark within reason.
+For several years it seemed that the segmentation of the different implementations would be a problem, but over time the implementations got closer. There is also the [CommonMark](http://commonmark.org/) initiative which aims to standardize Markdown. MarkAPL tries to be compliant with CommonMark within reason.
 
 MarkAPL aims to implement most concepts and also adds a couple of enhancements that might be useful, be it in general or just for APLers.
 
