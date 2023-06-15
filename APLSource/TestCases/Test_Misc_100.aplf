@@ -3,6 +3,6 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 
- →T.FailsIf 0=1 ∆YesOrNo'   Have you updated the online version of the MarkAPL documentation? (reminder)'
+ →T.FailsIf 0=1 CommTools.YesOrNo'   Have you updated the online version of the MarkAPL documentation? (reminder)'
 
  R←T._OK

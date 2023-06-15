@@ -5,7 +5,7 @@
 
  :If batchFlag
      →0,R←T._NoBatchTest
- :ElseIf ~1 ∆YesOrNo'   This test will open an HTML document in your default browser; continue?'
+ :ElseIf ~1 CommTools.YesOrNo'   This test will open an HTML document in your default browser; continue?'
      →0,R←T._Inactive
  :EndIf
 
@@ -19,7 +19,7 @@
  parms.inputFilename←tempFilename,'/MarkAPL.html'
  parms ##.MarkAPL.Reference 1
 
- →T.GoToTidyUp 0=1 ∆YesOrNo'   Did "MarkAPL Reference" appear in your default browser?'
+ →T.GoToTidyUp 0=1 CommTools.YesOrNo'   Did "MarkAPL Reference" appear in your default browser?'
 
  R←T._OK
 

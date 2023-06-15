@@ -59,14 +59,13 @@
     ∇ r←Version
       :Access Public Shared
       ⍝ See `History`
-      r←'MarkAPL' '11.0.5+246' '2022-??-??'
+      r←'MarkAPL' '11.0.5+246' '2022-06-15'
     ∇
 
     ∇ History
       :Access Public Shared
-      ⍝ * 11.0.5 ⋄ 2022-??-??
-      ⍝   * Bug fixes
-      ⍝     `Matrix2MarkdownList` complained wrongly that ⍵ should have 2 columns: 3 is correct.
+      ⍝ * 11.0.5 ⋄ 2022-06-15
+      ⍝   * Bug fix: `Matrix2MarkdownList` complained wrongly that ⍵ should have 2 columns: 3 is correct
       ⍝ * 11.0.4 ⋄ 2022-10-26
       ⍝   * Bug fixes
       ⍝     * `ShowHtml` did not cope when the right argument pointed to the current directory
