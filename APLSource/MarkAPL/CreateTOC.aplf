@@ -7,7 +7,7 @@
  r←⊂'<nav id="main_nav">'
  r,←⊂'<div class="toc-container">'
  :If ~ns.parms.collapsibleTOC
-     r,←⊂'<h3>',ns.parms.tocCaption,'</h3>'
+     r,←⊂'<h2>',ns.parms.tocCaption,'</h2>'
  :EndIf
  r,←⊂'<ul id=toc-list>'
  lastLevel←⊃⊃def
