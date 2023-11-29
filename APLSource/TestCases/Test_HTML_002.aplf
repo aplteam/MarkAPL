@@ -7,13 +7,13 @@
  md←'This is a para.' '<!--comment-->' '' 'Another para'
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
- →T.PassesIf(⊂'<p>This is a para. &lt;!–comment–&gt;</p>')∊ns.html
+ →T.PassesIf(⊂'<p>This is a para. <!--comment--></p>')∊ns.html
 
 ⍝ Not an HTML block (both empty lines are missing)
  md←'This is a para.' '<!--comment-->' 'Another para'
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
- →T.PassesIf(,⊂'<p>This is a para. &lt;!–comment–&gt; Another para</p>')≡ns.html
+ →T.PassesIf(,⊂'<p>This is a para. <!--comment--> Another para</p>')≡ns.html
 
 ⍝ From here we have real HTML blocks
  md←'This is a para.' '' '<!--comment-->' 'Another para'

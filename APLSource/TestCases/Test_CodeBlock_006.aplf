@@ -10,6 +10,6 @@
  ns←MarkAPL.Init parms m
  ns←MarkAPL.Process ns
 
- →T.FailsIf 2≠+/'<pre>'⍷∊ns.html
+ →T.FailsIf 2≠+/'<pre tabindex="0">'⍷∊ns.html
 
  R←T._OK

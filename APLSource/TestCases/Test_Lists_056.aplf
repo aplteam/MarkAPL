@@ -25,8 +25,8 @@
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
 
- expected←'<ul>' '<li>This' '<pre><code>{(+/⍵)÷⍴⍵}</code></pre>' '<p>Still This</p></li>'
- expected,←'<li>That' '<pre><code>  ⎕←+⌿Mat' '123</code></pre></li>' '<li>More</li>' '</ul>'
+ expected←'<ul>' '<li>This' '<pre tabindex="0"><code>{(+/⍵)÷⍴⍵}</code></pre>' '<p>Still This</p></li>'
+ expected,←'<li>That' '<pre tabindex="0"><code>  ⎕←+⌿Mat' '123</code></pre></li>' '<li>More</li>' '</ul>'
  →T.PassesIf expected≡ns.html
 
  R←T._OK

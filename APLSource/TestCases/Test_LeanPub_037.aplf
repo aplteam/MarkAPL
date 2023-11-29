@@ -25,7 +25,7 @@
  ns←MarkAPL.Init parms md
  ns←MarkAPL.Process ns
 
- expected←'<p>A para</p>' '<pre><code>' '<span class="leanpub_code">{(+⌿⍵)÷≢⍵}' '&lt;/span&gt;' '</span></code></pre>' '<p>Another para</p>'
+ expected←'<p>A para</p>' '<pre tabindex="0"><code>' '<span class="leanpub_code">{(+⌿⍵)÷≢⍵}' '&lt;/span&gt;' '</span></code></pre>' '<p>Another para</p>'
  →T.PassesIf expected≡ns.html
 
  R←T._OK

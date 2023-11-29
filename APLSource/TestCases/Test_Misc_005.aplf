@@ -1,5 +1,5 @@
  R←Test_Misc_005(stopFlag batchFlag);⎕TRAP;md;ns;parms
-⍝ Test in-line HTML: that concept does not exist in Markdown!
+⍝ Test in-line HTML
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 
@@ -14,6 +14,6 @@
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
 
- →T.PassesIf∨/' &lt;span class=“foo”&gt;inline HTML&lt;/span&gt;.'⍷∊ns.html
+ →T.PassesIf∨/' <span class="foo">inline HTML</span>.'⍷∊ns.html
 
  R←T._OK

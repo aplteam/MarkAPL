@@ -13,11 +13,11 @@
 
  expecting←''
  expecting,←⊂'<div class="h_tag">'
- expecting,←⊂'<a href="#Data" id="Data" class="autoheader_anchor">'
+ expecting,←⊂'<a href="#data" id="data" class="autoheader_anchor">'
  expecting,←⊂'<h1 data-id="Data">Data</h1>'
  expecting,←⊂'</a>'
  expecting,←⊂'</div>'
- expecting,←⊂'<p>Defining data: any line that starts with [data]: defines a key-value pair of data. See <a href="#Data" class="bookmark_link">Data</a> for details.</p>'
+ expecting,←⊂'<p>Defining data: any line that starts with [data]: defines a key-value pair of data. See <a href="#data" class="bookmark_link">Data</a> for details.</p>'
  →T.PassesIf expecting≡ns.html
 
  R←T._OK

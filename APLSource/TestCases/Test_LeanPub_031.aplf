@@ -18,8 +18,8 @@
  parms.leanpubExtensions←1
  parms.createFullHtmlPage←1
  parms.linkToCSS←1
- parms.screenCSS←'MoreCSS/Dark_Screen.css'
- parms.printCSS←'MoreCSS/Dark_Print.css'
+ parms.screenCSS←'BlackOnWhite_screen.css'
+ parms.printCSS←'BlackOnWhite_print.css'
 
  ns←MarkAPL.Init parms md
  ns←MarkAPL.Process ns
@@ -27,8 +27,8 @@
 
  home←FilesAndDirs.EnforceSlash FilesAndDirs.PWD,'/'
  expected←''
- expected,←⊂'<link href="file:///',(FilesAndDirs.EnforceSlash parms.homeFolder,'/Files/MoreCSS/Dark_Screen.css"'),' rel="stylesheet" media="screen">'
- expected,←⊂'<link href="file:///',(FilesAndDirs.EnforceSlash parms.homeFolder,'/Files/MoreCSS/Dark_Print.css"'),' rel="stylesheet" media="print">'
+ expected,←⊂'<link href="file:///',(FilesAndDirs.EnforceSlash parms.homeFolder,'/Files/BlackOnWhite_screen.css"'),' rel="stylesheet" media="screen">'
+ expected,←⊂'<link href="file:///',(FilesAndDirs.EnforceSlash parms.homeFolder,'/Files/BlackOnWhite_print.css"'),' rel="stylesheet" media="print">'
  →T.PassesIf∧/expected∊html
 
  R←T._OK

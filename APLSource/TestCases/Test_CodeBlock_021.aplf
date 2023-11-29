@@ -21,8 +21,8 @@
  ns←MarkAPL.Process ns
 
  expected←''
- expected,←⊂'<pre><code>a←1</code></pre>'
- expected,←⊂'<pre><code>b←1'
+ expected,←⊂'<pre tabindex="0"><code>a←1</code></pre>'
+ expected,←⊂'<pre tabindex="0"><code>b←1'
  expected,←⊂'</code></pre>'
  expected,←⊂'<table>'
  expected,←⊂'<tbody>'

@@ -13,10 +13,10 @@
  ns←MarkAPL.Process ns
 
  expected←''
- expected,←⊂'<a href="#Level-one-header" id="Level-one-header" class="autoheader_anchor">'
+ expected,←⊂'<a href="#level-one-header" id="level-one-header" class="autoheader_anchor">'
  expected,←⊂'<h1 data-id="Level-one-header">Level one header <a href="https://aplwiki.com" class="external_link">https://aplwiki.com</a></h1>'
  expected,←⊂'<div class="h_tag">'
- expected,←⊂'<a href="#Page" id="Page" class="autoheader_anchor">'
+ expected,←⊂'<a href="#page" id="page" class="autoheader_anchor">'
  expected,←⊂'<h2 data-id="Page">Page <a href="https://britishaplassociation.org/about-british-apl-association" class="external_link">https://britishaplassociation.org/about-british-apl-association</a></h2>'
 
  →T.PassesIf∧/expected∊ns.html

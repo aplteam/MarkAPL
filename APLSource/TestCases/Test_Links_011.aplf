@@ -13,7 +13,7 @@
  ns←MarkAPL.Init parms md
  ns←MarkAPL.Process ns
 
- expected←'Invalid internal link: [The--and---syntax-SeText]'
+ expected←'Invalid internal link: [the--and---syntax-setext]'
  →T.PassesIf 1=+/expected⍷∊ns.report
 
  R←T._OK

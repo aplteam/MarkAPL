@@ -12,7 +12,7 @@
  ns←MarkAPL.Init parms md
  ns←MarkAPL.Process ns
 
- expected←'<a href="#This2That" class="bookmark_link">'
+ expected←'<a href="#this2that" class="bookmark_link">'
  →T.PassesIf∨/expected⍷∊ns.html
 
  R←T._OK

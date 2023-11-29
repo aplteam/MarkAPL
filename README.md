@@ -11,7 +11,7 @@ Markdown aims to make the process of writing for the web much easier by improvin
 
 [This is an example on the Wikipedia](https://www.wikiwand.com/en/Markdown#Example) comparing Markdown with HTML.
 
-With MarkAPL you can either use variables or files or any combination of the two to convert Markdown into HTML5.
+MarkAPL can convert APL variables holding Markdown as well as files holding Markdown.
 
 Note that the original design of Markdown has proven to be an excellent idea but too limited for widespread use. Therefore extensions were implemented. Over time two approaches have proven to be particularly successful: [Markdown Extra](https://michelf.ca/projects/php-markdown/extra/) and [PanDoc](http://pandoc.org/README.html).
 
@@ -53,6 +53,8 @@ The following table highlights the features supported in MarkAPL:
 |Sub TOC                   |                |           |            |    X       |
 |Smart typography          |                |           |    X       |    X       |
 |Special attributes        |                |   X       |    X       |    X       |
+|Check boxes               |                |           |            |    X       |
+|Collapsibles & accordions |                |           |            |    X       |
 |LeanPub extensions        |                |           |            |    X       |
 
 Note that marking up code blocks by indenting was deliberately not implemented in MarkAPL.
@@ -60,7 +62,7 @@ Note that marking up code blocks by indenting was deliberately not implemented i
 
 ## Documentation 
 
-A [full documentation](http://download.aplteam.com/MarkAPL.html) is available as an HTML page generated from Markdown with MarkAPL, as you would expect. This document is comprehensive and is therefore quite long: more than 30 pages.
+A [full documentation](http://download.aplteam.com/MarkAPL.html) is available as an HTML page generated from Markdown with MarkAPL, as you would expect. This document is comprehensive and is therefore quite long: more than 40 pages.
 
 There is also a [cheat sheet](http://download.aplteam.com/MarkAPL_CheatSheet.html) available for the impatient APLer.
 
@@ -70,3 +72,4 @@ There is also a [cheat sheet](http://download.aplteam.com/MarkAPL_CheatSheet.htm
 Note that there is an editor available that uses MarkAPL as converter: [Meddy](https://github.com/aplteam/Meddy "Meddy on GitHub"). 
 
 The editor is quite basic but it supports all MarkAPL features. It sports the most important features you would expect from any editor (Undo/Redo and a powerful Search/Replace) and also comes with a tree view for navigation that is auto-generated from the headers .
+

@@ -13,8 +13,8 @@
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
 
- →T.PassesIf∨/'<dt id="X86">'⍷∊ns.html
- →T.PassesIf∨/'<p><a href="#X86" class="bookmark_link">Link</a> to the definition.</p>'⍷∊ns.html
- →T.PassesIf 0∊⍴ns.report
+ →T.PassesIf∨/'<dt id="x86">'⍷∊ns.html
+ →T.PassesIf∨/'<p><a href="#x86" class="bookmark_link">Link</a> to the definition.</p>'⍷∊ns.html
+ →T.PassesIf 0=≢ns.report
 
  R←T._OK

@@ -20,7 +20,7 @@
 
  →T.PassesIf 1=+/'<h1 data-id="Level-1">'⍷∊ns.html
  →T.PassesIf 1=+/'<h2 data-id="Level-2">'⍷∊ns.html
- →T.PassesIf 2=+/'<h3'⍷∊ns.html
+ →T.PassesIf 1=+/'<h3>'⍷∊ns.html
  →T.PassesIf 1=+/'<h3 data-id="Level-3">'⍷∊ns.html
  →T.PassesIf 3=+/'<p>'⍷∊ns.html   ⍝ Caption of sub-toc is a para as well!
  →T.PassesIf 0=+/'<<SubTOC>>'⍷∊ns.html

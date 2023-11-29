@@ -4,22 +4,28 @@
 [parm]:printCSS          = 'BlackOnWhite_print.css'
 [parm]:screenCSS         = 'BlackOnWhite_screen.css'
 [parm]:linkToCSS         = 0
-[parm]:saveHTML          = 0
+[parm]:saveHTML          = 1
+[parm]:toc               = 2 3 4 5 6
+[parm]:numberHeaders     = 2 3 4 5 6
 
 
-Quick introduction to MarkAPL
+
+
+Quick introduction to `MarkAPL`
 =============================
 
-By now you probably know that MarkAPL converts Markdown to HTML5.
+By now you are likely aware that `MarkAPL` converts Markdown to HTML5.
 
-All you need is the class `MarkAPL` and the namespace script `APLTreeUtils`.
+All you need is the [Tatin package](https://tatin.dev "Link to the principal Tatin registry") `MarkAPL`.
 
 
 Quick start
 ----------
 
+### Making `MarkAPL` available
 
-Let's assume you have some Markdown:
+
+Assuming that you have some Markdown in the workspace:
 
 ~~~
       MyMarkdown←'# MarkAPL' 'All about **_MarkAPL_**'
@@ -28,9 +34,9 @@ Let's assume you have some Markdown:
 There are two possible scenarios:
 
 
-### Convert some Markdown into HTML
+### Converting Markdown into HTML
 
-All you need to do is to call the `Markdown2HTML` method:
+To convert Markdown into HTML, call the `Markdown2HTML` method:
 
 ~~~
       (html ns)←MarkAPL.Markdown2HTML MyMarkdown
@@ -42,13 +48,13 @@ Note that not only the HTML but also a namespace `ns` is returned which, among o
 
 This way of calling `Markdown2HTML` relies entirely on defaults. If you are not happy with those you must specify parameters in one of two ways:
 
-* Create a parameter space (typically by calling `MarkAPL.CreateParms`), make amendments and pass the namespace via the left argument to `Markdown2HTML`. The next topic explains how to do that.
-* Embedd the parameters you need to be different from the defaults into your Markdown. The next but one topic explains how to do that.
+* Create a parameter space (usually by calling `MarkAPL.CreateParms`), modify the parameters, and pass the namespace as the left argument to `Markdown2HTML`. The next topic explains this process.
+* Embed the specific parameters you need into your Markdown. The subsequent topic elaborates on this approach.
 
 
-### Create a fully fledged HTML page with a parameter space
+### Creating a fully fledged HTML page with a parameter space
 
-In order to make **_MarkAPL_** create a complete HTML page you can either specify `outputFilename` or set the `createFullHtmlPage` flag to 1:
+To instruct `MarkAPL` to generate a complete HTML page, you can either specify `outputFilename` or set the `createFullHtmlPage` flag to 1:
 
 ~~~
       parms←MarkAPL.CreateParms
@@ -63,12 +69,12 @@ In order to make **_MarkAPL_** create a complete HTML page you can either specif
 
 Setting `outputFilename` has the additional benefit of writing the HTML to that file. 
 
-Note that `parms` is a namespace that holds variables with default values. You can list them by calling `parms.∆List`.
+Note that `parms` is a namespace that stores default values. You can list them by calling `parms.∆List`.
 
 
 ### Create a fully fledged HTML page with embedded parameters
 
-In order to make **_MarkAPL_** create a complete HTML page you can _embed_ either `outputFilename` or `createFullHtmlPage` into the markdown:
+To make `MarkAPL` generate a complete HTML page, you can _embed_ `outputFilename` or `createFullHtmlPage` into the Markdown:
 
 ~~~
       (html ns)←MarkAPL.Markdown2HTML (⊂'[parm]:createFullHtmlPage=1'),MyMarkdown
@@ -83,27 +89,8 @@ In order to make **_MarkAPL_** create a complete HTML page you can _embed_ eithe
 Documentation
 ------------
 
-Call `MarkAPL.Help 0` in order to view the cheat sheet.
-
-Call `MarkAPL.Reference 0` in order to view the comprehensive documentation.
-
-Note that this requires the files MarkAPL_CheatSheet.html and MarkAPL.html respectively to be found either in the current directory or in a folder `files\` in the current directory.
-
-If those assumptions don't work you must tell `Help` (or `Reference`) where to find the file in question:
-
-~~~
-      parms←MarkAPL.CreateHelpParms
-      parms.homeFolder←'C:\Where_MarkAPL_HTML_lives'
-      parms MarkAPL.Help 0
-~~~
-
-
-The workspace
--------------
-
-The workspace contains not only the two scripts `APlTreeUtils` and `MarkAPL` but also the test suite. To run them execute `#.MarkAPL.MarkAPL.TestCases.Run`. 
-
-For further information regarding the test suite consult the script `#.Tester` in the workspace.
+* For the cheat sheet call `MarkAPL.Help 0`
+* For comprehensive documentation, call `MarkAPL.Reference 0`
 
 
 Misc
@@ -111,6 +98,7 @@ Misc
 
 Please send comments, suggestions and bug reports to kai@aplteam.com.   
 
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2016-02-17
+Kai Jaeger ⋄ 2016-02-17
 
-Last update: 2019-10-11
+Last update: 2023-11-16
+

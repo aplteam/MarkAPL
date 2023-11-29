@@ -11,6 +11,6 @@
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
 
- →T.PassesIf∨/'<a href="#Link-to-a-header-em"'⍷∊ns.html
+ →T.PassesIf∨/'<a href="#link-to-a-header-em"'⍷∊ns.html
 
  R←T._OK

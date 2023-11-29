@@ -6,11 +6,13 @@
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
  #.TEMP.⎕FX'r←fnsname MyFns ns' 'r←⍎fnsname'
- #.TEMP.⎕FX'r←CalledFns' 'r←''This is **bold** and this _italic_'''
+ #.TEMP.⎕FX'r←CalledFns' 'r←'' <p>This is **bold** and this _italic_</p>'''
  md←''
  md,←⊂'⍎⍎#.TEMP.MyFns #.TEMP.CalledFns⍎⍎'
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
- →T.PassesIf(,⊂'<p>This is <strong>bold</strong> and this <em>italic</em></p>')≡ns.html
+
+ expected←' <p>This is <strong>bold</strong> and this <em>italic</em></p>'
+ →T.PassesIf(,⊂expected)≡ns.html
 
  R←T._OK

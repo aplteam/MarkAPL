@@ -26,19 +26,27 @@
  m←'This is a paragraph' '# caption'                                   ⍝ Header line (pound syntax)
  ns←MarkAPL.Init''m
  ns←MarkAPL.Process ns
- expected←'<p>This is a paragraph</p>' '<div class="h_tag">' '<a href="#caption" id="caption" class="autoheader_anchor">' '<h1 data-id="caption">caption</h1>' '</a>' '</div>'
+ expected←⊂'<p>This is a paragraph</p>'
+ expected,←⊂'<div class="h_tag">'
+ expected,←⊂'<a href="#caption" id="caption" class="autoheader_anchor">'
+ expected,←⊂'<h1 data-id="caption">caption</h1>'
+ expected,←'</a>' '</div>'
  →T.FailsIf expected≢ns.html
 
  m←'This is a paragraph' 'caption' '==='                               ⍝ Header line (= syntax)
  ns←MarkAPL.Init''m
  ns←MarkAPL.Process ns
- expected←'<div class="h_tag">' '<a href="#This-is-a-paragraph-caption" id="This-is-a-paragraph-caption" class="autoheader_anchor">' '<h1 data-id="This-is-a-paragraph-caption">This is a paragraph caption</h1>' '</a>' '</div>'
+ expected←⊂'<div class="h_tag">'
+ expected,←⊂'<a href="#this-is-a-paragraph-caption" id="this-is-a-paragraph-caption" class="autoheader_anchor">'
+ expected,←⊂'<h1 data-id="This-is-a-paragraph-caption">This is a paragraph caption</h1>'
+ expected,←'</a>' '</div>'
  →T.FailsIf~∧/expected≡ns.html
 
  m←'This is a paragraph' 'caption' '---'                               ⍝ Header line (- syntax)
  ns←MarkAPL.Init''m
  ns←MarkAPL.Process ns
- expected←'<a href="#This-is-a-paragraph-caption" id="This-is-a-paragraph-caption" class="autoheader_anchor">' '<h2 data-id="This-is-a-paragraph-caption">This is a paragraph caption</h2>'
+ expected←⊂'<a href="#this-is-a-paragraph-caption" id="this-is-a-paragraph-caption" class="autoheader_anchor">'
+ expected,←⊂'<h2 data-id="This-is-a-paragraph-caption">This is a paragraph caption</h2>'
  →T.FailsIf~∧/expected∊ns.html
 
  m←'This is a paragraph' '_ _ _ _ '                                    ⍝ Horizontal ruler
@@ -54,18 +62,18 @@
  m←'This is a paragraph' '```' 'APL code' '```'                        ⍝ Code block (```)
  ns←MarkAPL.Init''m
  ns←MarkAPL.Process ns
- →T.FailsIf'<p>This is a paragraph</p>' '<pre><code>APL code</code></pre>'≢2↑ns.html
+ →T.FailsIf'<p>This is a paragraph</p>' '<pre tabindex="0"><code>APL code</code></pre>'≢2↑ns.html
 
  m←'This is a paragraph' '~~~' 'APL code' '~~~'                        ⍝ Code block (~~~)
  ns←MarkAPL.Init''m
  ns←MarkAPL.Process ns
- →T.FailsIf'<p>This is a paragraph</p>' '<pre><code>APL code</code></pre>'≢2↑ns.html
+ →T.FailsIf'<p>This is a paragraph</p>' '<pre tabindex="0"><code>APL code</code></pre>'≢2↑ns.html
 
  m←'This is a paragraph' '~~~ {.classname}' 'APL code' '~~~'           ⍝ Code block (~~~) with special attribute
  ns←MarkAPL.Init''m
  ns←MarkAPL.Process ns
- expected←'<p>This is a paragraph</p>' '<pre><code class="classname">APL code</code></pre>'
- →T.FailsIf expected≢2↑ns.html
+ expected←'<p>This is a paragraph</p>' '<pre tabindex="0"><code class="classname">APL code</code></pre>'
+ →T.FailsIf expected≢ns.html
 
  m←'This and **_that' '3.1 and more_**' '' 'Foo'
  ns←MarkAPL.Init''m

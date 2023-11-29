@@ -11,6 +11,6 @@
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
 
- →T.PassesIf∨/'<a href="#The--and---syntax" class="bookmark_link">SeText header</a>'⍷∊ns.html
+ →T.PassesIf∨/'<a href="#the--and---syntax" class="bookmark_link">SeText header</a>'⍷∊ns.html
 
  R←T._OK

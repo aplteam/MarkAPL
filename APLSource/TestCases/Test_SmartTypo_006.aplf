@@ -34,14 +34,14 @@
  →T.PassesIf expected≡1⊃ns.html
  expected←'<p>The double quotes (<code>"</code>) are converted into curly quotes.</p>'
  →T.PassesIf expected≡2⊃ns.html
- expected←'<pre><code> `"` are converted automatically into " and ".</code></pre>'
+ expected←'<pre tabindex="0"><code> `"` are converted automatically into " and ".</code></pre>'
  →T.PassesIf expected≡4⊃ns.html
  expected←'<p><code>"</code> are converted automatically into “ and ”.</p>'
  →T.PassesIf expected≡6⊃ns.html
  →T.PassesIf 2=+/'""'⍷7⊃ns.html
  expected←'<div id="foo">This shows in red if okay</div>'
  →T.PassesIf(⊂expected)∊ns.html
- expected←⊂'<a href="#Level---2" id="Level---2" class="autoheader_anchor">'
+ expected←⊂'<a href="#level---2" id="level---2" class="autoheader_anchor">'
  →T.PassesIf expected∊ns.html
 
  R←T._OK

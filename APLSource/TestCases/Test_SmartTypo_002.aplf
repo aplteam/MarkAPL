@@ -19,7 +19,7 @@
  →T.PassesIf expected≡1⊃ns.html
  expected←'<p>Second para—with m-dashes—on the fly.</p>'
  →T.PassesIf expected≡2⊃ns.html
- expected←'<pre><code> `---` are converted --- automatically! --- with a RegEx.</code></pre>'
+ expected←'<pre tabindex="0"><code> `---` are converted --- automatically! --- with a RegEx.</code></pre>'
  →T.PassesIf expected≡3⊃ns.html
 
  R←T._OK

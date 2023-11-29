@@ -1,10 +1,10 @@
-/* MarkAPL's default screen CSS version 2.6 from 2020-03-23 */
+﻿/* MarkAPL style sheet version 3.1 from 2023-11-29 */
 
 /* Note that there are some variables embedded as comments which will be replaced
    by MarkAPL. The names are embraced by "<<", so for a variable "foo" it is
    <<foo>>. Note that the CSS definitons come with defaults, so they will work
    without the vars injected, and the CSS will pass the W3C CSS validator.        */
-
+ 
 /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
@@ -109,7 +109,6 @@ pre {
 
 a {
   background-color: transparent; /* 1 */
-  -webkit-text-decoration-skip: objects; /* 2 */
 }
 
 /**
@@ -465,12 +464,16 @@ body  {
     background-color: #FDFDFD;
     font-size: 18px;
     line-height: 1.4;
-    max-width: 900px; /* <<maxwidth>> */
+    max-width: 920px; /* <<maxwidth>> */
     padding: 0.83em;
     color: #171717;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    margin-left: auto;
+    margin-right: auto;
 }
+h1 {text-align:center;}
+
 h1, h2, h3, h4, h5, h6 {
     padding-left: 0;
 }
@@ -535,12 +538,35 @@ p {
     padding: .40em 0 0 0;
     margin: 0;
 }
+div.toc-container h3 {
+    margin-left: 1em;;
+}
+
+nav {
+    border: 2px solid Gray;
+}
+
+nav ul, nav.sub-toc ul {
+    list-style: none;
+    margin: 0 0 0 0;
+}
+nav.sub-toc p {
+    margin: 0.2em 0 0.3em 1em;
+}
+
+nav p {
+    margin-top: 0.75em;
+    padding-bottom: 0;
+}
 ul, ol {
     line-height: 1.5;
     padding: .33em 0 0 0;
     margin: 0;
-    margin-top: 1em;
 }
+ul ul, ol ol {
+    margin: 0;
+}
+
 dd {
     padding-top: 0.25em;
 }
@@ -555,7 +581,7 @@ li > ul, ol {
 }
 li {
     line-height: 1.3;
-    margin-left: 1.38em;
+    margin-left: 2em;
     margin-bottom: 0.55em;
 }
 ul > li {
@@ -574,7 +600,8 @@ li p {
     text-indent: 0;
 }
 pre {
-    overflow: scroll;
+    position: relative;
+    overflow: auto;
     padding: 0.55em 0.27em;
     margin: 1.11em 0 1.11em 0;
     background-color: black;
@@ -596,10 +623,8 @@ pre > code {
 }
 td code {
     padding: 0;
-}li
-a code {
+}li a code {
     padding: 0;
-    font-size: 1em;
 }
 
 h1 code, h2 code, h3 code, h4 code, h5 code, h6 code {
@@ -609,7 +634,6 @@ h1 code, h2 code, h3 code, h4 code, h5 code, h6 code {
 nav code {
     background-color: inherit;
     font-weight: 400;
-    font-size: 0.77rem;
     color: inherit;
 }
 
@@ -617,11 +641,12 @@ code {
     font-family: APLFont, monospace;
     background-color: #e7e7e7;
     color: Black;
-    font-weight: 400;
+    font-weight: 800;
     line-height: 1.1;
-    font-size: 1em;
+    white-space: break-spaces;
     margin: 0;
-    padding: 0.10em 0.10em 0.10em 0.10em;
+    padding: 0.2em 0.4em;
+    border-radius: 6px;
 }
 
 div.leanpub table p > code {
@@ -666,7 +691,6 @@ table th + th { border-left:1px solid Black; }
 table {
     border-color: Black;
     margin: 1.5em 0 1.5em 0;
-    border: 2px black;
     border-collapse: collapse;
     font-family: APLFont;
     font-size: 0.88em;
@@ -703,62 +727,6 @@ blockquote ol li {
 }
 
 li > blockquote {margin-left: 0;}
-
-nav {
-    background-color: #f5f5f5;
-    border: 1px solid Black;
-    padding: 0.55em;
-    margin: 1.11em 2.22em;
-    box-shadow: 0.27em 0.27em 0.27em Gray;
-    overflow : hidden;
-    clear: both;
-}
-nav#main_nav{
-    position: fixed;
-    top:0;
-    right: 0.55em;
-    float: none;
-    width: auto;
-}
-nav#main_nav_no_collapse li {
-    font-size: 0.75rem;
-}
-nav#main_nav_no_collapse li {
-    line-height: 1.5;
-}
-nav ul  {
-    list-style-type: none;
-    margin: 0 0 0.11em 0;
-    padding: 0;
-} 
-nav a:visited { 
-    color: black;
-}
-nav ul li {
-    margin-top: 0.38em;
-    margin-bottom: 0.38em;
-}
-nav li p {
-    margin: 0;
-    padding: 0;
-    line-height: 1;
-    margin: 0;
-    padding: 0;
-}
-nav li {
-    font-size: 0.75rem;
-    line-height: 1.3;
-    padding: 0;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 0.83em;
-}
-
-nav p{
-    font-weight: bold; 
-    font-size: 0.75em;
-    padding-top: 0;
-}
 dl {
     margin-top: 0;
     margin-bottom: 0.55em;
@@ -768,35 +736,7 @@ dt {
     margin-bottom: 0.27em;
     font-weight: 800;
 }
-label#hide_toc_label {
-    font-size: 0.80em;
-}
-.toc-container {
-    position: relative;
-    height: auto;
-}
-div.toc-container h3 {
-    font-size: 0.88em;
-    margin: 0.55em 0.27em 0.55em 0.66em;
-}
-[type="checkbox"] {
-    position: absolute;
-    left: -9999px;
-}
-label {
-    display: block;
-    width: 100%;
-    height: 1.1em;
-    cursor: pointer;
-    top: 0;
-    padding-left: 0.55em;
-}
-label:before {
-    content: 'Table of contents \25BC'; /* <<tocCaption>>'; */
-    font-weight: bold;
-    font-size: 0.90em;
-    padding-bottom: 0;
-}
+
 [type="checkbox"] ~ div {
     display: none;
 }
@@ -808,8 +748,9 @@ label:before {
     top: 100%;
 }
 [type="checkbox"]:checked + label:before {
-    content:  'Table of contents \25B2' /* <<tocCaption>>'; */
+    content:  'Table of contents \25B2' /* <<tocCaption>>' */
 }
+
 div#footnotes_div p {
     line-height:1; 
     padding-bottom:0;
@@ -825,7 +766,6 @@ div#footnotes_div ol {
     url("https://misc.aplteam.com/apl385.ttf") format("truetype");
 }
 
-
 /* User classes */
 
 .no_display {display:none;}
@@ -837,11 +777,11 @@ div#footnotes_div ol {
 }
 .left {
     text-align: left;     /* for inline elements */
-    margin-right: 0 auto;   /* for Block elements */
+    margin-right: auto;   /* for Block elements */
 }
 .right {
     text-align: right;     /* for inline elements */
-    margin-left: 0 auto;   /* for Block elements */
+    margin-left: auto;   /* for Block elements */
 }
 
 img {
@@ -913,7 +853,61 @@ div.leanpub_A p, div.leanpub p {
 div.leanpub > div {
     margin-left: 2.27em;  /* margin (20) plus width of icon (21) */
 }
-
 .print_only {
     display: none;
+}
+details summary {
+  cursor: pointer;
+}
+details summary > * {
+  display: inline;
+}
+div.accordion {
+    border: 1px solid black;
+    padding: 0;
+    margin: 0.5em 0;
+    background-color: #FAEBD7;
+}
+div.accordion > div {
+    padding: 0.5em;
+    margin: 0 0;
+}
+div.accordion > div p, ul, ol, img, table {
+    margin-block-end: 0.1em;
+}
+div.collapsible {
+    border: 1px solid black;
+    padding: 1em;
+    margin: 0.5em 0;
+    background-color: #FAEBD7;
+}
+div.collapsible p, ul, ol, img, table {
+    margin-block-end: 0.1em;
+}
+ul.checkboxes {
+  list-style: none;
+  margin-left: 0;
+  padding-left: -1em;
+}
+li {
+  padding-left: 1em;
+  text-indent: 0em;
+}
+ul.checkboxes > li::before {content: "☐ ";}
+ul.checkboxes > li.checked::before {content: "☒ ";}
+pre > button {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  font-size: 1.2rem;
+  padding: 0.15rem;
+  border: 1.25px solid #232326;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+pre button:hover {
+  cursor: pointer;
+  background-color: #bcbabb;
 }

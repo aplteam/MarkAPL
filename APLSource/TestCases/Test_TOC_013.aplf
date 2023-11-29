@@ -7,7 +7,7 @@
  md,←⊂'[parm]:toc            = 3'
  md,←⊂'[parm]:numberHeaders  = 2 3 4'
  md,←⊂''
- md,←⊂'# ChangeHistory'
+ md,←⊂'# ChangeHistory ⍺⌈⌊'
  md,←⊂''
  md,←⊂'...'
 

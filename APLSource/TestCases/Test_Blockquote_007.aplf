@@ -16,6 +16,6 @@
  ns←MarkAPL.Process ns
 
  html←1↓⊃,/(⎕UCS 13),¨ns.html
- →T.PassesIf 4=+/'<a href="#Header'⍷html  ⍝ Header 1, header 2 and two entries in the TOC
+ →T.PassesIf 4=+/'<a href="#header'⍷html  ⍝ Header 1, header 2 and two entries in the TOC
 
  R←T._OK

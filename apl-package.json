@@ -1,5 +1,5 @@
 {
-  api: "MarkAPL",
+  api: "API",
   assets: "Files/",
   description: "Converts Markdown to HTML5",
   documentation: "",
@@ -16,8 +16,8 @@
   os_mac: 1,
   os_win: 1,
   project_url: "https://github.com/aplteam/MarkAPL",
-  source: "APLSource/MarkAPL.aplc",
+  source: "APLSource/MarkAPL",
   tags: "markdown,converter",
   userCommandScript: "",
-  version: "11.0.5+249",
+  version: "12.0.0+267",
 }

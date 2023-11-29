@@ -19,7 +19,7 @@
  ns←MarkAPL.Process ns
 
  expected←'<ul>' '<li>This' '<ul>' '<li>That' '<ul>' '<li>More' '<ul>' '<li>Deep'
- expected,←'<pre><code> {+⌿⍺,⍵}</code></pre></li>' '</ul></li>' '</ul></li>' '</ul></li>' '<li>Foo</li>' '</ul>'
+ expected,←'<pre tabindex="0"><code> {+⌿⍺,⍵}</code></pre></li>' '</ul></li>' '</ul></li>' '</ul></li>' '<li>Foo</li>' '</ul>'
  →T.PassesIf expected≡ns.html
 
  R←T._OK

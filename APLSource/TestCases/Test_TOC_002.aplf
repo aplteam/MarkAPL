@@ -14,9 +14,9 @@
  ns←MarkAPL.Process ns
 
  →T.FailsIf 0=⍴'<nav.*>'⎕S 0⍠('Greedy' 0)⊣ns.html
- →T.FailsIf 3≠+/'<ul>'⍷∊ns.html
+ →T.FailsIf 3≠+/'<ul'⍷∊ns.html
  →T.FailsIf 3≠+/'</ul>'⍷∊ns.html
- →T.FailsIf 6≠+/'<li>'⍷∊ns.html
+ →T.FailsIf 6≠+/'<li'⍷∊ns.html
 
  R←T._OK
 ⍝Done

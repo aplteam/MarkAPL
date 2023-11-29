@@ -7,13 +7,13 @@
  md←'This is a para.' '<MyTag>' 'That''s embraced by `<MyTag>`' '</MyTag>' '' 'Another para'
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
- →T.PassesIf(,⊂'<p>This is a para. &lt;MyTag&gt; That''s embraced by <code>&lt;MyTag&gt;</code> &lt;/MyTag&gt;</p>')∊ns.html
+ →T.PassesIf(,⊂'<p>This is a para. <MyTag> That''s embraced by <code>&lt;MyTag&gt;</code> </MyTag></p>')∊ns.html
 
  ⍝ No HTML block: trailing empty line is missing:
  md←'This is a para.' '' '<MyTag>' 'That''s embraced by `<MyTag>`' '</MyTag>' 'Another para'
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
- →T.PassesIf(,⊂'<p>&lt;MyTag&gt; That''s embraced by <code>&lt;MyTag&gt;</code> &lt;/MyTag&gt; Another para</p>')∊ns.html
+ →T.PassesIf∧/'<MyTag>' '<p>That''s embraced by <code>&lt;MyTag&gt;</code> </MyTag> Another para</p>'∊ns.html
  →T.PassesIf(,⊂'<p>This is a para.</p>')∊ns.html
 
  ⍝ No HTML block: no empty lines at all:

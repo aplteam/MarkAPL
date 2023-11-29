@@ -10,8 +10,8 @@
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
 
- expected←'<div class="h_tag">' '<a href="#The--section" id="The--section" class="autoheader_anchor">' '<h1 data-id="The--section">The [Config] section</h1>' '</a>'
- expected,←'</div>' '<p>See <a href="#The--section" class="bookmark_link">The [Config] section</a> for details.</p>'
+ expected←'<div class="h_tag">' '<a href="#the--section" id="the--section" class="autoheader_anchor">' '<h1 data-id="The--section">The [Config] section</h1>' '</a>'
+ expected,←'</div>' '<p>See <a href="#the--section" class="bookmark_link">The [Config] section</a> for details.</p>'
  →T.PassesIf expected≡ns.html~⊂''
 
  R←T._OK

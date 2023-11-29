@@ -22,7 +22,7 @@
  ns←MarkAPL.Init parms md
  ns←MarkAPL.Process ns
 
- →T.PassesIf(⊂'<pre><code id="mylicode">{+/⍳⍴⍵}</code></pre>')∊ns.html
+ →T.PassesIf(⊂'<pre tabindex="0"><code id="mylicode">{+/⍳⍴⍵}</code></pre>')∊ns.html
  →T.PassesIf(⊂'<p id="mylipara">This is a sub-paragraph</p></li>')∊ns.html
 
  R←T._OK

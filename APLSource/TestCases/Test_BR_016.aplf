@@ -3,8 +3,7 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 
- md←''
- md,←⊂'First para`<<br>>`with a line break in between'
+ md←,⊂'Para`<<br>>`with a<<br>>line break in between'
 
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns

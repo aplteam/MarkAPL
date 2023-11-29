@@ -1,0 +1,7 @@
+ ConvertH1AndH2HeadersToH3←{
+ ⍝ This is called within any Aside (LeanPub extension).
+ ⍝ Since screen readers read out any H1 and H2 tags we convert those to h3.
+     html←⍵
+     html←'<h1>' '<h2>'⎕R'<h3>'⊣html
+     '</h1>' '</h2>'⎕R'</h3>'⊣html
+ }

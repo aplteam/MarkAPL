@@ -5,13 +5,14 @@
 [parm]:width             = 1000
 [parm]:reportLinks       = 1
 [parm]:collapsibleTOC    = 1
-[parm]:printCSS          = 'BlackOnWhite_print.css'
-[parm]:screenCSS         = 'BlackOnWhite_screen.css'
+⍝[parm]:printCSS          = 'BlackOnWhite_print.css'
+⍝[parm]:screenCSS         = 'BlackOnWhite_screen.css'
+[parm]:printCSS          = 'MarkAPL_print.css'
+[parm]:screenCSS         = 'MarkAPL_screen.css'
 [parm]:smoothScrolling   = 1
-[parm]:saveHTML          = 0
-[parm]:linkToCSS         = 0
+[parm]:saveHTML          = 1
+[parm]:linkToCSS         = 1
 [parm]:leanpubExtensions = 1
-
 
 
 
@@ -22,74 +23,55 @@ MarkAPL for Programmers
 Overview
 --------
 
-This document is of interest only if you use **_MarkAPL_** within an APL application as an APL programmer.
-
-If you use it implicitly, say by editing a Markdown file with Meddy[^meddy], then the cheat cheet and the **_MarkAPL_** reference document should suffice.
+This document is relevant for APL programmers using MarkAPL within an APL application. If you're using it implicitly, such as editing a Markdown file with Meddy[^meddy], the cheat sheet and MarkAPL reference document should be sufficient.
 
 
 How to
 ------
 
-One way to study how to make use of **_MarkAPL_** is to trace through the method `MarkAPL.Help`. This should clarify the principles.
+One approach to learn about `MarkAPL` is to trace through the method `MarkAPL.Help`.
 
 
 A> ### The MarkAPL project
 A>
-A> Another way is to look at the test cases named `Test_Examples_01` etc. in `#.TestCases` in the workspace MarkAPL.DWS. However, in order to be able to do that you need to take a copy of the [MarkAPL project on GitHub](https://github.com/aplteam/MarkAPL).
+A> Alternatively you can explore the test cases named `Test_Examples_01` etc. To do that you need to take a copy of the [MarkAPL project on GitHub](https://github.com/aplteam/MarkAPL) and open it with the project manage [Cider](https://github.com/aplteam/Cider "Link to Cider on GitHub") which is available as a [Tatin package](https://tatin.dev "Link to the principal Tatin registry").
 A> 
-A> In order to run those test cases you first need to prepare the test suite:
-A>
 A> ```
-A> )CS #.MarkAPL.TestCases
-A> Prepare
-A> ```
-A> Now you can execute them with:
-A> 
-A> ~~~
-A> T.RunThese 'Examples'
-A> ~~~
-A>
-A> You can execute specific ones:
-A>
-A> ~~~
-A> T.RunThese 'Examples' (1 3)
-A> ~~~
-A>
-A> You can trace through them with
-A>
-A> ~~~
+A> ]Cider.OpenProject /path/2/MarkAPL-clone
+A> #.MarkAPL.TestCases.Prepare
 A> 1 T.RunThese 'Examples'
-A> ~~~
+A> ```
 A> 
-A> The left argument makes sure that the test suite stops just before any test case is executed.
+A> The left argument makes sure that the test suite stops just before a particular test case is executed.
+
 
 
 Methods
 -------
 
-<<SubTOC>>
-
-Note that all [helpers](#Helpers) are discussed separately.
+Note that [helpers](#Helpers) are discussed separately.
 
 
 ### `ConvertMarkdownFile`
 
-Takes a filename as right argument. The file is expected to hold Markdown. By default a fully-fledged HTML page is created from that Markdown file with exactly the same filename except that the file extension is `.html` rather than `.md`.
+This method takes a filename as a right argument. It expects the file to contain Markdown content. 
 
-However, instead of accepting the defaults one can create a parameter namespace with:
+By default a fully-fledged HTML page is created from that Markdown file with exactly the same filename except that the file extension is `.html` rather than `.md`.
+
+However, instead of accepting the default parameters one can create a parameter namespace with:
 
 ~~~
 parms←MarkAPL.CreateParms
 ~~~
 
-and then specify different parameters within `parms`. That parameter space `parms` then needs to be passed as left argument to the `ConvertMarkdownFile` method.
+and then amend parameters within `parms`. That parameter space `parms` then needs to be passed as left argument to the `ConvertMarkdownFile` method.
 
 Note that `inputFilename` **must not** be specified, otherwise an error is signalled. This is because the input file is already defined by the right argument.
 
 
 ### `CreateParms`
 
-Niladic function that returns a namespace populated with parameters carrying their default values. 
+This niladic function returns a namespace populated with parameters and their default values. 
 
 `CreateParms` tries to find for every parameter a value from the command line or environment variables. If it cannot find them it will establish a default value.
 
@@ -100,7 +82,7 @@ Note that a value of `¯1` means that there is not really a default available bu
 
 ### `CreateHelpParms`
 
-Niladic function that returns a namespace populated with parameters carrying their default values. Internally it calls `CreateParms` and then adds some parameters that are needed by the [`Help`](#) and [`Reference`](#ref_method) methods.
+This niladic function returns a namespace with parameters with default values. Internally it calls `CreateParms` and then adds some parameters that are needed by the [`Help`](#) and [`Reference`](#ref_method) methods.
   
     
 ### `Execute`
@@ -111,9 +93,10 @@ This function is used exclusively by test cases.
 ### `Help`
 
 The function takes a Boolean right argument: 
-* A 0 just views "MarkAPL_CheatSheet.html" with your default browser.
-* A 1 forces `Help` to recompile the file "MarkAPL_CheatSheet.md" into 
-  "MarkAPL_CheatSheet.html" and then puts it on display with your default browser.
+
+* 0 displays "MarkAPL_CheatSheet.html" with your default browser
+* 1 forces `Help` to recompile the file "MarkAPL_CheatSheet.md" into 
+  "MarkAPL_CheatSheet.html" and displays it with your default browser
 
 You might specify an optional left argument: a parameter space, typically created by calling the `CreateHelpParms` method. This allows creating a document with non-default parameters. Of course this has only an effect when the right argument is a 1. 
 
@@ -121,7 +104,7 @@ Note that the file "MarkAPL_CheatSheet.html" carries several embedded parameters
 
 In order to enable `Help` to find the file "Markdown_CheatSheet.html" (in case the defaults don't work) you must create a parameter space and then set `homeFolder` accordingly.
 
-If you specify a 1 as right argument but `Help` can only find the HTML file but not the markdown file it will ignore the right argument and just put the file on display with your default browser.
+If you specify a 1 as right argument but `Help` can only find the HTML file but not the Markdown file it will ignore the right argument and just put the file on display with your default browser.
  
             
 ### `Init`
@@ -140,7 +123,7 @@ Therefore at the end of converting the full document the warnings are investigat
              
 ### `MakeHTML_Doc`
 
-Takes HTML, typically created by calling `Process`, and makes it a fully fledged HTML document by adding <body>, <head> --- with <title> --- and <html> with the DocType.
+Takes HTML, typically created by calling `Process`, and makes it a fully fledged HTML document by adding `<body>`, `<head>` --- with `<title>` --- and `<html>` with the DocType.
  
     
 ### `MarkDown2HTML`
@@ -181,11 +164,11 @@ embedded parameters --- those cannot be overridden by a parameter namespace unle
 
 In order to enable `Reference` to find the file "MarkAPL.html" (in case the defaults don't work) you must create a parameter space and then set `homeFolder`.
 
-If you specify a 1 as right argument but `Reference` can only find the HTML file but not the markdown file it will ignore the right argument and just put the file on display with your default browser.
+If you specify a 1 as right argument but `Reference` can only find the HTML file but not the Markdown file it will ignore the right argument and just put the file on display with your default browser.
  
 ### `Version`
 
-Returns the name, the version number --- including the built-ID --- and the version date of **_MarkAPL_**.
+Returns the name, the version number --- including the built-ID --- and the version date of `MarkAPL`.
 
 
 Parameters
@@ -238,7 +221,7 @@ The function `∆List` lists all the variables in the parameter space with their
 
 After making amendments the parameter space can be passed as the first argument to the `MarkAPL.Init` function. See [How-to](#) for details. 
 
-The parameters themselves are discussed in the **_MarkAPL_** reference.
+The parameters themselves are discussed in the `MarkAPL` reference.
 
 
 Function calls
@@ -313,7 +296,7 @@ The `ns` namespace is returned (created) by the `Init` method and modified by th
 
 Before `Process` is run the variables `emptyLines`, `leadingChars`, `markdown`, `markdownLC `and `withoutBlanks` hold data that is extracted from the Markdown. 
 
-`Process` then splits the markdown into appropriate blocks, and processes them one after the other, and removes from these variables. 
+`Process` then splits the Markdown into appropriate blocks, and processes them one after the other, and removes from these variables. 
 
 At the same time the variable `parms.html` is collecting the resulting html. Other variables (`abbreviations`, `data`, `footnoteDefs`, `headers`, `linkRefs`, `parms`, `subToc` and `toc`) may or may not collect data in the process as well.
 
@@ -327,17 +310,17 @@ The two variables `report` and `lineNumber` are special, see there.
 The namespace contains the following variables:
 
 
-#### abbreviations
+#### `abbreviations`
 
 A (possibly empty) vector of two-item-vectors. The first item holds the abbreviation, the second item the explanation or comment. 
   
        
-#### emptyLines
+#### `emptyLines`
 
 A vector of Booleans indicating which lines in `markdown` are empty. Lines consisting of white-space characters only are considered empty.
 
 
-#### embeddedParms
+#### `embeddedParms`
 
 A matrix with two columns and as many rows as there are embedded parameters.
 
@@ -356,7 +339,7 @@ This document for example carries these embedded parameters:
 ~~~
 
 
-#### footnoteDefs
+#### `footnoteDefs`
 
 A matrix that carries all footnote definitions found in `markdown`. The matrix has these columns:
 
@@ -365,12 +348,12 @@ A matrix that carries all footnote definitions found in `markdown`. The matrix h
 1. Caption.
 
 
-#### headerLineNos
+#### `headerLineNos`
 
 An integer vector that carries the line numbers of `headers`.
 
 
-#### headers
+#### `headers`
 
 A matrix that carries all headers defined in `markdown`.
 
@@ -384,28 +367,28 @@ The matrix has three or four columns:
 Naturally the last column does not exist in case `numberHeaders` is 0.
  
       
-#### html
+#### `html`
 
 After having created the `ns` namespace by calling `Init` this variable is empty. By running the `Process` method this variable will be filled up.
 
 
-#### leadingChars
+#### `leadingChars`
 
 After having created the `ns` namespace by calling `Init` this variable contains a limited number of characters from `markdown`. Leading white-space is removed. This increases performance for many of the checks to be carried out by `Process`.  
 
 
-#### lineNumbers
+#### `lineNumbers`
 
-After having created the `ns` namespace by calling `Init` this variable contains a vector of integers representing line numbers in `markdown`. This allows the current line number to be reported in case there is a problem like odd number of double quotes, invalid internal links etc. Note that function calls (See "Embedded APL function calls" in the **_MarkAPL_** reference) can access the line numbers as well.
+After having created the `ns` namespace by calling `Init` this variable contains a vector of integers representing line numbers in `markdown`. This allows the current line number to be reported in case there is a problem like odd number of double quotes, invalid internal links etc. Note that function calls (See "Embedded APL function calls" in the `MarkAPL` reference) can access the line numbers as well.
 
 Note that line numbers refer to the MarkDown rather than the HTML.  
 
-See also the parameter `lineNumberOffset` in the **_MarkAPL_** reference.
+See also the parameter `lineNumberOffset` in the `MarkAPL` reference.
   
 
-#### linkRefs
+#### `linkRefs`
 
-A vector of vectors holding information regarding all link references (see the **_MarkAPL_** reference for details regarding link references):
+A vector of vectors holding information regarding all link references (see the `MarkAPL` reference for details regarding link references):
 
 1. id
 1. url
@@ -413,34 +396,34 @@ A vector of vectors holding information regarding all link references (see the *
 1. special attributes or empty
 
 
-#### markdown
+#### `markdown`
 
 This variable holds the Markdown to be processed by `Process`.
   
    
-#### markdownLC
+#### `markdownLC`
 
 Same as `markdown` but all in lower case. That speeds things up at the expense of memory.
   
  
-#### noOf
+#### `noOf`
 
 The number of lines processed in the next (or current) step.
   
      
-#### parms
+#### `parms`
 
 The parameters that were passed to `Init`.
   
       
-#### report
+#### `report`
 
 After having created the `ns` namespace by calling `CreateParms` this variable is empty. Both the `Init` and the `Process` method might add remarks to this variable in case it finds something to complain about or comment on. However, you are advised to ignore warnings after having executed just `Init`. 
 
 Some methods print what they assign to `report` also to the session in case the parameter `verbose` is 1.
 
 
-#### subToc
+#### `subToc`
 
 This is a vector of two-item vectors:
 
@@ -448,7 +431,7 @@ This is a vector of two-item vectors:
 2. The caption of the header as displayed.
 
 
-#### toc{#ns_toc}
+#### `toc`{#ns_toc}
 
 This is a vector of ~~four~~ three-item vectors:
 
@@ -459,7 +442,7 @@ This is a vector of ~~four~~ three-item vectors:
 Note that prior to version 2.8 there was a forth column (4. The type of the header: 1 = SeText, 2 = ATX.) which was removed then.
   
      
-#### withoutBlanks
+#### `withoutBlanks`
 
 Same as `markdown` but without any blanks. This speeds things up at the expense of memory.
 
@@ -472,7 +455,7 @@ This chapter comprises all methods that help converting APL arrays into Markdown
 <<SubTOC>>
 
 
-### Matrix2MarkdownList
+### `Matrix2MarkdownList`
 
 This helper method takes an APL matrix and converts it to a list definition in Markdown.
 
@@ -510,7 +493,7 @@ leads to this list:
   2. Level 2 c num 
 
 
-### Matrix2MarkdownTable
+### `Matrix2MarkdownTable`
 
 This helper method takes an APL matrix and converts it to a table definition in Markdown.
 
@@ -574,13 +557,13 @@ Please report any bugs to <mailto:kai@aplteam.com>. I appreciate:
 * Any non-default settings of parameters
 * A short description of the problem (not as short as "It did not work!")
 
-  This is particularly important because I have received a number of bug reports where **_MarkAPL_** did _exactly_ what it was supposed to do, so without knowing what the user expected I cannot explain why it did not fulfil the user's expectations, because it _did_ work! 
+  This is particularly important because I have received a number of bug reports where `MarkAPL` did _exactly_ what it was supposed to do, so without knowing what the user expected I cannot explain why it did not fulfil the user's expectations, because it _did_ work! 
 
   One gentleman even insisted that there was nothing to explain because it was a no-brainer. Well, it wasn't.
   
   So please tell me what you expect to see.
   
-* The version number of **_MarkAPL_**.
+* The version number of `MarkAPL`.
 
 
 ### Unexpected results
@@ -589,18 +572,24 @@ Before reporting a bug please check carefully your Markdown. More often than not
 
 If you cannot work out why it goes wrong report it to me -- see the previous topic for how to report a problem.
 
-This document refers to version 11.0 of **_MarkAPL_**.
+This document refers to version 12.0 of `MarkAPL`.
 
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2021-10-12
+Kai Jaeger ⋄ 2023-08-29
 
-[^meddy]: The Markdown editor Meddy on GitHub:<<br>><https://github.com/aplteam/Meddy>
-[^abandon]: Wikipedia definition of abandonware:<<br>><https://www.wikiwand.com/en/Abandonware>
-[^commonmark]: The CommonMark specification:<<br>><http://spec.commonmark.org/> 
+[^meddy]: The Markdown editor Meddy on GitHub:<br><https://github.com/aplteam/Meddy>
+[^abandon]: Wikipedia definition of abandonware:<br><https://www.wikiwand.com/en/Abandonware>
+[^commonmark]: The CommonMark specification:<br><http://spec.commonmark.org/> 
 
-*[Abbreviations]: Text is marked up with the <abbr> tag
+*[Abbreviations]: Text is marked up with the `<abbr>` tag
 
 [cheatsheet]: http://download.aplteam.com/MarkAPL_CheatSheet.htm "The MarkAPL cheatsheet"{target="_blank"}
 [commonmark_on_html_blocks]: http://spec.commonmark.org/0.24/#html-blocks "Common mark on HTML blocks"{target="_blank"}
 [git]: https://help.github.com/articles/working-with-advanced-formatting/ "GIT's formatting rules"{target="_blank"}
 [markdown_extra]: https://www.wikiwand.com/en/Markdown_Extra{target="_blank"}
 [pandoc]: http://pandoc.org/README.html{target="_blank"}
+
+
+
+
+
+

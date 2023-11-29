@@ -16,11 +16,11 @@
  ns←MarkAPL.Process ns
 
  toc←'<nav.*>.*</nav>'⎕R'&'⍠('Greedy' 0)('DotAll' 1)('Mode' 'M')⊣ns.html
- →T.PassesIf 1=+/∊'<ul>'∘⍷¨toc
+ →T.PassesIf 1=+/∊'<ul'∘⍷¨toc
  →T.PassesIf 1=+/∊'</ul>'∘⍷¨toc
- tags←{⍵↑⍨¯1+⍵⍳'>'}¨toc
- expected←'<nav id="main_nav_no_collapse"' '<ul' '<li' '</ul' '</nav'
+ tags←{⍵↑⍨¯1+⌊/⍵⍳'> '}¨toc
+ expected←'<nav' '<ul' '<li' '</ul' '</nav'
  →T.PassesIf∧/expected∊tags
- →T.PassesIf 1=+/'<li><a href="#Main">Main <code>{+/⍵}<'⍷∊ns.html
+ →T.PassesIf 1=+/'<li class="toc-entry toc-h1"><a href="#main">Main <code>{+/⍵}</code></a>'⍷∊ns.html
 
  R←T._OK

@@ -1,4 +1,4 @@
- R←Test_SpecAttrs_Link_004(stopFlag batchFlag);⎕TRAP;ns;md;fn
+ R←Test_SpecAttrs_Link_004(stopFlag batchFlag);⎕TRAP;ns;md;fn;expected
 ⍝ Bookmark link: assign target=_blank
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
@@ -16,7 +16,9 @@
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
 
- →T.PassesIf 1=+/'<a href="#Level-1-header" target="_blank" class="bookmark_link">'⍷∊ns.html
- →T.PassesIf 1=+/'<a href="#Level-2-header" target="_blank" class="bookmark_link">'⍷∊ns.html
+ expected←'<a href="#level-1-header" target="_blank" class="bookmark_link">'
+ →T.PassesIf 1=+/expected⍷∊ns.html
+ expected←'<a href="#level-2-header" target="_blank" class="bookmark_link">'
+ →T.PassesIf 1=+/expected⍷∊ns.html
 
  R←T._OK

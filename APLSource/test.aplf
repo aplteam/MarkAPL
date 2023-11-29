@@ -1,0 +1,25 @@
+ test;M;parms;ns
+ M←MarkAPL
+
+ parms←M.CreateParms
+⍝ parms.inputFilename←'C:\T\Projects\APLTree\MarkAPL\Files\MarkAPL.md'
+ parms.inputFilename←'C:\T\Projects\APLTree\MarkAPL\Files\MarkAPL_CheatSheet.md'
+⍝ parms.cssURL←'C:\T\Projects\APLTree\MarkAPL\Files\'
+ :If 1
+     parms.screenCSS←'C:\T\Projects\APLTree\MarkAPL\Files\BlackOnWhite_screen.css'
+     parms.printCSS←'C:\T\Projects\APLTree\MarkAPL\Files\BlackOnWhite_print.css'
+ :EndIf
+ :If 0
+     parms.screenCSS←'C:\T\Projects\APLTree\MarkAPL\Files\MarkAPL_screen.css'
+     parms.printCSS←'C:\T\Projects\APLTree\MarkAPL\Files\MarkAPL_print.css'
+ :EndIf
+ parms.cssURL←''
+ parms.linkToCSS←1
+ parms.copy2ClipboardBtn←0
+
+ ns←M.Init parms''
+ ns←M.Process ns
+
+ parms v ns.html
+
+⍝Done

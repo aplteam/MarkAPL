@@ -17,9 +17,8 @@
  ns←MarkAPL.Init parms md
  ns←MarkAPL.Process ns
 
- expected←'<p>===================</p>' '<p>A para.</p>' '<div class="h_tag">' '<a href="#section" id="section" class="autoheader_anchor">' '<h2 data-id="section"></h2>' '</a>' '</div>' '<p>Another para.</p>'
+ expected←'<p>===================</p>' '<p>A para.</p>' '<p>##</p>' '<p>Another para.</p>'
  →T.PassesIf expected≡ns.html
- →T.PassesIf 1 1≡≢¨ns.(toc headerLineNos)
- →T.PassesIf(,5)≡,∆GetLineNumber¨ns.report
+ →T.PassesIf 0 0≡≢¨ns.(toc headerLineNos)
 
  R←T._OK

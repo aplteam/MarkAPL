@@ -16,24 +16,31 @@ LeanPub Extensions
 Overview
 --------
 
-LeanPub[^leanPub] is a publishing platform for books, especially for technical books.
+LeanPub[^leanPub] serves as a publishing platform primarily designed for technical books.
 
-The input format for LeanPub is markdown. Now markdown does not have the features that are needed to publish books, therefore they came up with some extensions:
+The input format for LeanPub is Markdown. However, Markdown lacks certain features necessary for book publishing. As a solution, LeanPub introduced extensions to Markdown:
 
-1. You can highlight lines in code blocks so that they stand out.
+Code Highlighting
 
-2. You can insert an aside or text box, often used to discuss issues that are slightly off topic, or to add more complex information for advanced readers etc.
+: You can emphasize lines within code blocks.
 
-3. Several flavours of messages combined with an icon and separated from the main text by some white space. We refer to this as "specialties".
+Asides or Text Boxes
 
-Since version 3.6 MarkAPL understands the LeanPub extensions and marks up the markdown accordingly. Both style sheets coming with MarkAPL have proper mark-up added.
+: Used to discuss tangential topics or provide advanced information.
 
-We are going to discuss all extensions in detail.
+Specialties
+
+: Distinct message types combined with icons for various purposes.
+
+Starting from version 3.6, MarkAPL has incorporated support for LeanPub extensions, enhancing Markdown with proper markup in both MarkAPL style sheets.
+
+Let's explore these extensions in detail.
+
 
 1. Highlighting Code
 -----------------
 
-Code can be highlighted by injecting `leanpub-start-insert` and `leanpub-end-insert` as shown here:
+Code highlighting involves using leanpub-start-insert and leanpub-end-insert tags as illustrated here:
 
 ~~~
 life←{↑1 ⍵∨.∧3 4=+/,¯1 0 1∘.⊖¯1 0 1∘.⌽⊂⍵)
@@ -43,9 +50,9 @@ primeNumbers←{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}100
 dropLeadingBlanks←{(∨\' '≠⍵)/⍵}
 ~~~
 
-Note that in the code block above the `leanpub-*-insert` strings both show and have no effect, meaning that they have not been processed. This is because there is an escape character (`\`) in front of them in the document itself.
+Note that the leanpub-*-insert strings in the code block above are visible but have no effect due to an escape character (\) before them in the document itself. 
 
-Without the escape character this would have been the result:
+Without the escape character, the result would be:
 
 ~~~
 life←{↑1 ⍵∨.∧3 4=+/,¯1 0 1∘.⊖¯1 0 1∘.⌽⊂⍵)
@@ -59,19 +66,20 @@ dropLeadingBlanks←{(∨\' '≠⍵)/⍵}
 2. Asides or Text Boxes
 -----------------------
 
-Note that in the markdown asides need to be surrounded by empty lines, otherwise they won't be recognized.
-
-This is a very simple example for an aside or text box:
+Asides require empty lines around them in Markdown to be recognized. A simple example:
 
 ~~~
-A> Asides offer additional information.
-~~~
-
-This shows as:
 
 A> Asides offer additional information.
 
-However, inside an aside you can have everything Markdown offers: headers, code block, lists, whatever.
+
+~~~
+
+This appears as:
+
+A> Asides offer additional information.
+
+Inside an aside, Markdown features like headers, code blocks, and lists are available:
 
 ~~~
 A> ### This offers information about asides
@@ -113,7 +121,7 @@ A> In-line mark-up is available, too: **bold**, _italic_, `code`, whatever.
 
 Notes:
 
-* In case you specify a level-1 (<h1>) or a level-2 (<h2>) header in an Aside it will be converted to a level-3 header (<h3>) anyway. The reason is that many screenreaders read out all <h1> and all <h2> tags. Therefore the W3C recommends to not use headers of the levels 1 and 2 except they really are such headers.
+* In case you specify a level-1 (`<h1>`) or a level-2 (`<h2>`) header in an Aside it will be converted to a level-3 header (`<h3>`) anyway. The reason is that many screenreaders read out all `<h1>` and all `<h2>` tags. Therefore the W3C recommends to not use headers of the levels 1 and 2 except they really are such headers.
 
 * Headers defined in an Aside do not make it into the table-of-contents, and therefore they don't show in Meddy's tree view --- representing the TOC --- either.
 
@@ -121,24 +129,21 @@ Notes:
 3. Specialties
 --------------
 
-Note that in the markdown all specialties need to be embraced by empty lines, otherwise they won't be recognized.
+Specialties are embraced by empty lines in Markdown. LeanPub offers special markup for various purposes:
 
-LeanPub offers special mark-up for several purposes:
-
-* Providing information
+* Information
 * Discussions
 * Exercises
 * Errors
 * Warnings
 * Questions
 
-We will discuss them in this order.
+Detailed examples of each specialty are provided in the text.
 
 A word of warning: making use of the specialties prevents any HTML document created by MarkAPL from being truly stand-alone; the icons have to come from somewhere. However, by default they are referred to as a URL pointing to a web address (see MarkAPL's `leanpubIconsUrl` parameter), so when you have an Internet connection it will work fine.
 
-If you like the general idea but not the icons used you can specify a different location and put your favourite icons there. However, you can **not** change the names of the LeanPub extension icons.
+If you like the general idea but not the actual icons you can specify a different location and put your favourite icons there. However, you can **not** change the names of the LeanPub extension icons.
 
-Note that in case you specify a level-1 (<h1>) or a level-2 (<h2>) header in a specialty it will be converted to a level-3 header (<h3>) anyway. The reason is that many screenreaders read out all <h1> and all <h2> tags. Therefore the W3C recommends to not use headers of the levels 1 and 2 except they really are such headers.
 
 ### Information
 
@@ -181,7 +186,13 @@ I> They can have headers and multiple paragraphs, but they can also have all the
 
 ### Discussions
 
-Simple example:
+This:
+
+```
+D> Reserve time for discussions
+```
+
+results in:
 
 D> Reserve time for discussions
 
@@ -193,7 +204,13 @@ D> * Start early
 
 ### Exercise
 
-Simple Example:
+This:
+
+```
+X> Today's exercise
+```
+
+results in:
 
 X> Today's exercise
 
@@ -210,7 +227,13 @@ X> ~~~
 
 ### Errors
 
-Simple example:
+This:
+
+```
+E> Errors exists only to be made. Off we go!
+```
+
+results in:
 
 E> Errors exists only to be made. Off we go!
 
@@ -222,7 +245,13 @@ E>  There is so much more to say regarding errors...
 
 ### Warning
 
-Simple example:
+This:
+
+```
+W> Warnings: don't use the LeanPub extension too often.
+```
+
+results in:
 
 W> Warnings: don't use the LeanPub extension too often.
 
@@ -233,7 +262,13 @@ W> Using the LeanPub extensions heavily it unlikely to be a good idea.
 
 ### Questions
 
-Simple example:
+This:
+
+```
+Q> Any questions?!
+```
+
+results in:
 
 Q> Any questions?!
 
@@ -243,19 +278,21 @@ Q> # Question can be asked.
 Q> However, time is a scarce resource, so don't waste it on asking questions that will advertise you as a moron!
 
 
-## Behind the scenes
+Behind the scenes
+-----------------
 
-All Leanpub extensions are converted into HTML independently from processing the main document. The resulting HTML then replaces the markdown defining them as a one-line HTML block. If necessary additional empty lines are inserted in order to keep the rows in line with the original ones. 
+All Leanpub extensions are converted into HTML independently from processing the main document. The HTML then replaces the Markdown as a one-line HTML block. If necessary additional empty lines are inserted in order to keep the rows in line with the original ones. 
 
-Because HTML blocks are left alone when the actual markdown is processed that works pretty well. There is one downside however: since empty lines define the end of an HTML block any empty lines within a LeanPub extension are converted into `&nbsp;` which in HTML speak is a non-breakable space.
+Because HTML blocks are left alone when the actual Markdown is processed that works pretty well. There is one downside however: since empty lines define the end of an HTML block, any empty lines within a LeanPub extension are converted into `&nbsp;` which in HTML speak is a non-breakable space.
 
-As a side effect of this technique multi-line code blocks loose their newline characters because the HTML is converted into a single line. For that reason `<br>` tags are inserted to preserve those newlines.
+As a side effect, multi-line code blocks loose their newline characters because the HTML is converted into a single line. For that reason `<br>` tags are inserted to preserve those newlines.
 
-This document refers to version 11.0 of **_MarkAPL_**.
+This document refers to version 12.0 of **_MarkAPL_**.
 
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2020-10-31
+Kai Jaeger ⋄ 2020-10-31
 
-Last Update: 2021-04-14
+Last Update: 2023-08-29
 
 
 [^leanPub]: <http://LeanPub.com>
+

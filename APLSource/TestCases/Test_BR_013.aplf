@@ -4,14 +4,14 @@
  R←T._Failed
 
  md←''
- md,←'This is a para  ' 'withOUT a `<br/>` tag within it.'
+ md,←'This is a para  ' 'withOUT a `<br>` tag within it. `More <br> and a <<br>>`!'
  md,←⊂'* A list item '
- md,←'* Another list item withOUT  ' 'a `<br/>` tag in it.'
+ md,←'* Another list item withOUT  ' 'a `<br>` tag in it.'
  md,←⊂''
 
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
 
- →T.PassesIf 0=+/'<br/>'⍷∊ns.html
+ →T.PassesIf 0=+/'<br>'⍷∊ns.html  ⍝ Two in the in-line code, but with <>& converted, therefore 0
 
  R←T._OK

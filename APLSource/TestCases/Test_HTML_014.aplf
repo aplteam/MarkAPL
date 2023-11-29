@@ -5,16 +5,16 @@
 
  md←''
  md,←⊂''
- md,←⊂'<p>HTML block 1</p>'                     ⍝ No leading blank
+ md,←⊂'<p>HTML **block** 1</p>'                     ⍝ No leading blank
  md,←⊂''
  md,←⊂''
- md,←⊂' <p>This is para</p>'                   ⍝ One leading blank - not an HTML block!
+ md,←⊂' <p>This **is** para</p>'                   ⍝ One leading blank - not an HTML block!
  md,←⊂''
 
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
 
- expected←'<p>HTML block 1</p>' '<p>&lt;p&gt;This is para&lt;/p&gt;</p>'
+ expected←'<p>HTML **block** 1</p>' '<p>' '<p>This <strong>is</strong> para</p></p>'
  →T.PassesIf expected≡ns.html~⊂''
 
  R←T._OK

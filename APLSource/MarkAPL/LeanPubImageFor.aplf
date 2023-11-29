@@ -1,0 +1,7 @@
+ LeanPubImageFor←{
+     icons←'error.png' 'discussion.png' 'information.png' 'warning.png' 'question.png' 'tip.png' 'exercise.png'
+     extension←'ediwqtx'
+     icon←(extension⍳⎕C ⍵)⊃icons
+     parms←⍺
+     parms.leanpubIconsUrl,icon
+ }

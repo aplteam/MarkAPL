@@ -10,6 +10,6 @@
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
 
- →T.PassesIf(,⊂'<pre><code> &lt;&lt;br&gt;&gt;</code></pre>')≡ns.html
+ →T.PassesIf(,⊂'<pre tabindex="0"><code> &lt;&lt;br&gt;&gt;</code></pre>')≡ns.html
 
  R←T._OK

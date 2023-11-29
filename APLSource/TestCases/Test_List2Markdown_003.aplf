@@ -14,7 +14,7 @@
  ns←MarkAPL.Process ns
 
  expected←'<ul>' '<li>Level 1 a bull' '<ol start="1">' '<li>Level 2 a num</li>' '<li>Level 2 a num'
- expected,←'<p>Another para</p>' '<pre><code>{+⌿⍵}</code></pre></li>' '<li>Level 2 a num</li>'
+ expected,←'<p>Another para</p>' '<pre tabindex="0"><code>{+⌿⍵}</code></pre></li>' '<li>Level 2 a num</li>'
  expected,←'</ol></li>' '</ul>'
  →T.PassesIf expected≡ns.html
 

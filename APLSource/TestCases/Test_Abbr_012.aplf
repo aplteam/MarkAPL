@@ -6,7 +6,7 @@
  md←''
  md,←⊂'# Abbreviations'
  md,←⊂''
- md,←⊂'Abbreviations can be useful!'
+ md,←⊂'Abbreviations can be useful & helpful!'
  md,←⊂''
  md,←⊂'*[Abbreviations]: Text is marked up with the <abbr> tag'
  md,←⊂''
@@ -20,14 +20,14 @@
 
  expected←''
  expected,←⊂'<div class="h_tag">'
- expected,←⊂'<a href="#Abbreviations" id="Abbreviations" class="autoheader_anchor">'
+ expected,←⊂'<a href="#abbreviations" id="abbreviations" class="autoheader_anchor">'
  expected,←⊂'<h1 data-id="Abbreviations">Abbreviations</h1>'
  expected,←⊂'</a>'
  expected,←⊂'</div>'
- expected,←⊂'<p><abbr title="Text is marked up with the &lt;abbr&gt; tag">Abbreviations</abbr> can be useful!</p>'
- expected,←⊂'<p>Link to <a href="#Abbreviations" class="bookmark_link">Abbreviations</a>.</p>'
+ expected,←⊂'<p><abbr title="Text is marked up with the &lt;abbr&gt; tag">Abbreviations</abbr> can be useful &amp; helpful!</p>'
+ expected,←⊂'<p>Link to <a href="#abbreviations" class="bookmark_link">Abbreviations</a>.</p>'
 
  →T.PassesIf expected≡ns.html
- →T.PassesIf 0∊⍴ns.report
+ →T.PassesIf 0=≢ns.report
 
  R←T._OK

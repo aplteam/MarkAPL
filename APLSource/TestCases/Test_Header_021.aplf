@@ -12,9 +12,10 @@
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
 
- expected←'<div class="h_tag">' '<a href="#Main" id="Main" class="autoheader_anchor">' '<h1 data-id="Main">Main</h1>' '</a>' '</div>'
- expected,←'<p>A para.</p>' '<div class="h_tag">' '<a href="#section" id="section" class="autoheader_anchor">' '<h2 data-id="section"></h2>' '</a>' '</div>'
+ expected←⊂'<div class="h_tag">'
+ expected,←⊂'<a href="#main" id="main" class="autoheader_anchor">'
+ expected,←⊂'<h1 data-id="Main">Main</h1>'
+ expected,←'</a>' '</div>' '<p>A para.</p>' '<p>##</p>'
  →T.PassesIf expected≡ns.html
- →T.PassesIf 4={⊃⊃(//)⎕VFI(⊃'line \d*:'⎕S GetHit⊣⍵)~'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz:'}¨ns.report
 
  R←T._OK

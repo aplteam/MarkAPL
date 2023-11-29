@@ -1,7 +1,6 @@
 [parm]:toc            = 2 3
 [parm]:numberHeaders  = 2 3 4 5 6
 [parm]:bookmarkLink   = 6
-[parm]:collapsibleTOC = 1
 [parm]:title          = 'MarkAPL CheatSheet'
 [parm]:width          = 1000
 [parm]:printCSS       = 'BlackOnWhite_print.css'
@@ -13,7 +12,7 @@
 MarkAPL Cheatsheet
 ==================
 
-This document comes with examples for most of the features offered by **_MarkAPL_**. The documentation is however **not** comprehensive: it provides just enough information to get you going.  
+This document comes with examples for most of the features offered by `MarkAPL`. The documentation is however **not** comprehensive: it provides just enough information to get you going.  
 
 For a comprehensive documentation refer to <http://download.aplteam.com/MarkAPL.html> or, if you use MarkAPL within an APL workspace, call the function `MarkAPL.Reference 0`.
 
@@ -31,6 +30,9 @@ These are the standard ways to mark-up headers:
 ##### Level 5
 ###### Level 6
 ~~~
+
+<pre><code>This is the first code block. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+</code></pre>
 
 Note that headers may contain only text and code but nothing else.
 
@@ -139,14 +141,14 @@ Note that indentation defines what belongs to what.
 * This
 * That
   
-  A para belonging to <That>
+  A para belonging to `<That>`
 
   10. Ten
   1.  Eleven
   
-      A para belonging to <Eleven>
+      A para belonging to `<Eleven>`
   
-  Another para belonging to <That>
+  Another para belonging to `<That>`
 
 * More
 ~~~
@@ -156,14 +158,14 @@ Result:
 * This
 * That
   
-  A para belonging to <That>
+  A para belonging to `<That>`
 
   10. Ten
   1.  Eleven
   
-      A para belonging to <Eleven>
+      A para belonging to `<Eleven>`
   
-  Another para belonging to <That>
+  Another para belonging to `<That>`
 
 * More
 
@@ -216,13 +218,15 @@ You can mention the programming language after the opening fence as shown here:
 ~~~
 ```
 
+This might be used for syntax highlighting.
+
 ### Info string and special attributes
 A code block may have an info string or special attributes or both; see the full MarkAPL reference for details.
 
 
 ### "Git" style fencing
 
-This requires 3 ticks:
+This requires 3 backticks:
 
 ~~~
 ```
@@ -231,6 +235,62 @@ This requires 3 ticks:
 ~~~
 
 The result is the same as before.
+
+
+## Check boxes
+
+You may add check boxes with either `[ ] ` (the space between the two brackets is required to make it an un-ticked check box) or `[x] ` or `[X] `. A line must start with either of them but might also have up to three leading spaces.
+
+```
+[X] APL
+[ ] Cobol
+ [ ] Rust
+   [ ] Go
+```
+
+leads to this:
+
+
+[X] APL
+[ ] Cobol   
+[ ] Rust 
+   [ ] Go
+    
+
+## Collapsiples and accordions
+
+A collapsible must start with a single line marked up with `!> ` and at least one line marked up with `=> `, but may have more such lines:
+
+```
+!> What is the most productive programming language?
+=> APL!
+```
+
+This leads to:
+
+!> What is the most productive programming language?
+=> APL!
+
+
+### Accordions 
+
+Accordions are just two or more collapsibles in succession. Those are styled differently, making them appear as a single object.
+
+For example, this:
+
+```
+!> What can go into a Collapsible?
+=> For a start, ordinary paragraphs like this one.
+!> What else can go into a Collapsible?
+=> Pretty much everything: lists, citations, headers, code blocks...
+```
+
+leads to this:
+
+!> What can go into a Collapsible?
+=> For a start, ordinary paragraphs like this one.
+!> What else can go into a Collapsible?
+=> Pretty much everything: lists, citations, headers, code blocks...
 
 
 ## Definition list
@@ -269,9 +329,6 @@ The format of the definition:
 Notes:
 
 * The footnote identifiers must be ASCII characters.
-* ~~In case a footnote contains a `:` then `<<br>>` (new line) is inserted after the colon.~~
-
-  This was a particularly bad idea. Removed from MarkAPL with version 6.0.0. Simply inject `<<br>>` if you need/want a line break.
 * You can refer to this footnote with `[^footnote]` in your document.
 
 ## Horizontal lines
@@ -379,19 +436,19 @@ Result:
 
 Pairs of double-quotes (\") are exchanged against their typographically correct equivalents "like here".
 
-Note that Germany, Austria and Switzerland use different characters. **_MarkAPL_** looks at the HTML parameter `lang` in order to decide which to choose. See the **_MarkAPL_** reference for details.
+Note that Germany, Austria and Switzerland use different characters. `MarkAPL` looks at the HTML parameter `lang` in order to decide which to choose. See the `MarkAPL` reference for details.
 
 Note that a double-quote can --- like any other character --- be escaped by a `\` character. However, escaping is an issue more complex than you might think. Please refer to the reference for details.
 
 ### Special HTML characters: <&>
 
 ~~~
-Since Markdown is a writing format it is easy to write about <html> & use tags.
+Since Markdown is a writing format it is easy to write about `<html>` & use tags.
 ~~~
 
 Result:
 
-Since Markdown is a writing format it is easy to write about <html> & use tags.
+Since Markdown is a writing format it is easy to write about `<html>` & use tags.
 
 ### Links
 
@@ -438,7 +495,7 @@ Note that such a link must specify a protocol like "http://", "https://", "ftp:/
 
 #### Internal links
 
-Since **_MarkAPL_** assigns automatically anchors to all headers you can establish a link with
+Since `MarkAPL` assigns automatically anchors to all headers you can establish a link with
 
 ~~~
 [{Link text}]({Caption})
@@ -450,13 +507,13 @@ You can link to such a header in the current document with a simplified syntax i
 Link to the [headers](#) section.
 ~~~
 
-Do not use this **_MarkAPL_**-specific feature if your document will be rendered by other means than **_MarkAPL_**, most notably GitHub and the likes (ReadMe.md!) because that would not work.
+Do not use this `MarkAPL`-specific feature if your document will be rendered by other means than `MarkAPL`, most notably GitHub and the likes (ReadMe.md!) because that would not work.
 
 Link to the [Headers](#) section.
 
-Naturally it is important that every single header has a unique ID in order to make this work. Therefore **_MarkAPL_** converts any header to an ID. **_MarkAPL_** has quite a complex set of rules for how to do this. See [**_MarkAPL_**'s full documentation](http://download.aplteam.com/MarkAPL.html) for details.
+Naturally it is important that every single header has a unique ID in order to make this work. Therefore `MarkAPL` converts any header to an ID. `MarkAPL` has quite a complex set of rules for how to do this. See [`MarkAPL`'s full documentation](http://download.aplteam.com/MarkAPL.html) for details.
 
-If **_MarkAPL_** encounters the same header again then it will add a number to it in order to tell them apart.  It will report this on 
+If `MarkAPL` encounters the same header again then it will add a number to it in order to tell them apart.  It will report this on 
 [`ns.report`](http://download.aplteam.com/MarkAPL.html#report{target="_blank"})
 
 In such cases --- which should be rare, really --- it is a better idea to assign a unique ID via [Special attributes](#). Of course you must then use this ID when linking to that header, so the simplified syntax is not an option in such cases.
@@ -598,9 +655,9 @@ You can inject key/value pairs into a Markdown document with this syntax:
 [data]:dob=19310231
 ~~~
 
-**_MarkAPL_** itself does not take advantage of such data but you can by referring to it via `ns.data`. 
+`MarkAPL` itself does not take advantage of such data but you can by referring to it via `ns.data`. 
 
-For details refer to the [**_MarkAPL_** reference document](http://download.aplteam.com/MarkAPL.html#embedding-parameters-with).
+For details refer to the [`MarkAPL` reference document](http://download.aplteam.com/MarkAPL.html#embedding-parameters-with).
 
 ## Inject parameters
 
@@ -613,16 +670,22 @@ With this syntax you can inject key/value pairs into a Markdown document represe
 
 Such lines must be the first ones in any document.
 
-**_MarkAPL_** will use these parameters to overwrite any defaults or settings via a parameter namespace.
+`MarkAPL` will use these parameters to overwrite any defaults or settings via a parameter namespace.
 
-For details refer to the [**_MarkAPL_** reference document](http://download.aplteam.com/MarkAPL.html#embedding-parameters-with).
+For details refer to the [`MarkAPL` reference document](http://download.aplteam.com/MarkAPL.html#embedding-parameters-with).
 
 ## Version
 
-This document refers to version 11.0 of **_MarkAPL_**.<<br>>
-Kai Jaeger ⋄ APL Team Ltd ⋄ 2021-04-14
+This document refers to version 12.0 of `MarkAPL`.<br>
+Kai Jaeger ⋄ 2023-09-04
 
 ⍝ The link references:
 [1]:      https://aplwiki.com
 [git]:    https://github.com "Linus' brain child"{target="_blank"}
-[vector]: https://sites.google.com/site/baavector/ "The well-respected Journal of the British APL Association"
+[vector]: https://sites.google.com/site/baavector/ "The once well-respected Journal of the British APL Association"
+
+
+
+
+
+

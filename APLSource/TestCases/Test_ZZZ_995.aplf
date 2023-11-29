@@ -5,8 +5,8 @@
 
  md←⊃⎕NGET'Files/MarkAPL_for_Programmers.md'
  buff←'This document refers to version '
- buff,←⊃{⍺,'.',⍵}/2↑'.'##.APLTreeUtils2.Split 2⊃MarkAPL.Version
- buff,←' of **_MarkAPL_**.'
+ buff,←⊃{⍺,'.',⍵}/2↑'.'APLTreeUtils2.Split 2⊃MarkAPL.Version
+ buff,←' of `MarkAPL`.'
  →T.PassesIf 1=+/buff⍷md
 
  R←T._OK

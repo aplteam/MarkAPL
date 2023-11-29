@@ -1,0 +1,6 @@
+ ProcessImageUrl←{
+     base←⍵
+     0=≢base:⍺
+     url←⍺
+     base,(('/'≠¯1↑base)/'/'),url
+ }

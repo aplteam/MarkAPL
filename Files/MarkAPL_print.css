@@ -1,4 +1,4 @@
-/* MarkAPL's default print CSS version 2.4 from 2020-03-23 */
+/* MarkAPL's default print style sheet version 2.5 from 2020-11-29 */
 
 @page {
     margin: 25mm 20mm 25mm 20mm;
@@ -139,12 +139,12 @@ th {
 
 th, td {
     padding: 1pt 5pt;
-    border:1px solid #E3E3E3;
+    border:1pt solid #E3E3E3;
     vertical-align: top;
 }
 
-table td + td { border-left:1px solid gray; }
-table th + th { border-left:1px solid gray; }
+table td + td { border-left:1pt solid gray; }
+table th + th { border-left:1pt solid gray; }
 
 table code {
     font-style: normal;
@@ -181,13 +181,10 @@ blockquote {
 nav {
     background-color: #f8f8f8;
     border: 1pt solid Gray;
-    width: auto;    
-    float: right;
+    width: auto;
     padding: 5pt 5pt 5pt 0;
-    margin: 5pt 0 5pt 5pt;
+    margin: 5pt 0 15pt 5pt;
     page-break-inside: avoid;
-    break-inside: avoid;
-    clear: both;
     overflow : hidden;
 }
 nav * {
@@ -233,9 +230,6 @@ label#hide_toc_label {
     font-size: 65%;
 }
 .toc-container {
-    position: relative;
-    height: auto;
-    margin-top: 2pt;
     background-color: inherit;
 }
 .toc-container h3 {
@@ -257,7 +251,7 @@ label:before {
     font-size: 140%;
     padding-bottom: 10pt;
 }
-a.external_link::before {content: " 🌎";}
+a.external_link::before {content: " 🔗 ";}
 a.bookmark_link::before {content: " ➯";}
 a.mailto_link::before {content:" ✉"}
 nav a.bookmark_link {font-style: normal;}
@@ -288,12 +282,12 @@ div#footnotes_div {page-break-inside: avoid;}
     margin: 0 auto;         /* for Block elements */
 }
 .left {
-    text-align: left;     /* for inline elements */
-    margin-right: 0 auto;   /* for Block elements */
+    text-align: left;       /* for inline elements */
+    margin-right: 0;        /* for Block elements */
 }
 .right {
-    text-align: right;     /* for inline elements */
-    margin-left: 0 auto;   /* for Block elements */
+    text-align: right;      /* for inline elements */
+    margin-left: 0;         /* for Block elements */
 }
 .avoid_page_break {page-break-inside: avoid;}
 .page_break_before {page-break-before: always;}
@@ -371,4 +365,53 @@ sup {
     position: relative;
     vertical-align: baseline;
     top: -0.4em;
+}
+pre[class*="language-"] {
+    position: relative;
+    margin: 5pt 0 ;
+    padding: 1.75rem 0 1.75rem 1rem;
+}
+pre[class*="language-"] button{
+    position: absolute;
+    top: 5pt;
+    right: 5pt;
+}
+div.accordion {
+    border: 1pt solid silver;
+    padding: 0;
+    margin: 0.5em 0;
+}
+div.accordion > div {
+    border: 1pt solid silver;
+    padding: 0.5em;
+    margin: 0 0;
+}
+div.accordion > div p, ul, ol, img, table {
+    margin-block-end: 0.1em;
+}
+summary {
+    display: block;
+}
+
+div.collapsible {
+        border: 1pt solid silver;
+        padding: 0.5em;
+        margin: 0.5em 0;
+}
+div.collapsible p, ul, ol, img, table {
+        margin-block-end: 0.1em;
+}
+ul.checkboxes {
+    list-style: none;
+    margin-left: -2rem;
+    padding-left: 0;
+}
+li {
+    padding-left: 1rem;
+    text-indent: 0;
+}
+ul.checkboxes > li::before {content: "☐ ";}
+ul.checkboxes > li.checked::before {content: "☒ ";}
+pre > button {
+    display: none;
 }

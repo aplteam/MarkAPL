@@ -11,7 +11,7 @@
  md,←⊂'```'
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
- expected←'<pre><code>{+/⍳⍴,w}' '```</code></pre>'
+ expected←'<pre tabindex="0"><code>{+/⍳⍴,w}' '```</code></pre>'
  →T.PassesIf expected≡ns.html
 
  md←''
@@ -20,7 +20,7 @@
  md,←⊂'~~~'
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
- expected←'<pre><code>{+/⍳⍴,w}' '~~~</code></pre>'
+ expected←'<pre tabindex="0"><code>{+/⍳⍴,w}' '~~~</code></pre>'
  →T.PassesIf expected≡ns.html
 
  R←T._OK

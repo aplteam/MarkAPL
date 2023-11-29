@@ -28,8 +28,8 @@
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
 
- expected←'<ul>' '<li>This</li>' '<li>That' '<pre><code>{+⌿⍺,⍵} ⍝ 1.</code></pre>'
- expected,←'<p>Para 1</p>' '<pre><code>{+⌿⍺,⍵} ⍝ 2.</code></pre>'
+ expected←'<ul>' '<li>This</li>' '<li>That' '<pre tabindex="0"><code>{+⌿⍺,⍵} ⍝ 1.</code></pre>'
+ expected,←'<p>Para 1</p>' '<pre tabindex="0"><code>{+⌿⍺,⍵} ⍝ 2.</code></pre>'
  expected,←'<p>Para 2</p>' '<p>Para 3</p></li>'
  expected,←'<li>Foo</li>' '</ul>' '<p>Independent para</p>'
  →T.PassesIf expected≡ns.html

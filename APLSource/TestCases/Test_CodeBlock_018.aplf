@@ -13,7 +13,7 @@
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
 
- expected←'<ul>' '<li>Level 1' '<pre><code>{+/⍵}</code></pre></li>' '</ul>'
+ expected←'<ul>' '<li>Level 1' '<pre tabindex="0"><code>{+/⍵}</code></pre></li>' '</ul>'
  →T.PassesIf expected≡ns.html
 
  R←T._OK

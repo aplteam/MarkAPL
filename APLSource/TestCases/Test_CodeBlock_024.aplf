@@ -11,7 +11,7 @@
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
 
- expected←'<p>A para</p>' '<pre><code>Another para</code></pre>'
+ expected←'<p>A para</p>' '<pre tabindex="0"><code>Another para</code></pre>'
  →T.PassesIf expected≡ns.html
 
  R←T._OK

@@ -4,14 +4,18 @@
  R←T._Failed
 
  md←''
- md,←⊂'This: &frac14 shows the HTML entity text'
+ md,←⊂'4÷1 with an HTML entity: &frac14;'
  md,←⊂''
- md,←⊂'This: \&frac14 shows the glyph `¼`'
+ md,←⊂'"\&frac14;" shows the glyph `¼`'
+ md,←⊂''
+ md,←⊂'HTML entity as inline code: `&frac14;`'
 
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
 
- expected←'<p>This: &amp;frac14 shows the HTML entity text</p>' '<p>This: &frac14 shows the glyph <code>¼</code></p>'
+ expected←⊂'<p>4÷1 with an HTML entity: &frac14;</p>'
+ expected,←⊂'<p>“&amp;frac14;” shows the glyph <code>¼</code></p>'
+ expected,←⊂'<p>HTML entity as inline code: <code>&amp;frac14;</code></p>'
  →T.PassesIf expected≡ns.html
 
  R←T._OK

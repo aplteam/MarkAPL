@@ -10,7 +10,10 @@
  ns←MarkAPL.Process ns
 
  html←ns.html
- expected←'<div class="h_tag">' '<a href="#Main-1--more" id="Main-1--more" class="autoheader_anchor">' '<h1 data-id="Main-1--more">Main 1 <code>{+/⍳⍴⍵}</code> more</h1>' '</a>' '</div>'
+ expected←⊂'<div class="h_tag">'
+ expected,←⊂'<a href="#main-1--more" id="main-1--more" class="autoheader_anchor">'
+ expected,←⊂'<h1 data-id="Main-1--more">Main 1 <code>{+/⍳⍴⍵}</code> more</h1>'
+ expected,←'</a>' '</div>'
  →T.PassesIf expected≡html
 
  R←T._OK

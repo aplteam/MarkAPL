@@ -21,7 +21,7 @@
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
 
- expected←'<p>⍝ Yes 1</p>' '<pre><code>:Namespace MyApp' '⍝ Yes 2' 'A para' '⍝ Yes 3' ':EndNamespace</code></pre>' '<p>⍝ Yes 4</p>'
+ expected←'<p>⍝ Yes 1</p>' '<pre tabindex="0"><code>:Namespace MyApp' '⍝ Yes 2' 'A para' '⍝ Yes 3' ':EndNamespace</code></pre>' '<p>⍝ Yes 4</p>'
  →T.PassesIf expected≡ns.html
 
  R←T._OK

@@ -17,7 +17,7 @@
  ns←MarkAPL.Process ns
 
  expected←'<p>This is a para.</p>' '<ul>' '<li>This</li>' '<li>That'
- expected,←'<pre class="Dyalog"><code>{+⌿⍺,⍵}</code></pre></li>' '<li>More</li>' '</ul>'
+ expected,←'<pre class="Dyalog" tabindex="0"><code>{+⌿⍺,⍵}</code></pre></li>' '<li>More</li>' '</ul>'
  →T.PassesIf expected≡ns.html
 
  R←T._OK

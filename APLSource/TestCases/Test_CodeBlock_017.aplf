@@ -13,7 +13,7 @@
  ns←MarkAPL.Process ns
 
  expected←'<ul>' '<li>Code within a list:'
- expected,←'<pre><code>&lt;&lt;MailTo(askom AT SPAM obninsk SPAM SPAM DOT SPAM com SPAMMMMMM)&gt;&gt;</code></pre></li>' '</ul>'
+ expected,←'<pre tabindex="0"><code>&lt;&lt;MailTo(askom AT SPAM obninsk SPAM SPAM DOT SPAM com SPAMMMMMM)&gt;&gt;</code></pre></li>' '</ul>'
  →T.PassesIf expected≡ns.html
 
  R←T._OK

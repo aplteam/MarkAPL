@@ -1,5 +1,5 @@
  R←Test_Para_012(stopFlag batchFlag);⎕TRAP;md;ns
-⍝ Test a n intended code block that is actually a paragraph. Was once a bug because wrongly interpreted as a table (|)
+⍝ Test an intended code block that is actually a paragraph. Was once a bug because wrongly interpreted as a table (|)
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 

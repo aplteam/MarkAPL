@@ -1,0 +1,10 @@
+ html←type InjectCssFilenamesIntoHtml parms;css;cssFiles;cssFile
+⍝ Inject zero, one or many CSS filenames and embrace them with a <style> tag.
+ 'Invalid CSS media type'⎕SIGNAL 11/⍨0=+/(⊂type)∊'screen' 'print'
+ cssFiles←','A.Split parms.⍎type,'CSS'
+ cssFiles←{0=+/b←'\'=r←⍵~'"':r ⋄ (b/r)←'/' ⋄ r}¨cssFiles
+ html←''
+ :For cssFile :In cssFiles
+     html,←⊂'<link href="',parms.cssURL,cssFile,'" rel="stylesheet" media="',type,'">'
+ :EndFor
+⍝Done

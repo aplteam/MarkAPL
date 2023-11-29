@@ -11,7 +11,7 @@
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
 
- expected←'<p>See <a href="#Header" class="bookmark_link">Header</a> for details.</p>'
+ expected←'<p>See <a href="#header" class="bookmark_link">Header</a> for details.</p>'
  →T.PassesIf 1=+/expected⍷∊ns.html
 
  R←T._OK

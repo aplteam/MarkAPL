@@ -29,6 +29,6 @@
  →T.PassesIf 9=+/'<li>'⍷∊ns.html
  →T.PassesIf 9=+/'</li>'⍷∊ns.html
  expected←'ol' 'li' '/li' 'li' 'ul' 'li' '/li' 'li' '/li' '/ul' 'ul' 'li' '/li' 'li' 'ol' 'li' '/li' 'li' '/li' '/ul' '/li' '/li' 'li' '/li' '/ol'
- →T.PassesIf expected≢{⍵↑⍨⌊/⍵⍳' >'}¨1↓'<'##.APLTreeUtils2.Split∊ns.html
+ →T.PassesIf expected≢{⍵↑⍨⌊/⍵⍳' >'}¨1↓'<'APLTreeUtils2.Split∊ns.html
 
  R←T._OK

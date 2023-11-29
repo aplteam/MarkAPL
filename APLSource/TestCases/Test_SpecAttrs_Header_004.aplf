@@ -19,7 +19,7 @@
 
  →T.PassesIf(⊂'<a href="#foo1" id="foo1" class="autoheader_anchor">')∊ns.html
  →T.PassesIf(⊂'<h1 data-id="foo1" class="header1">Title</h1>')∊ns.html
- →T.PassesIf(⊂'<a href="#Sub-Title" id="Sub-Title" class="autoheader_anchor">')∊ns.html
+ →T.PassesIf(⊂'<a href="#sub-title" id="sub-title" class="autoheader_anchor">')∊ns.html
  →T.PassesIf(⊂'<h2 data-id="Sub-Title" class="foo2">Sub-Title</h2>')∊ns.html
  →T.PassesIf(⊂'<h3 data-id="Chapter-1" id="goo" attr="123">Chapter 1</h3>')∊ns.html
 

@@ -12,6 +12,6 @@
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
 
- →T.PassesIf(⊂'<p>Link to function: <a href="#FunctionName" class="bookmark_link"><code>FunctionName</code></a></p>')∊ns.html
+ →T.PassesIf(⊂'<p>Link to function: <a href="#functionname" class="bookmark_link"><code>FunctionName</code></a></p>')∊ns.html
 
  R←T._OK

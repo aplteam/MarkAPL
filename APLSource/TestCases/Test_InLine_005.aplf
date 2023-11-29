@@ -6,7 +6,7 @@
  md←⊂'This: `` ` `` is a back-tick'
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
- expected←'<p>This: <code> ` </code> is a back-tick</p>'
+ expected←'<p>This: <code>`</code> is a back-tick</p>'
  →T.PassesIf expected≡⊃ns.html
 
  md←⊂'This is a paragraph with `{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}` APL code in it.'
@@ -18,13 +18,13 @@
  md←⊂'Enclose in-line code with two ``` `` ``` (back-tick) characters'
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
- expected←'<p>Enclose in-line code with two <code> `` </code> (back-tick) characters</p>'
+ expected←'<p>Enclose in-line code with two <code>``</code> (back-tick) characters</p>'
  →T.PassesIf expected≡⊃ns.html
 
  md←⊂'This:`` `⍴⍴array` `` is code and so is `(+/)÷⍴,⍵`'
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
- expected←'<p>This:<code> `⍴⍴array` </code> is code and so is <code>(+/)÷⍴,⍵</code></p>'
+ expected←'<p>This:<code>`⍴⍴array`</code> is code and so is <code>(+/)÷⍴,⍵</code></p>'
  →T.PassesIf expected≡⊃ns.html
 
  md←⊂'``⊃⍉↓``'
@@ -36,7 +36,7 @@
  md←⊂'`` ` ``'
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
- expected←'<p><code> ` </code></p>'
+ expected←'<p><code>`</code></p>'
  →T.PassesIf expected≡⊃ns.html
 
  md←⊂'Some ``` text ``'

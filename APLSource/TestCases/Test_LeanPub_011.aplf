@@ -5,8 +5,8 @@
 
  md←''
  md,←⊂'A para'
- md,←⊂'W> # A warning!'
- md,←⊂'Another para'
+ md,←⊂'<span>This W> # A warning!</span> `<>&` < <'
+ md,←⊂'More text'
 
  parms←MarkAPL.CreateParms
  parms.leanpubExtensions←1
@@ -14,7 +14,7 @@
  ns←MarkAPL.Init parms md
  ns←MarkAPL.Process ns
 
- expected←'<p>A para W&gt; # A warning! Another para</p>'
+ expected←'<p>A para <span>This W&gt; # A warning!</span> <code>&lt;&gt;&amp;</code> &lt; &lt; More text</p>'
  →T.PassesIf≡/∊¨expected ns.html
 
  R←T._OK

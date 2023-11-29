@@ -8,7 +8,7 @@
  md,←⊂'[parm]:toc=1'
  md,←⊂'[parm]:subTocs=1'
  md,←⊂'[parm]:noCSS=1'
- md,←⊂'[parm]:title=',⊃⌽'.'##.APLTreeUtils2.Split⊃⎕XSI
+ md,←⊂'[parm]:title=',⊃⌽'.'APLTreeUtils2.Split⊃⎕XSI
  md,←⊂'# Main menu'
  md,←⊂'<<subTOC>>'
  md,←⊂'## Code: the `<pre>` tag'
@@ -22,7 +22,7 @@
 
  →T.PassesIf 0=+/'<<SubTOC>>'⍷∊html
  →T.PassesIf 2=⍴'<nav.*>'⎕S 0⍠('Greedy' 0)⊣html   ⍝ Just the sub TOC but no main toc!
- →T.PassesIf(⊂'<li><a href="#Code-the--tag" class="bookmark_link">Code: the <code>&lt;pre&gt;</code> tag</a></li>')∊ns.html
+ →T.PassesIf(⊂'<li><a href="#code-the--tag" class="bookmark_link">Code: the <code>&lt;pre&gt;</code> tag</a></li>')∊ns.html
  →T.PassesIf 0=≢ns.report
 
  R←T._OK

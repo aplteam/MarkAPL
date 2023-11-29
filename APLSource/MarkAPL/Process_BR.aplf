@@ -1,0 +1,6 @@
+ Process_BR←{
+⍝ The extended syntax of MarkAPL allows `<<br>>` in the code which will be
+⍝ converted to <br> in two stages: here we replace this by a ⎕UCS 13 (CR).
+     txt←⍵
+     '`.*<<br>>.*`' '<<br>>'⎕R'\0' '\r'⍠('IC' 1)⊣txt
+ }

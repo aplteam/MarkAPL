@@ -1,4 +1,4 @@
- R←Test_FnsCall_020(stopFlag batchFlag);⎕TRAP;md;ns;expected
+ R←Test_FnsCall_020(stopFlag batchFlag);⎕TRAP;md;ns;expected;parms
 ⍝ Test function call to a niladic  public class method; must result in a bug report.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
@@ -12,7 +12,9 @@
  md,←⊂''
  md,←⊂'⍎⍎#.TEMP.Foo.MyFns⍎⍎'
 
- ns←MarkAPL.Init''md
+ parms←MarkAPL.CreateParms
+ parms.verbose←0
+ ns←MarkAPL.Init parms md
  ns←MarkAPL.Process ns
 
  expected←'External function <#.TEMP.Foo.MyFns> is niladic but must not!'

@@ -18,5 +18,6 @@
  →T.PassesIf 1=+/'<h2 data-id="Level-2">'⍷∊ns.html
  →T.PassesIf 1=+/'<p>'⍷∊ns.html
  →T.PassesIf 0=+/'<<SubTOC>>'⍷∊ns.html
+ →T.PassesIf∨/'<a href="#level-1" id="level-1" class="autoheader_anchor">'⍷∊ns.html
 
  R←T._OK

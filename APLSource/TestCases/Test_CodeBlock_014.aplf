@@ -10,6 +10,6 @@
  md,←⊂'~~~'
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
- →T.PassesIf(,⊂'<pre><code>`{+/⍳⍴,w}</code></pre>')≡ns.html
+ →T.PassesIf(,⊂'<pre tabindex="0"><code>`{+/⍳⍴,w}</code></pre>')≡ns.html
 
  R←T._OK

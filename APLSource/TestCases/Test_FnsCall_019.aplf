@@ -5,7 +5,7 @@
 
  #.⎕SHADOW'TEMP'
  'TEMP'#.⎕NS''
- #.TEMP.MyFns←{' <p>This' '**is** a paragraph.</p>'} ⍝ The leading blanks is intentional: without it it's an HTML block!!
+ #.TEMP.MyFns←{' <p>This **is** a paragraph.</p>'} ⍝ The leading blank is intentional: without it it's an HTML block!!
 
  md←''
  md,←⊂'⍎⍎#.TEMP.MyFns⍎⍎'
@@ -13,7 +13,7 @@
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
 
- expected←'<p>&lt;p&gt;This</p>' '<p><strong>is</strong> a paragraph.&lt;/p&gt;</p>'
- →T.PassesIf expected≡ns.html
+ expected←' <p>This <strong>is</strong> a paragraph.</p>'
+ →T.PassesIf expected≡(∊ns.html)
 
  R←T._OK
