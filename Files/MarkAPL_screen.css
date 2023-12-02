@@ -741,21 +741,23 @@ dt {
     margin-bottom: 0.1em;
     font-weight: 800;
 }
+/*
 label#hide_toc_label {
     font-size: 1.1em;
 }
+*/
 .toc-container {
     height: auto;
     margin: 0;
-    padding: 0;
+    padding: 1rem 1rem 0 1rem;
 }
-div.toc-container h1 {
-    font-size: 0.88em;
-    margin: 0.27em 0 0.27em 0;
+nav h2 {
+    font-size: 1.5rem;
+    margin: 0.27rem 1rem 0.27rem 1rem;
 }
 div.toc-container ul {
-
-    margin-right: 1em;
+    margin-right: 1rem;
+    padding-left: 1rem;
 }
 [type="checkbox"] {
     position: absolute;
@@ -794,7 +796,7 @@ div#footnotes_div p {
     padding-top:0;  
 }
 div#footnotes_div ol {
-    padding-top:0;  
+    padding-top:0;
 }
 @font-face {
     font-family: "APLFont";
@@ -806,7 +808,12 @@ div#footnotes_div ol {
 
 /* User classes */
 
-.no_display {display:none;}
+.no_display {
+  transition: opacity 400ms, display 400ms;
+  opacity: 0;
+  display: none;
+    }
+
 .red {color: red;}
 .center {
     text-align: center;     /* for inline elements */
@@ -958,3 +965,18 @@ pre button:hover {
   cursor: pointer;
   background-color: #bcbabb;
 }
+#main_nav {
+  position: relative;
+}
+#main_nav h2 {
+    font-size: 1.45em;
+    margin: 0;
+    padding: 0.5em;
+    border-bottom: 1px solid Black;
+}
+#toc-toggle {
+  position: absolute;
+  top: 1.5em;
+  right: 1em;
+}
+#toc-list {margin: 1em 1em 0.25em 1em;}

@@ -3,10 +3,10 @@
  r←⊂''
  :If flag
      r←''
-     r,←⊂'<script>'
-     copyCaption←' ',(⎕UCS 128464),' '
      copyCaption←' ',(⎕UCS 128203),' '
- ⍝    copyCaption←' Copy '
+     r,←⊂''
+     r,←⊂'<script>'
+     r,←⊂'// Adds a "Copy" button to every code block & established the event handler'
      r,←⊂'const copyButtonLabel = "',(copyCaption),'" ;'
      r,←⊂''
      r,←⊂'let blocks = document.querySelectorAll("pre");'
@@ -38,4 +38,5 @@
      r,←⊂'  }, 700);'
      r,←⊂'}'
      r,←⊂'</script>'
+     r,←⊂''
  :EndIf

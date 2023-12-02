@@ -473,7 +473,6 @@ body  {
     margin-right: auto;
 }
 h1 {text-align:center;}
-
 h1, h2, h3, h4, h5, h6 {
     padding-left: 0;
 }
@@ -482,11 +481,11 @@ h1, h2, h3, h4, h5, h6 {
     color: black;
 }
 h1, h2, h3, h4, p {
-    margin-bottom: 0.88em;
+    margin-bottom: 0.75em;
 }
 h1 {
     font-size: 1.7em;
-    margin: 1.11em 0 1.11em 0;
+    margin: 0.5em 0;
 }
 
 h1 > code, h2 > code, h3 > code, h4 > code, h5 > code, h6 > code {
@@ -495,8 +494,8 @@ h1 > code, h2 > code, h3 > code, h4 > code, h5 > code, h6 > code {
 }
 h2 {
     font-size: 1.45em;
-    margin: 0.55em 0 0.55em 0;
-    padding-top: 0.55em;
+    margin: 0.55em 0 0.5rem 0;
+    padding: 0.5rem 1rem 1rem 1rem;
     border-bottom: 1px solid Black;
 }
 h3 {
@@ -729,7 +728,7 @@ blockquote ol li {
 li > blockquote {margin-left: 0;}
 dl {
     margin-top: 0;
-    margin-bottom: 0.55em;
+    margin-bottom: 1em;
 }
 dt {
     margin-top: 0.83em;
@@ -910,4 +909,22 @@ pre > button {
 pre button:hover {
   cursor: pointer;
   background-color: #bcbabb;
+}
+#main_nav {
+  position: relative;
+}
+#main_nav h2 {
+    font-size: 1.45em;
+    margin: 0;
+    padding: 0.5em 1em;
+    border-bottom: 1px solid Black;
+}
+#toc-toggle {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+}
+#toc-list {
+    margin-top: 1em;
+    margin-bottom: 1.5em;
 }

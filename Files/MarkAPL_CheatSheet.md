@@ -1,12 +1,12 @@
-[parm]:toc            = 2 3
-[parm]:numberHeaders  = 2 3 4 5 6
-[parm]:bookmarkLink   = 6
-[parm]:title          = 'MarkAPL CheatSheet'
-[parm]:width          = 1000
-[parm]:printCSS       = 'BlackOnWhite_print.css'
-[parm]:screenCSS      = 'BlackOnWhite_screen.css'
-[parm]:saveHTML       = 0
-[parm]:linkToCSS      = 0
+[parm]:toc             = 2 3 4 5 6
+[parm]:numberHeaders   = 2 3 4 5 6
+[parm]:bookmarkLink    = 6
+[parm]:title           = 'MarkAPL CheatSheet'
+[parm]:width           = 1000
+[parm]:screenCSS       = 'MarkAPL_screen.css'
+[parm]:printCSS        = 'MarkAPL_print.css'
+[parm]:saveHTML        = 1
+[parm]:smoothScrolling = 1
 
 
 MarkAPL Cheatsheet
@@ -31,9 +31,6 @@ These are the standard ways to mark-up headers:
 ###### Level 6
 ~~~
 
-<pre><code>This is the first code block. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-</code></pre>
-
 Note that headers may contain only text and code but nothing else.
 
 Headers of level 1 and 2 can also be produced with `=` and `-`:
@@ -51,11 +48,9 @@ Note that before and after such a header a **blank line is required**.
 
 ## APL code
 
-APL code can be presented to the reader either as a code block or as in-line mark-up, meaning that the APLcode is embedded into a paragraph or cell etc.
+APL code can be presented to the reader either as a code block or as in-line mark-up, meaning that the APL code is embedded into a paragraph or cell etc.
 
-* See [Code blocks](#) for a discussion of code blocks.
-
-* See [In-line code](#inlinecode2) for a discussion of code blocks.
+Note that [Code blocks](#) and [In-line code](#inlinecode2) are different in many respects.
 
 ## Tables
 
@@ -257,7 +252,7 @@ leads to this:
    [ ] Go
     
 
-## Collapsiples and accordions
+## Collapsibles and accordions
 
 A collapsible must start with a single line marked up with `!> ` and at least one line marked up with `=> `, but may have more such lines:
 

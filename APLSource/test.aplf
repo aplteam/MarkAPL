@@ -1,25 +1,43 @@
- test;M;parms;ns
+ {r}←{printAsScreen}test y;M;parms;ns;opCode;css
+⍝ Creates either the full reference (opCode=1) or the cheat sheet (opCode=2).
+⍝ Useful for working on the CSS because the CSS files are linked, so changes are reflected straight away.
+⍝ Uses either the "MarkAPL" (css=1) or the "BlackAndWhite" (css=2) CSS files.
+⍝ "printAsScreen" defaults to 0, meaning that the "screen" CSS file is used for display and "print" for print.
+⍝ Both default to 1 if not specified.
+⍝ In case "printAsScreen" is 1 the print CSS file is used for both, display and print.
+ r←⍬
+ y←⊆y
+ (opCode css)←2↑y,1 1
+ printAsScreen←{0<⎕NC ⍵:⍎⍵ ⋄ 0}'printAsScreen'
  M←MarkAPL
-
  parms←M.CreateParms
-⍝ parms.inputFilename←'C:\T\Projects\APLTree\MarkAPL\Files\MarkAPL.md'
- parms.inputFilename←'C:\T\Projects\APLTree\MarkAPL\Files\MarkAPL_CheatSheet.md'
-⍝ parms.cssURL←'C:\T\Projects\APLTree\MarkAPL\Files\'
- :If 1
-     parms.screenCSS←'C:\T\Projects\APLTree\MarkAPL\Files\BlackOnWhite_screen.css'
-     parms.printCSS←'C:\T\Projects\APLTree\MarkAPL\Files\BlackOnWhite_print.css'
- :EndIf
- :If 0
-     parms.screenCSS←'C:\T\Projects\APLTree\MarkAPL\Files\MarkAPL_screen.css'
-     parms.printCSS←'C:\T\Projects\APLTree\MarkAPL\Files\MarkAPL_print.css'
- :EndIf
- parms.cssURL←''
+ parms.ignoreEmbeddedParms←1
+ parms.cssURL←CiderConfig.HOME,'/Files'
+ parms.tc←2 3 4 5 6
+ parms.numberHeaders←2 3 4 5 6
+ parms.bookmarkLink←6
+ parms.width←1000
+ parms.reportLinks←1
+ parms.saveHTML←1
  parms.linkToCSS←1
- parms.copy2ClipboardBtn←0
-
+ :If (,1)≡,opCode
+     parms.inputFilename←CiderConfig.HOME,'/Files/MarkAPL.md'
+ :ElseIf (,2)≡,opCode
+     parms.inputFilename←CiderConfig.HOME,'/Files/MarkAPL_CheatSheet.md'
+ :Else
+     11 ⎕SIGNAL⍨'"opCode" must be either 1 or 2'
+ :EndIf
+ :If (,1)≡,css
+     parms.screenCSS←'MarkAPL_screen.css'
+     parms.printCSS←'MarkAPL_print.css'
+ :ElseIf (,2)≡,css
+     parms.screenCSS←'BlackOnWhite_screen.css'
+     parms.printCSS←'BlackOnWhite_print.css'
+ :Else
+     11 ⎕SIGNAL⍨'"css" must be either 1 or 2'
+ :EndIf
+ parms.linkToCSS←1
  ns←M.Init parms''
  ns←M.Process ns
-
  parms v ns.html
-
 ⍝Done

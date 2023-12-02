@@ -1,4 +1,4 @@
- r←parms MakeHTML_Doc html;bool;lines;sh;ind;copyCodeJavaScript
+ r←parms MakeHTML_Doc html;bool;lines;sh;ind;copyCodeJavaScript;toggleTocJavaScript;javaScript
 ⍝ Takes HTML, typically created by calling `Process`, and makes it a fully fledged document by adding
 ⍝ <body>, <head> -- with <title> -- and <html> including the DocType. By default CSS is injected as well.
  :Access Public Shared
@@ -50,5 +50,7 @@
      r,←,⊆parms.head
  :EndIf
  copyCodeJavaScript←GetCopyCodeJavaScript parms.copy2ClipboardBtn
- r,←'</head>' '<body>',html,(⊂'</body>'),copyCodeJavaScript,(⊂'</html>')
+ toggleTocJavaScript←GetJavaScriptForTogglingTOC
+ javaScript←copyCodeJavaScript,toggleTocJavaScript
+ r,←'</head>' '<body>',html,(⊂'</body>'),javaScript,(⊂'</html>')
 ⍝Done

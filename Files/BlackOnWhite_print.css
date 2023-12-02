@@ -186,6 +186,7 @@ nav * {
 }
 nav ul {
     list-style-type: none;
+    margin: 0;
 }
 
 nav ul li {
@@ -212,7 +213,7 @@ nav.sub-toc ul {
 
 dl {
     margin-top: 0;
-    margin-bottom: 10pt;
+    margin-bottom: 1.5em;
 }
 dt {
     margin-top: 10pt;
@@ -376,7 +377,7 @@ details summary > * {
     display: inline;
 }
 div.accordion {
-    border: 1pt solid black;
+    border: 1pt solid silver;
     padding: 0;
     margin: 0.5em 0;
 }
@@ -388,10 +389,9 @@ div.accordion > div p, ul, ol, img, table {
     margin-block-end: 0.1em;
 }
 div.collapsible {
-    border: 1pt solid black;
+    border: 1pt solid silver;
     padding: 0.5em;
     margin: 0.5em 0;
-    background-color: #FAEBD7;
 }
 div.collapsible p, ul, ol, img, table {
     margin-block-end: 0.1em;
@@ -403,6 +403,10 @@ ul.checkboxes {
 }
 ul.checkboxes > li::before {content: "☐ ";}
 ul.checkboxes > li.checked::before {content: "☒ ";}
-pre > button {
-    display: none;
+pre > button {display: none;}
+#toc-toggle {display: none;}
+#main_nav h2 {
+    margin: 0;
+    padding: 0.5em 1em;
+    border-bottom: 1pt solid silver;
 }

@@ -1,4 +1,4 @@
-[parm]:toc             = 2 3
+[parm]:toc             = 2 3 4 5 6
 [parm]:numberHeaders   = 1 2 3 4 5 6
 [parm]:bookmarkLink    = 6
 [parm]:title           = 'MarkAPL Reference'
@@ -8,7 +8,6 @@
 [parm]:screenCSS       = 'C:\T\Projects\APLTree\MarkAPL\Files\BlackOnWhite_screen.css'
 [parm]:smoothScrolling = 1
 [parm]:saveHTML        = 1
-[parm]:linkToCSS       = 1
 
 
 # MarkAPL Reference

@@ -95,7 +95,7 @@ p, ul, ol {
     color: black;
 }
 ul, ol {
-    margin-top: 0.75em;
+    margin-top: 0.5em;
 }
 pre {
     padding: 3pt;
@@ -191,8 +191,8 @@ nav * {
     font-size: 75%;
 }
 nav ul  {
-    list-style-type: none; 
-    margin: 0 0 2pt 0;
+    list-style-type: none;
+    margin: 5pt 0 2pt 0;
     padding: 0;
 }
 nav ul li {
@@ -377,7 +377,6 @@ pre[class*="language-"] button{
     right: 5pt;
 }
 div.accordion {
-    border: 1pt solid silver;
     padding: 0;
     margin: 0.5em 0;
 }
@@ -412,6 +411,11 @@ li {
 }
 ul.checkboxes > li::before {content: "☐ ";}
 ul.checkboxes > li.checked::before {content: "☒ ";}
-pre > button {
-    display: none;
+pre > button {display: none;}
+#toc-toggle {display: none;}
+#main_nav h2 {
+    margin: 0;
+    padding: 0.5em 1em;
+    border-bottom: 1pt solid silver;
+}
 }
