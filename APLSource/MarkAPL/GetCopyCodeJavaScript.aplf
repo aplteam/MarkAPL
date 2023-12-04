@@ -4,6 +4,7 @@
  :If flag
      r←''
      copyCaption←' ',(⎕UCS 128203),' '
+     copyCaption←' Copy '
      r,←⊂''
      r,←⊂'<script>'
      r,←⊂'// Adds a "Copy" button to every code block & established the event handler'
@@ -31,7 +32,8 @@
      r,←⊂''
      r,←⊂'  await navigator.clipboard.writeText(text);'
      r,←⊂''
-     r,←⊂'  button.innerText = " ✓ ";'
+    ⍝r,←⊂'  button.innerText = " ✓ ";'
+     r,←⊂'  button.innerText = " Copied ";'
      r,←⊂''
      r,←⊂'  setTimeout(() => {'
      r,←⊂'    button.innerText = copyButtonLabel;'

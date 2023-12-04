@@ -286,9 +286,4 @@ Example:
 </dl>
 ~~~
 
-[^normalyze]:<https://necolas.github.io/normalize.css/>
-
-
-
-
-
+[^normalyze]: This and that<br><https://necolas.github.io/normalize.css/>

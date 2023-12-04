@@ -210,9 +210,9 @@ Compatibility, features, bugs
 
 * Collapsibles and accordions
 
-  * Any two lines that start with `!> ` and `=> ` respectively define a collapsible. These are converted into the HTML tags `<details>` and `<summary>`. This is called a _collapsible_.
+  * Any two lines that start with `!> ` and `=> ` respectively define a collapsible. These are converted into the HTML tags `<details>` and `<summary>`. 
 
-  * Two ore more collapsiblesin succession become an _accordion_`. An accordion is styled so that the collapsibles are styled as if they were one object.
+  * Two ore more collapsibles in succession become an _accordion_. An accordion is styled so that the collapsibles are styled as if they were one object.
 
   For details refer to [Collapsibles and accordions](# "Collapsibles and accordions").
 
@@ -915,17 +915,6 @@ Notes:
 
 1. The end of each HTML block (except `<pre>`, `<script>`, `<style>`) is 
   defined by an empty line which therefore is essential.
-
-1. Sometimes you want to avoid something being processed as HTML block. 
-  Imagine you want to actually write about the `<p>` tag. Starting a line with 
-
-   ~~~
-   <p id="My">My para</p>
-   ~~~
-
-   does not work because it is recognized and therefore processed as an HTML block! 
-   
-   This can be solved be injecting a leading space: then it's not treated as an HTML block any more.
 
 1. Because `**foo**` is an ordinary paragraph located **between** two HTML 
    blocks it will be converted into `<strong>foo</strong>`.
@@ -2592,7 +2581,7 @@ Version information
 
 This document refers to version 12.0 of `MarkAPL`.
 
-Kai Jaeger ⋄ 2023-09-01
+Kai Jaeger ⋄ 2023-12-03
 
 ⍝ Footnotes:
 [^meddy]: The Markdown editor Meddy on GitHub:<br><https://github.com/aplteam/Meddy>
@@ -2607,6 +2596,7 @@ Kai Jaeger ⋄ 2023-09-01
 [git]: https://help.github.com/articles/working-with-advanced-formatting/ "GIT's formatting rules"{target="_blank"}
 [markdown_extra]: https://www.wikiwand.com/en/Markdown_Extra{target="_blank"}
 [pandoc]: http://pandoc.org/README.html{target="_blank"}
+
 
 
 

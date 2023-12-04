@@ -2,7 +2,7 @@
  ⍝ This must be done early because later any "<" and ">" will be replaced by there HTML entities.
  ⍝ (It was a very bad idea to use this syntax! [](url) is so obvious!)
  ⍝ Therefore we replace "<" and ">" by made-up HTML entities "&pointybracket_open;" and
- ⍝ "&pointybracket_close;" which we later replace later by "<" and ">".
+ ⍝ "&pointybracket_close;" which we later replace by "<" and ">".
  ⍝ Note that this function escapes any of `_`, `__`, `*`, `**`, `~~`.
      txt←⍵
      mask←~GetMaskForCode txt

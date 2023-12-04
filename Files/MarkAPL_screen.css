@@ -1,4 +1,4 @@
-/* MarkAPL's default screen style sheet version 2.9 from 2023-11-29 */
+/* MarkAPL's default screen style sheet version 3.0 from 2023-12-02 */
 
 /* Note that there are some variables embedded as comments which will be replaced
    by MarkAPL. The names are embraced by "<<", so for a variable "foo" it is
@@ -468,121 +468,176 @@ body  {
     max-width: 900px; /* <<maxwidth>> */
     padding: 0.83em;
     color: #292929;
-    word-wrap: break-word;
+    margin-left: auto;
+    margin-right: auto;
     overflow-wrap: break-word;
 }
-h1, h2, h3, h4, h5, h6 {
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: #404040;
     font-weight: 800;
     padding-left: 0;
 }
-h1, h2, h3, h4, h5, h6 {
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: "Century Gothic", Verdana, "Sans";
 }
-h1, h2, h3, h4, p {
+
+h1,
+h2,
+h3,
+h4,
+p {
     margin-bottom: 0.88em;
 }
+
 h1 {
     font-size: 1.8em;
     margin: 0.27em 0 1.11em 0;
 }
 
-h1 > code, h2 > code, h3 > code, h4 > code, h5 > code, h6 > code {
+h1 > code,
+h2 > code,
+h3 > code,
+h4 > code,
+h5 > code,
+h6 > code {
     font-size: 1em;
     background-color: inherit;
 }
+
 h2 {
     font-size: 1.44em;
     margin: 0.55em 0 0.55em 0;
     padding-top: 0.55em;
     border-bottom: 1px solid Silver;
 }
+
 h3 {
     margin: 0;
-    margin-top: 0.55em;
+    margin-top: 0.75em;
     font-size: 1.22em;
 }
+
 nav h3 {
     font-size: 1.2em;
-    margin: 0 0 0.7em 0;
+    margin: 0 0 0.75em 0;
 }
+
 h4 {
     font-size: 1em;
     margin: 0;
-    margin-top: 0.55em;
+    margin-top: 0.75em;
 }
+
 h5 {
     font-size: 0.94em;
     margin: 0;
-    margin-top: 0.66em;
+    margin-top: 0.60em;
     padding:0;
 }
+
 h6 {
     font-size: 0.88em;
     margin: 0;
-    margin-top: 0.66em;
+    margin-top: 0.60em;
     padding:0;
 }
+
 a {
     color: #0099ff;
     margin: 0;
     padding: 0;
     vertical-align: baseline;
 }
+
 a:visited {
     color: purple;
 }
+
 a.autoheader_anchor {
     text-decoration: none;
 }
+
+img {
+    margin-top: 0.55em;
+    margin-bottom: 0.27em;
+}
+
 ul {
     list-style-type: disc;
 }
-ul, ol {
-    padding: 0;
-    margin: 0;
-}
+
 dd {
     padding-top: 0.25em;
 }
+
 p.first_dd {
     padding-top: 0.25em;
 }
-li > ul, ol {
+
+li > ul,
+li > ol {
     padding-bottom:0;
 }
+
 li {
     line-height: 1.3;
     margin-left: 1.38em;
-    margin-bottom: 0.55em;
+    margin-bottom: 0.25em;
 }
+
 ul > li {
     margin-left: 2.5em;
 }
+
 ol > li {
     margin-left: 2.5em;
 }
+
 li ul {
     margin-left: 0.55em;
 }
+
 li ul {
     margin-left: 0.27em;
 }
+
 li p {
     padding: 1px 0 0 0;
     margin: 0.55em 0 0.27em 0;
     line-height: 1.3;
 }
+
 ul, ol {
     line-height: 1.3;
-    padding: 0.33em 0 0 0;
+    padding: 0;
     margin: 0.5em;
 }
+
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+    margin-top: 0.25em;
+}
+
 p {
     line-height: 1.2;
     padding: 0.40em 0 0 0;
     margin: 0;
 }
+
 pre {
     position: relative;
     overflow: auto;
@@ -595,6 +650,7 @@ pre {
     font-family: APLFont, monospace;
     font-weight: normal;
 }
+
 pre > code {
     line-height: 1.2;
     border: 0;
@@ -604,18 +660,22 @@ pre > code {
     color: inherit;
     font-weight: inherit;
 }
+
 td code {
     padding: 0;
 }
+
 a code {
     padding: 0;
     font-size: 1em;
 }
+
 nav code {
     background-color: inherit;
     font-weight: 400;
     color: inherit;
 }
+
 code {
     font-family: APLFont, monospace;
     font-weight: 800;
@@ -632,6 +692,7 @@ code {
 tbody tr:nth-child(even) {
     background-color: #F0F0F0;
 }
+
 th {
     background-color: #E6E6E6;
     color: black;
@@ -647,7 +708,7 @@ table th + th { border-left:1px solid gray; }
 
 table {
     border-color: Black;
-    margin: 1.5em 0;
+    margin: 0.75em 0;
     border-collapse: collapse;
     font-family: APLFont;
     font-size: 0.88em;
@@ -657,13 +718,14 @@ table {
 
 li > table {
     margin: 0.55em 0 0.55em 0;
-}    
+}
 
 tr  {
     margin: 1.11em;
 }
 
 th {font-weight: bold;}
+
 tfoot td {font-weight: bold;}
 
 blockquote {
@@ -691,26 +753,34 @@ nav {
     box-shadow: 0.27em 0.27em 0.27em Gray;
     overflow : hidden;
 }
+
 nav#main_nav{
     width: auto;
 }
+
 nav ul  {
     list-style-type: None;
     margin: 0 1em 0.11em 0;
     padding: 0;
 }
-nav ul ul  {
+
+nav ul,
+nav ul  {
     margin-left: 2em;
 }
+
 nav > ul ul {
     margin-left: 2em;
 }
+
 nav a:visited {
     color: black;
 }
+
 nav ul li {
     margin: 0 0 0.16em 0;
 }
+
 nav li p {
     margin: 0;
     padding: 0;
@@ -718,6 +788,7 @@ nav li p {
     margin: 0;
     padding: 0;
 }
+
 nav li {
     line-height: 1.5;
     padding: 0;
@@ -732,37 +803,39 @@ nav p{
     padding-top: 0;
     margin-bottom: 0.5em;
 }
+
 dl {
     margin-top: 0.1em;
     margin-bottom: 0.1em;
 }
+
 dt {
     margin-top: 0.75em;
     margin-bottom: 0.1em;
     font-weight: 800;
 }
-/*
-label#hide_toc_label {
-    font-size: 1.1em;
-}
-*/
+
 .toc-container {
     height: auto;
     margin: 0;
     padding: 1rem 1rem 0 1rem;
 }
+
 nav h2 {
     font-size: 1.5rem;
     margin: 0.27rem 1rem 0.27rem 1rem;
 }
+
 div.toc-container ul {
     margin-right: 1rem;
     padding-left: 1rem;
 }
+
 [type="checkbox"] {
     position: absolute;
     left: -9999px;
 }
+
 label {
     display: block;
     width: 100%;
@@ -771,33 +844,17 @@ label {
     top: 0;
     padding-left: 1em;
 }
-label:before {
-    content: 'Table of contents  \25BC'; /* <<tocCaption>>'; */
-    font-weight: bold;
-    font-size: 80%;
-    padding-bottom: 0;
-}
-[type="checkbox"] ~ div {
-    display: none;
-}
-[type="checkbox"]:checked ~ div {
-    display: block;
-    margin-top: 1.1em;
-}
-[type="checkbox"]:checked + label {
-    top: 100%;
-}
-[type="checkbox"]:checked + label:before {
-    content: 'Table of contents \25B2' /* <<tocCaption>>'; */
-}
+
 div#footnotes_div p {
-    line-height:1; 
+    line-height:1;
     padding-bottom:0;
-    padding-top:0;  
+    padding-top:0;
 }
+
 div#footnotes_div ol {
     padding-top:0;
 }
+
 @font-face {
     font-family: "APLFont";
   src:
@@ -815,23 +872,25 @@ div#footnotes_div ol {
     }
 
 .red {color: red;}
+
 .center {
     text-align: center;     /* for inline elements */
     margin-left: auto;      /* for Block ... */
     margin-right:auto;      /* ...elements */
 }
+
 .left {
     text-align: left;       /* for inline elements */
     margin-right: 0;        /* for Block elements */
 }
+
 .right {
     text-align: right;      /* for inline elements */
     margin-left: 0;         /* for Block elements */
 }
 
-img {
-    margin-top: 0.55em;
-    margin-bottom: 0.27em;
+.print_only {
+    display: none;
 }
 
 
@@ -843,117 +902,150 @@ div.leanpub {
     overflow: auto;
 }
 
-div.leanpub_A {    
+div.leanpub_A {
     border: 1px solid black;
     background-color: #f1f1f1;
     padding: 0.55em;
     margin: 1.11em 0 0.83em 0;
 }
-div.leanpub h3, div.leanpub_A h3 {
+
+div.leanpub h3,
+div.leanpub_A h3 {
     font-size: 1.2em;
     padding: 0;
     margin: 0;
 }
-div.leanpub h4, div.leanpub_A h4 {
+
+div.leanpub h4,
+div.leanpub_A h4 {
     font-size: 1.1em;
     padding: 0.27em 0 0 0;
     margin: 0;
 }
-div.leanpub h5, div.leanpub h5 {
+
+div.leanpub h5,
+div.leanpub h5 {
     font-size: 1.0em;
     padding: 0.27em 0 0 0;
     margin: 0;
 }
-div.leanpub_A h5, div.leanpub_A h5 {
+
+div.leanpub_A h5,
+div.leanpub_A h5 {
     font-size: 1.0em;
     padding: 0.27em 0 0 0;
     margin: 0;
 }
-div.leanpub img {       
-    padding: 0;   
+
+div.leanpub img {
+    padding: 0;
     margin: 0 1.11em 0.27em 0;
 }
+
 div.leanpub_A > p:first-child {
     padding-top: 0;
     margin-top: 0;
 }
+
 div.leanpub img {
     float: left;
     padding: 0;
     margin: 0.55em 1.11em 0 0;
     clear:both;
 }
+
 div.leanpub tbody * {
     background-color: transparent;
 }
 
-div.leanpub p {       
+div.leanpub p {
     padding: 0.17em 0 0 0;
     margin:0;
 }
+
 span.leanpub_code {
     color: Red;
 }
+
 div.leanpub p {
     display:block;
     padding: 0.44em 0 0 0;
 }
+
 div.leanpub > div {
     margin-left: 2.27em;  /* margin (20px) plus width of icon (21px) */
 }
-.print_only {
-    display: none;
-}
+
 pre[class*="language-"] {
   position: relative;
   margin: 5px 0 ;
   padding: 1.75rem 0 1.75rem 1rem;
 }
+
 details summary {
   cursor: pointer;
 }
+
 details summary > * {
   display: inline;
 }
+
 div.accordion {
     border: 1px solid silver;
     padding: 0;
     margin: 0.5em 0;
-    background-color: #FAEBD7;
+    background-color: #f1f1f1;
 }
+
 div.accordion > div {
     border: 1px solid silver;
     padding: 0.5em;
     margin: 0 0;
 }
-div.accordion > div p, ul, ol, img, table {
+
+div.accordion > div p,
+div.accordion > div ul,
+div.accordion > div ol,
+div.accordion > div img,
+div.accordion > div table {
     margin-block-end: 0.1em;
 }
+
 div.collapsible {
     border: 1px solid silver;
     padding: 0.5em;
     margin: 0.5em 0;
-    background-color: #FAEBD7;
+    background-color: #f1f1f1;
 }
-div.collapsible p, ul, ol, img, table {
+
+div.collapsible p,
+div.collapsible ul,
+div.collapsible ol,
+div.collapsible img,
+div.collapsible table {
     margin-block-end: 0.1em;
 }
+
 ul.checkboxes {
   list-style: none;
   margin-left: -2rem;
   padding-left: 0;
 }
+
 li {
   text-indent: 0;
   padding-left: 0;
 }
+
 ul.checkboxes > li::before {content: "☐ ";}
+
 ul.checkboxes > li.checked::before {content: "☒ ";}
+
 pre > button {
   position: absolute;
-  top: 2px;
-  right: 2px;
-  font-size: 1.2rem;
+  top: 5px;
+  right: 5px;
+  font-size: 0.8rem;
   padding: 0.15rem;
   border: 1.25px solid #232326;
   border-top-left-radius: 6px;
@@ -961,19 +1053,23 @@ pre > button {
   border-bottom-right-radius: 6px;
   border-bottom-left-radius: 6px;
 }
+
 pre button:hover {
   cursor: pointer;
   background-color: #bcbabb;
 }
+
 #main_nav {
   position: relative;
 }
+
 #main_nav h2 {
     font-size: 1.45em;
     margin: 0;
     padding: 0.5em;
     border-bottom: 1px solid Black;
 }
+
 #toc-toggle {
   position: absolute;
   top: 1.5em;

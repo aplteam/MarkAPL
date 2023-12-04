@@ -1,43 +1,67 @@
- {r}←{printAsScreen}test y;M;parms;ns;opCode;css
-⍝ Creates either the full reference (opCode=1) or the cheat sheet (opCode=2).
+ r←{printAsScreen}test y;M;parms;ns;opCode;css
+⍝ Creates any of the documents MarkAPL comes with, defined by the "opCode"
 ⍝ Useful for working on the CSS because the CSS files are linked, so changes are reflected straight away.
 ⍝ Uses either the "MarkAPL" (css=1) or the "BlackAndWhite" (css=2) CSS files.
 ⍝ "printAsScreen" defaults to 0, meaning that the "screen" CSS file is used for display and "print" for print.
 ⍝ Both default to 1 if not specified.
 ⍝ In case "printAsScreen" is 1 the print CSS file is used for both, display and print.
- r←⍬
- y←⊆y
- (opCode css)←2↑y,1 1
- printAsScreen←{0<⎕NC ⍵:⍎⍵ ⋄ 0}'printAsScreen'
- M←MarkAPL
- parms←M.CreateParms
- parms.ignoreEmbeddedParms←1
- parms.cssURL←CiderConfig.HOME,'/Files'
- parms.tc←2 3 4 5 6
- parms.numberHeaders←2 3 4 5 6
- parms.bookmarkLink←6
- parms.width←1000
- parms.reportLinks←1
- parms.saveHTML←1
- parms.linkToCSS←1
- :If (,1)≡,opCode
-     parms.inputFilename←CiderConfig.HOME,'/Files/MarkAPL.md'
- :ElseIf (,2)≡,opCode
-     parms.inputFilename←CiderConfig.HOME,'/Files/MarkAPL_CheatSheet.md'
+ :If 0=≢y
+     r←''
+     r,←⊂'1 = Full reference'
+     r,←⊂'2 = Cheat sheet'
+     r,←⊂'3 = LeanPub extensions'
+     r,←⊂'4 = MarkAPL for programmers'
+     r,←⊂'5 = Quick intro'
+     r,←⊂'6 = Styles'
+     r←⍪r
  :Else
-     11 ⎕SIGNAL⍨'"opCode" must be either 1 or 2'
+     r←0 0⍴''
+     (opCode css)←2↑y,1 1
+     printAsScreen←{0<⎕NC ⍵:⍎⍵ ⋄ 0}'printAsScreen'
+     M←MarkAPL
+     parms←M.CreateParms
+     parms.ignoreEmbeddedParms←1
+     parms.cssURL←CiderConfig.HOME,'/Files'
+     parms.toc←2 3 4 5 6
+     parms.numberHeaders←2 3 4 5 6
+     parms.bookmarkLink←6
+     parms.width←1000
+     parms.reportLinks←1
+     parms.saveHTML←1
+     parms.linkToCSS←1
+     parms.leanpubExtensions←1
+     :If (,1)≡,opCode
+         parms.inputFilename←CiderConfig.HOME,'/Files/MarkAPL.md'
+     :ElseIf (,2)≡,opCode
+         parms.inputFilename←CiderConfig.HOME,'/Files/MarkAPL_CheatSheet.md'
+     :ElseIf (,3)≡,opCode
+         parms.inputFilename←CiderConfig.HOME,'/Files/LeanPubExtensions.md'
+     :ElseIf (,4)≡,opCode
+         parms.inputFilename←CiderConfig.HOME,'/Files/MarkAPL_for_Programmers.md'
+     :ElseIf (,5)≡,opCode
+         parms.inputFilename←CiderConfig.HOME,'/Files/QuckIntro.md'
+     :ElseIf (,6)≡,opCode
+         parms.inputFilename←CiderConfig.HOME,'/Files/Styles.md'
+     :Else
+         11 ⎕SIGNAL⍨'"opCode" must be either 1 or 2'
+     :EndIf
+     :If (,1)≡,css
+         parms.screenCSS←'MarkAPL_screen.css'
+         parms.printCSS←'MarkAPL_print.css'
+         :If printAsScreen
+             parms.screenCSS←'MarkAPL_print.css'
+         :EndIf
+     :ElseIf (,2)≡,css
+         parms.screenCSS←'BlackOnWhite_screen.css'
+         parms.printCSS←'BlackOnWhite_print.css'
+         :If printAsScreen
+             parms.screenCSS←'BlackOnWhite_print.css'
+         :EndIf
+     :Else
+         11 ⎕SIGNAL⍨'"css" must be either 1 or 2'
+     :EndIf
+     parms.linkToCSS←1
+     ns←M.Init parms''
+     ns←M.Process ns
+     parms v ns.html
  :EndIf
- :If (,1)≡,css
-     parms.screenCSS←'MarkAPL_screen.css'
-     parms.printCSS←'MarkAPL_print.css'
- :ElseIf (,2)≡,css
-     parms.screenCSS←'BlackOnWhite_screen.css'
-     parms.printCSS←'BlackOnWhite_print.css'
- :Else
-     11 ⎕SIGNAL⍨'"css" must be either 1 or 2'
- :EndIf
- parms.linkToCSS←1
- ns←M.Init parms''
- ns←M.Process ns
- parms v ns.html
-⍝Done

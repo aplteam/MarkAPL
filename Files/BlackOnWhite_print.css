@@ -1,4 +1,4 @@
-/* Print CSS version 1.5 from 2023-11-29 */
+/* Print CSS version 2.0 from 2023-12-02 */
 
 @page {
     margin: 25mm 20mm 25mm 20mm;
@@ -21,27 +21,43 @@ h3 {margin: 10pt 0 0 0;}
 h4 {margin: 10pt 0 0 0;}
 h5 {margin: 9pt 0 0 0;}
 h6 {margin: 9pt 0 0 0;}
-h1, h2, h3, h4, h5, h6 {
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: black;
     font-family: "Arial Black";
     page-break-after: avoid;
     break-after: avoid;
 }
-h1 > code, h2 > code, h3 > code, h4 > code, h5 > code, h6 > code {
+
+h1 > code,
+h2 > code,
+h3 > code,
+h4 > code,
+h5 > code,
+h6 > code {
     font-size: 100%;
 }
+
 h2 {
     border-bottom: 1pt solid Silver;
     padding-bottom: 2pt;
 }
+
 .h_tag {
     page-break-after: avoid;
     break-after: avoid;
 }
+
 abbr[title] {
     border-bottom: 0;
     text-decoration: none;
 }
+
 a {
     color:black;
     margin: 0;
@@ -50,50 +66,64 @@ a {
     text-decoration: none;
     font-style: italic;
 }
+
 a.autoheader_anchor {
     text-decoration: none;
     font-style: normal;
     page-break-after: avoid;
     break-after: avoid;
 }
+
 ul {
     list-style-type: square;
 }
-li > ul, ol {
+
+li > ul,
+li > ol {
     padding-bottom:0;
 }
+
 li {
     line-height: 1.3;
     margin-left: 13pt;
-    margin-bottom: 5pt;
+    margin-bottom: 2pt;
 }
+
 ul > li {
     margin-left: 25pt;
 }
+
 li ul {
     margin-left: 5pt;
 }
+
 li ul {
     margin-left: 3pt;
 }
+
 li p {
-    padding: 1pt 0 0 0; 
-    margin: 5pt 0 3pt 0;
+    padding: 1pt 0 0 0;
+    margin: 2pt 0 2pt 0;
     line-height: 1.3;
 }
-ul, ol {
+
+ul,
+ol {
     padding: 0;
     margin: 5pt 0 0 5pt;
     color: black;
 }
+
 p {
     padding: 0;
     margin: 5pt 0;
     color: black;
 }
+
 ol > li {
     margin-left: 25pt;
 }
+
 pre {
     padding: 3pt;
     margin: 5pt 0;
@@ -105,6 +135,7 @@ pre {
     page-break-inside: avoid;
     break-inside:  avoid;
 }
+
 pre code {
      background-color: #FBFBFB;
      color: #950000;
@@ -114,6 +145,7 @@ pre code {
      border: 0
      white-space: pre-wrap;
 }
+
 code {
     font-family: APLFont, monospace;
     line-height: 1.2;
@@ -128,10 +160,13 @@ tbody th, tfoot tr {
 tbody tr:nth-child(even) {
     background-color: #F5F5F5;
 }
+
 th {
     background-color: #EBEBEB;
 }
-th, td {
+
+th,
+td {
     padding: 1pt 5pt;
     border:1pt solid #E3E3E3;
     vertical-align: top;
@@ -177,22 +212,28 @@ nav {
     width: auto;
     padding: 0 5pt 5pt 0;
     margin: 10pt 0 20pt 5pt;
-    page-break-inside: avoid;
-    break-inside: avoid;
     overflow : hidden;
 }
+
 nav * {
     font-size: 90%;
 }
+
 nav ul {
     list-style-type: none;
-    margin: 0;
+    margin: .5em 0 0.1em 0;
+}
+
+nav ul ul {
+    margin-top:0;
+    margin-bottom:0;
 }
 
 nav ul li {
     margin: 0 0 0 10pt;
     line-height: 1.3;
 }
+
 nav li p {
     margin: 0;
     padding: 0;
@@ -200,12 +241,18 @@ nav li p {
     margin: 0;
     padding: 0;
 }
+
 nav li {
     font-size: 9pt;
     line-height: 1;
     padding: 0;
     margin: 0 0 0 10pt;
 }
+
+nav.sub-toc p {
+    margin-top: 0.5em;
+}
+
 nav.sub-toc ul {
     margin:0 0 0 0;
     list-style-type: none;
@@ -215,6 +262,7 @@ dl {
     margin-top: 0;
     margin-bottom: 1.5em;
 }
+
 dt {
     margin-top: 10pt;
     margin-bottom: 0;
@@ -222,21 +270,27 @@ dt {
     page-break-inside: avoid;
     break-inside: avoid;
 }
+
 dd {
     margin-top: 2pt;
 }
+
 label#hide_toc_label {
     font-size: 65%;
 }
+
 .toc-container {
     margin-top: 2pt;
 }
+
 .toc-container h3 {
     margin: 0 0 8pt 7pt;
 }
+
 [type="checkbox"] {
     display:none;
 }
+
 label {
     display: block;
     width: 100%;
@@ -244,26 +298,27 @@ label {
     top: 0;
     padding-left: 10pt;
 }
-label:before {
-    content: 'Table of contents'; /* <<tocCaption>>; */
-    font-weight: bold;
-    font-size: 140%;
-    padding-bottom: 10pt;
-}
+
 a.external_link::before {content: " 🔗 ";}
 a.bookmark_link::before {content: " ➯";}
 a.mailto_link::before {content:" ✉"}
+
 nav a.bookmark_link {font-style: normal;}
+
 nav p {
     margin: 0 0 5pt 10pt;
     font-weight: bold;
     font-size: 9pt;
 }
+
 nav a {font-style: normal; color:black;}
+
 nav a.bookmark_link::before {content:"";}
+
 div#footnotes_div a::before {content:"";}
 div#footnotes_div a {font-style:normal;}
 div#footnotes_div {page-break-inside: avoid;break-inside: avoid;}
+
 @font-face {
     font-family: "APLFont";
     src:
@@ -275,20 +330,26 @@ div#footnotes_div {page-break-inside: avoid;break-inside: avoid;}
 /* User classes */
 
 .no_print {display: none;}
+
 .red {color: red;}
+
 .center {
     text-align: center;     /* for inline elements */
     margin: 0 auto;         /* for Block elements */
 }
+
 .left {
-    text-align: left;     /* for inline elements */
+    text-align: left;       /* for inline elements */
     margin-right: 0 auto;   /* for Block elements */
 }
+
 .right {
     text-align: right;     /* for inline elements */
     margin-left: 0 auto;   /* for Block elements */
 }
+
 .avoid_page_break {page-break-inside: avoid;break-inside: avoid;}
+
 .page_break_before {page-break-before: always;}
 
 
@@ -299,65 +360,83 @@ div.leanpub {
     page-break-inside: avoid;
     break-inside: avoid;
 }
-div.leanpub_A {    
+
+div.leanpub_A {
     border: 1pt solid black;
     background-color: #f9f9f9;
     padding: 5pt;
     margin: 10pt 0 10pt 0;
     page-break-inside: avoid;
-    break-inside: avoid;    
+    break-inside: avoid;
 }
-div.leanpub h3, div.leanpub_A h3 {
+
+div.leanpub h3,
+div.leanpub_A h3 {
     font-size: 120%;
     padding: 3pt 0 0 0;
     margin: 0;
 }
-div.leanpub h4, div.leanpub_A h4 {
+
+div.leanpub h4,
+div.leanpub_A h4 {
     font-size: 110%;
     padding: 3pt 0 0 0;
     margin: 0;
 }
-div.leanpub h5, div.leanpub h5 {
+
+div.leanpub h5,
+div.leanpub h5 {
     font-size: 100%;
     padding: 3pt 0 0 0;
     margin: 0;
 }
-div.leanpub_A h5, div.leanpub_A h5 {
+
+div.leanpub_A h5,
+div.leanpub_A h5 {
     font-size: 100%;
     padding: 3pt 0 0 0;
     margin: 0;
 }
+
 div.leanpub img {
     padding: 0;
-    margin: 0 10pt 2pt 0;    
+    margin: 0 10pt 2pt 0;
 }
+
 div.leanpub_A > p:first-child {
     padding-top: 0;
     margin-top: 0;
 }
+
 div.leanpub > div > h1:first-child {
     padding-top: 5pt;
 }
+
 div.leanpub img {
     float: left;
-    padding: 0;   
+    padding: 0;
     margin: 5pt 10pt 0 0;
     clear: both;
 }
+
 div.leanpub p {
     padding: 3pt 0 0 0;
     margin:0;
 }
+
 span.leanpub_code {
     font-weight: bold;
 }
+
 div.leanpub p {
     display:block;
      padding: 8pt 0 0 0;
 }
+
 div.leanpub > div {
     margin-left: 35pt;
 }
+
 sup {
     font-size: 0.75em;
     line-height: 0;
@@ -365,6 +444,7 @@ sup {
     vertical-align: baseline;
     top: -0.4em;
 }
+
 pre[class*="language-"] {
     display: none;
 }
@@ -373,38 +453,53 @@ li {
   padding-left: 1rem;
   text-indent: 0;
 }
+
 details summary > * {
     display: inline;
 }
+
 div.accordion {
     border: 1pt solid silver;
     padding: 0;
     margin: 0.5em 0;
 }
+
 div.accordion > div {
     padding: 0.5em;
     margin: 0 0;
 }
-div.accordion > div p, ul, ol, img, table {
+
+div.accordion > div p,
+div.accordion > div ul,
+div.accordion > div ol,
+div.accordion > div img,
+div.accordion > div table {
     margin-block-end: 0.1em;
 }
+
 div.collapsible {
     border: 1pt solid silver;
     padding: 0.5em;
     margin: 0.5em 0;
 }
+
 div.collapsible p, ul, ol, img, table {
     margin-block-end: 0.1em;
 }
+
 ul.checkboxes {
     list-style: none;
     margin-left: 0;
     padding-left: -1rem;
 }
+
 ul.checkboxes > li::before {content: "☐ ";}
 ul.checkboxes > li.checked::before {content: "☒ ";}
+
 pre > button {display: none;}
+
 #toc-toggle {display: none;}
+
 #main_nav h2 {
     margin: 0;
     padding: 0.5em 1em;

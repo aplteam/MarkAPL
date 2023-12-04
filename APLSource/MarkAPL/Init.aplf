@@ -8,7 +8,7 @@
  ns.markdown←A.DTB(,⊆markdown),⊂''
  ns.lineNumbers←⍳≢ns.markdown                ⍝ Useful for reporting problems
  ns.parms←parms
- ns←ProcessEmbeddedParms⍣(~parms.ignoreEmbeddedParms)⊣ns
+ ns←parms.ignoreEmbeddedParms ProcessEmbeddedParms ns
  ns←RemoveAllComments ns
  ns←parms ProcessLeanPubExtensions ns
  :If IsLeanPubEncodingLine⊃ns.markdown
