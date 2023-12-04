@@ -1,9 +1,10 @@
 (
  '* 12.0.0 ⋄ 2023-11-29'
  '  * Collapsibles implemented with the `<details>` and `<summary>` tags'
- '  * Accordions (multiple collapsibales) implemented'
+ '  * Accordions (multiple collapsibles in succession) implemented'
  '  * Check boxes (ticked and un-ticked) added'
  '  * Code blocks now offer a Copy-to-clipboard" button by default'
+ '  * The main TOC now always has a button "Hide" that collapses the TOC when clicked'
  '  * New parameter `copy2ClipboardBtn` (defaults to 1) can be used to suppress the new copy-to-clipboard button '
  '  * BREAKING CHANGES: '
  '    * HTML tags in Markdown are now left alone, implementing the original intention and bringing MarkAPL '

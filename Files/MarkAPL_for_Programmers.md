@@ -4,16 +4,9 @@
 [parm]:title             = 'MarkAPL for programmers'
 [parm]:width             = 1000
 [parm]:reportLinks       = 1
-[parm]:collapsibleTOC    = 1
-⍝[parm]:printCSS          = 'BlackOnWhite_print.css'
-⍝[parm]:screenCSS         = 'BlackOnWhite_screen.css'
-[parm]:printCSS          = 'MarkAPL_print.css'
-[parm]:screenCSS         = 'MarkAPL_screen.css'
 [parm]:smoothScrolling   = 1
 [parm]:saveHTML          = 1
-[parm]:linkToCSS         = 1
 [parm]:leanpubExtensions = 1
-
 
 
 MarkAPL for Programmers
@@ -184,7 +177,6 @@ In order to specify parameters follow these steps:
  charset                                                     utf-8 
  checkFootnotes                              ⍝ defaults to "debug"
  checkLinks                                  ⍝ defaults to "debug"
- collapsibleTOC                                                  0
  compileFunctions                                                1 
  compressCSS                                                     1
  createFullHtmlPage                                              0
@@ -332,7 +324,6 @@ This document for example carries these embedded parameters:
  numberHeaders            2 3 4 5 6 
  bookmarkLink                     6 
  viewInBrowser                    1 
- collapsibleTOC                   1 
  title            MarkAPL Reference 
  width                         1100 
  reportLinks                      1 
@@ -587,6 +578,7 @@ Kai Jaeger ⋄ 2023-08-29
 [git]: https://help.github.com/articles/working-with-advanced-formatting/ "GIT's formatting rules"{target="_blank"}
 [markdown_extra]: https://www.wikiwand.com/en/Markdown_Extra{target="_blank"}
 [pandoc]: http://pandoc.org/README.html{target="_blank"}
+
 
 
 

@@ -3,6 +3,8 @@
  ns←⍬
  parms←EstablishDefaultHomeFolder parms
  :If ⎕NULL≡parms.cssURL
+ :AndIf {0=≢⍵:0 ⋄ (~':'∊⍵)∧'/'≠1⍴⍵}parms.screenCSS
+ :AndIf {0=≢⍵:0 ⋄ (~':'∊⍵)∧'/'≠1⍴⍵}parms.printCSS
      parms.cssURL←parms.homeFolder,'/Files'
  :EndIf
  :If (':'∊filename)∨'/'=1⍴filename

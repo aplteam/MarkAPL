@@ -1,8 +1,0 @@
- tx←ConvertPointyBrackets tx;otag;ctag;lb
-⍝ Converts `<` and `>` into their corresponding HTML entities unless (!)
-⍝ they are part of any HTML tag, including user defined ones.
- otag←'<[a-zA-Z][^>]*?>'    ⍝ Catches opening HTML tag
- ctag←'</[a-zA-Z]*?>'       ⍝ Catches closing HTML tag
- lb←'<<br>>'                ⍝ Outside of code <<br>> have been converted into (⎕UCS 13) by now
- tx←(,¨lb otag ctag'<' '>')⎕R(,¨'\&lt;\&lt;br\&gt;\&gt;' '&' '&' '\&lt;' '\&gt;')⊣tx
-⍝Done

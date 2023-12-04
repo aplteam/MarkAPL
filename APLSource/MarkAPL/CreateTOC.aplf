@@ -6,9 +6,7 @@
 ⍝ [;4] id
  r←⊂'<nav id="main_nav" class="toc">'
  r,←⊂'<h2 id="toc-heading">',ns.parms.tocCaption,'</h2>'
- :If 1  ⍝TODO⍝ ns.parms.collapsibleTOC
-     r,←⊂'<button id="toc-toggle" aria-controls="toc-list" aria-expanded="true">Hide</button'
- :EndIf
+ r,←⊂'<button id="toc-toggle" aria-controls="toc-list" aria-expanded="true">Hide</button'
  r,←⊂''
  r,←⊂'<div class="toc-container">'
  r,←⊂'<ul id="toc-list">'

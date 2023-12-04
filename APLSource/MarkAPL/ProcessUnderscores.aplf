@@ -17,7 +17,6 @@
      :AndIf 0≠≢buff←'<a .*>*.</a>'⎕S 0 1⍠('Greedy' 0)⊣(~bool){⍺\⍺/⍵}txt
          bool[{⊃,/{⍵[1]+⍳⍵[2]}¨⍵}buff]←0
      :EndIf
-     bool∧←~MaskPointyBrackets txt
      bool∧←~MaskTagAttrs txt
      bool∧←~MaskFunctionCall txt
  :AndIf 0≠≢ind←⍸bool

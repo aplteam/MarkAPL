@@ -1,13 +1,11 @@
 [parm]:width             = 1000
 [parm]:lang              = en
 [parm]:leanpubExtensions = 1
-[parm]:collapsibleTOC    = 1
 [parm]:title             = 'Styles'
 [parm]:toc               = 2 3 4 5 6
 [parm]:numberHeaders     = 6
 [parm]:printCSS          = 'BlackOnWhite_print.css'
 [parm]:screenCSS         = 'BlackOnWhite_screen.css'
-[parm]:linkToCSS         = 1
 [parm]:saveHTML          = 1
 
 
@@ -147,7 +145,7 @@ There are a few HTML elements that get a class name assigned by MarkAPL in order
   class name "bookmark_link" assigned.
 * All external links get the class name "external_link" assigned.
 * All "mailto" links get the class name "mailto_link" assigned.
-* If `toc` is 1 then MarkAPL injects a table-of-contents into the HTML. The toc is embraced by a `<nav>` tag which, in order to make it styleable, gets the id "main_nav" assigned when `collapsibleTOC` is 1 and `main_nav_no_collapse` otherwise.
+* If `toc` is 1 then MarkAPL injects a table-of-contents into the HTML. The toc is embraced by a `<nav>` tag which, in order to make it styleable, and gets the id "main_nav" assigned.
 
 Naturally you must not use these class names for different purposes when defining your own CSS.
 
@@ -287,3 +285,5 @@ Example:
 ~~~
 
 [^normalyze]: This and that<br><https://necolas.github.io/normalize.css/>
+
+

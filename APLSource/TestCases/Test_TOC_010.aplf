@@ -14,7 +14,6 @@
 
  parms←MarkAPL.CreateParms
  parms.toc←6
- parms.collapsibleTOC←1
  parms.verbose←0
 
  ns←MarkAPL.Init parms md

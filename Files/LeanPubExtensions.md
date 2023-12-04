@@ -2,10 +2,8 @@
 [parm]:leanpubExtensions = 1
 [parm]:title             = 'LeanPub Extensions'
 [parm]:width             = 1000
-[parm]:collapsibleTOC    = 1
 [parm]:toc               = 2 3
 [parm]:saveHTML          = 0
-[parm]:linkToCSS         = 0
 
 
 
@@ -295,4 +293,5 @@ Last Update: 2023-08-29
 
 
 [^leanPub]: <http://LeanPub.com>
+
 

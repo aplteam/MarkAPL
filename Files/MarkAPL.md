@@ -4,8 +4,6 @@
 [parm]:title           = 'MarkAPL Reference'
 [parm]:width           = 1000
 [parm]:reportLinks     = 1
-[parm]:printCSS        = 'C:\T\Projects\APLTree\MarkAPL\Files\BlackOnWhite_print.css'
-[parm]:screenCSS       = 'C:\T\Projects\APLTree\MarkAPL\Files\BlackOnWhite_screen.css'
 [parm]:smoothScrolling = 1
 [parm]:saveHTML        = 1
 

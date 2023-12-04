@@ -3,8 +3,6 @@
 [parm]:bookmarkLink    = 6
 [parm]:title           = 'MarkAPL CheatSheet'
 [parm]:width           = 1000
-[parm]:screenCSS       = 'MarkAPL_screen.css'
-[parm]:printCSS        = 'MarkAPL_print.css'
 [parm]:saveHTML        = 1
 [parm]:smoothScrolling = 1
 

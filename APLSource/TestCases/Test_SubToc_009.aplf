@@ -27,7 +27,6 @@
  ns←MarkAPL.Process ns
 
  →T.PassesIf 1=+/'<h1 data-id="Level-1">1. Level 1</h1>'⍷∊ns.html
- →T.PassesIf 1=+/'<h3>'⍷∊ns.html                      ⍝ One for Main TOC
  →T.PassesIf 1=+/'<h2 data-id="Level-2">'⍷∊ns.html
  →T.PassesIf 1=+/'<h2 data-id="Level-3">'⍷∊ns.html
  →T.PassesIf 7=+/'<p>'⍷∊ns.html                       ⍝ Caption of sub-toc is a para as well!
