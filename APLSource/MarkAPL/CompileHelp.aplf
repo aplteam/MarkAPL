@@ -12,7 +12,7 @@
  :Else
      fn←CorrectSlash FilesAndDirs.PWD,'/',filename
  :EndIf
- parms.inputFilename←filename
+ parms.inputFilename←fn
  :If 0=≢parms.inputFilename
  :AndIf 0=FilesAndDirs.IsFile parms.inputFilename←(⊃,/2↑⎕NPARTS fn),(1+recompileFlag)⊃'.html' '.md'
      ('Could not find "',parms.inputFilename,'"')⎕SIGNAL 6
