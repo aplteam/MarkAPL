@@ -4,9 +4,8 @@
 [parm]:title             = 'Styles'
 [parm]:toc               = 2 3 4 5 6
 [parm]:numberHeaders     = 6
-[parm]:printCSS          = 'BlackOnWhite_print.css'
-[parm]:screenCSS         = 'BlackOnWhite_screen.css'
 [parm]:saveHTML          = 1
+
 
 
 
@@ -285,5 +284,6 @@ Example:
 ~~~
 
 [^normalyze]: This and that<br><https://necolas.github.io/normalize.css/>
+
 
 

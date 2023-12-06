@@ -155,17 +155,19 @@ Compatibility, features, bugs
 
 * Typographical sugar. This can be switched off by setting [`syntaxSugar`](#) to 0. For details see [Syntax sugar](#).
 
-  * `(c)` becomes (c)
-  * `(tm)` becomes (tm)
-  * `...` becomes ...
-  * `<<` becomes <<
-  * `>>` becomes >>
-  * `--` becomes --
-  * `---` becomes ---
-  * `==>` becomes ==>
-  * `<==` becomes <==
-  * `<==>` becomes <==>
-  * `""` becomes ""  (but depends on the "lang" parameter)    
+  | Input | Result | Remark
+  |------|---------|------
+  | `(c)`  |  (c) | Copyright
+  | `(tm)`  |  (tm) | Trademark
+  | `...`  |  ... | Ellipsis
+  | `<<`  |  << | Guillemets 
+  | `>>`  |  >> | Guillemets 
+  | `--`  |  -- | n-dash
+  | `---`  |  --- | m-dash
+  | `==>`  |  ==> |
+  | `<==`  |  <== |
+  | `<==>`  |  <==> |
+  | `""`  |  "" | Depends on the "lang" parameter
 
 * Assigning ID names, class names and attributes to certain elements as in:\
   `{#foo .my_class .another_class style="display:none;" target="_blank"}`\
@@ -940,7 +942,7 @@ So these lines will all create a ruler:
 * * * * * *
 _ _    _
    ***
-   ***{style="max-width: 50%; border-top: 2px solid silver;"}
+   ***{style="max-width: 50%; border-top: 4px solid Black;"}
 ~~~
 
 The result:
@@ -950,7 +952,7 @@ The result:
 _ _    _
    ***
 
-   ***{style="max-width: 50%; border-top: 2px solid silver;"}
+   ***{style="max-width: 50%; border-top: 4px solid Black;"}
 
 It is a common mistake to forget the empty line required **before** the definition of a ruler which might well create a [SeText header](#The “=” and "-" syntax (SeText)).
 
@@ -2579,7 +2581,7 @@ Version information
 
 This document refers to version 12.0 of `MarkAPL`.
 
-Kai Jaeger ⋄ 2023-12-03
+Kai Jaeger ⋄ 2023-12-06
 
 ⍝ Footnotes:
 [^meddy]: The Markdown editor Meddy on GitHub:<br><https://github.com/aplteam/Meddy>
@@ -2594,29 +2596,5 @@ Kai Jaeger ⋄ 2023-12-03
 [git]: https://help.github.com/articles/working-with-advanced-formatting/ "GIT's formatting rules"{target="_blank"}
 [markdown_extra]: https://www.wikiwand.com/en/Markdown_Extra{target="_blank"}
 [pandoc]: http://pandoc.org/README.html{target="_blank"}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

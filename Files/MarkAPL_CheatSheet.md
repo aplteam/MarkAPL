@@ -670,7 +670,7 @@ For details refer to the [`MarkAPL` reference document](http://download.aplteam.
 ## Version
 
 This document refers to version 12.0 of `MarkAPL`.<br>
-Kai Jaeger ⋄ 2023-09-04
+Kai Jaeger ⋄ Last update 2023-12-06
 
 ⍝ The link references:
 [1]:      https://aplwiki.com

@@ -1,4 +1,5 @@
-/* MarkAPL's default print style sheet version 3.0 from 2023-12-02 */
+/* This was MarkAPL's default print style sheet until version 12.0 */
+/* Version 3.0 from 2023-12-06 */
 
 @page {
     margin: 25mm 20mm 25mm 20mm;
@@ -159,6 +160,7 @@ code {
     font-size: 9pt;
     color: #950000;
     padding: 3pt 0;
+    white-space: nowrap;
 }
 
 tbody th, tfoot tr {
@@ -321,7 +323,9 @@ div#footnotes_div {page-break-inside: avoid;}
 
 /* User classes */
 
-.no_print {display: none;}
+.no_print {display: none;}  /* deprecated: use .hide instead */
+
+.hide {display: none;}
 
 .red {color: red;}
 

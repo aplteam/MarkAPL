@@ -14,7 +14,7 @@
  ns←MarkAPL.Process ns
  ns.html←parms MarkAPL.MakeHTML_Doc ns.html
 
- expected←'<link href="ftp://ftp.aplwiki.com/APLTeam/MarkAPL_screen.css" rel="stylesheet" media="screen">'
+ expected←'<link href="ftp://ftp.aplwiki.com/APLTeam/Dark_screen.css" rel="stylesheet" media="screen">'
  →T.PassesIf(⊂expected)∊ns.html
 
  R←T._OK

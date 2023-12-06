@@ -40,11 +40,11 @@
  'numberHeaders'SetTo 0
  'noCSS'SetTo 0
  'outputFilename'SetTo''
- 'printCSS'SetTo'MarkAPL_print.css'
+ 'printCSS'SetTo'Dark_print.css'
  'reportLinks'SetTo 0
  'reportLinksCaption'SetTo'Link report'
  'saveHTML'SetTo ¯1                            ⍝ Meddy parameter
- 'screenCSS'SetTo'MarkAPL_screen.css'
+ 'screenCSS'SetTo'Dark_screen.css'
  'smoothScrolling'SetTo 1
  'subTocs'SetTo 1
  'syntaxSugar'SetTo 1

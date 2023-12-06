@@ -46,12 +46,12 @@
  buff←∊html
  parms.hasCodeBlock←∨/'<pre'⍷buff
  parms.hasCollapsible←∨/'<summary'⍷buff
- parms.hasTOC←∨/'<nav id="main_nav">'⍷buff
+ parms.hasTOC←∨/'<nav id="main_nav"'⍷buff
  buff←''
  :If parms.hasCollapsible
-     r,←⊂'<script>'
+     r,←'' '<script>'
      r,←GetJavaScriptForPrintingCollapsibles
-     r,←⊂'</script>'
+     r,←'' '</script>'
  :EndIf
  :If 0≠≢parms.head
      r,←,⊆parms.head
@@ -63,6 +63,9 @@
  :If parms.hasTOC
      toggleTocJavaScript←GetJavaScriptForTogglingTOC
  :EndIf
- javaScript←copyCodeJavaScript,toggleTocJavaScript
- r,←'</head>' '<body>',html,(⊂'</body>'),javaScript,(⊂'</html>')
+ javaScript←copyCodeJavaScript,toggleTocJavaScript,parms.hasCollapsible/GetJavaScriptForTogglingCollapsibles
+ :If 0<≢javaScript
+     javaScript←('' '<script>'),javaScript,('</script>' '')
+ :EndIf
+ r,←'</head>' '<body>',html,javaScript,'</body>' '</html>'
 ⍝Done

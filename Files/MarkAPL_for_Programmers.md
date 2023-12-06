@@ -565,7 +565,7 @@ If you cannot work out why it goes wrong report it to me -- see the previous top
 
 This document refers to version 12.0 of `MarkAPL`.
 
-Kai Jaeger ⋄ 2023-08-29
+Kai Jaeger ⋄ Last update 2023-12-06
 
 [^meddy]: The Markdown editor Meddy on GitHub:<br><https://github.com/aplteam/Meddy>
 [^abandon]: Wikipedia definition of abandonware:<br><https://www.wikiwand.com/en/Abandonware>
@@ -578,10 +578,4 @@ Kai Jaeger ⋄ 2023-08-29
 [git]: https://help.github.com/articles/working-with-advanced-formatting/ "GIT's formatting rules"{target="_blank"}
 [markdown_extra]: https://www.wikiwand.com/en/Markdown_Extra{target="_blank"}
 [pandoc]: http://pandoc.org/README.html{target="_blank"}
-
-
-
-
-
-
 

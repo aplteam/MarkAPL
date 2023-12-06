@@ -719,7 +719,7 @@ code {
     color: Black;
     font-weight: 800;
     line-height: 1.1;
-    white-space: break-spaces;
+    white-space: nowrap;
     margin: 0;
     padding: 0.2em 0.4em;
     border-radius: 6px;
@@ -831,7 +831,9 @@ div#footnotes_div ol {
 
 /* User classes */
 
-.no_display {display:none;}
+.no_screen {display: none;}  /* deprecated: use .hide instead */
+
+.hide {display: none;}
 
 .red {color: red;}
 

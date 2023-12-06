@@ -1,8 +1,6 @@
 [parm]:title             = 'MarkAPL Quick Intro'
 [parm]:enforceEdge       = 1
 [parm]:leanpubExtensions = 1
-[parm]:printCSS          = 'BlackOnWhite_print.css'
-[parm]:screenCSS         = 'BlackOnWhite_screen.css'
 [parm]:linkToCSS         = 0
 [parm]:saveHTML          = 1
 [parm]:toc               = 2 3 4 5 6
@@ -100,5 +98,5 @@ Please send comments, suggestions and bug reports to kai@aplteam.com.
 
 Kai Jaeger ⋄ 2016-02-17
 
-Last update: 2023-11-16
+Last update: 2023-12-06
 

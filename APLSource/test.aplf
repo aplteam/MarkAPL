@@ -1,7 +1,7 @@
  r←{printAsScreen}test y;M;parms;ns;opCode;css
 ⍝ Creates any of the documents MarkAPL comes with, defined by the "opCode"
 ⍝ Useful for working on the CSS because the CSS files are linked, so changes are reflected straight away.
-⍝ Uses either the "MarkAPL" (css=1) or the "BlackAndWhite" (css=2) CSS files.
+⍝ Uses either the "MarkAPL" (css=1) or the "BlackAndWhite" (css=2) or the "Dark" (css=3) CSS files.
 ⍝ "printAsScreen" defaults to 0, meaning that the "screen" CSS file is used for display and "print" for print.
 ⍝ Both default to 1 if not specified.
 ⍝ In case "printAsScreen" is 1 the print CSS file is used for both, display and print.
@@ -56,6 +56,12 @@
          parms.printCSS←'BlackOnWhite_print.css'
          :If printAsScreen
              parms.screenCSS←'BlackOnWhite_print.css'
+         :EndIf
+     :ElseIf (,3)≡,css
+         parms.screenCSS←'Dark_screen.css'
+         parms.printCSS←'Dark_print.css'
+         :If printAsScreen
+             parms.screenCSS←'Dark_print.css'
          :EndIf
      :Else
          11 ⎕SIGNAL⍨'"css" must be either 1 or 2'

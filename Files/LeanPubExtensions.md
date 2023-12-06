@@ -16,7 +16,7 @@ Overview
 
 LeanPub[^leanPub] serves as a publishing platform primarily designed for technical books.
 
-The input format for LeanPub is Markdown. However, Markdown lacks certain features necessary for book publishing. As a solution, LeanPub introduced extensions to Markdown:
+The input format for LeanPub is Markdown. However, Markdown lacks certain features required for publishing books. As a solution, LeanPub introduced extensions to Markdown:
 
 Code Highlighting
 
@@ -77,7 +77,7 @@ This appears as:
 
 A> Asides offer additional information.
 
-Inside an aside, Markdown features like headers, code blocks, and lists are available:
+Inside an aside, Markdown features like headers, code blocks, lists etc. are available:
 
 ~~~
 A> ### This offers information about asides
@@ -119,7 +119,9 @@ A> In-line mark-up is available, too: **bold**, _italic_, `code`, whatever.
 
 Notes:
 
-* In case you specify a level-1 (`<h1>`) or a level-2 (`<h2>`) header in an Aside it will be converted to a level-3 header (`<h3>`) anyway. The reason is that many screenreaders read out all `<h1>` and all `<h2>` tags. Therefore the W3C recommends to not use headers of the levels 1 and 2 except they really are such headers.
+* In case you specify a level-1 (`<h1>`) or a level-2 (`<h2>`) header in an Aside on the first line it will be converted to a level-3 header (`<h3>`) anyway. The reason is that many screenreaders read out all `<h1>` and all `<h2>` tags. Therefore the W3C recommends to not use headers of the levels 1 and 2 except they really are such headers.
+
+  However, later headers are not changed, so you are in charge to give them the correct level.
 
 * Headers defined in an Aside do not make it into the table-of-contents, and therefore they don't show in Meddy's tree view --- representing the TOC --- either.
 
@@ -173,7 +175,7 @@ I> They can have headers and multiple paragraphs, but they can also have all the
 
 This is the result:
 
-I> # About Specialties 
+I> ### About Specialties 
 I> All specialties share a number of properties:
 I>
 I> * They all have an icon to make it easier to identify them.
@@ -214,10 +216,10 @@ X> Today's exercise
 
 More complex:
 
-X> # Exercises
-X> ## First
+X> ### Exercises
+X> #### First
 X> Do this!
-X> ## Second
+X> #### Second
 X> Do that! Random text with a couple of words. Random text with a couple of words. Random text with a couple of words. Random text with a couple of words. Random text with a couple of words. 
 X> ~~~
 X> {(+⌿⍵}÷≢⍵}
@@ -289,9 +291,10 @@ This document refers to version 12.0 of **_MarkAPL_**.
 
 Kai Jaeger ⋄ 2020-10-31
 
-Last Update: 2023-08-29
+Last Update: 2023-12-06
 
 
 [^leanPub]: <http://LeanPub.com>
+
 
 
