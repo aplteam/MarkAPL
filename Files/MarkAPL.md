@@ -942,7 +942,7 @@ So these lines will all create a ruler:
 * * * * * *
 _ _    _
    ***
-   ***{style="max-width: 50%; border-top: 4px solid Black;"}
+   ***{style="max-width: 50%; border-top: 20px solid green; border-radius: 5px;"}
 ~~~
 
 The result:
@@ -952,7 +952,7 @@ The result:
 _ _    _
    ***
 
-   ***{style="max-width: 50%; border-top: 4px solid Black;"}
+   ***{style="max-width: 50%; border-top: 20px solid green; border-radius: 5px;"}
 
 It is a common mistake to forget the empty line required **before** the definition of a ruler which might well create a [SeText header](#The “=” and "-" syntax (SeText)).
 
@@ -992,10 +992,10 @@ In order to add [Special attributes](#) use this syntax:
 Example:
 
 ~~~
-![Dots](http://download.aplteam.com/APL_Team_Dots.png "aplteam dots" {height="70" width="70"})
+![Dots](http://download.aplteam.com/APL_Team_Dots.png "aplteam dots" {height="70" width="70" style="background: silver;"})
 ~~~
 
-![Dots](http://download.aplteam.com/APL_Team_Dots.png "aplteam dots" {height="70" width="70"})
+![Dots](http://download.aplteam.com/APL_Team_Dots.png "aplteam dots" {height="70" width="70" style="background: silver;"})
 
 Note that you can use `<br>` between an image and some text and assign [Special attributes](#) to both, the image and the text. For example, this:
 
@@ -2332,6 +2332,15 @@ Boolean that defaults to 0. If you want to overrule any embedded parameters then
 If the Markdown you want to process lives in a file rather than the workspace then you can pass an empty vector as right argument to the `Process` method and specify `parms.inputFilename` instead. 
 
 
+#### javaScript
+
+Boolean that defaults to 1. If this is 0 no JavaScript is injected into the HTML document. 
+
+Of course this means that neither the "Show/Hide" button in the main TOC nor the "Copy" button in code blocks will appear since both require JavaScript in order to carry out the desired action.
+
+Also, accordions do not close any already opened collapsible when another one is clicked.
+
+
 #### lang
 
 This defaults to `en` for "English". `lang` is added to the `<html>` tag if it is not empty. If you wish so you can specify a different language.
@@ -2596,5 +2605,6 @@ Kai Jaeger ⋄ 2023-12-06
 [git]: https://help.github.com/articles/working-with-advanced-formatting/ "GIT's formatting rules"{target="_blank"}
 [markdown_extra]: https://www.wikiwand.com/en/Markdown_Extra{target="_blank"}
 [pandoc]: http://pandoc.org/README.html{target="_blank"}
+
 
 

@@ -140,9 +140,9 @@ Specialties are embraced by empty lines in Markdown. LeanPub offers special mark
 
 Detailed examples of each specialty are provided in the text.
 
-A word of warning: making use of the specialties prevents any HTML document created by MarkAPL from being truly stand-alone; the icons have to come from somewhere. However, by default they are referred to as a URL pointing to a web address (see MarkAPL's `leanpubIconsUrl` parameter), so when you have an Internet connection it will work fine.
+~~A word of warning: making use of the specialties prevents any HTML document created by MarkAPL from being truly stand-alone; the icons have to come from somewhere. However, by default they are referred to as a URL pointing to a web address (see MarkAPL's `leanpubIconsUrl` parameter), so when you have an Internet connection it will work fine.~~
 
-If you like the general idea but not the actual icons you can specify a different location and put your favourite icons there. However, you can **not** change the names of the LeanPub extension icons.
+With version 12.0 the PNGs used as icons were converted into SVGs; they will be injected into the document if required, so the document is truly stand-alone even when LeanPub icons are used.
 
 
 ### Information

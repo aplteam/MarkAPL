@@ -29,6 +29,7 @@
  'ignoreEmbeddedParms'SetTo 0
  'imageURL'SetTo''
  'inputFilename'SetTo''
+ 'javaScript'SetTo 1
  'lang'SetTo'en'
  'leanpubExtensions'SetTo 0
  'leanpubIconsUrl'SetTo'https://download.aplwiki.com/LeanPub/Images/'

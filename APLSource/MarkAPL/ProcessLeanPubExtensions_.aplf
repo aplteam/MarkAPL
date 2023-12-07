@@ -1,4 +1,4 @@
- ns←parms ProcessLeanPubExtensions_ ns;leanPubExtensions;extension;isNotCodeBlock;bool;start;lengths;i;ind;noOf;openDiv;body;html;img;after;report;this
+ ns←parms ProcessLeanPubExtensions_ ns;leanPubExtensions;extension;isNotCodeBlock;bool;start;lengths;i;ind;noOf;openDiv;body;html;img;after;report;this;fn
  leanPubExtensions←'AWTEIQDX'
  :For extension :In leanPubExtensions
      isNotCodeBlock←~WhereAreCodeBlocks ns.markdown
@@ -14,8 +14,9 @@
                      openDiv←⊂'<div class="leanpub',((extension≡'A')/'_A'),'">'
                      body←3↓¨ns.markdown[ind+⍳lengths[i]]
                      (html report)←ConvertMarkdown2HTML body
-                     :If extension≠'A'
-                         img←'<img src="',(parms LeanPubImageFor extension),'" alt="',(LeanPubAltTextFor extension),'">'
+                     :If extension≠'A'  ⍝ Not an Aside?
+                         fn←('EDIWQTX'⍳extension)⊃'Error' 'Discussion' 'Information' 'Warning' 'Question' 'Tip' 'Exercise'
+                         img←⊃,/LeanPubIcons.⍎fn,' ''',(LeanPubAltTextFor extension),''''
                          html←img'<div>',html,⊂'</div>'
                      :EndIf
                      html←{0=+/b←0=≢¨⍵:⍵ ⋄ w←⍵ ⋄ (b/w)←⊂'&nbsp;' ⋄ w}html  ⍝ Important: only this way "html" is later recognized as a single HTML block.

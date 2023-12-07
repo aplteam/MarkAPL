@@ -49,6 +49,7 @@
  parms.hasTOC←∨/'<nav id="main_nav"'⍷buff
  buff←''
  :If parms.hasCollapsible
+ :AndIf parms.javaScript
      r,←'' '<script>'
      r,←GetJavaScriptForPrintingCollapsibles
      r,←'' '</script>'
@@ -57,15 +58,19 @@
      r,←,⊆parms.head
  :EndIf
  copyCodeJavaScript←toggleTocJavaScript←''
- :If parms.hasCodeBlock
-     copyCodeJavaScript←GetCopyCodeJavaScript parms.copy2ClipboardBtn
- :EndIf
- :If parms.hasTOC
-     toggleTocJavaScript←GetJavaScriptForTogglingTOC
- :EndIf
- javaScript←copyCodeJavaScript,toggleTocJavaScript,parms.hasCollapsible/GetJavaScriptForTogglingCollapsibles
- :If 0<≢javaScript
-     javaScript←('' '<script>'),javaScript,('</script>' '')
+ :If parms.javaScript
+     :If parms.hasCodeBlock
+         copyCodeJavaScript←GetCopyCodeJavaScript parms.copy2ClipboardBtn
+     :EndIf
+     :If parms.hasTOC
+         toggleTocJavaScript←GetJavaScriptForTogglingTOC
+     :EndIf
+     javaScript←copyCodeJavaScript,toggleTocJavaScript,parms.hasCollapsible/GetJavaScriptForTogglingCollapsibles
+     :If 0<≢javaScript
+         javaScript←('' '<script>'),javaScript,('</script>' '')
+     :EndIf
+ :Else
+     javaScript←''
  :EndIf
  r,←'</head>' '<body>',html,javaScript,'</body>' '</html>'
 ⍝Done
