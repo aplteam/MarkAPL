@@ -4,5 +4,5 @@
  :AndIf 0<≢ind←⍸{≢'^#{1,6}'⎕S 2⍠('Greedy' 0)⊢⍵}¨ns.markdown
  :AndIf 0<≢ind2←2+'\[\^[a-zA-Z]+\]'⎕S 2⊣ns.markdown[ind]
  :AndIf 0<≢ind←ind[ind2]
-     ns.report←'Invalid footnote definition in auto-link headers: line(s) ',⊃{⍺,',',⍵}/⍕¨ind
+     ns.report,←⊂'Invalid footnote definition in auto-link headers: line(s) ',⊃{⍺,',',⍵}/⍕¨ind
  :EndIf

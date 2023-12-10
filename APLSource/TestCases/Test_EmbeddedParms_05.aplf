@@ -20,6 +20,7 @@
  →T.FailsIf 0=≢html←ns.parms MarkAPL.MakeHTML_Doc ns.html
  →T.FailsIf 0=≢hits←'<link href="[^"]*"'⎕S GetHit⊣html
  →T.FailsIf 2≠⍴filenames←¯1↓¨(⍴'href="')↓¨'href="[^"]*"'⎕S GetHit⊣hits
+ filenames←'file://'⎕R''⊣filenames
  →T.FailsIf 2≠+/FilesAndDirs.IsFile filenames
 
  R←T._OK

@@ -353,6 +353,9 @@ div#footnotes_div {page-break-inside: avoid;}
 div.leanpub {
     margin: 10pt 0 10pt 8pt;
     page-break-inside: avoid;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 10px;    
 }
 
 div.leanpub_A {

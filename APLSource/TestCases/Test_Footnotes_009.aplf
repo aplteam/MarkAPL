@@ -6,8 +6,8 @@
  md←''
  md,←⊂'[^github1] and [^github2]'
  md,←⊂''
- md,←⊂'[^github1]: GitHub web address<<br>><https://github.com>'
- md,←⊂'[^github2]: GitHub web address:<<br>><https://github.com>'
+ md,←⊂'[^github1]: GitHub web address<br><https://github.com>'
+ md,←⊂'[^github2]: GitHub web address:<br><https://github.com>'
 
  parms←MarkAPL.CreateParms
  ns←MarkAPL.Init parms md

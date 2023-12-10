@@ -7,9 +7,7 @@
      parms.cssURL←'file:///',FilesAndDirs.NormalizePath parms.homeFolder,'/Files/'
  :EndIf
  ((parms.cssURL='\')/parms.cssURL)←'/'
- ((parms.leanpubIconsUrl='\')/parms.leanpubIconsUrl)←'/'
  parms.cssURL,←(~(¯1↑parms.cssURL)∊' /')/'/'
- parms.leanpubIconsUrl,←(~(¯1↑parms.leanpubIconsUrl)∊' /')/'/'
  parms.(inputFilename outputFilename)←1 CorrectSlash¨parms.(inputFilename outputFilename)
  parms.(cssURL screenCSS printCSS)←0 CorrectSlash¨parms.(cssURL screenCSS printCSS)
 ⍝Done

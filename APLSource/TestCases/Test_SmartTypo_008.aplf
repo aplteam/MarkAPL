@@ -1,4 +1,4 @@
- R←Test_SmartTypo_008(stopFlag batchFlag);⎕TRAP;md;ns
+ R←Test_SmartTypo_008(stopFlag batchFlag);⎕TRAP;md;ns;expected
 ⍝ Test conversion of `<<` and `>>` into Guillemets.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
@@ -7,6 +7,7 @@
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
 
- →T.PassesIf(,⊂'<p>APL is a «modern» language but this <br>is a break</p>')≡ns.html
+ expected←'<p>APL is a «modern» language but this<br>is a break</p>'
+ →T.PassesIf(,⊂expected)≡ns.html
 
  R←T._OK

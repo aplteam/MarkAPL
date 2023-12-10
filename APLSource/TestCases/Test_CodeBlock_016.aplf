@@ -1,5 +1,6 @@
  R←Test_CodeBlock_016(stopFlag batchFlag);⎕TRAP;ns;parms;md
 ⍝ Test having `<<br>>` inside a code block.
+⍝ When the (already deprecated) `<<br>>` feature is finally removed, this test can go  ⍝TODO⍝
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 

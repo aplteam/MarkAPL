@@ -1,5 +1,5 @@
  R←Test_Blockquote_002(stopFlag batchFlag);⎕TRAP;md;ns;parms
-⍝ Test a simple blockquote with in-line formatting.
+⍝ Test a simple blockquote with inline formatting.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 

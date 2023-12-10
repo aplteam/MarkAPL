@@ -1,5 +1,0 @@
- InjectPointyBrackets←{
-     tx←⍵
-     tx←'&amp;pointybracket_open;'⎕R'<'⊣tx
-     '&amp;pointybracket_close;'⎕R'>'⊣tx
- }

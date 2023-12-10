@@ -1,6 +1,6 @@
  GetAllLinkRefs←{
 ⍝ This combs through the html and finds all link references ([][]-syntax).
-⍝ Ignores in-line code.
+⍝ Ignores inline code.
 ⍝ Returns a three-item-vector for each hit.
 ⍝ [1] The link text - that can by anything.
 ⍝ [2] The ref id. That's what we hope to find in ns.linkRefs later on.

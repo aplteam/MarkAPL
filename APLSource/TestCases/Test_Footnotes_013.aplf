@@ -5,7 +5,7 @@
 
  md←⊂'Let''s check whether it worked [^apl1] na d[^apl2]:'
  md,←⊂''
- md,←⊂'[^dotnetcore]: More information on .NET Core is available at <<br>>'
+ md,←⊂'[^dotnetcore]: More information on .NET Core is available at <br>'
  md,←⊂'<https://en.wikipedia.org/wiki/.NET_Core>'
  md,←⊂''
  md,←⊂'[^apl1]: APL is great!'

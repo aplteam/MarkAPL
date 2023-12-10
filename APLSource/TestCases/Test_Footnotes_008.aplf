@@ -1,5 +1,5 @@
  R←Test_Footnotes_008(stopFlag batchFlag);⎕TRAP;md;ns;parms;html;buff
-⍝ Test footnote with in-line code and an ellipsis (was once a bug).
+⍝ Test footnote with inline code and an ellipsis (was once a bug).
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 

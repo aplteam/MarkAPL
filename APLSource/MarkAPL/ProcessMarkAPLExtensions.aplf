@@ -1,10 +1,11 @@
  r←ProcessMarkAPLExtensions ns;noOfLines;b;list;html;details;b1;b2;ind;list2;summary;header;noOfHashes
 ⍝ Converts `!> ` and `=>` to <details> and <summary>
  r←0
- noOfLines←+/∧\~ns.emptyLines
- list←noOfLines↑ns.markdown
- (b1 b2)←{b1←'!> '∘≡¨⍵ ⋄ b2←'=> '∘≡¨⍵ ⋄ b1 b2}3↑¨list
- :If 1≤+/b2
+ :If ~ns.parms.markdownStrict
+     noOfLines←+/∧\~ns.emptyLines
+     list←noOfLines↑ns.markdown
+     (b1 b2)←{b1←'!> '∘≡¨⍵ ⋄ b2←'=> '∘≡¨⍵ ⋄ b1 b2}3↑¨list
+ :AndIf 1≤+/b2
      :If 1=+/b1
          ⍝ It's a single collapsible
          b←b1∨b2

@@ -4,8 +4,8 @@
  R←T._Failed
 
  md←''
- md,←⊂'[parm]:cssURL            = '''''
- md,←⊂'[parm]:leanpubIconsUrl   = ''Goo'
+ md,←⊂'[parm]:cssURL    = '''''
+ md,←⊂'[parm]:screenCSS = ''Goo'
 
  parms←MarkAPL.CreateParms
  parms.verbose←0

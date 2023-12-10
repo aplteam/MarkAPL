@@ -332,7 +332,7 @@ div#footnotes_div {page-break-inside: avoid;break-inside: avoid;}
 
 .no_print {display: none;}  /* deprecated: use .hide instead */
 
-.hide {display: none;} 
+.hide {display: none;}
 
 .red {color: red;}
 
@@ -362,6 +362,9 @@ div.leanpub {
     margin: 15pt 0 10pt 8pt;
     page-break-inside: avoid;
     break-inside: avoid;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 10px;    
 }
 
 div.leanpub_A {

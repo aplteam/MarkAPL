@@ -1,5 +1,5 @@
  R←Test_Footnotes_014(stopFlag batchFlag);⎕TRAP;md;ns;parms;html;buff
-⍝ Footnote that is not referenced should show but a warning should be generated (was once a bug)
+⍝ A footnote must carry a link somewhere, otherwise it's invalid
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 
@@ -11,7 +11,6 @@
 
  ns←MarkAPL.Init''md
  ns.parms.verbose←0
-⍝ ns.parms.bookmarkLink←0   ⍝ Then it would work just fine but otherwise we have a link withina link - can't work
  ns←MarkAPL.Process ns
 
  →T.PassesIf∨/'Invalid footnote definition'⍷∊ns.report

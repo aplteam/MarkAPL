@@ -10,7 +10,7 @@
  md,←⊂''
  md,←⊂'<div class="handout">'
  md,←⊂''
- md,←⊂'This is a paragraph **with** in-line mark-up that shows in print view only.'
+ md,←⊂'This is a paragraph **with** inline markup that shows in print view only.'
  md,←⊂''
  md,←⊂'</div>'
  md,←⊂''

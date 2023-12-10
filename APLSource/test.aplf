@@ -34,7 +34,7 @@
  parms.linkToCSS←1
  parms.leanpubExtensions←1
  r←0 0⍴''
- documents←'MarkAPL.md' 'MarkAPL_CheatSheet.md' 'LeanPubExtensions.md' 'MarkAPL_for_Programmers.md' ' QuickIntro.md' 'Styles.md'
+ documents←'MarkAPL.md' 'MarkAPL_CheatSheet.md' 'LeanPubExtensions.md' 'MarkAPL_for_Programmers.md' 'QuickIntro.md' 'Styles.md'
  :If 0=≢y
      opCode←'Select document'TestCases.CommTools.Select'Full Ref' 'Cheat sheet' 'LeanPub Extension' 'MarkAPL for programmers' 'Quick Intro' 'Styles'
      →(0=≢opCode)/0

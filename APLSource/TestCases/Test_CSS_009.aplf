@@ -16,10 +16,10 @@
  ns←MarkAPL.Process ns
  ns.html←parms MarkAPL.MakeHTML_Doc ns.html
 
- expected←'href="C:/BlackOnWhite_screen.css"'
+ expected←'href="file://C:/BlackOnWhite_screen.css"'
  →T.PassesIf∨/expected⍷∊ns.html
 
- expected←'href="C:/BlackOnWhite_print.css"'
+ expected←'href="file://C:/BlackOnWhite_print.css"'
  →T.PassesIf∨/expected⍷∊ns.html
 
  R←T._OK

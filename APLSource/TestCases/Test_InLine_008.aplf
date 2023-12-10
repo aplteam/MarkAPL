@@ -1,5 +1,5 @@
  R←Test_InLine_008(stopFlag batchFlag);⎕TRAP;ns;html;expected;md
-⍝ Test in-line mark-up; here: external link with a URL, a link text and a title
+⍝ Test inline markup; here: external link with a URL, a link text and a title
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 

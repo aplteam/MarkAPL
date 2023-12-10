@@ -9,25 +9,22 @@
 [parm]:leanpubExtensions = 1
 
 
-MarkAPL for Programmers
-=======================
+# MarkAPL for Programmers
 
 
-Overview
---------
+## Overview
 
-This document is relevant for APL programmers using MarkAPL within an APL application. If you're using it implicitly, such as editing a Markdown file with Meddy[^meddy], the cheat sheet and MarkAPL reference document should be sufficient.
+This document is relevant for APL programmers using `MarkAPL` within an APL application. If you're using it implicitly, such as editing a Markdown file with Meddy[^meddy], the cheat sheet and `MarkAPL` reference document should be sufficient.
 
 
-How to
-------
+## How to
 
 One approach to learn about `MarkAPL` is to trace through the method `MarkAPL.Help`.
 
 
 A> ### The MarkAPL project
 A>
-A> Alternatively you can explore the test cases named `Test_Examples_01` etc. To do that you need to take a copy of the [MarkAPL project on GitHub](https://github.com/aplteam/MarkAPL) and open it with the project manage [Cider](https://github.com/aplteam/Cider "Link to Cider on GitHub") which is available as a [Tatin package](https://tatin.dev "Link to the principal Tatin registry").
+A> Alternatively you can explore the test cases named `Test_Examples_01` etc. To do that you need to take a copy of the [`MarkAPL` project on GitHub](https://github.com/aplteam/MarkAPL) and open it with the project manager [Cider](https://github.com/aplteam/Cider "Link to Cider on GitHub") which is available as a [Tatin package](https://tatin.dev "Link to the principal Tatin registry").
 A> 
 A> ```
 A> ]Cider.OpenProject /path/2/MarkAPL-clone
@@ -35,19 +32,18 @@ A> #.MarkAPL.TestCases.Prepare
 A> 1 T.RunThese 'Examples'
 A> ```
 A> 
-A> The left argument makes sure that the test suite stops just before a particular test case is executed.
+A> The left argument makes sure that the test suite stops just before a particular test case is executed, allowing you to trace through the test cases.
 
 
 
-Methods
--------
+## Methods
 
 Note that [helpers](#Helpers) are discussed separately.
 
 
 ### `ConvertMarkdownFile`
 
-This method takes a filename as a right argument. It expects the file to contain Markdown content. 
+This method takes a filename as right argument. It expects the file to contain Markdown content. 
 
 By default a fully-fledged HTML page is created from that Markdown file with exactly the same filename except that the file extension is `.html` rather than `.md`.
 
@@ -70,12 +66,12 @@ This niladic function returns a namespace populated with parameters and their de
 
 The namespace returned by the `CreateParms` method has a built-in method `∆List` which is niladic and will return a matrix with two columns, the parameter name in the first column and the default value in the second column.
 
-Note that a value of `¯1` means that there is not really a default available but a reasonable value will be determined at a later stage, usually depending on the context.
+Note that a value of `¯1` means that there is not really a default available, but a reasonable value will be determined at a later stage, usually depending on the context.
 
 
 ### `CreateHelpParms`
 
-This niladic function returns a namespace with parameters with default values. Internally it calls `CreateParms` and then adds some parameters that are needed by the [`Help`](#) and [`Reference`](#ref_method) methods.
+This niladic function returns a namespace with parameters with default values. Internally it calls `CreateParms` and then adds some parameters that are required by the [`Help`](#) and [`Reference`](#ref_method) methods.
   
     
 ### `Execute`
@@ -107,9 +103,9 @@ Takes a two-item-vector as right argument:
 1. A parameter namespace, typically created by calling `CreateParms`.
 2. A vector of character vectors: the Markdown.
 
-Returns [The "ns" namespace](#).  
+Returns [the "ns" namespace](#).  
 
-Note that after executing `Init` [`ns.report`](#report) might well carry warnings that are misleading. An example for this are links inside a LeanPub block: because the LeanPub stuff is already converted in `Init` MarkAPL cannot (yet) judge whether the links are okay or not.
+Note that after executing `Init` [`ns.report`](#report) might well carry warnings that are misleading. An example for this are links inside a LeanPub block: because the LeanPub stuff is already converted in `Init`, `MarkAPL` cannot (yet) judge whether the links are okay or not.
 
 Therefore at the end of converting the full document the warnings are investigated again, and any warnigns that are now obsolete are removed.
 
@@ -126,7 +122,7 @@ This ambivalent function requires some Markdown as right argument.
 It returns (since version 1.7.0) a two-item vector (shy):
 
 * The HTML.
-* The `ns` namespace. This allows you to check `ns.report` for any problems.
+* The `ns` namespace. This allows you to check `ns.report` for problems.
 
 Without an --- optional --- left argument it creates just the HTML from the Markdown.
 
@@ -161,24 +157,30 @@ If you specify a 1 as right argument but `Reference` can only find the HTML file
  
 ### `Version`
 
-Returns the name, the version number --- including the built-ID --- and the version date of `MarkAPL`.
+Returns the name, the version number --- including the build-ID --- and the version date of `MarkAPL`.
 
 
-Parameters
-----------
+## Parameters
 
-In order to specify parameters follow these steps:
+In order to specify parameters execute this:
 
 ~~~
       parms←MarkAPL.CreateParms''
-      parms.∆List   ⍝ lists all parameters with their defaults
+~~~
+
+`parms` is a namespace that contains all variables that cen be used. 
+
+You can list them with their default values:
+
+~~~
+      parms.∆List
  bookmarkLink                                                    6 
  bookmarkMayStartWithDigit                                       1
  charset                                                     utf-8 
  checkFootnotes                              ⍝ defaults to "debug"
  checkLinks                                  ⍝ defaults to "debug"
- compileFunctions                                                1 
  compressCSS                                                     1
+ copy2ClipboardBtn                                               1
  createFullHtmlPage                                              0
  cssURL                                                         ¯1
  debug                                 ⍝ 0 in Runtime, 1 otherwise
@@ -187,26 +189,32 @@ In order to specify parameters follow these steps:
  footnotesCaption                                      'Footnotes'
  head                                                           '' 
  homefolder                                                     ¯1
+ ignoreEmbeddedParms                                             0
+ imageURL                                                       ''
  inputFilename                                         
+ javaScript                                                      1
  lang                                                         "en"
  leanpubExtensions                                               0
- leanpubIconsUrl    'https://download.aplwiki.com/LeanPub/Images/'
  lineNumberOffset                                                0
  linkToCSS                                                       0 
+ lowercaseID                                                     1
  markdownStrict                                                  0 
  noCSS                                                           0
  numberHeaders                                                   0 
  outputFilename                                        
- printCSS                                        MarkAPL_print.css 
+ printCSS                                           Dark_print.css 
  reportLinks                                                     0
  reportLinksCaption                                  'Link report'
- screenCSS                                      MarkAPL_screen.css
+ saveHTML                                                       ¯1
+ screenCSS                                         Dark_screen.css
+ smoothScrolling                                                 1
  subTocs                                                         1 
  syntaxSugar                                                     1
  title                                                     MarkAPL 
  toc                                                             0 
+ tocCaption                                      Table of Contents
  verbose                                                         1 
- width                                                       900px
+ width                                                         900
 ~~~
 
 The function `∆List` lists all the variables in the parameter space with their corresponding values.
@@ -216,8 +224,7 @@ After making amendments the parameter space can be passed as the first argument 
 The parameters themselves are discussed in the `MarkAPL` reference.
 
 
-Function calls
---------------
+## Function calls
 
 It is possible to embed APL function calls in your Markdown document. The simplest way to call a function `#.foo` is:
 
@@ -235,7 +242,7 @@ The purpose of this feature is to either inject simple text or one or more HTML 
 
 Notes:
 
-* You cannot inject Markdown block elements like lists, code blocks, block quotes, etc: it won't be processed any more when the function is called. However, in-line mark-up (`**`, `_`, `~~` etc) **is** recognized and processed, and so is typographical sugar.
+* You cannot inject Markdown block elements like lists, code blocks, block quotes, etc: it won't be processed anymore when the function is called. However, inline markup (`**`, `_`, `~~` etc) **is** recognized and processed, and so is typographical sugar.
 * The function name must always be fully qualified; that means the function 
   cannot live in either a class instance or an unnamed namespace.
 * The `ns` namespace is **always** provided as right argument to the function, therefore the function must be either monadic or dyadic.
@@ -272,14 +279,13 @@ Notes:
 * If the function returns something that starts with a `<` and ends with a 
   corresponding tag then it is recognized as an HTML block. You can prevent that by adding leading spaces.
 * The `<pre><code>` must go onto the same line as the first line of the code; 
-  otherwise you end up with a starting empty line.
+  otherwise you end up with a starting empty line. This is an HTML feature.
 * If the embedded function returns something with a depth different from 0, 1 
-  and 2 an error is thrown.
-* Anything that is supposed to be recognized as an HTML block **must not** carry any leading spaces: an HTML block starts by definition with a `<` char.
+  or 2 an error is thrown.
+* Anything that is supposed to be recognized as an HTML block **must not** carry leading spaces: an HTML block starts by definition with a `<` char.
 
 
-The `ns` namespace.
--------------------
+## The `ns` namespace.
 
 
 ### Overview{#OV4}
@@ -288,7 +294,7 @@ The `ns` namespace is returned (created) by the `Init` method and modified by th
 
 Before `Process` is run the variables `emptyLines`, `leadingChars`, `markdown`, `markdownLC `and `withoutBlanks` hold data that is extracted from the Markdown. 
 
-`Process` then splits the Markdown into appropriate blocks, and processes them one after the other, and removes from these variables. 
+`Process` then splits the Markdown into appropriate blocks, and processes them one after the other, and removes stuff accordingly from these variables. 
 
 At the same time the variable `parms.html` is collecting the resulting html. Other variables (`abbreviations`, `data`, `footnoteDefs`, `headers`, `linkRefs`, `parms`, `subToc` and `toc`) may or may not collect data in the process as well.
 
@@ -305,13 +311,13 @@ The namespace contains the following variables:
 #### `abbreviations`
 
 A (possibly empty) vector of two-item-vectors. The first item holds the abbreviation, the second item the explanation or comment. 
+
+
+#### `data`
+
+Contains all embedded data as a matrix with two columns: "name" and "value".
   
        
-#### `emptyLines`
-
-A vector of Booleans indicating which lines in `markdown` are empty. Lines consisting of white-space characters only are considered empty.
-
-
 #### `embeddedParms`
 
 A matrix with two columns and as many rows as there are embedded parameters.
@@ -320,14 +326,21 @@ This document for example carries these embedded parameters:
 
 ~~~
       ns.embeddedParms
- toc                            2 3 
- numberHeaders            2 3 4 5 6 
- bookmarkLink                     6 
- viewInBrowser                    1 
- title            MarkAPL Reference 
- width                         1100 
- reportLinks                      1 
+ toc                                   2 3 
+ numberHeaders                   2 3 4 5 6 
+ bookmarkLink                            6 
+ smoothScrolling                         1
+ saveHTML                                1
+leanPubExtensions                        1
+ title             MarkAPL for Programmers 
+ width                                1000 
+ reportLinks                             1 
 ~~~
+
+
+#### `emptyLines`
+
+A vector of Booleans indicating which lines in `markdown` are empty. Lines consisting of white-space characters only are considered empty.
 
 
 #### `footnoteDefs`
@@ -370,11 +383,13 @@ After having created the `ns` namespace by calling `Init` this variable contains
 
 #### `lineNumbers`
 
-After having created the `ns` namespace by calling `Init` this variable contains a vector of integers representing line numbers in `markdown`. This allows the current line number to be reported in case there is a problem like odd number of double quotes, invalid internal links etc. Note that function calls (See "Embedded APL function calls" in the `MarkAPL` reference) can access the line numbers as well.
+After having created the `ns` namespace by calling `Init` this variable contains a vector of integers representing line numbers in `markdown`. This allows the current line number to be reported in case there is a problem like odd number of double quotes, invalid internal links etc. 
 
-Note that line numbers refer to the MarkDown rather than the HTML.  
+Notes:
 
-See also the parameter `lineNumberOffset` in the `MarkAPL` reference.
+* Function calls (See "Embedded APL function calls" in the `MarkAPL` reference) can access the line numbers as well
+* Line numbers refer to the MarkDown rather than the HTML
+* See also the parameter `lineNumberOffset` in the `MarkAPL` reference
   
 
 #### `linkRefs`
@@ -431,6 +446,11 @@ This is a vector of ~~four~~ three-item vectors:
 3. The internal link name.
 
 Note that prior to version 2.8 there was a forth column (4. The type of the header: 1 = SeText, 2 = ATX.) which was removed then.
+
+
+#### `topOfDocument`
+
+Used internally. 
   
      
 #### `withoutBlanks`
@@ -438,10 +458,9 @@ Note that prior to version 2.8 there was a forth column (4. The type of the head
 Same as `markdown` but without any blanks. This speeds things up at the expense of memory.
 
 
-Helpers
--------
+## Helpers
 
-This chapter comprises all methods that help converting APL arrays into Markdown.
+This chapter discusses all methods that help converting APL arrays into Markdown.
 
 <<SubTOC>>
 
@@ -486,7 +505,7 @@ leads to this list:
 
 ### `Matrix2MarkdownTable`
 
-This helper method takes an APL matrix and converts it to a table definition in Markdown.
+Takes an APL matrix and converts it to a table definition in Markdown.
 
 Without a left argument there are no column headers, and alignment is ruled by data type: strictly numeric columns are right-aligned, everything else is left-aligned:
 
@@ -506,7 +525,7 @@ This results in this:
 | Python | 70 | Nice |      
 | Cobol | 1 | Oh dear |     
 
-You can specify column headers via the left argument. Naturally the length of the left argument must match the number of columns in the matrix. You can use leading and trailing `:` in order to define column alignment.
+You can specify column headers via the left argument. Naturally the length of the left argument must match the number of columns in the matrix. You can use leading and trailing colons (`:`) in order to define column alignment.
 
 Note that any `|` in the matrix is automatically escaped except when it appears in code:
 
@@ -536,8 +555,7 @@ Notes:
   define anything and the data is numeric.
 * The third column is centered because that's what the column header defined.
 
-Problems
--------
+## Problems
 
 
 ### Bugs
@@ -578,4 +596,8 @@ Kai Jaeger ⋄ Last update 2023-12-06
 [git]: https://help.github.com/articles/working-with-advanced-formatting/ "GIT's formatting rules"{target="_blank"}
 [markdown_extra]: https://www.wikiwand.com/en/Markdown_Extra{target="_blank"}
 [pandoc]: http://pandoc.org/README.html{target="_blank"}
+
+
+
+
 

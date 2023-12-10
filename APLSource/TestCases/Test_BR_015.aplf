@@ -1,5 +1,6 @@
  R←Test_BR_015(stopFlag batchFlag);⎕TRAP;md;ns;parms;html;buff
 ⍝ Test replacing `<<br>>` by a `<br>` tag. Also heavy tests for recognizing lists.
+⍝ When the (already deprecated) `<<br>>` feature is finally removed, this test can go  ⍝TODO⍝
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 

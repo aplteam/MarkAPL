@@ -3,7 +3,7 @@
 ⍝ the extension changes from `.md` to `.html`.\\
 ⍝ This can be overwritten by specifying a parameter space as left argument (typically created
 ⍝ by calling `CreateParms`) and setting `outputFilename`.\\
-⍝ Note however that when you specify `inputFilename` to anything but '' or `filename an error is
+⍝ Note however that when you specify `inputFilename` to anything but '' an error is
 ⍝ generated. Other settings in parms are honoured.\\
 ⍝ If no left argument is passed then defaults take place, in particular regarding the CSS.\\
 ⍝ Note that by default `ConvertMarkdownFile` creates a fully-fledged HTML page.\\

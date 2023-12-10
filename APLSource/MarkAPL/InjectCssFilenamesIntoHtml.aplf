@@ -7,6 +7,8 @@
  :For cssFile :In cssFiles
      url←APLTreeUtils2.DLB parms.cssURL,cssFile
      :If ~IsHTTP url
+     :andif ~IsFTP url
+     :andif ~IsFileProtocol url
          url←'file://',url ⍝ Because Firefox insists (2023-12-07)
      :EndIf
      html,←⊂'<link href="',url,'" rel="stylesheet" media="',type,'">'

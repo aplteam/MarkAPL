@@ -1,5 +1,5 @@
  R←Test_FnsCall_019(stopFlag batchFlag);⎕TRAP;md;ns;expected
-⍝ Test function call that returns tags - those are converted (it's not an HTML block) while in-line mark-up is done.
+⍝ Test function call that returns tags - those are converted (it's not an HTML block) while inline markup is done.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 

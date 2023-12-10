@@ -4,7 +4,7 @@
 ⍝ See `EscapeSpecialCharsOutsideCode` if you don't want this to happen.
 ⍝ However, don't touch anything between "" inside <> (attribute definitions).
 ⍝ ⍺ may be 1 or 2 and defaults to 1; that means that "<<" remains untouched.
-⍝ If ⍺ is 2 (typically ⍵ is nothing but codethen) "&<>" are all converted.
+⍝ If ⍺ is 2 (typically ⍵ is nothing but code) then "&<>" are all converted.
 ⍝ The opcode allows for faster operation.
  opCode←{0<⎕NC ⍵:⍎⍵ ⋄ 1}'opCode'
  :If 0<≢r←tx

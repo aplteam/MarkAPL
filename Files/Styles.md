@@ -10,37 +10,34 @@
 
 
 
-MarkAPL Styles
-==============
+# MarkAPL Styles
 
-Overview
---------
+## Overview
 
-MarkAPL comes with two sets of style sheets:
+`MarkAPL` comes with several sets of style sheets:
 
-* MarkAPL_screen.css and MarkAPL_print.css
+* Dark_screen.css and Dark_print.css (default since 12.0)
+* MarkAPL_screen.css and MarkAPL_print.css (default until 12.0)
 * BlackOnWhite_screen.css and BlackOnWhite_print.css
 
-Both sets include style definitions required by the LeanPub extensions.
+All sets include style definitions required by the LeanPub extensions.
 
-The screen style sheet contains over 800 lines, while the print style sheet contains over 300 lines. The difference arises from the inclusion of CSS from the "Normalize" project[^normalyze] in the screen definition, ensuring a consistent appearance across browsers.
+The screen style sheets have roughly 1000 lines, while the print style sheets contain have roughly 500 lines. The difference arises mainly from the inclusion of the "Normalize" project[^normalyze] in the screen definition, ensuring a consistent appearance across browsers.
 
 When embedding style definitions into the HTML, comments and white spaces are removed, resulting in two lines for each style sheet. Combined, both style definitions occupy less than 12KB.
 
 
-Replace the MarkAPL style sheets
---------------------------------
+## Replace the MarkAPL style sheets
 
 You have two options for using your own style sheets:
 
 * Copy one of the provided style sheet sets and make necessary changes.
-* Create a new style sheet, add changes, and define both `screenCSS` and `printCSS` (together with `cssURL`) using comma-separated text vectors. Ensure your style sheet is defined last to resolve conflicts.
+* Create a new style sheet, add your changes and additions, then add it to either `screenCSS` or `printCSS`: these parameters might point to a single file, but they can also  point to multiple, comma-separated files. Ensure your style sheet is the last one so that in wins in case of a conflict.
 
 For a completely different layout, choose the first option. For amendments or additions, use the second option.
 
 
-Suggestions for developing a new style sheet
-------------------------------------------------
+## Suggestions for developing a new style sheet
 
 ### General suggestions
 
@@ -62,7 +59,7 @@ Set the following parameters in the first lines of the HTML document you want to
 [parm]:printCSS     = '/pathToMyStyleSheetFolder/MySyles_print.css'
 ~~~
 
-Note that `cssURL` is not defined and there for empty because a) that's the default and b) both `screenCSS` as well as `printCSS` carry a full path.
+Note that `cssURL` is not defined and therefor empty because a) that's the default and b) both `screenCSS` as well as `printCSS` carry a full path.
 
 You can achieve the same _with_ `cssURL`:
 ~~~
@@ -72,11 +69,11 @@ You can achieve the same _with_ `cssURL`:
 [parm]:printCSS     = 'MySyles_print.css'
 ~~~
 
-Don't forget that all `[parm]` lines must be defined at the top of the document in order to be recognized as a parameter definition (any lines starting with an APL lamp symbol (`⍝`) do not count).
+Don't forget that all `[parm]` lines must be defined at the top of the document in order to be recognized as a parameter definition lines starting with an APL lamp symbol (`⍝`) do not count).
 
-When you now make changes to the CSS file then --- after pressing Ctrl+F5 --- the changes are reflected in the "Preview" area of Meddy, Microsoft's WebBrowser control --- which is used for the Preview --- but it does not offer access to the developer tools available in all modern browsers. To get around this follow these steps:
+When you now make changes to the CSS file then --- after pressing Ctrl+F5 --- the changes are reflected in the "Preview" area of Meddy, Microsoft's WebBrowser control, which is used for the preview, but that comes with a number of limitations, most importantly it does not offer access to the developer tools all modern browsers are offering.
 
-1. Select "View HTML in default browser" from Meddy's "Edit" menu.
+1. Select "View HTML in default browser" from Meddy's "Edit" menu (or press F10).
 1. Fire up your favourite CSS editor and start changing the CSS file. 
 1. Force the browser to reflect your changes by pressing F5 (Refresh) when appropriate.
 
@@ -88,7 +85,7 @@ W> Note that this will only work when the HTML is saved on disk with the Markdow
 
 In case something is not going to your liking the development tools all modern browsers come with are of great help, but when it comes to printing they are pretty useless: even Chrome, the only browser which offers a "Print Preview", does not allow you to invoke them on the print preview, at least not in a useful way.
 
-Having two different files for the CSS allows using the print style sheet to temporarily for display purposes (screen) as shown here:
+Having two different files for the CSS allows you to use the print style sheet temporarily for display purposes (screen) as shown here:
 
 ~~~
 [parm]:linkToCSS
@@ -101,18 +98,17 @@ leanpub-end-insert
 Now you can check the impact of your print style sheet, and you can also take advantage of the browser's development tools.
 
 
-Styling
--------
+## Styling
 
 There are a few `<div>`s injected into the HTML and CSS classes assigned to HTML tags which are not really necessary but make styling their contents much easier.
 
-Some HTML tags get class names or IDs assigned.
+Some HTML tags get class names or IDs assigned. Others can be addressed via the CSS child selector.
 
 There are also some CSS classes available that can be used for common tasks by simply assigning them as special attributes in your Markdown.
 
 ### `<div>`s injected into the HTML by MarkAPL
 
-All `<div>`s that are injected into the HTML by MarkAPL get either a class name or an ID name assigned -- that's the whole purpose of those `<div>`s: being able to style them or any decendent.
+Most `<div>`s that are injected into the HTML by `MarkAPL` get either a class name or an ID name assigned.
 
 #### Footnotes
 
@@ -127,13 +123,13 @@ All `<div>`s that are injected into the HTML by MarkAPL get either a class name 
 
 #### Link report
 
-If `reportLinks` is 1 all links are listed at the very end of the document (but before any footnotes) with their URLs and link text. These are embraced by a single `<div>` with the ID "external_link_collection". 
+If `reportLinks` is 1, all links are listed at the very end of the document (but before any footnotes) with their URLs and link text. These are embraced by a single `<div>` with the ID "external_link_collection". 
 
-MarkAPL's own style sheet define styles for the contents of those `<div>`s, but you might have different ideas.
+`MarkAPL`'s own style sheets define styles for the contents of those `<div>`s, but you might have different ideas.
 
-### Class names and IDs assigned by MarkAPL
+### Class names and IDs assigned by `MarkAPL`
 
-There are a few HTML elements that get a class name assigned by MarkAPL in order to make styling them easy:
+There are a few HTML elements that get a class name assigned by `MarkAPL` in order to make styling them easy:
 
 * All footnote links in the document get the class "footnote_link" assigned . 
   These are the links pointing to the list of footnotes at the very end of the document.
@@ -144,23 +140,23 @@ There are a few HTML elements that get a class name assigned by MarkAPL in order
   class name "bookmark_link" assigned.
 * All external links get the class name "external_link" assigned.
 * All "mailto" links get the class name "mailto_link" assigned.
-* If `toc` is 1 then MarkAPL injects a table-of-contents into the HTML. The toc is embraced by a `<nav>` tag which, in order to make it styleable, and gets the id "main_nav" assigned.
+* If `toc` is 1 then `MarkAPL` injects a table-of-contents into the HTML. The toc is embraced by a `<nav>` tag which, in order to make it styleable, and gets the id "main_nav" assigned.
 
 Naturally you must not use these class names for different purposes when defining your own CSS.
 
 
 ### CSS styles available for assigning as special attributes
 
-| Class name           | Domain | Meaning                                                 |
-|----------------------|--------|---------------------------------------------------------|
-| `.center`            | both   | Centers text                                            |
-| `.left`              | both   | Aligns text to the left                                 |
-| `.right`             | both   | Aligns text to the right                                |
-| `.no_display`        | screen | Prevent the element from showing. It will print however |
-| `.no_print`          | print  | Prevent the element from printing. It will show however |
-| `.avoid_page_break`  | print  | Avoid page breaks if possible                           | 
-| `.page_break_before` | print  | Enforce a page break before the current tag             | 
-| `.red`               | both   | Sets "colour" to "red"                                  |
+|Class name          |Domain|Meaning                                |
+|--------------------|------|---------------------------------------|
+|`.center`           |both  |Centers text                           |
+|`.left`             |both  |Aligns text to the left                |
+|`.right`            |both  |Aligns text to the right               |
+|`.hide`             |screen|Prevent the element from showing.      |
+|`.no_print`         |print |Prevent the element from printing.     |
+|`.avoid_page_break` |print |Avoid page breaks if possible          |
+|`.page_break_before`|print |Enforce a page break before current tag|
+|`.red`              |both  |Sets "colour" to "red"                 |
 
 The "Domain" column explains in which style sheet a class is defined.
 
@@ -229,10 +225,10 @@ Examples:
 ### Examples
 
 Let's assume that there is a table in your Markdown that should not show on screen but rather be 
-printed without a page break and the table should be centered; this can be easily achieved:
+printed without a page break, and the table should be centered; this can be easily achieved:
 
 ~~~
-| Language | Comment |{.no_display .avoid_page_break .center}
+| Language | Comment |{.hide .avoid_page_break .center}
 |----------|------------------|
 | APL      | Excellent choice |
 | COBOL    | Oh dear          |
@@ -283,7 +279,30 @@ Example:
 </dl>
 ~~~
 
-[^normalyze]: This and that<br><https://necolas.github.io/normalize.css/>
+### Collapsibles
+
+Collapsibles have a `<summary>` and a `<details>` tags.
+
+Both are embraced by a `<div class="collapsible">` tag.
+
+The `<details>` tag starts with an `<hr>` (inserted by `MarkAPL`) followed by whatever the user specified as details. All this (including the `<hr>`) is embraced by a `<div class="collapsible-content">`.
+
+
+### Accordions
+
+Accordions are a collection of at least two Collapsibles.
+
+The Collapsibles are embraced by a ` <div class="accordion">` tag.
+
+Every collapsible inside the accordion is embraced by a `<div>` without an assigned class. 
+
+The `<details>` tags start with an `<hr>` (inserted by `MarkAPL`) followed by whatever the user specified as details. All this (including the `<hr>`) is embraced by a `<div class="accordion-content">`.
+
+
+[^normalyze]: The "Normalize" project<br><https://necolas.github.io/normalize.css/>
+
+
+
 
 
 

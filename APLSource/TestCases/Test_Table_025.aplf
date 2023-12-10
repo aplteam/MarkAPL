@@ -1,5 +1,5 @@
  R←Test_Table_025(stopFlag batchFlag);⎕TRAP;ns;mat;expected
-⍝ Test table with a cell that holds multiple `<<br>>`s/.
+⍝ Test table with a cell that holds multiple `<br>`s/.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 
@@ -7,7 +7,7 @@
  mat,←⊂'|Language | Comment  |'
  mat,←⊂'|---------|----------|'
  mat,←⊂'|APL      | Powerful |'
- mat,←⊂'|COBOL    | Outdated.<<br>>There is little hope for revival.<<br>>And there probably shouldn''t be.'
+ mat,←⊂'|COBOL    | Outdated.<br>There is little hope for revival.<br>And there probably shouldn''t be.'
 
  ns←MarkAPL.Init''mat
  ns←MarkAPL.Process ns
@@ -19,7 +19,7 @@
  expected,←⊂'</thead>'
  expected,←⊂'<tbody>'
  expected,←'<tr>' '<td>APL</td>' '<td>Powerful</td>' '</tr>'
- expected,←'<tr>' '<td>COBOL</td>' '<td>Outdated. <br>There is little hope for revival. <br>And there probably shouldn''t be.</td>' '</tr>'
+ expected,←'<tr>' '<td>COBOL</td>' '<td>Outdated.<br>There is little hope for revival.<br>And there probably shouldn''t be.</td>' '</tr>'
  expected,←'</tbody>' '</table>'
  →T.PassesIf expected≡ns.html
 

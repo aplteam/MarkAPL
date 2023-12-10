@@ -1,5 +1,5 @@
  R←Test_InLine_005(stopFlag batchFlag);⎕TRAP;ns;md;expected;res
-⍝ Test in-line mark-up; here `` <==> in-line code
+⍝ Test inline markup; here `` <==> inline code
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 
@@ -15,10 +15,10 @@
  expected←'<p>This is a paragraph with <code>{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}</code> APL code in it.</p>'
  →T.PassesIf expected≡⊃ns.html
 
- md←⊂'Enclose in-line code with two ``` `` ``` (back-tick) characters'
+ md←⊂'Enclose inline code with two ``` `` ``` (back-tick) characters'
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
- expected←'<p>Enclose in-line code with two <code>``</code> (back-tick) characters</p>'
+ expected←'<p>Enclose inline code with two <code>``</code> (back-tick) characters</p>'
  →T.PassesIf expected≡⊃ns.html
 
  md←⊂'This:`` `⍴⍴array` `` is code and so is `(+/)÷⍴,⍵`'

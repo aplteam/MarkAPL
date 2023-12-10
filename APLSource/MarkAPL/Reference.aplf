@@ -16,6 +16,6 @@
  ns←CompileHelp filename recompileFlag parms
  :If ¯1≠×recompileFlag  ⍝ This syntax is used only by the `Make` workspace and test cases, therefore it is not documented.
  :AndIf parms.viewInBrowser
-     ns ShowHtml ns.parms.outputFilename
+     ns ShowHtml parms.outputFilename
  :EndIf
 ⍝Done

@@ -16,5 +16,4 @@
  r←MarkUpInlineCode r
  r←RemoveEscapeChars r
  r←InjectBR r
- r←InjectPointyBrackets r
 ⍝Done

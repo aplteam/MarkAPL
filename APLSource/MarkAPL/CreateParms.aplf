@@ -17,9 +17,6 @@
  'div_h_tag'SetTo 1
  'enforceEdge'SetTo 1
  'footnotesCaption'SetTo'Footnotes'
- 'hasTOC'SetTo 0
- 'hasCodeBlock'SetTo 0
- 'hasCollapsible'SetTo 0
  'head'SetTo''
  :If 0<##.⎕NC'TatinVars.HOME'
      'homeFolder'SetTo⍎'##.TatinVars.HOME'
@@ -32,11 +29,9 @@
  'javaScript'SetTo 1
  'lang'SetTo'en'
  'leanpubExtensions'SetTo 0
- 'leanpubIconsUrl'SetTo'https://download.aplwiki.com/LeanPub/Images/'
  'lineNumberOffset'SetTo 0
  'linkToCSS'SetTo 0
  'lowercaseID'SetTo 1
- 'markAPL_Extensions'SetTo 1
  'markdownStrict'SetTo 0
  'numberHeaders'SetTo 0
  'noCSS'SetTo 0

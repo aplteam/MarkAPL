@@ -1,5 +1,5 @@
  R←Test_InLine_002(stopFlag batchFlag);⎕TRAP;ns;expected;md
-⍝ Test in-line mark-up; here ** <==> <strong>
+⍝ Test inline markup; here ** <==> <strong>
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 

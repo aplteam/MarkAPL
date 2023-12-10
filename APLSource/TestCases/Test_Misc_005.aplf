@@ -1,5 +1,5 @@
  R←Test_Misc_005(stopFlag batchFlag);⎕TRAP;md;ns;parms
-⍝ Test in-line HTML
+⍝ Test inline HTML
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 

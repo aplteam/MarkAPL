@@ -3,7 +3,7 @@
 [parm]:title             = 'LeanPub Extensions'
 [parm]:width             = 1000
 [parm]:toc               = 2 3
-[parm]:saveHTML          = 0
+[parm]:saveHTML          = 1
 
 
 
@@ -30,7 +30,7 @@ Specialties
 
 : Distinct message types combined with icons for various purposes.
 
-Starting from version 3.6, MarkAPL has incorporated support for LeanPub extensions, enhancing Markdown with proper markup in both MarkAPL style sheets.
+Starting from version 3.6, `MarkAPL` has incorporated support for LeanPub extensions, enhancing Markdown with proper markup in all `MarkAPL` style sheets.
 
 Let's explore these extensions in detail.
 
@@ -59,6 +59,8 @@ primeNumbers←{{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}100
 leanpub-end-insert
 dropLeadingBlanks←{(∨\' '≠⍵)/⍵}
 ~~~
+
+On the screen the line in question is highlighted by colour; when printed it is bold.
 
 
 2. Asides or Text Boxes
@@ -95,7 +97,7 @@ A> * List item 2
 A>
 A> > Asides are great.
 A>
-A> In-line mark-up is available, too: **bold**, _italic_, `code`, whatever.
+A> Inline markup is available, too: **bold**, _italic_, `code`, whatever.
 ~~~
 
 This shows as:
@@ -115,7 +117,7 @@ A> * List item 2
 A>
 A> > Asides are great.
 A>
-A> In-line mark-up is available, too: **bold**, _italic_, `code`, whatever.
+A> Inline markup is available, too: **bold**, _italic_, `code`, whatever.
 
 Notes:
 
@@ -140,7 +142,7 @@ Specialties are embraced by empty lines in Markdown. LeanPub offers special mark
 
 Detailed examples of each specialty are provided in the text.
 
-~~A word of warning: making use of the specialties prevents any HTML document created by MarkAPL from being truly stand-alone; the icons have to come from somewhere. However, by default they are referred to as a URL pointing to a web address (see MarkAPL's `leanpubIconsUrl` parameter), so when you have an Internet connection it will work fine.~~
+~~A word of warning: making use of the specialties prevents any HTML document created by `MarkAPL` from being truly stand-alone; the icons have to come from somewhere. However, by default they are referred to as a URL pointing to a web address (see `MarkAPL`'s `leanpubIconsUrl` parameter), so when you have an Internet connection it will work fine.~~
 
 With version 12.0 the PNGs used as icons were converted into SVGs; they will be injected into the document if required, so the document is truly stand-alone even when LeanPub icons are used.
 
@@ -278,6 +280,24 @@ Q> # Question can be asked.
 Q> However, time is a scarce resource, so don't waste it on asking questions that will advertise you as a moron!
 
 
+### Tips
+
+This:
+
+```
+T> Use the debugger for this.
+```
+
+results in:
+
+T> Use the debugger for this.
+
+More complex:
+
+T> # Finding bugs
+T> Using the debugger is an invaluable resource for identifying the cause of bugs.
+
+
 Behind the scenes
 -----------------
 
@@ -287,14 +307,18 @@ Because HTML blocks are left alone when the actual Markdown is processed that wo
 
 As a side effect, multi-line code blocks loose their newline characters because the HTML is converted into a single line. For that reason `<br>` tags are inserted to preserve those newlines.
 
-This document refers to version 12.0 of **_MarkAPL_**.
+This document refers to version 12.0 of `MarkAPL`.
 
 Kai Jaeger ⋄ 2020-10-31
 
-Last Update: 2023-12-06
+Last Update: 2023-12-10
 
 
 [^leanPub]: <http://LeanPub.com>
+
+
+
+
 
 
 

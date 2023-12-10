@@ -1,4 +1,4 @@
- r←parms MakeHTML_Doc html;bool;lines;sh;ind;copyCodeJavaScript;toggleTocJavaScript;javaScript;buff
+ r←parms MakeHTML_Doc html;bool;lines;sh;ind;copyCodeJavaScript;toggleTocJavaScript;javaScript;buff;hasTOC;hasCodeBlock;hasCollapsible
 ⍝ Takes HTML, typically created by calling `Process`, and makes it a fully fledged document by adding
 ⍝ <body>, <head> -- with <title> -- and <html> including the DocType. By default CSS is injected as well.
  :Access Public Shared
@@ -44,11 +44,11 @@
      :EndIf
  :EndIf
  buff←∊html
- parms.hasCodeBlock←∨/'<pre'⍷buff
- parms.hasCollapsible←∨/'<summary'⍷buff
- parms.hasTOC←∨/'<nav id="main_nav"'⍷buff
+ hasCodeBlock←∨/'<pre'⍷buff
+ hasCollapsible←∨/'<summary'⍷buff
+ hasTOC←∨/'<nav id="main_nav"'⍷buff
  buff←''
- :If parms.hasCollapsible
+ :If hasCollapsible
  :AndIf parms.javaScript
      r,←'' '<script>'
      r,←GetJavaScriptForPrintingCollapsibles
@@ -59,13 +59,13 @@
  :EndIf
  copyCodeJavaScript←toggleTocJavaScript←''
  :If parms.javaScript
-     :If parms.hasCodeBlock
+     :If hasCodeBlock
          copyCodeJavaScript←GetCopyCodeJavaScript parms.copy2ClipboardBtn
      :EndIf
-     :If parms.hasTOC
+     :If hasTOC
          toggleTocJavaScript←GetJavaScriptForTogglingTOC
      :EndIf
-     javaScript←copyCodeJavaScript,toggleTocJavaScript,parms.hasCollapsible/GetJavaScriptForTogglingCollapsibles
+     javaScript←copyCodeJavaScript,toggleTocJavaScript,hasCollapsible/GetJavaScriptForTogglingCollapsibles
      :If 0<≢javaScript
          javaScript←('' '<script>'),javaScript,('</script>' '')
      :EndIf

@@ -40,7 +40,6 @@ The following table highlights the features supported in MarkAPL:
 |Inline markup             |    X           |    X      |    X       |    X       |
 |Line breaks (two spaces)  |    X           |    X      |    X       |  Never!    |
 |Line breaks    (`\`)      |                |           |    X       |    X       |
-|Line breaks (`<<br>>`)    |                |           |            |    X       |
 |Links                     |    X           |    X      |    X       |    X       |
 |Link references           |    X           |    X      |    X       |    X       |
 |Lists                     |    X           |    X      |    X       |    X       |
@@ -55,6 +54,7 @@ The following table highlights the features supported in MarkAPL:
 |Special attributes        |                |   X       |    X       |    X       |
 |Check boxes               |                |           |            |    X       |
 |Collapsibles & accordions |                |           |            |    X       |
+|Accordions                |                |           |            |    X       |
 |LeanPub extensions        |                |           |            |    X       |
 
 Note that marking up code blocks by indenting was deliberately not implemented in MarkAPL.
@@ -72,4 +72,5 @@ There is also a [cheat sheet](http://download.aplteam.com/MarkAPL_CheatSheet.htm
 Note that there is an editor available that uses MarkAPL as converter: [Meddy](https://github.com/aplteam/Meddy "Meddy on GitHub"). 
 
 The editor is quite basic but it supports all MarkAPL features. It sports the most important features you would expect from any editor (Undo/Redo and a powerful Search/Replace) and also comes with a tree view for navigation that is auto-generated from the headers .
+
 

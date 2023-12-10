@@ -12,13 +12,13 @@ MarkAPL Cheatsheet
 
 This document comes with examples for most of the features offered by `MarkAPL`. The documentation is however **not** comprehensive: it provides just enough information to get you going.  
 
-For a comprehensive documentation refer to <http://download.aplteam.com/MarkAPL.html> or, if you use MarkAPL within an APL workspace, call the function `MarkAPL.Reference 0`.
+For a comprehensive documentation refer to <http://download.aplteam.com/MarkAPL.html> or, if you use `MarkAPL` within an APL workspace, call the function `MarkAPL.Reference 0`.
 
 Note that all the features related to the so-called LeanPub extensions are discussed in a separate document.
 
 ## Headers
 
-These are the standard ways to mark-up headers:
+These are the standard ways to markup headers:
 
 ~~~
 # Level 1
@@ -46,7 +46,7 @@ Note that before and after such a header a **blank line is required**.
 
 ## APL code
 
-APL code can be presented to the reader either as a code block or as in-line mark-up, meaning that the APL code is embedded into a paragraph or cell etc.
+APL code can be presented to the reader either as a code block or as inline markup, meaning that the APL code is embedded into a paragraph or cell etc.
 
 Note that [Code blocks](#) and [In-line code](#inlinecode2) are different in many respects.
 
@@ -206,7 +206,7 @@ Result:
 You can mention the programming language after the opening fence as shown here:
 
 ```
-~~~apl
+~~~language-apl
 {{⍵/⍨2=+⌿0=⍵∘.|⍵}⍳⍵}
 ~~~
 ```
@@ -214,7 +214,7 @@ You can mention the programming language after the opening fence as shown here:
 This might be used for syntax highlighting.
 
 ### Info string and special attributes
-A code block may have an info string or special attributes or both; see the full MarkAPL reference for details.
+A code block may have an info string or special attributes or both; see the full `MarkAPL` reference for details.
 
 
 ### "Git" style fencing
@@ -338,11 +338,11 @@ Result:
 
 Everything that is not identified as something else is considered a paragraph.
 
-## In-line mark-up
+## In-line markup
 
 ### Bold and italic
 
-The examples use the terms "bold" and "italic" though strictly speaking this is about getting `<em>` and `<strong>` into the HTML. How `<em>` and `<strong>` are actually displayed depends on the CSS styling, though all browser default styles make `<em>` look *italic* and `<strong>` **bold**, but you might well change this.
+The examples use the terms "bold" and "italic" though strictly speaking this is about getting `<em>` and `<strong>` into the HTML. How `<em>` and `<strong>` are actually displayed depends on the CSS styling, though the default styles of all browser make `<em>` look *italic* and `<strong>` **bold**, but you might well change this.
 
 Examples
 
@@ -393,31 +393,21 @@ This feature ~~is not available~~ was introduced in version x.y
 
 ### Syntactical sugar
 
-~~~
 Available options:
-* --- (m-dash)
-* -- (n-dash)
-* (c) (copyright)
-* (tm) (trade mark)
-* ... (ellipses)
-* <<Guillemets>>
-* ==> (right arrow)
-* <== (left arrow)
-* <==> (left-and-right arrow)
-~~~
 
-Result:
+| Input  | Outcome | Comment
+|--------|---------|--------
+| `---`  | ---     | m-dash
+| `--`   | --      | n-dash
+| `(c)`  | (c)     | copyright
+| `(tm)` | (tm)    | trade mark
+| `...`  | ...     | ellipses
+| `<<`   | <<      | Guillemets
+| `>>`   | >>      | Guillemets
+| `==>`  | ==>     | Right arrow
+| `<==`  | <==     | Left arrow
+| `<==>` | <==>    | Left-and-right arrow
 
-Available options:
-* --- (m-dash)
-* -- (n-dash)
-* (c) (copyright)
-* (tm) (trade mark)
-* ... (ellipses)
-* «Guillemets»
-* ==> (right arrow)
-* <== (left arrow)
-* <==> (left-and-right arrow)
 
 ### Double quotes
 
@@ -519,7 +509,7 @@ Link to the [headers](# "Link text") section.
 
 #### Link references
 
-Link references consists of two parts:
+Link references consist of two parts:
 
 1. The definition of a link ID together with its URL.
 1. References to the link ID.
@@ -676,6 +666,9 @@ Kai Jaeger ⋄ Last update 2023-12-06
 [1]:      https://aplwiki.com
 [git]:    https://github.com "Linus' brain child"{target="_blank"}
 [vector]: https://sites.google.com/site/baavector/ "The once well-respected Journal of the British APL Association"
+
+
+
 
 
 

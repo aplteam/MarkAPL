@@ -16,18 +16,26 @@ By now you are likely aware that `MarkAPL` converts Markdown to HTML5.
 
 All you need is the [Tatin package](https://tatin.dev "Link to the principal Tatin registry") `MarkAPL`.
 
+I> Tatin comes with Dyalog 19.0 but needs to be activated with the `]activate` user command. In older versions it must be installed.
+
 
 Quick start
 ----------
 
 ### Making `MarkAPL` available
 
-
-Assuming that you have some Markdown in the workspace:
+In order to give `MarkAPL` a try
 
 ~~~
-      MyMarkdown←'# MarkAPL' 'All about **_MarkAPL_**'
+]Tatin.LoadPackages [tatin]markapl 
+MyMarkdown←'# MarkAPL' 'All about **_MarkAPL_**'
 ~~~
+
+I> In order to use `MarkAPL` permanently you must install it into a particular folder, for example:
+I>
+I> ```
+I> ]Tatin.InstallPackages [tatin]markapl /MyProjects/ThisProject/packages
+I> ```
 
 There are two possible scenarios:
 
@@ -42,7 +50,7 @@ To convert Markdown into HTML, call the `Markdown2HTML` method:
 <a id="markapl" class="autoheaderlink"><h1>MarkAPLstrong></p>
 ~~~
 
-Note that not only the HTML but also a namespace `ns` is returned which, among other stuff, has a variable `report` that might carry warnings and error reports. Ideally `report` is empty.
+Note that `Markdown2HTML` returns HTML and a namespace `ns`. The namespace contains, among other stuff, a variable `report` that might carry warnings and error reports. Ideally `report` is empty.
 
 This way of calling `Markdown2HTML` relies entirely on defaults. If you are not happy with those you must specify parameters in one of two ways:
 
@@ -99,4 +107,5 @@ Please send comments, suggestions and bug reports to kai@aplteam.com.
 Kai Jaeger ⋄ 2016-02-17
 
 Last update: 2023-12-06
+
 
