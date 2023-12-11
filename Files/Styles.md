@@ -98,6 +98,14 @@ leanpub-end-insert
 Now you can check the impact of your print style sheet, and you can also take advantage of the browser's development tools.
 
 
+## Helpers
+
+There is a function `CreateDoc` available that is designed to help in the process of changing/debugging/creating a style sheet.
+
+It requires a right argument for quick access, but in case this is empty the user will be interrogated regarding which document to create and which style sheet set to use.
+
+It links the CSS style sheet to the HTML file, making debugging way easier.
+
 ## Styling
 
 There are a few `<div>`s injected into the HTML and CSS classes assigned to HTML tags which are not really necessary but make styling their contents much easier.
@@ -300,6 +308,7 @@ The `<details>` tags start with an `<hr>` (inserted by `MarkAPL`) followed by wh
 
 
 [^normalyze]: The "Normalize" project<br><https://necolas.github.io/normalize.css/>
+
 
 
 

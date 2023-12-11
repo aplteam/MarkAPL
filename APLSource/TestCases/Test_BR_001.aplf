@@ -1,4 +1,4 @@
- R←Test_BR_001(stopFlag batchFlag);⎕TRAP;md;ns;parms;html;buff
+ R←Test_BR_001(stopFlag batchFlag);⎕TRAP;md;ns;parms;html;buff;expected
 ⍝ Test replacing a "\" characters at the end of a list item (simple)
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
@@ -11,6 +11,7 @@
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
 
- →T.PassesIf'<ul>' '<li>First <br> ordered list item</li>' '</ul>'≡ns.html
+ expected←'<ul>' '<li>First<br> ordered list item</li>' '</ul>'
+ →T.PassesIf expected≡ns.html
 
  R←T._OK

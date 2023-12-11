@@ -293,9 +293,9 @@ Notes:
 
 #### Check boxes
 
-Note that for readability the examples here show the `_` character to represent a space character.
+Note that for readability the examples here show the `⎵` character to represent a space character.
 
-You may add check boxes with either `[_]_` (the space between the two brackets is required to make it an un-ticked check box) or `[x]_` or `[X]_`.
+You may add check boxes with either `[⎵]⎵` (the space between the two brackets is required to make it an un-ticked check box) or `[x]⎵` or `[X]⎵`.
 
 A line must start with either of them but might also have up to three leading spaces.
 
@@ -306,11 +306,11 @@ Examples --- this:
 ```
 [X] APL
 [x] K
-[ ] Cobol
- [ ] Rust `⍝ Up to three...`
-  [ ] F# `⍝ ...leading spaces...`
-   [ ] Go `⍝ ...don't hurt...`
-    [ ] Pascal   `... but four or more do`
+[⎵] Cobol
+⎵[⎵] Rust `⍝ Up to three...`
+⎵⎵[⎵] F# `⍝ ...leading spaces...`
+⎵⎵⎵[⎵] Go `⍝ ...don't hurt...`
+⎵⎵⎵⎵[⎵] Pascal   `... but four or more do`
 ```
 
 leads to this:
@@ -341,11 +341,11 @@ This leads to this:
 !> What is the most productive programming language?
 => APL!
 
-Note that a collapsible must start with a single line marked up with `!> ` and at least one line marked up with `=> `, but may have more such lines.
+A collapsible must start with a single line that starts with `!>⎵` and at least one line that starts with `=>⎵`, but may have more such lines. The `⎵` character represents a space here.
 
 In fact almost anything might go into those lines: lists, code blocks, definition lists, headers, horizontal rulers but no collapsibles. The summary on the other hand only accepts headers and inline markup.
 
-Accordions are just two or more collapsibles in succession. Those are styled differently, making them appear as a single object.
+Accordions are just two or more collapsibles in succession. Those are styled slightly differently, making them appear as a single object.
 
 For example, this:
 
@@ -354,6 +354,21 @@ For example, this:
 => For a start, ordinary paragraphs like this one.
 !> What else can go into a Collapsible?
 => Pretty much everything: lists, citations, headers, code blocks...
+=> 
+=> Collapsibles can hold everything that's available in Markdown.
+=> 
+=> #### Examples:
+=> 
+=> ~~~
+=> {(+⌿⍵}÷≢⍵}
+=> ~~~
+=> 
+=> * List item 1
+=> * List item 2
+=> 
+=> > Collapsibles are great.
+=> 
+=> Of cource inline markup is available, too: **bold**, _italic_, `code`, ~~deprecated~~, whatever.
 ```
 
 leads to this:
@@ -362,6 +377,21 @@ leads to this:
 => For a start, ordinary paragraphs like this one.
 !> What else can go into a Collapsible?
 => Pretty much everything: lists, citations, headers, code blocks...
+=> 
+=> Collapsibles can hold everything that's available in Markdown.
+=> 
+=> #### Examples:
+=> 
+=> ~~~
+=> {(+⌿⍵}÷≢⍵}
+=> ~~~
+=> 
+=> * List item 1
+=> * List item 2
+=> 
+=> > Collapsibles are great.
+=> 
+=> Of cource inline markup is available, too: **bold**, _italic_, `code`, ~~deprecated~~, whatever.
 
 For printing purposes all collapsibles are expanded.
 
@@ -2546,7 +2576,7 @@ You can specify your own caption with [tocCaption](#).
 
 Notes:
 
-* The `<nav>` tag the toc is embraced by `<div>`s and gets an ID `main_nav`  assigned to it. 
+* The main TOC's `<nav>` tag is embraced by a `<div>` that gets the ID `main_nav` assigned to it. 
 
 * You can insert [subTocs](# "sub topics") only if `toc` is not 0.
 
@@ -2627,6 +2657,12 @@ Kai Jaeger ⋄ 2023-12-10
 [git]: https://help.github.com/articles/working-with-advanced-formatting/ "GIT's formatting rules"{target="_blank"}
 [markdown_extra]: https://www.wikiwand.com/en/Markdown_Extra{target="_blank"}
 [pandoc]: http://pandoc.org/README.html{target="_blank"}
+
+
+
+
+
+
 
 
 

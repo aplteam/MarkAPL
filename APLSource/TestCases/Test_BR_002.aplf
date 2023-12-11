@@ -1,4 +1,4 @@
- R←Test_BR_002(stopFlag batchFlag);⎕TRAP;md;ns;parms;html;buff
+ R←Test_BR_002(stopFlag batchFlag);⎕TRAP;md;ns;parms;html;buff;expected
 ⍝ Test replacing a "\" characters at the end of a paragraph.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
@@ -11,6 +11,7 @@
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
 
- →T.PassesIf'<p>This <br> spans two lines</p>'≡∊ns.html
+ expected←'<p>This<br> spans two lines</p>'
+ →T.PassesIf expected≡∊ns.html
 
  R←T._OK

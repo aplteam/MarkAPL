@@ -17,7 +17,7 @@
  */
 
 html {
-  line-height: 1.15; /* 1 */
+/*  line-height: 1.15; 1 MarkAPL has other ideas */
   -webkit-text-size-adjust: 100%; /* 2 */
 }
 
@@ -361,14 +361,50 @@ template {
 
 /* MarkAPL: Additional styles */
 
+:root {
+  --global-background-color: #323232;
+  --global-color: #DDD;
+  --header-color: hsl(39,97%,83%);
+  --link-color: #A3A3FF;
+  --visited-link-color: hsl(270,70%,85%);
+  --pre-background-color: #1A1A1A;
+  --table-code-color: #8B0000;
+  --code-color: #FFC266;
+  --code-background-color: #1A1A1A;
+  --nav-background-color: #4C4C4C;
+  --leanpub-background-color: #4C004C;
+  --leanpub-color: #DDD;
+  --leanpub-image-color: #CCCCFF;
+  --accordion-background-color: #4C004C;
+  --collapsible-background-color: #4C004C;
+  --pre-button-background-color: #BCBABB;
+  --svg-background-color: #CCCCFF;
+  --tbody-color-even-color: #DAA520;
+  --tbody-color-odd-color: #E6BD56;
+  --thead-background-color: #B68A1B;
+  --tfoot-background-color: #B68A1B;
+  --th-background-color: #C3941D;
+  --table-a-color: blue;
+  --nav-a-color: #EDEDED;
+  --nav-a-visited-color: #B0B0B0;
+}
+
+/*
+.test-test-test {
+      background-color: #4C004C;
+}
+*/
+
+
+
 body  {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #323232;
+    background-color: var(--global-background-color);
     font-size: 18px;
     max-width: 900px; /* <<maxwidth>> */
     padding: 0.83em;
-    color: #ddd;
+    color: var(--global-color);
     margin-left: auto;
     margin-right: auto;
     overflow-wrap: break-word;
@@ -381,15 +417,14 @@ h3,
 h4,
 h5,
 h6 {
-    color: hsl(39,97%,83%);
+    color: var(--header-color);
     padding-left: 0;
 }
 
 h1,
 h2,
 h3,
-h4,
-p {
+h4 {
     margin-bottom: 0.88em;
 }
 
@@ -452,18 +487,18 @@ hr {
 }
 
 a {
-    color: #A3A3FF;
+    color: var(--link-color);
     margin: 0;
     padding: 0;
     vertical-align: baseline;
 }
 
 a:visited {
-    color: hsl(270,70%,85%);
+    color: var(--visited-link-color);
 }
 
 a:visited code {
-    color: hsl(270,70%,85%);
+    color: var(--visited-link-color);
 }
 
 a.autoheader_anchor {
@@ -533,7 +568,6 @@ ol ul {
 p {
     padding: 0.6em 0 0 0;
     margin: 0;
-    line-height: 1.4;
 }
 
 pre {
@@ -541,8 +575,7 @@ pre {
     overflow: auto;
     padding: 0.55em 0.35em 0.55em 0.35em;
     margin: 0.55em 0 0.55em 0 !important;
-    background-color: #1A1A1A;
-    color: #FFC266;
+    background-color: var(--pre-background-color);
     -moz-tab-size: 4;
     tab-size: 4;
     -o-tab-size: 4;
@@ -553,6 +586,7 @@ pre {
     hyphens: none;
     border: 1px solid silver;
     line-height: 1;
+    border-radius: 5px;
 }
 
 pre > code {
@@ -561,13 +595,17 @@ pre > code {
     padding: 0;
     margin: 0;
     background-color: inherit;
-    color: inherit;
     font-weight: normal;
     white-space: pre-wrap;
 }
 
+th code ,
 td code {
+    color: var(--table-code-color);
     background-color: inherit;
+    padding: 0.02em 0.3em;
+    border-radius: 5px;
+    border: 1px solid #737373;
 }
 
 a code {
@@ -584,28 +622,27 @@ nav code {
 
 code {
     font-family: APLFont, monospace;
-    font-weight: bold;
-    color: #950000;
-    background-color: #C9C9C9;
+    color: var(--code-color);
+    background-color: var(--code-background-color);
     line-height: 1.4;
     white-space: nowrap;
-    margin: 0 0.1em 0 0.1em;
+    margin: 0 0.2em 0 0.2em;
     padding: 0.02em 0.3em;
     border-radius: 5px;
 }
 
 tbody tr:nth-child(even) {
-    background-color: #DAA520;
+    background-color: var(--tbody-color-even-color);
     border-bottom: 1px solid Gray;
 }
 
 tbody tr:nth-child(odd) {
-    background-color: #E6BD56;
+    background-color: var(--tbody-color-odd-color);
     border-bottom: 1px solid Gray;
 }
 
 th {
-    background-color: #C3941D;
+    background-color: var(--th-background-color);
     color: black;
     border-bottom: 1px solid Gray;
 }
@@ -635,16 +672,16 @@ table {
 }
 
 table a {
-    color: blue;
+    color: var(--table-a-color);
 }
 
 table a:visited {
-    color: blue;
+    color: var(--table-a-color);
 }
 
 thead th {
     color: black;
-    background-color: 9BC5C5;
+    background-color: var(--thead-background-color);
 }
 
 td {
@@ -653,7 +690,7 @@ td {
 
 tfoot td {
     color: black;
-    background-color: #C3941D;
+    background-color: var(--tfoot-background-color);
     font-weight: bold;
 }
 
@@ -688,7 +725,7 @@ blockquote ol li {
 li > blockquote {margin-left: 0;}
 
 nav {
-    background-color: #4C4C4C;
+    background-color: var(--nav-background-color);
     border: 1px solid Silver;
     padding: 0.55em;
     margin: 0.50em 0 1em 0;
@@ -716,11 +753,11 @@ nav > ul ul {
 }
 
 nav a {
-    color: #EDEDED;
+    color: var(--nav-a-color);
 }
 
 nav a:visited {
-    color: #B0B0B0;
+    color: var(--nav-a-visited-color);
 }
 
 nav ul li {
@@ -863,10 +900,10 @@ div.leanpub ol:first-child {
 
 div.leanpub_A {
     border: 1px solid black;
-    background-color: #574E00;
+    background-color: var(--leanpub-background-color);
     padding: 0.55em;
     margin: 1.11em 0 0.83em 0;
-    color: #ddd;
+    color: var(--leanpub-color);
 }
 
 div.leanpub h3,
@@ -907,7 +944,7 @@ div.leanpub img {
     padding: 0.5em;
     margin: 0.5em 1em 0 0;
     clear:both;
-    background-color: #CCCCFF;
+    background-color: var(--leanpub-image-color);
 }
 
 div.leanpub tbody * {
@@ -950,7 +987,7 @@ div.accordion {
     border: 1px solid silver;
     padding: 0;
     margin: 0.5em 0;
-    background-color: #1E7B1E;
+    background-color: var(--accordion-background-color);
 }
 
 div.accordion > div {
@@ -971,7 +1008,7 @@ div.collapsible {
     border: 1px solid silver;
     padding: 0.5em;
     margin: 0.5em 0;
-    background-color: #1A6B1A;
+    background-color: var(--collapsible-background-color);
 }
 
 div.collapsible p,
@@ -1013,7 +1050,7 @@ pre > button {
 
 pre button:hover {
   cursor: pointer;
-  background-color: #bcbabb;
+  background-color: var(--pre-button-background-color);
 }
 
 #main_nav {
@@ -1034,7 +1071,7 @@ pre button:hover {
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
-  border-bottom-left-radius: 6px;  
+  border-bottom-left-radius: 6px;
 }
 #toc-list {
     margin: 1em 1em 0.25em 0;
@@ -1046,5 +1083,5 @@ sup, sub {
 
 svg {
     padding: 0.5em;
-    background-color: #CCCCFF;
+    background-color: var(--svg-background-color);
 }

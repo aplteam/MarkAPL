@@ -11,7 +11,6 @@
      b←(urls⍳urls)=⍳≢urls  ⍝ For dropping doubles
      (anchors urls)←b∘/¨anchors urls
      linkTexts←{⍵↓⍨⍵⍳'>'}¨anchors
-     linkTexts←(,¨'<>')⎕R'\&amp;pointybracket_open;' '\&amp;pointybracket_close;'⊣linkTexts
      linkTexts←ns.parms{0 ProcessInlineMarkUp_ ⍵ ⍺}¨linkTexts
      md←CreateMarkdownFromUrlAndLinkText urls linkTexts
      md←'' '---' ''('**',ns.parms.reportLinksCaption,'**')'',md,''

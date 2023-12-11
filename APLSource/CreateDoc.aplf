@@ -1,4 +1,4 @@
- r←{printAsScreen}test y;M;parms;ns;opCode;css;documents;EndIf
+ r←{printAsScreen}CreateDoc y;M;parms;ns;opCode;css;documents;EndIf
 ⍝ Creates any of the documents MarkAPL comes with, defined by the "opCode"
 ⍝ Useful for working on the CSS because the CSS files are linked, so changes are reflected straight away.
 ⍝ Uses either the "Dark" theme (css=1) or "MarkAPL" (css=2) or "BlackAndWhite" (css=3).

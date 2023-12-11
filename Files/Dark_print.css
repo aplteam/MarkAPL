@@ -7,7 +7,7 @@
 
 body  {
     font-family: "Times New Roman", serif;
-    font-size: 10pt;
+    font-size: 14pt;
     line-height: 1.2;
 }
 
@@ -155,9 +155,13 @@ pre code {
 code {
     font-family: APLFont, monospace;
     line-height: 1.2;
-    font-size: 9pt;
+    font-size: 12pt;
     color: #950000;
     padding: 0 2pt;
+    border: 1pt solid silver;
+    white-space: nowrap;
+    margin: 0 0.2em 0 0.2em;
+    border-radius: 5px;
 }
 
 table td + td {
@@ -183,7 +187,7 @@ table code {
 table {
     margin: 0.75em 0;
     font-family: APLFont;
-    font-size: 9pt;
+    font-size: 12pt;
     padding: 0;
     border: 1pt solid silver;
     border-collapse: collapse;
@@ -324,6 +328,8 @@ div#footnotes_div {page-break-inside: avoid;}
 /* User classes */
 
 .hide {display: none;}
+
+.print {display: block;}
 
 .red {color: red;}
 
