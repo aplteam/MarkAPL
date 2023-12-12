@@ -3,11 +3,16 @@
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
 
- md←⊂'APL is a <<modern>> language but this<<br>>is a break'
+ md←''
+ md,←⊂'APL is a <<modern>> language but this<br>is a break'
+ md,←⊂''
+ md,←⊂'<<APL>>'
+ md,←⊂''
+ md,←⊂'Is it <<APL>>?'
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
 
- expected←'<p>APL is a «modern» language but this<br>is a break</p>'
- →T.PassesIf(,⊂expected)≡ns.html
+ expected←'<p>APL is a «modern» language but this<br>is a break</p>' '<p>«APL»</p>' '<p>Is it «APL»?</p>'
+ →T.PassesIf∧/expected∊ns.html
 
  R←T._OK

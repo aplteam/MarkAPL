@@ -1,5 +1,5 @@
-/* MarkAPL's default screen style sheet since version 12.0 */
-/* Version 1.0 from 2023-12-06 */
+/* MarkAPL's default screen style sheet "Dark" since version 12.0 */
+/* Version 1.0.1 from 2023-12-12 */
 
 /* Note that there are some variables embedded as comments which will be replaced
    by MarkAPL. The names are embraced by "<<", so for a variable "foo" it is
@@ -361,6 +361,12 @@ template {
 
 /* MarkAPL: Additional styles */
 
+/*
+
+Variables don't work with the OCXControl use in Meddy!
+They offer little value here anyway because only two variables are used in more than one place.
+Also, HTMLPad does not offer color selection on a variable.
+
 :root {
   --global-background-color: #323232;
   --global-color: #DDD;
@@ -388,11 +394,6 @@ template {
   --nav-a-color: #EDEDED;
   --nav-a-visited-color: #B0B0B0;
 }
-
-/*
-.test-test-test {
-      background-color: #4C004C;
-}
 */
 
 
@@ -400,11 +401,11 @@ template {
 body  {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: var(--global-background-color);
+    background-color: #323232;
     font-size: 18px;
     max-width: 900px; /* <<maxwidth>> */
     padding: 0.83em;
-    color: var(--global-color);
+    color: #DDD;
     margin-left: auto;
     margin-right: auto;
     overflow-wrap: break-word;
@@ -417,7 +418,7 @@ h3,
 h4,
 h5,
 h6 {
-    color: var(--header-color);
+    color: hsl(39,97%,83%);
     padding-left: 0;
 }
 
@@ -487,18 +488,18 @@ hr {
 }
 
 a {
-    color: var(--link-color);
+    color: #A3A3FF;
     margin: 0;
     padding: 0;
     vertical-align: baseline;
 }
 
 a:visited {
-    color: var(--visited-link-color);
+    color: hsl(270,70%,85%);
 }
 
 a:visited code {
-    color: var(--visited-link-color);
+    color: hsl(270,70%,85%);
 }
 
 a.autoheader_anchor {
@@ -575,7 +576,7 @@ pre {
     overflow: auto;
     padding: 0.55em 0.35em 0.55em 0.35em;
     margin: 0.55em 0 0.55em 0 !important;
-    background-color: var(--pre-background-color);
+    background-color: #1A1A1A;
     -moz-tab-size: 4;
     tab-size: 4;
     -o-tab-size: 4;
@@ -601,7 +602,7 @@ pre > code {
 
 th code ,
 td code {
-    color: var(--table-code-color);
+    color: #8B0000;
     background-color: inherit;
     padding: 0.02em 0.3em;
     border-radius: 5px;
@@ -622,8 +623,8 @@ nav code {
 
 code {
     font-family: APLFont, monospace;
-    color: var(--code-color);
-    background-color: var(--code-background-color);
+    color: #FFC266;
+    background-color: #1A1A1A;
     line-height: 1.4;
     white-space: nowrap;
     margin: 0 0.2em 0 0.2em;
@@ -632,17 +633,17 @@ code {
 }
 
 tbody tr:nth-child(even) {
-    background-color: var(--tbody-color-even-color);
+    background-color: #DAA520;
     border-bottom: 1px solid Gray;
 }
 
 tbody tr:nth-child(odd) {
-    background-color: var(--tbody-color-odd-color);
+    background-color: #E6BD56;
     border-bottom: 1px solid Gray;
 }
 
 th {
-    background-color: var(--th-background-color);
+    background-color: #C3941D;
     color: black;
     border-bottom: 1px solid Gray;
 }
@@ -672,16 +673,16 @@ table {
 }
 
 table a {
-    color: var(--table-a-color);
+    color: blue;
 }
 
 table a:visited {
-    color: var(--table-a-color);
+    color: blue;
 }
 
 thead th {
     color: black;
-    background-color: var(--thead-background-color);
+    background-color: #B68A1B;
 }
 
 td {
@@ -690,7 +691,7 @@ td {
 
 tfoot td {
     color: black;
-    background-color: var(--tfoot-background-color);
+    background-color: #B68A1B;
     font-weight: bold;
 }
 
@@ -725,7 +726,7 @@ blockquote ol li {
 li > blockquote {margin-left: 0;}
 
 nav {
-    background-color: var(--nav-background-color);
+    background-color: #4C4C4C;
     border: 1px solid Silver;
     padding: 0.55em;
     margin: 0.50em 0 1em 0;
@@ -753,11 +754,11 @@ nav > ul ul {
 }
 
 nav a {
-    color: var(--nav-a-color);
+    color: #EDEDED;
 }
 
 nav a:visited {
-    color: var(--nav-a-visited-color);
+    color: #B0B0B0;
 }
 
 nav ul li {
@@ -900,10 +901,10 @@ div.leanpub ol:first-child {
 
 div.leanpub_A {
     border: 1px solid black;
-    background-color: var(--leanpub-background-color);
+    background-color: #4C004C;
     padding: 0.55em;
     margin: 1.11em 0 0.83em 0;
-    color: var(--leanpub-color);
+    color: #DDD;
 }
 
 div.leanpub h3,
@@ -944,7 +945,7 @@ div.leanpub img {
     padding: 0.5em;
     margin: 0.5em 1em 0 0;
     clear:both;
-    background-color: var(--leanpub-image-color);
+    background-color: #CCCCFF;
 }
 
 div.leanpub tbody * {
@@ -987,7 +988,7 @@ div.accordion {
     border: 1px solid silver;
     padding: 0;
     margin: 0.5em 0;
-    background-color: var(--accordion-background-color);
+    background-color: #4C004C;
 }
 
 div.accordion > div {
@@ -1008,7 +1009,7 @@ div.collapsible {
     border: 1px solid silver;
     padding: 0.5em;
     margin: 0.5em 0;
-    background-color: var(--collapsible-background-color);
+    background-color: #4C004C;
 }
 
 div.collapsible p,
@@ -1050,7 +1051,7 @@ pre > button {
 
 pre button:hover {
   cursor: pointer;
-  background-color: var(--pre-button-background-color);
+  background-color: #BCBABB;
 }
 
 #main_nav {
@@ -1083,5 +1084,6 @@ sup, sub {
 
 svg {
     padding: 0.5em;
-    background-color: var(--svg-background-color);
+    background-color: #CCCCFF;
 }
+

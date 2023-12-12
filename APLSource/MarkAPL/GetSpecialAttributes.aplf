@@ -5,7 +5,7 @@
  ⍝ 'id="foo" class="cl1 cl2" attr1="A B C" attr2=123' ←→ ∇ '{#foo .cl1 .cl2 attr1="A B C" attr2=123}'
  ⍝  'style="color=red;font-family='APL385 Unicode'"' ←→ ∇ 'style="color:red;font-family:'APL385 Unicode'"
      md←A.DTB ⍵
-     ('!['≡2⍴md)∧0=+/'<<br>>'⍷md:''  ⍝ Might be a stand-alone image!
+     ('!['≡2⍴md)∧0=(+/'<<br>>'⍷md)++/'<br>'⍷md:''  ⍝ Might be a stand-alone image!
      '}'≠¯1↑md:''
      '\'=1↑¯2↑md:'' ⍝ Escaped?
      ~'{'∊md:''
