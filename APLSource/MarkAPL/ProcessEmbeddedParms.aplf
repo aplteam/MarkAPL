@@ -23,7 +23,7 @@
          bool←'[parm]:'∘{⍺≡(≢⍺)↑⍵}¨buff                                 ⍝ Otherwise we are not interested
          :If ~ignoreEmbeddedParms
              (⍸bool)ProcessEmbeddedParms_¨bool/buff                         ⍝ Process the rows one by one
-             :If ∨/bool←~ns.embeddedParms[;1]∊CreateHelpParms.∆List[;1]     ⍝ Report any invalid keys
+             :If ∨/bool←~ns.embeddedParms[;1]∊(CreateHelpParms.∆List[;1]),⊂'collapsibleTOC'     ⍝ Report any invalid keys   ⍝TODO⍝ Remove collapsibleTOC soon
                  ns.report,←⊂'Invalid embbed parameter',((1<+/bool)/'s'),': ',⊃{⍺,',',⍵}/'"',¨'"',⍨¨bool/ns.embeddedParms[;1]
              :EndIf
          :EndIf

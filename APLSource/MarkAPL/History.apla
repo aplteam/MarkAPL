@@ -1,8 +1,10 @@
 (
- '* 12.0.1 ⋄ 2023-12-12'
+ '* 12.0.1 ⋄ 2023-12-14'
  '  * Bug fixes: '
  '    * The CSS variables in the "Dark" theme weren''t interpreted by the IE via the OCX control.'
  '    * Guillemets were not processed when found at the beginning of a paragraph.'
+ '    * `collapsibleTOC` was rejected when defined as an embedded parameter. Not processed anymore, but'
+ '      should be ignored rather than rejected.'
  '* 12.0.0 ⋄ 2023-12-11'
  '  * BREAKING CHANGES: '
  '    * HTML tags in Markdown are now left alone, implementing the original intention, and bringing MarkAPL '
