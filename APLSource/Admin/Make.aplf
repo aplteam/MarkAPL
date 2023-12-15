@@ -12,7 +12,7 @@
      parms←⎕SE.Tatin.CreateBuildParms C.HOME
      parms.targetPath←path
      parms.version←version
-     parms.tatinVars←##.TatinVars
+     parms.tatinVars←##.MarkAPL.TatinVars
      zipFilename←⎕SE.Tatin.BuildPackage parms
      ⎕←'*** New version build successfully:',M.CR,'   ',zipFilename
  :EndIf

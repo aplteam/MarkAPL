@@ -1,4 +1,6 @@
 (
+ '* 12.0.2 ⋄ 2023-12-15'
+ '  * Bug fix: function `Version` addressed `TatinVars` incorrectly; introduced with 12.0.1'
  '* 12.0.1 ⋄ 2023-12-14'
  '  * Bug fixes: '
  '    * The CSS variables in the "Dark" theme weren''t interpreted by the IE via the OCX control.'

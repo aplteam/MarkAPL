@@ -1,6 +1,6 @@
  {r}←Initialize;⎕TRAP
  ⎕TRAP←0 'S'
  r←⍬
- {}⎕SE.UCMD'cd ',TatinVars.HOME
+ {}⎕SE.UCMD'cd ',MarkAPL.TatinVars.HOME
  ⎕WSID←CiderConfig.HOME,'project.dws'
 ⍝Done
