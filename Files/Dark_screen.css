@@ -709,8 +709,16 @@ blockquote {
     margin: 0.5em 0.25em 0.80em 0.5em;
 }
 
+blockquote p:first-child {
+    padding-top: 0;
+}
+
+blockquote p:last-child {
+    padding-bottom: 0;
+}
+
 blockquote p {
-    padding: 0 0.25em;
+    padding: 0.25em;
 }
 
 blockquote ul li {

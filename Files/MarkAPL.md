@@ -341,7 +341,7 @@ This leads to this:
 !> What is the most productive programming language?
 => APL!
 
-A collapsible must start with a single line that starts with `!>⎵` and at least one line that starts with `=>⎵`, but may have more such lines. The `⎵` character represents a space here.
+A collapsible must start with a single line that starts with `!>⎵` and at least one line that starts with `=>⎵`, but may have more such lines; the `⎵` character represents a space here.
 
 In fact almost anything might go into those lines: lists, code blocks, definition lists, headers, horizontal rulers but no collapsibles. The summary on the other hand only accepts headers and inline markup.
 
@@ -360,7 +360,7 @@ For example, this:
 => #### Examples:
 => 
 => ~~~
-=> {(+⌿⍵}÷≢⍵}
+=> {(+⌿⍵)÷≢⍵}
 => ~~~
 => 
 => * List item 1
@@ -383,7 +383,7 @@ leads to this:
 => #### Examples:
 => 
 => ~~~
-=> {(+⌿⍵}÷≢⍵}
+=> {(+⌿⍵)÷≢⍵}
 => ~~~
 => 
 => * List item 1
@@ -2657,6 +2657,9 @@ Kai Jaeger ⋄ 2023-12-10
 [git]: https://help.github.com/articles/working-with-advanced-formatting/ "GIT's formatting rules"{target="_blank"}
 [markdown_extra]: https://www.wikiwand.com/en/Markdown_Extra{target="_blank"}
 [pandoc]: http://pandoc.org/README.html{target="_blank"}
+
+
+
 
 
 
