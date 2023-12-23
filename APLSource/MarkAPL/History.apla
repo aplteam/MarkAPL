@@ -1,5 +1,6 @@
 (
- '* 12.0.2 ⋄ 2023-12-15'
+ '* 12.0.2 ⋄ 2023-12-23'
+ '  * Table styling improved'
  '  * Bug fix: function `Version` addressed `TatinVars` incorrectly; introduced with 12.0.1'
  '* 12.0.1 ⋄ 2023-12-14'
  '  * Bug fixes: '

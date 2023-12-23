@@ -634,33 +634,34 @@ code {
 
 tbody tr:nth-child(even) {
     background-color: #DAA520;
-    border-bottom: 1px solid Gray;
+/*    border-bottom: 1px solid #474747; */
+    border-bottom: 0px solid silver;
 }
 
 tbody tr:nth-child(odd) {
     background-color: #E6BD56;
-    border-bottom: 1px solid Gray;
+    border-bottom: 0px solid silver;
 }
 
 th {
     background-color: #C3941D;
     color: black;
-    border-bottom: 1px solid Gray;
+    border-bottom: 0px solid silver;
 }
 
 th, td {
-    padding: 0.5em;
-    vertical-align: top;
+    padding: 0.3em 0.8em;
+    font-weight: normal;
 }
 
 table td + td {
-    border-left:1px solid Gray;
-    border-bottom: 1px solid Gray;
+    border-left:0px solid silver;
+    border-bottom: 0px solid silver;
 }
 
 table th + th {
-    border-left:1px solid Gray;
-    border-bottom: 1px solid Gray;
+    border-left:0px solid silver;
+    border-bottom: 0px solid silver;
 }
 
 table {
@@ -692,7 +693,6 @@ td {
 tfoot td {
     color: black;
     background-color: #B68A1B;
-    font-weight: bold;
 }
 
 li > table {
@@ -702,8 +702,6 @@ li > table {
 tr  {
     margin: 1.11em;
 }
-
-th {font-weight: bold;}
 
 blockquote {
     border-left: 0.27em solid silver;
