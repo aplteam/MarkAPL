@@ -1,7 +1,9 @@
 (
- '* 12.0.2 ⋄ 2023-12-23'
+ '* 12.0.2 ⋄ 2023-12-26'
  '  * Table styling improved'
- '  * Bug fix: function `Version` addressed `TatinVars` incorrectly; introduced with 12.0.1'
+ '  * Bug fixes:'
+ '    * Function `Version` addressed `TatinVars` incorrectly; introduced with 12.0.1'
+ '    * `cssURL` was not correctly processed when not set'
  '* 12.0.1 ⋄ 2023-12-14'
  '  * Bug fixes: '
  '    * The CSS variables in the "Dark" theme weren''t interpreted by the IE via the OCX control.'

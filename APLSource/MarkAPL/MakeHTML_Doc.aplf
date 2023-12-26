@@ -22,7 +22,7 @@
  parms←EstablishDefaultHomeFolder parms
  :If 0=parms.noCSS
      :If ⎕NULL≡parms.cssURL
-         parms.cssURL←parms.homeFolder,'/Files/'
+         parms.cssURL←({0=≢⍵:'.',⍵ ⋄ ⍵}parms.homeFolder),'/Files/'
      :EndIf
      parms.cssURL~←'"'
      :If 0≠≢parms.cssURL
