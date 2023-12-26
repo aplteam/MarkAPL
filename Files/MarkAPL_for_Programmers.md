@@ -311,12 +311,6 @@ The namespace contains the following variables:
 #### `abbreviations`
 
 A (possibly empty) vector of two-item-vectors. The first item holds the abbreviation, the second item the explanation or comment. 
-
-
-#### `data`
-
-Contains all embedded data as a matrix with two columns: "name" and "value".
-  
        
 #### `embeddedParms`
 
@@ -596,6 +590,7 @@ Kai Jaeger ⋄ Last update 2023-12-06
 [git]: https://help.github.com/articles/working-with-advanced-formatting/ "GIT's formatting rules"{target="_blank"}
 [markdown_extra]: https://www.wikiwand.com/en/Markdown_Extra{target="_blank"}
 [pandoc]: http://pandoc.org/README.html{target="_blank"}
+
 
 
 

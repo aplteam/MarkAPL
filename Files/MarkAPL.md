@@ -2274,6 +2274,27 @@ Note that this parameter has an effect only when the CSS is injected.
 Changing/debugging CSS can be cumbersome. `MarkAPL` offers help, refer to the "Styles" document for details.
 
 
+#### `copyCaption`
+
+Text vector that defaults to "Copy". Used as the caption of the button shown in every code block, if `copy2ClipboardBtn` is 1.
+
+
+#### `copiedCaption`
+
+Text vector that defaults to "Copied". Used as the caption of the button shown in every code block, if `copy2ClipboardBtn` is 1.
+
+
+####m `copy2ClipboardBtn`
+
+Boolean that defaults to 1. Set this to 0 if you don't want to have "Copy" buttons in every code block.
+
+
+#### `data`
+
+Contains all embedded data as a matrix with two columns: "name" and "value".
+  
+
+
 #### createFullHtmlPage
 
 This parameter is of interest only to APL programmers.
@@ -2588,6 +2609,15 @@ Defaults to "Table of contents". Set this to any character vector you want to ap
 Note that this parameter has an effect only when the CSS is injected. Linked CSS must be prepared accordingly.
 
 
+#### `tocShowCaption`
+
+Text vector that defaults to "Show". Used as the caption of the button that can hide/show the main TOC.
+
+#### `tocHideCaption`
+
+Text vector that defaults to "Hide". Used as the caption of the button that can hide/show the main TOC.
+
+
 #### verbose
 
 This parameter is of interest only to APL programmers.
@@ -2657,6 +2687,8 @@ Kai Jaeger ⋄ 2023-12-10
 [git]: https://help.github.com/articles/working-with-advanced-formatting/ "GIT's formatting rules"{target="_blank"}
 [markdown_extra]: https://www.wikiwand.com/en/Markdown_Extra{target="_blank"}
 [pandoc]: http://pandoc.org/README.html{target="_blank"}
+
+
 
 
 

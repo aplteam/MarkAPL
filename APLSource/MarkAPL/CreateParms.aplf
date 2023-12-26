@@ -49,6 +49,8 @@
  'title'SetTo ⎕NULL
  'toc'SetTo 0
  'tocCaption'SetTo'Table of contents'
+ 'tocShowCaption'SetTo'Show'
+ 'tocHideCaption'SetTo'Hide'
  'verbose'SetTo r.debug
  'width'SetTo 900
  r.⎕FX'r←∆List;⎕IO' '⍝ List all variables and possible references in this namespace' '⎕IO←1' 'r←{⍵,[1.5]⍎¨⍵}⎕NL-2 9'

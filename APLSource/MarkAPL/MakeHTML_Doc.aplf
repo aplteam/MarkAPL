@@ -63,7 +63,7 @@
          copyCodeJavaScript←GetCopyCodeJavaScript parms
      :EndIf
      :If hasTOC
-         toggleTocJavaScript←GetJavaScriptForTogglingTOC
+         toggleTocJavaScript←GetJavaScriptForTogglingTOC parms
      :EndIf
      javaScript←copyCodeJavaScript,toggleTocJavaScript,hasCollapsible/GetJavaScriptForTogglingCollapsibles
      :If 0<≢javaScript
