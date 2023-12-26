@@ -12,6 +12,8 @@
  'checkLinks'SetTo r.debug
  'compressCSS'SetTo 1
  'copy2ClipboardBtn'SetTo 1
+ 'copyCaption'SetTo'Copy'
+ 'copiedCaption'SetTo'Copied'
  'createFullHtmlPage'SetTo ¯1
  'cssURL'SetTo ⎕NULL
  'div_h_tag'SetTo 1

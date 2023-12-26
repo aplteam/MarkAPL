@@ -60,7 +60,7 @@
  copyCodeJavaScript←toggleTocJavaScript←''
  :If parms.javaScript
      :If hasCodeBlock
-         copyCodeJavaScript←GetCopyCodeJavaScript parms.copy2ClipboardBtn
+         copyCodeJavaScript←GetCopyCodeJavaScript parms
      :EndIf
      :If hasTOC
          toggleTocJavaScript←GetJavaScriptForTogglingTOC

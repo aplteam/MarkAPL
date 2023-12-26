@@ -2,6 +2,8 @@
  '* 12.0.2 ⋄ 2023-12-26'
  '  * Table styling improved'
  '  * Restriction removed from `ConvertMarkdownFile`: allows specification of `inputFilename` now'
+ '  * New parameters `copyCaption` and `copiedCaption` introduced for replacing the default captions of the '
+ '    "Copy" button in code blocks.'
  '  * Bug fixes:'
  '    * Function `Version` addressed `TatinVars` incorrectly; introduced with 12.0.1'
  '    * `cssURL` was not correctly processed when not set'
