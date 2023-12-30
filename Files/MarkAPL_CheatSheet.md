@@ -659,8 +659,8 @@ For details refer to the [`MarkAPL` reference document](http://download.aplteam.
 
 ## Version
 
-This document refers to version 12.0 of `MarkAPL`.<br>
-Kai Jaeger ⋄ Last update 2023-12-06
+This document refers to version 12.1 of `MarkAPL`.<br>
+Kai Jaeger ⋄ Last update 2023-12-30
 
 ⍝ The link references:
 [1]:      https://aplwiki.com

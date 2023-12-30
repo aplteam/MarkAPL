@@ -10,7 +10,7 @@
  parms.verbose←0
  tempFilename←FilesAndDirs.GetTempPath,'\MarkAPL_Tests\',(⊃⎕SI),'\MarkAPL.html'
  parms.outputFilename←tempFilename
- parms.homeFolder←##.TatinVars.HOME
+ parms.homeFolder←##.MarkAPL.TatinVars.HOME
  'Create!'FilesAndDirs.CheckPath⊃⎕NPARTS parms.outputFilename
 
  ns←parms ##.MarkAPL.Reference 1

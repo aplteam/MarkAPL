@@ -9,7 +9,7 @@
  parms.toc←0
  parms.verbose←0
  parms.outputFilename←FilesAndDirs.GetTempPath,'\MarkAPL_Tests\',(⊃⎕SI),'\MarkAPL_CheatSheet.html'
- parms.homeFolder←##.TatinVars.HOME
+ parms.homeFolder←##.MarkAPL.TatinVars.HOME
  'Create!'FilesAndDirs.CheckPath ¯1↓⊃⎕NPARTS parms.outputFilename
 
  ns←parms ##.MarkAPL.Help 1
