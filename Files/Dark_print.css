@@ -1,5 +1,5 @@
 /* MarkAPL's default print style sheet (since 12.0) */
-/* Version 1.0 from 2023-12-06 */
+/* Version 1.0.1 from 2023-12-29 */
 
 @page {
     margin: 25mm 20mm 25mm 20mm;
@@ -7,16 +7,21 @@
 
 body  {
     font-family: "Times New Roman", serif;
-    font-size: 14pt;
+    font-size: 15pt;
     line-height: 1.2;
 }
 
-h1 {font-size: 170%;}
-h2 {font-size: 110%;}
-h3 {font-size: 110%;}
-h4 {font-size: 105%;}
-h5 {font-size: 100%;}
-h6 {font-size: 95%;}
+h1 {font-size: 150%;}
+h2 {font-size: 124%;}
+h3 {font-size: 124%;}
+h4 {font-size: 116%;}
+h5 {font-size: 108%;}
+h6 {font-size: 100%;}
+
+nav h2 {
+    font-size: 1em;
+}
+
 h1 {margin: 0 0 20pt 0;}
 h2 {margin: 15pt 0 3pt 0;}
 h3 {margin: 10pt 0 0pt 0;}

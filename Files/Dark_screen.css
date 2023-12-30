@@ -1,5 +1,5 @@
 /* MarkAPL's default screen style sheet "Dark" since version 12.0 */
-/* Version 1.0.1 from 2023-12-12 */
+/* Version 1.0.2 from 2023-12-29 */
 
 /* Note that there are some variables embedded as comments which will be replaced
    by MarkAPL. The names are embraced by "<<", so for a variable "foo" it is
@@ -46,7 +46,6 @@ main {
  */
 
 h1 {
-  font-size: 2em;
   margin: 0.67em 0;
 }
 
@@ -71,7 +70,6 @@ hr {
 
 pre {
   font-family: monospace, monospace; /* 1 */
-  font-size: 1em; /* 2 */
 }
 
 /* Text-level semantics
@@ -402,7 +400,7 @@ body  {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #323232;
-    font-size: 18px;
+    font-size: 16px;
     max-width: 900px; /* <<maxwidth>> */
     padding: 0.83em;
     color: #DDD;
@@ -430,7 +428,7 @@ h4 {
 }
 
 h1 {
-    font-size: 1.9em;
+    font-size: 1.5em;
     margin: 0.27em 0 1.11em 0;
 }
 
@@ -445,21 +443,21 @@ h6 > code {
 }
 
 h2 {
-    font-size: 1.50em;
+    font-size: 1.35em;
     margin: 0.55em 0 0.55em 0;
     padding-top: 0.55em;
     border-bottom: 1px solid Silver;
 }
 
+nav h2 {
+    font-size: 1.20em;
+    margin: 0 0 0.75em 0;
+}
+
 h3 {
     margin: 0;
     margin-top: 0.75em;
-    font-size: 1.5em;
-}
-
-nav h3 {
-    font-size: 1.35em;
-    margin: 0 0 0.75em 0;
+    font-size: 1.25em;
 }
 
 h4 {
@@ -469,7 +467,7 @@ h4 {
 }
 
 h5 {
-    font-size: 1.1em;
+    font-size: 1.15em;
     margin: 0;
     margin-top: 0.60em;
     padding:0;
@@ -556,7 +554,7 @@ li p {
 
 ul, ol {
     padding: 0;
-    margin: 0.3em 0.5em 0.5em 0.5em;
+    margin: 0.5em -0.6em;
 }
 
 ul ul,
@@ -564,6 +562,7 @@ ul ol,
 ol ol,
 ol ul {
     margin-top: 0.5em;
+    margin-left: -0.6em;
 }
 
 p {
@@ -738,6 +737,7 @@ nav {
     margin: 0.50em 0 1em 0;
     margin-right:0;
     overflow : hidden;
+    font-size: 1em;
 }
 
 nav#main_nav{
@@ -1065,7 +1065,7 @@ pre button:hover {
 }
 
 #main_nav h2 {
-    font-size: 1.45em;
+    font-size: 1.2em;
     margin: 0;
     padding: 0.5em 0.5em 0em 0.5em;
     border-bottom: 0px solid Silver;
@@ -1073,7 +1073,7 @@ pre button:hover {
 
 #toc-toggle {
   position: absolute;
-  top: 1.4em;
+  top: 1.1em;
   right: 1em;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;

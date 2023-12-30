@@ -874,6 +874,16 @@ Note that `MarkAPL`'s ability to inject a table-of-contents is not harmed by an 
 No matter how you defines headers, they may have between zero and up to three leading spaces.
 
 
+##### Examples for all levels
+
+> # Level 1 header
+> ## Level 2 header
+> ### Level 3 header
+> #### Level 4 header
+> ##### Level 5 header
+> ###### Level 6 header
+
+
 #### HTML blocks
 
 It is perfectly legal to have HTML blocks in a Markdown document, but be aware that this is way more complex a topic than it seems to be at first glance. 
