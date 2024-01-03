@@ -75,4 +75,10 @@
  expected←'<p>Some <code>\\</code> <code>\</code>. <code>\\\</code> text</p>'
  →T.PassesIf expected≡⊃ns.html
 
+ md←⊂'C:\Users\<⎕AN>\.cider\ results in:'
+ ns←MarkAPL.Init''md
+ ns←MarkAPL.Process ns
+ expected←'<p>C:\Users&lt;⎕AN&gt;\.cider\ results in:</p>'
+ →T.PassesIf expected≡⊃ns.html
+
  R←T._OK
