@@ -1,13 +1,13 @@
 /* MarkAPL's default print style sheet (since 12.0) */
-/* Version 1.0.1 from 2024-01-02*/
+/* Version 1.0.1 from 2024-01-05 */
 
 @page {
     margin: 25mm 20mm 25mm 20mm;
 }
 
 body  {
-    font-family: "Times New Roman", "Times", "Liberation Serif", serif;
-    font-size: 11pt;
+    font-family: Verdana, Arial, "Liberation Sans", sans-serif;
+    font-size: 15pt;
     line-height: 1.2;
 }
 

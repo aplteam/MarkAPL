@@ -2553,6 +2553,14 @@ If specified this parameter overwrites the user's preferences in Meddy.
 
 The name of the CSS file (or several CSS files separated by commata) for the screen. Defaults to ~~`MarkAPL_screen.css`~~ `Dark_screen.css` since version 12.0. If this is empty no CSS for viewing purposes is injected or linked to.
 
+#### startHeaderNoWith
+
+Integer that defaults to 1. It means that in case [numberHeaders](#) is on, the first number is 1. 
+
+This can be useful if you combine multiple independent markdown documents into a single HTML file. In that case you would start with the default, but for the second document you would set this to 2 and so on.
+
+Naturally this parameter is ignored in case `numberHeaders` is 0.
+
 #### subTocs
 
 Boolean that defaults to 1. If you want to suppress sub TOCs no matter whether there are any included in the Markdown or not then set this to 0. 
@@ -2697,6 +2705,8 @@ Kai Jaeger ⋄ 2023-12-10
 [git]: https://help.github.com/articles/working-with-advanced-formatting/ "GIT's formatting rules"{target="_blank"}
 [markdown_extra]: https://www.wikiwand.com/en/Markdown_Extra{target="_blank"}
 [pandoc]: http://pandoc.org/README.html{target="_blank"}
+
+
 
 
 
