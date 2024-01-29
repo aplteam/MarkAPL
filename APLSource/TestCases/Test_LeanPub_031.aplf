@@ -27,8 +27,8 @@
 
  home←FilesAndDirs.EnforceSlash FilesAndDirs.PWD,'/'
  expected←''
- expected,←⊂'<link href="file://',(FilesAndDirs.EnforceSlash parms.homeFolder,'./Files/BlackOnWhite_screen.css"'),' rel="stylesheet" media="screen">'
- expected,←⊂'<link href="file://',(FilesAndDirs.EnforceSlash parms.homeFolder,'./Files/BlackOnWhite_print.css"'),' rel="stylesheet" media="print">'
+ expected,←⊂'<link href="file://',(FilesAndDirs.EnforceSlash parms.homeFolder,'/Files/BlackOnWhite_screen.css"'),' rel="stylesheet" media="screen">'
+ expected,←⊂'<link href="file://',(FilesAndDirs.EnforceSlash parms.homeFolder,'/Files/BlackOnWhite_print.css"'),' rel="stylesheet" media="print">'
  →T.PassesIf∧/expected∊html
 
  R←T._OK
