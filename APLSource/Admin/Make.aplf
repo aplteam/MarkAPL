@@ -1,5 +1,8 @@
  Make flag;M;C;path;zipFilename;res;version;cfg;parms
  :If flag
+     :If 0=⎕SE.⎕NC'MakeHelpers'
+         {}f\bM\b ⎕SE.Tatin.LoadPackages'[tatin]MakeHelpers'⎕SE
+     :EndIf
      M←⎕SE.MakeHelpers
      C←##.CiderConfig
      path←C.HOME,'/',C.CIDER.distributionFolder
@@ -8,7 +11,7 @@
      M.RecreateFolder path
      M.##.MarkAPL←##.MarkAPL  ⍝ Make sure that the docs are created with the most recent version of MarkAPL!
      (##.CiderConfig.HOME,'/Files/')M.ConvertMarkdownToHtml5 2⍴⊂##.CiderConfig.HOME,'/Files'
-     M.CreateAPI ##.MarkAPL ##.MarkAPL.Public cfg.api
+     {}⎕SE.Tatin.CreateAPIfromCFG ##.MarkAPL cfg
      parms←⎕SE.Tatin.CreateBuildParms C.HOME
      parms.targetPath←path
      parms.version←version

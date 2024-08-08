@@ -1,4 +1,4 @@
-{ns}←{parms}Help recompileFlag;filename
+ {ns}←{parms}Help recompileFlag;filename;path;filenames;ind
 ⍝ Displays the file MarkAPL_CheatSheet.html with your default browser.\\
 ⍝ `recompileFlag`:
 ⍝ * 0 shows the file as it stands.
@@ -8,10 +8,14 @@
  :Access Public Shared
  parms←{0<⎕NC ⍵:⍎⍵ ⋄ CreateHelpParms}'parms'
  :If 0=≢parms.homeFolder
-     filename←TatinVars.GetFullPath2AssetsFolder,'/MarkAPL_CheatSheet'
+     path←TatinVars.GetFullPath2AssetsFolder,'/'
  :Else
-     filename←parms.homeFolder,'/Files/MarkAPL_CheatSheet'
+     path←parms.homeFolder,'/Files/'
  :EndIf
+ filenames←FilesAndDirs.ListFiles path,'*.html'
+ ind←'Select a document you want to put on view:'CommTools.Select{2⊃⎕NPARTS ⍵}¨filenames
+ →(0=≢ind)/0
+ filename←ind⊃filenames
  :If ~⎕NEXISTS filename,'.md'
      recompileFlag←0
  :EndIf
