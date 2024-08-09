@@ -2299,7 +2299,7 @@ Text vector that defaults to "Copied". Used as the caption of the button shown i
 Boolean that defaults to 1. Set this to 0 if you don't want to have "Copy" buttons in every code block.
 
 
-#### `data`
+#### `data`{#parameter_data}
 
 Contains all embedded data as a matrix with two columns: "name" and "value".
   
@@ -2705,6 +2705,7 @@ Kai Jaeger ⋄ 2023-12-10
 [git]: https://help.github.com/articles/working-with-advanced-formatting/ "GIT's formatting rules"{target="_blank"}
 [markdown_extra]: https://www.wikiwand.com/en/Markdown_Extra{target="_blank"}
 [pandoc]: http://pandoc.org/README.html{target="_blank"}
+
 
 
 
