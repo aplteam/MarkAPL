@@ -406,7 +406,7 @@ window.matchMedia("print").addEventListener("change", evt => {
 <li>Using <code>*</code> and <code>**</code> inside words. While <code>_</code> and  <code>__</code> are ignored when part of a word, you can use <code>*</code> and <code>**</code> inside a word. This was introduced in version 7.0.0
 <p>Examples: <code>As*ter*isks</code> leads to As<em>ter</em>isks and <code>Un_der_scores</code> to Un_der_scores while <code>As**ter**isks</code> leads to As<strong>ter</strong>isks and <code>Un__der__scores</code> to Un__der__scores.</p></li>
 <li>Check boxes
-<p><code>[ ] </code> and <code>[x] </code> and <code>[X]</code> are converted to check boxes.</p>
+<p><code>- [ ] </code> and <code>- [x] </code> and <code>- [X]</code> are converted to check boxes.</p>
 <p>See <a href="#check-boxes" class="bookmark_link">Check boxes</a> for details.</p></li>
 <li>Collapsibles and accordions
 <ul>
@@ -718,28 +718,35 @@ window.matchMedia("print").addEventListener("change", evt => {
 </a>
 </div>
 <p>Note that for readability the examples here show the <code>⎵</code> character to represent a space character.</p>
-<p>You may add check boxes with either <code>[⎵]⎵</code> (the space between the two brackets is required to make it an un-ticked check box) or <code>[x]⎵</code> or <code>[X]⎵</code>.</p>
+<p>You may add check boxes with either <code>- [⎵]⎵</code> (the space between the two brackets is required to make it an un-ticked check box) or <code>- [x]⎵</code> or <code>- [X]⎵</code>.</p>
 <p>A line must start with either of them but might also have up to three leading spaces.</p>
 <p>Apart from the check box such a line is an ordinary paragraph.</p>
 <p>Examples — this:</p>
-<pre tabindex="0"><code>[X] APL
-[x] K
-[⎵] Cobol
-⎵[⎵] Rust `⍝ Up to three...`
-⎵⎵[⎵] F# `⍝ ...leading spaces...`
-⎵⎵⎵[⎵] Go `⍝ ...don't hurt...`
-⎵⎵⎵⎵[⎵] Pascal   `... but four or more do`</code></pre>
+<pre tabindex="0"><code>- [X] APL
+- [x] K
+- [⎵] Cobol
+⎵- [⎵] Rust `⍝ Up to three...`
+⎵⎵- [⎵] F# `⍝ ...leading spaces...`
+⎵⎵⎵- [⎵] Go `⍝ ...don't hurt...`
+⎵⎵⎵⎵- [⎵] Pascal   `... but four or more do`</code></pre>
 <p>leads to this:</p>
-<ul class="checkboxes">
-<li class="checked">APL</li>
-<li class="checked">K</li>
-<li>Cobol</li>
-<li>Rust <code>⍝ Up to three...</code></li>
-<li>F# <code>⍝ ...leading spaces...</code></li>
-<li>Go <code>⍝ ...don't hurt...</code></li>
+<ul>
+<li>[X] APL</li>
+<li>[x] K</li>
+<li>[ ] Cobol</li>
+<li>[ ] Rust <code>⍝ Up to three...</code>
+<ul>
+<li>[ ] F# <code>⍝ ...leading spaces...</code>
+<ul>
+<li>[ ] Go <code>⍝ ...don't hurt...</code>
+<ul>
+<li>[ ] Pascal   <code>... but four or more do</code></li>
+</ul></li>
+</ul></li>
+</ul></li>
 </ul>
-<p>[ ] Pascal <code>... but four or more do</code></p>
-<p>Note that <code>MarkAPL</code> adds <code>&lt;div&gt;</code>s in order to make styling easier. Refer to the document <code>Styles.html</code> for details.</p>
+<p>This is just a specially styled un-ordered list.</p>
+<p>Note that <code>MarkAPL</code> adds the class name “checkbox” to the <code>&lt;ul&gt;</code>.</p>
 <div class="h_tag">
 <a href="#collapsibles-and-accordions" id="collapsibles-and-accordions" class="autoheader_anchor">
 <h4 data-id="Collapsibles-and-accordions">1.3.1.3. Collapsibles and accordions</h4>

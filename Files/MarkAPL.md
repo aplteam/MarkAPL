@@ -203,7 +203,7 @@ Compatibility, features, bugs
 
 * Check boxes
 
-  `[ ] ` and `[x] ` and `[X]` are converted to check boxes.
+  `- [ ] ` and `- [x] ` and `- [X]` are converted to check boxes.
 
    See [Check boxes](#) for details.
 
@@ -295,7 +295,7 @@ Notes:
 
 Note that for readability the examples here show the `⎵` character to represent a space character.
 
-You may add check boxes with either `[⎵]⎵` (the space between the two brackets is required to make it an un-ticked check box) or `[x]⎵` or `[X]⎵`.
+You may add check boxes with either `- [⎵]⎵` (the space between the two brackets is required to make it an un-ticked check box) or `- [x]⎵` or `- [X]⎵`.
 
 A line must start with either of them but might also have up to three leading spaces.
 
@@ -304,27 +304,30 @@ Apart from the check box such a line is an ordinary  paragraph.
 Examples --- this:
 
 ```
-[X] APL
-[x] K
-[⎵] Cobol
-⎵[⎵] Rust `⍝ Up to three...`
-⎵⎵[⎵] F# `⍝ ...leading spaces...`
-⎵⎵⎵[⎵] Go `⍝ ...don't hurt...`
-⎵⎵⎵⎵[⎵] Pascal   `... but four or more do`
+- [X] APL
+- [x] K
+- [⎵] Cobol
+⎵- [⎵] Rust `⍝ Up to three...`
+⎵⎵- [⎵] F# `⍝ ...leading spaces...`
+⎵⎵⎵- [⎵] Go `⍝ ...don't hurt...`
+⎵⎵⎵⎵- [⎵] Pascal   `... but four or more do`
 ```
 
 leads to this:
 
 
-[X] APL
-[x] K
-[ ] Cobol   
-[ ] Rust `⍝ Up to three...`
-  [ ] F# `⍝ ...leading spaces...`
-   [ ] Go `⍝ ...don't hurt...`
-    [ ] Pascal   `... but four or more do`
+- [X] APL
+- [x] K
+- [ ] Cobol   
+- [ ] Rust `⍝ Up to three...`
+  - [ ] F# `⍝ ...leading spaces...`
+   - [ ] Go `⍝ ...don't hurt...`
+    - [ ] Pascal   `... but four or more do`
     
-Note that `MarkAPL` adds `<div>`s in order to make styling easier. Refer to the document `Styles.html` for details.
+
+This is just a specially styled un-ordered list.
+
+Note that `MarkAPL` adds the class name "checkbox" to the `<ul>`.
 
 
 #### Collapsibles and accordions
@@ -2705,6 +2708,7 @@ Kai Jaeger ⋄ 2023-12-10
 [git]: https://help.github.com/articles/working-with-advanced-formatting/ "GIT's formatting rules"{target="_blank"}
 [markdown_extra]: https://www.wikiwand.com/en/Markdown_Extra{target="_blank"}
 [pandoc]: http://pandoc.org/README.html{target="_blank"}
+
 
 
 
