@@ -1,4 +1,4 @@
- R←Test_Misc_050(stopFlag batchFlag);⎕TRAP;parms;tempFilename;tempFolder
+ R←Test_Misc_050(stopFlag batchFlag);⎕TRAP;parms;tempFilename;tempFolder;msg;rc
 ⍝ Exercise the `Reference` method. Uses the project, not the package!
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
@@ -24,5 +24,6 @@
  R←T._OK
 
 ∆TidyUp:
- FilesAndDirs.RmDir⊃⎕NPARTS tempFilename
+ (rc msg)←FilesAndDirs.RmDir⊃⎕NPARTS tempFilename
+ msg Assert rc=0
 ⍝Done

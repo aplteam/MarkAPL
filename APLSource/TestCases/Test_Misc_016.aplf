@@ -1,4 +1,4 @@
- R←Test_Misc_016(stopFlag batchFlag);⎕TRAP;md;parms;ns;buff
+ R←Test_Misc_016(stopFlag batchFlag);⎕TRAP;md;parms;ns;buff;rc;msg
 ⍝ Converts the MarkAPL_CheatSheet.md document and checks `report` afterwards. Uses that project, not the package!
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
@@ -12,6 +12,7 @@
  parms.homeFolder←##.MarkAPL.TatinVars.HOME
  'Create!'FilesAndDirs.CheckPath ¯1↓⊃⎕NPARTS parms.outputFilename
 
+ #.MarkAPL.MarkAPL.CommTools.Select_Choices←1 2⍴'Select a document you want to put on view' 'MarkAPL_CheatSheet'
  ns←parms ##.MarkAPL.Help 1
 
  buff←(~⊃∧/∨/¨'warning' 'ambiguous'⍷¨⊂⎕C↑ns.report)/ns.report
@@ -20,4 +21,7 @@
  R←T._OK
 
 ∆TidyUp:
- FilesAndDirs.RmDir⊃⎕NPARTS parms.outputFilename
+ (rc msg)←FilesAndDirs.RmDir⊃⎕NPARTS parms.outputFilename
+ msg Assert rc=0
+ #.MarkAPL.MarkAPL.CommTools.Cleanup
+⍝Done

@@ -1,4 +1,4 @@
- R←Test_Misc_062(stopFlag batchFlag);⎕TRAP;parms;tempFilename
+ R←Test_Misc_062(stopFlag batchFlag);⎕TRAP;parms;tempFilename;msg;rc
 ⍝ Set MarkAPL's property "HOME" and check whether MarkAPL finds its assets.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
@@ -20,4 +20,6 @@
 
 ∆TidyUp:
  MarkAPL.HOME←''
- FilesAndDirs.RmDir⊃⎕NPARTS tempFilename
+ (rc msg)←FilesAndDirs.RmDir⊃⎕NPARTS tempFilename
+ msg Assert rc=0
+⍝Done

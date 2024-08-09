@@ -1,4 +1,4 @@
- R←Test_Misc_025(stopFlag batchFlag);⎕TRAP;md;parms;html;start;end;tempFilename
+ R←Test_Misc_025(stopFlag batchFlag);⎕TRAP;md;parms;html;start;end;tempFilename;msg;rc
 ⍝ Test "compressCSS"
 ⍝ Defaults to "en" but can be set
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
@@ -27,4 +27,6 @@
  R←T._OK
 
 ∆TidyUp:
- FilesAndDirs.RmDir⊃⎕NPARTS tempFilename
+ (rc msg)←FilesAndDirs.RmDir⊃⎕NPARTS tempFilename
+ msg Assert rc=0
+⍝Done

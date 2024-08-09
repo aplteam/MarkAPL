@@ -10,25 +10,25 @@
  files←''
  tempPath←FilesAndDirs.GetTempSubDir⊃⎕SI
  md←'# First' '' 'A para'
- (⊂md) ⎕NPUT(file←tempPath,'/First.md')1
+ (⊂md)⎕NPUT(file←tempPath,'/First.md')1
  files,←⊂file
  md←'# Second' '' 'Another para'
- (⊂md) ⎕NPUT(file←tempPath,'/Second.md')1
+ (⊂md)⎕NPUT(file←tempPath,'/Second.md')1
  files,←⊂file
 
  html←''
  :For file :In files
      parms.inputFilename←file
-     ns←MarkAPL.Init parms ''
+     ns←MarkAPL.Init parms''
      ns←MarkAPL.Process ns
      html,←ns.html
  :EndFor
 
- →T.GoToTidyUp~∧/∨/¨'>First<' '>Second<'⍷¨   '<h1 '∘{⍵/⍨⍺∘≡¨(≢⍺)↑¨⍵}html
+ →T.GoToTidyUp~∧/∨/¨'>First<' '>Second<'⍷¨'<h1 '∘{⍵/⍨⍺∘≡¨(≢⍺)↑¨⍵}html
 
  R←T._OK
 
 ∆TidyUp:
  (rc msg more)←FilesAndDirs.RmDir tempPath
- {⍵:.}rc≠0
+ msg Assert rc=0
 ⍝Done

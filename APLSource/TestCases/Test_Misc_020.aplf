@@ -1,4 +1,4 @@
- R←Test_Misc_020(stopFlag batchFlag);⎕TRAP;path;filename;md;parms;report;html
+ R←Test_Misc_020(stopFlag batchFlag);⎕TRAP;path;filename;md;parms;report;html;msg;rc
 ⍝ Exercise `ConvertMarkdownFile` with a non-default `outputFilename`
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
@@ -22,4 +22,6 @@
  R←T._OK
 
 ∆TidyUp:
- FilesAndDirs.RmDir path
+ (rc msg)←FilesAndDirs.RmDir path
+ msg Assert rc=0
+⍝Done

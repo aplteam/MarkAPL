@@ -1,4 +1,4 @@
- R←Test_Misc_040(stopFlag batchFlag);⎕TRAP;parms;tempFilename
+ R←Test_Misc_040(stopFlag batchFlag);⎕TRAP;parms;tempFilename;msg;rc
 ⍝ Exercise the `Help` method.
  ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
  R←T._Failed
@@ -10,7 +10,8 @@
  parms.outputFilename←tempFilename
  'Create!'FilesAndDirs.CheckPath⊃⎕NPARTS parms.outputFilename
 
- parms MarkAPL.Help 0
+ #.MarkAPL.MarkAPL.CommTools.Select_Choices←1 2⍴'Select a document you want to put on view' 'MarkAPL_CheatSheet'
+ #.q←parms MarkAPL.Help 0
 
  parms←MarkAPL.CreateHelpParms
  parms.viewInBrowser←0
@@ -23,4 +24,6 @@
  R←T._OK
 
 ∆TidyUp:
- FilesAndDirs.RmDir⊃⎕NPARTS tempFilename
+ (rc msg)←FilesAndDirs.RmDir⊃⎕NPARTS tempFilename
+ msg Assert rc=0
+ #.MarkAPL.MarkAPL.CommTools.Cleanup
