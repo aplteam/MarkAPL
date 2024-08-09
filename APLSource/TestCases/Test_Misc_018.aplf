@@ -18,6 +18,6 @@
  R←T._OK
 
 ∆TidyUp:
- (rc msg)←FilesAndDirs.RmDir path
+ (rc msg)←2↑FilesAndDirs.RmDir path
  msg Assert rc=0
 ⍝Done

@@ -21,7 +21,7 @@
  R←T._OK
 
 ∆TidyUp:
- (rc msg)←FilesAndDirs.RmDir⊃⎕NPARTS parms.outputFilename
+ (rc msg)←2↑FilesAndDirs.RmDir⊃⎕NPARTS parms.outputFilename
  msg Assert rc=0
  #.MarkAPL.MarkAPL.CommTools.Cleanup
 ⍝Done

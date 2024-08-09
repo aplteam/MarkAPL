@@ -4,7 +4,7 @@
  R←T._Failed
 
  md←''
- md,←⊂'![](fig3.png{.pct15em}) <<br>> Figure 3. Random {.caption .right}'
+ md,←⊂'![](fig3.png{.pct15em}) <br> Figure 3. Random {.caption .right}'
  md,←⊂''
  md,←⊂'![](fig4.png{.pct15em}) <br> Figure 4. Random {.caption .right}'
 

@@ -5,7 +5,7 @@
  :If ⎕NULL≡parms.cssURL
  :AndIf {0=≢⍵:0 ⋄ (~':'∊⍵)∧'/'≠1⍴⍵}parms.screenCSS
  :AndIf {0=≢⍵:0 ⋄ (~':'∊⍵)∧'/'≠1⍴⍵}parms.printCSS
-     parms.cssURL←parms.homeFolder,'/Files'
+     parms.cssURL←parms.homeFolder{0=≢⍺:'.',⍵ ⋄ ⍺,⍵}'/Files'
  :EndIf
  :If (':'∊filename)∨'/'=1⍴filename
      fn←CorrectSlash filename

@@ -24,6 +24,7 @@
  R←T._OK
 
 ∆TidyUp:
- (rc msg)←FilesAndDirs.RmDir⊃⎕NPARTS tempFilename
+ (rc msg)←2↑FilesAndDirs.RmDir⊃⎕NPARTS tempFilename
  msg Assert rc=0
  #.MarkAPL.MarkAPL.CommTools.Cleanup
+⍝Done

@@ -14,12 +14,14 @@
  parms.outputFilename←tempFilename
  'Create!'FilesAndDirs.CheckPath⊃⎕NPARTS parms.outputFilename
 
+ #.MarkAPL.MarkAPL.CommTools.Select_Choices←1 2⍴'Select a document you want to put on view' 'MarkAPL_CheatSheet'
  parms MarkAPL.Help 1
 
  R←T._OK
 
 ∆TidyUp:
  MarkAPL.HOME←''
- (rc msg)←FilesAndDirs.RmDir⊃⎕NPARTS tempFilename
+ (rc msg)←2↑FilesAndDirs.RmDir⊃⎕NPARTS tempFilename
  msg Assert rc=0
+ #.MarkAPL.MarkAPL.CommTools.Cleanup
 ⍝Done
