@@ -153,6 +153,27 @@ There are a few HTML elements that get a class name assigned by `MarkAPL` in ord
 Naturally you must not use these class names for different purposes when defining your own CSS.
 
 
+### Collapsibles
+
+Collapsibles have a `<summary>` and a `<details>` tags.
+
+Both are embraced by a `<div class="collapsible">` tag.
+
+The `<details>` tag starts with an `<hr>` (inserted by `MarkAPL`) followed by whatever the user specified as details. All this (including the `<hr>`) is embraced by a `<div class="collapsible-content">`.
+
+
+### Accordions
+
+Accordions are a collection of at least two Collapsibles.
+
+The Collapsibles are embraced by a ` <div class="accordion">` tag.
+
+Every collapsible inside the accordion is embraced by a `<div>` without an assigned class. 
+
+The `<details>` tags start with an `<hr>` (inserted by `MarkAPL`) followed by whatever the user specified as details. All this (including the `<hr>`) is embraced by a `<div class="accordion-content">`.
+
+
+
 ### CSS styles available for assigning as special attributes
 
 |Class name          |Domain|Meaning                                |
@@ -287,27 +308,9 @@ Example:
 </dl>
 ~~~
 
-### Collapsibles
-
-Collapsibles have a `<summary>` and a `<details>` tags.
-
-Both are embraced by a `<div class="collapsible">` tag.
-
-The `<details>` tag starts with an `<hr>` (inserted by `MarkAPL`) followed by whatever the user specified as details. All this (including the `<hr>`) is embraced by a `<div class="collapsible-content">`.
-
-
-### Accordions
-
-Accordions are a collection of at least two Collapsibles.
-
-The Collapsibles are embraced by a ` <div class="accordion">` tag.
-
-Every collapsible inside the accordion is embraced by a `<div>` without an assigned class. 
-
-The `<details>` tags start with an `<hr>` (inserted by `MarkAPL`) followed by whatever the user specified as details. All this (including the `<hr>`) is embraced by a `<div class="accordion-content">`.
-
 
 [^normalyze]: The "Normalize" project<br><https://necolas.github.io/normalize.css/>
+
 
 
 
