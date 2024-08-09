@@ -34,7 +34,7 @@ window.matchMedia("print").addEventListener("change", evt => {
 
 
 </script>
-
+<meta name="author" content="kai">
 </head>
 <body>
 <div class="h_tag">
@@ -339,17 +339,19 @@ This is a level 2 header
 <h2 data-id="Check-boxes">7. Check boxes</h2>
 </a>
 </div>
-<p>You may add check boxes with either <code>[ ] </code> (the space between the two brackets is required to make it an un-ticked check box) or <code>[x] </code> or <code>[X] </code>. A line must start with either of them but might also have up to three leading spaces.</p>
-<pre tabindex="0"><code>[X] APL
-[ ] Cobol
- [ ] Rust
-   [ ] Go</code></pre>
+<p>You may add check boxes with either <code>- [ ] </code> (the space between the two brackets is required to make it an un-ticked check box) or <code>- [x] </code> or <code>- [X] </code>. A line must start with either of them but might also have up to three leading spaces.</p>
+<pre tabindex="0"><code>- [X] APL
+- [ ] Cobol
+- [ ] Rust
+  - [ ] Go</code></pre>
 <p>leads to this:</p>
-<ul class="checkboxes">
-<li class="checked">APL</li>
-<li>Cobol</li>
-<li>Rust</li>
-<li>Go</li>
+<ul>
+<li>[X] APL</li>
+<li>[ ] Cobol</li>
+<li>[ ] Rust
+<ul>
+<li>[ ] Go</li>
+</ul></li>
 </ul>
 <div class="h_tag">
 <a href="#collapsibles-and-accordions" id="collapsibles-and-accordions" class="autoheader_anchor">

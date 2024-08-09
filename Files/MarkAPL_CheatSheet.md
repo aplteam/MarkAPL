@@ -232,22 +232,22 @@ The result is the same as before.
 
 ## Check boxes
 
-You may add check boxes with either `[ ] ` (the space between the two brackets is required to make it an un-ticked check box) or `[x] ` or `[X] `. A line must start with either of them but might also have up to three leading spaces.
+You may add check boxes with either `- [ ] ` (the space between the two brackets is required to make it an un-ticked check box) or `- [x] ` or `- [X] `. A line must start with either of them but might also have up to three leading spaces.
 
 ```
-[X] APL
-[ ] Cobol
- [ ] Rust
-   [ ] Go
+- [X] APL
+- [ ] Cobol
+- [ ] Rust
+  - [ ] Go
 ```
 
 leads to this:
 
 
-[X] APL
-[ ] Cobol   
-[ ] Rust 
-   [ ] Go
+- [X] APL
+- [ ] Cobol   
+- [ ] Rust 
+   - [ ] Go
     
 
 ## Collapsibles and accordions
@@ -666,6 +666,7 @@ Kai Jaeger ⋄ Last update 2023-12-30
 [1]:      https://aplwiki.com
 [git]:    https://github.com "Linus' brain child"{target="_blank"}
 [vector]: https://sites.google.com/site/baavector/ "The once well-respected Journal of the British APL Association"
+
 
 
 
