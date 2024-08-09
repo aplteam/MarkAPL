@@ -659,13 +659,14 @@ For details refer to the [`MarkAPL` reference document](http://download.aplteam.
 
 ## Version
 
-This document refers to version 12.1 of `MarkAPL`.<br>
-Kai Jaeger ⋄ Last update 2023-12-30
+This document refers to version 13.0 of `MarkAPL`.<br>
+Kai Jaeger ⋄ Last update 2024-08-09
 
 ⍝ The link references:
 [1]:      https://aplwiki.com
 [git]:    https://github.com "Linus' brain child"{target="_blank"}
 [vector]: https://sites.google.com/site/baavector/ "The once well-respected Journal of the British APL Association"
+
 
 
 

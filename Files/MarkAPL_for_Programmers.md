@@ -575,7 +575,7 @@ Before reporting a bug please check carefully your Markdown. More often than not
 
 If you cannot work out why it goes wrong report it to me -- see the previous topic for how to report a problem.
 
-This document refers to version 12.1 of `MarkAPL`.
+This document refers to version 13.0 of `MarkAPL`.
 
 Kai Jaeger ⋄ Last update 2023-12-30
 
@@ -590,6 +590,7 @@ Kai Jaeger ⋄ Last update 2023-12-30
 [git]: https://help.github.com/articles/working-with-advanced-formatting/ "GIT's formatting rules"{target="_blank"}
 [markdown_extra]: https://www.wikiwand.com/en/Markdown_Extra{target="_blank"}
 [pandoc]: http://pandoc.org/README.html{target="_blank"}
+
 
 
 

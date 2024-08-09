@@ -5,7 +5,7 @@
 
  :If batchFlag
      →0,R←T._NoBatchTest
- :ElseIf ~1 CommTools.YesOrNo'   This test will open an HTML document in your default browser; continue?'
+ :ElseIf 0 CommTools.YesOrNo'   This test will open an HTML document in your default browser; skip?'
      →0,R←T._Inactive
  :EndIf
 

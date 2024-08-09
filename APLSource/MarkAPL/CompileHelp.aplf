@@ -9,8 +9,10 @@
  :EndIf
  :If (':'∊filename)∨'/'=1⍴filename
      fn←CorrectSlash filename
- :Else
+ :ElseIf './'≢2↑filename
      fn←CorrectSlash F.PWD,'/',filename
+ :Else
+     fn←filename
  :EndIf
  parms.inputFilename←fn
  :If 0=≢parms.inputFilename
