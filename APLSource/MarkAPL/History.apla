@@ -1,4 +1,6 @@
 (
+ '* 13.1.0 ⋄ 2024-09-26'
+ '  * A url like "foo,htnl" in a link was always changed to "https://foo.html" - that''s wrong.'
  '* 13.0.0 ⋄ 2024-08-09'
  '  * Syntax changed for marking up checkboxes in Markdown: `- [ ]` or `- [x]` respectively. '
  '    This is the reason why this is a new major version.\\'
