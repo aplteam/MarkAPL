@@ -1,1 +1,1 @@
-Help←{⍺←⊢ ⋄ ⍺ ##.Help ⍵}
+Help←{⍺←⊢ ⋄ 1:shy←⍺ ##.Help ⍵}

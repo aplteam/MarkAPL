@@ -9,7 +9,7 @@
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
 
- expected←'<p><a href="http://aplwiki.com/_/test.html" class="external_link">http://aplwiki.com/_/test.html</a></p>'
+ expected←'<p><a href="aplwiki.com/_/test.html" class="external_link">aplwiki.com/_/test.html</a></p>'
  →T.PassesIf expected≡∊ns.html
 
  R←T._OK

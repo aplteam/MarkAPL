@@ -1,1 +1,1 @@
-ConvertMarkdownFile←{⍺←⊢ ⋄ ⍺ ##.ConvertMarkdownFile ⍵}
+ConvertMarkdownFile←{⍺←⊢ ⋄ 1:shy←⍺ ##.ConvertMarkdownFile ⍵}

@@ -1,5 +1,7 @@
 (
  '* 13.1.0 ⋄ 2024-09-26'
+ '  * In earlier version when a collapsible was expanded, all other collapsibles were contracted.'
+ '    This was not welcomed for users in need for comparing the content of two collapsibles.'
  '  * A url like "foo,htnl" in a link was always changed to "https://foo.html" - that''s wrong.'
  '* 13.0.0 ⋄ 2024-08-09'
  '  * Syntax changed for marking up checkboxes in Markdown: `- [ ]` or `- [x]` respectively. '

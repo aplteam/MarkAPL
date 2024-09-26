@@ -770,7 +770,7 @@ Max|¯1|Foo</code></pre>
 <h2 data-id="Version">19. Version</h2>
 </a>
 </div>
-<p>This document refers to version 13.0 of <code>MarkAPL</code>.<br> Kai Jaeger ⋄ Last update 2024-08-09</p>
+<p>This document refers to version 13.1 of <code>MarkAPL</code>.<br> Kai Jaeger ⋄ Last update 2024-08-09</p>
 
 <script>
 
@@ -819,22 +819,6 @@ function toggleTableOfContents() {
   } else {
     button.innerText = "Hide";
     button.setAttribute("aria-expanded", true);
-  }
-}
-
-
-// This makes sure that only one summary is open at any given time
-const All_Details = document.querySelectorAll('details');
-
-All_Details.forEach(deet=>{
-  deet.addEventListener('toggle', toggleOpenOneOnly)
-})
-
-function toggleOpenOneOnly(e) {
-  if (this.open) {
-    All_Details.forEach(deet=>{
-      if (deet!=this && deet.open) deet.open = false
-    });
   }
 }
 

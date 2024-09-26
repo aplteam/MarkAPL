@@ -4,7 +4,7 @@
  R←T._Failed
 
  md←''
- md,←⊂'[Code: `{{2=+⌿0=⍵∘.|⍵}⍳⍵} _italic_?!`](aplwiki.com/_/test.html)'
+ md,←⊂'[Code: `{{2=+⌿0=⍵∘.|⍵}⍳⍵} _italic_?!`](http://aplwiki.com/_/test.html)'
 
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns

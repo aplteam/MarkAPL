@@ -4,7 +4,7 @@
  R←T._Failed
 
  md←''
- md,←⊂'[This **is** *really* ~~not~~ **_inline_** markup](aplwiki.com/_/test.html)'
+ md,←⊂'[This **is** *really* ~~not~~ **_inline_** markup](http://aplwiki.com/_/test.html)'
 
  ns←MarkAPL.Init''md
  ns←MarkAPL.Process ns
