@@ -5,7 +5,7 @@
 
  md←⊃⎕NGET'Files/LeanPubExtensions.md'
  buff←'This document refers to version '
- buff,←⊃{⍺,'.',⍵}/2↑'.'APLTreeUtils2.Split 2⊃MarkAPL.Version
+ buff,←⊃{⍺,'.',⍵}/2↑'.'APLTreeUtils2.Split MarkAPL.Version
  buff,←' of `MarkAPL`'
  →T.PassesIf 1=+/buff⍷md
 

@@ -12,7 +12,7 @@
  parms.homeFolder←##.MarkAPL.TatinVars.HOME
  'Create!'FilesAndDirs.CheckPath ¯1↓⊃⎕NPARTS parms.outputFilename
 
- #.MarkAPL.MarkAPL.CommTools.Select_Choices←1 2⍴'Select a document you want to put on view' 'MarkAPL_CheatSheet'
+ #.MarkAPL.MarkAPL.CommTools.AddAutomation'Select' 'SelHelpDocForView@' 'MarkAPL_CheatSheet'
  ns←parms ##.MarkAPL.Help 1
 
  buff←(~⊃∧/∨/¨'warning' 'ambiguous'⍷¨⊂⎕C↑ns.report)/ns.report

@@ -14,7 +14,7 @@
  parms.outputFilename←tempFilename
  'Create!'FilesAndDirs.CheckPath⊃⎕NPARTS parms.outputFilename
 
- #.MarkAPL.MarkAPL.CommTools.Select_Choices←1 2⍴'Select a document you want to put on view' 'MarkAPL_CheatSheet'
+ #.MarkAPL.MarkAPL.CommTools.AddAutomation'Select' 'SelHelpDocForView@' 'MarkAPL_CheatSheet'
  parms MarkAPL.Help 1
 
  R←T._OK
