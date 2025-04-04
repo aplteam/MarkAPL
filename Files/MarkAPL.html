@@ -34,7 +34,7 @@ window.matchMedia("print").addEventListener("change", evt => {
 
 
 </script>
-
+<meta name="author" content="kai">
 </head>
 <body>
 <div class="h_tag">
@@ -399,8 +399,6 @@ window.matchMedia("print").addEventListener("change", evt => {
 <li>Assigning ID names, class names and attributes to certain elements as in:<br> <code>{#foo .my_class .another_class style="display:none;" target="_blank"}</code><br> is implemented for most though not all elements. This idea was taken from Markdown Extra but with a slightly different syntax, and with good reason.
 <p>See <a href="#special-attributes" class="bookmark_link">Special attributes</a> for details.</p></li>
 <li><a href="#abbreviations" class="bookmark_link">Abbreviations</a>.</li>
-<li>A <code>&lt;br&gt;</code> tag can be inserted into paragraphs, lists and table cells with <code>&lt;&lt;br&gt;&gt;</code>.
-<p>However, this is now deprecated because since version 12.0 there is no need for this anymore, you can now simply put <code>&lt;br&gt;</code> into your Markdown straight away.</p></li>
 <li>Comments: any line that starts with a <code>⍝</code> (the APL symbol used to indicate a comment) and is <strong>not</strong> situated within a code block will be ignored, no matter what else is found on that line.
 <pre tabindex="0"><code>⍝ This demonstrates a comment. Useful to leave stuff in a Markdown file
 ⍝ but prevent it from making it into any resulting HTML document.</code></pre></li>
@@ -415,7 +413,7 @@ window.matchMedia("print").addEventListener("change", evt => {
 <li>Collapsibles and accordions
 <ul>
 <li>Any two lines that start with <code>!&gt; </code> and <code>=&gt; </code> respectively define a collapsible. These are converted into the HTML tags <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code>.</li>
-<li>Two ore more collapsibles in succession become an <em>accordion</em>. An accordion is styled so that the collapsibles are styled as if they were one object.</li>
+<li>Two ore more collapsibles in succession become an <em>accordion</em>. An accordion is styled so that the collapsibles appear to be a single object.</li>
 </ul>
 <p>For details refer to <a href="#collapsibles-and-accordions" class="bookmark_link">Collapsibles and accordions</a>.</p></li>
 <li>A LeanPub encoding directive like <code>{:: encoding="utf-8" /}</code> needs to go into the first line of any Markdown document. <code>MarkAPL</code> ignores such a line, meaning that any <code>[parms]:</code> definitions (see <a href="#embedding-parameters-with" class="bookmark_link">embedded parameters</a>) are unaffected by this althouh they are expected to start at the top of any Markdown document as well.
@@ -2893,8 +2891,8 @@ This is a paragraph with curlies at the end: \{\}.
 <h2 data-id="Version-information">1.5. Version information</h2>
 </a>
 </div>
-<p>This document refers to version 12.0 of <code>MarkAPL</code>.</p>
-<p>Kai Jaeger ⋄ 2023-12-10</p>
+<p>This document refers to version 14.0 of <code>MarkAPL</code>.</p>
+<p>Kai Jaeger ⋄ 2025-03-04</p>
 <div id="external_link_report" class="print_only">
 <hr>
 <p><strong>Link report</strong></p>

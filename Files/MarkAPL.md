@@ -177,10 +177,6 @@ Compatibility, features, bugs
 
 * [Abbreviations](#).
 
-* A `<br>` tag can be inserted into paragraphs, lists and table cells with `<<br>>`.
-
-  However, this is now deprecated because since version 12.0 there is no need for this anymore, you can now simply put `<br>` into your Markdown straight away.
-
 * Comments: any line that starts with a `⍝` (the APL symbol used to indicate a 
   comment) and is **not** situated within a code block will be ignored, no matter what else is found on that line.
 
@@ -211,7 +207,7 @@ Compatibility, features, bugs
 
   * Any two lines that start with `!> ` and `=> ` respectively define a collapsible. These are converted into the HTML tags `<details>` and `<summary>`. 
 
-  * Two ore more collapsibles in succession become an _accordion_. An accordion is styled so that the collapsibles are styled as if they were one object.
+  * Two ore more collapsibles in succession become an _accordion_. An accordion is styled so that the collapsibles appear to be a single object.
 
   For details refer to [Collapsibles and accordions](# "Collapsibles and accordions").
 
@@ -2691,9 +2687,9 @@ If you cannot work out why it goes wrong report it to me -- see the previous top
 Version information
 -------------------
 
-This document refers to version 12.0 of `MarkAPL`.
+This document refers to version 14.0 of `MarkAPL`.
 
-Kai Jaeger ⋄ 2023-12-10
+Kai Jaeger ⋄ 2025-03-04
 
 ⍝ Footnotes:
 [^meddy]: The Markdown editor Meddy on GitHub:<br><https://github.com/aplteam/Meddy>
@@ -2708,6 +2704,7 @@ Kai Jaeger ⋄ 2023-12-10
 [git]: https://help.github.com/articles/working-with-advanced-formatting/ "GIT's formatting rules"{target="_blank"}
 [markdown_extra]: https://www.wikiwand.com/en/Markdown_Extra{target="_blank"}
 [pandoc]: http://pandoc.org/README.html{target="_blank"}
+
 
 
 
