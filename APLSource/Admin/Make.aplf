@@ -36,24 +36,22 @@
      :Else
          M←refToMakeHelpers
      :EndIf
- :Else
-     M←refToMakeHelpers
+     ⎕←'Using "MakeHelpers" version ',⎕SE.MakeHelpers.Version
+     C←##.CiderConfig
+     ⎕←'' ⋄ 0 0⍴⍞,0/⍞←'Pause sync services like Dropbox, Google Drive etc. in order to avoid FILE ACCESS errors. Press <enter> to continue '
+     :If ⎕NULL≡cfg←M.EditPackageConfigFile ##.MarkAPL.TatinVars
+         ⎕←'Cancelled by user' ⋄ →0
+     :EndIf
+     path←C.HOME,'/',C.CIDER.distributionFolder
+     M.RecreateFolder path
+     M.##.MarkAPL←##.MarkAPL  ⍝ Make sure that the docs are created with the most recent version of MarkAPL!
+     (##.CiderConfig.HOME,'/Files/')M.ConvertMarkdownToHtml5 2⍴⊂##.CiderConfig.HOME,'/Files'
+     {}⎕SE.Tatin.CreateAPIfromCFG ##.MarkAPL cfg
+     parms←⎕SE.Tatin.CreateBuildParms C.HOME
+     parms.targetPath←C.CIDER.distributionFolder
+     parms.version←cfg.version
+     zipFilename←⎕SE.Tatin.BuildPackage parms
+     ⎕←'*** New version build successfully:',M.CR,'   ',zipFilename
+     r←1
  :EndIf
- ⎕←'Using "MakeHelpers" version ',⎕SE.MakeHelpers.Version
- C←##.CiderConfig
- ⎕←'' ⋄ 0 0⍴⍞,0/⍞←'Pause sync services like Dropbox, Google Drive etc. in order to avoid FILE ACCESS errors. Press <enter> to continue '
- :If ⎕NULL≡cfg←M.EditPackageConfigFile ##.MarkAPL.TatinVars
-     ⎕←'Cancelled by user' ⋄ →0
- :EndIf
- path←C.HOME,'/',C.CIDER.distributionFolder
- M.RecreateFolder path
- M.##.MarkAPL←##.MarkAPL  ⍝ Make sure that the docs are created with the most recent version of MarkAPL!
- (##.CiderConfig.HOME,'/Files/')M.ConvertMarkdownToHtml5 2⍴⊂##.CiderConfig.HOME,'/Files'
- {}⎕SE.Tatin.CreateAPIfromCFG ##.MarkAPL cfg
- parms←⎕SE.Tatin.CreateBuildParms C.HOME
- parms.targetPath←C.CIDER.distributionFolder
- parms.version←cfg.version
- zipFilename←⎕SE.Tatin.BuildPackage parms
- ⎕←'*** New version build successfully:',M.CR,'   ',zipFilename
- r←1
 ⍝Done
