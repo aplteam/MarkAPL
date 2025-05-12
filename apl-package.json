@@ -19,5 +19,5 @@
   source: "APLSource/MarkAPL",
   tags: "markdown,converter",
   userCommandScript: "",
-  version: "14.0.0+350",
+  version: "14.1.0+352",
 }

@@ -6,7 +6,7 @@
  :If batchFlag
      R←T._NoBatchTest ⋄ →0
  :Else
-     →T.FailsIf 0=1 CommTools.YesOrNo'   Have you updated the online version of the MarkAPL documentation? (reminder)'
+     →T.FailsIf 0=1 CommTools.YesOrNo'   Have you updated the online version of the MarkAPL documentation? (reminder, see https://download.aplteam.com)'
  :EndIf
 
  R←T._OK
