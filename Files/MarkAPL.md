@@ -2687,7 +2687,7 @@ If you cannot work out why it goes wrong report it to me -- see the previous top
 Version information
 -------------------
 
-This document refers to version 14.0 of `MarkAPL`.
+This document refers to version 14.2 of `MarkAPL`.
 
 Kai Jaeger ⋄ 2025-03-04
 
