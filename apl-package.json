@@ -1,6 +1,7 @@
 {
   api: "API",
   assets: "Files/",
+  checkLICENSEfile: 1,
   description: "Converts Markdown to HTML5",
   documentation: "",
   files: "",
@@ -19,5 +20,5 @@
   source: "APLSource/MarkAPL",
   tags: "markdown,converter",
   userCommandScript: "",
-  version: "14.2.0+355",
+  version: "14.2.0+358",
 }
