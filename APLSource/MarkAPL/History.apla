@@ -1,4 +1,11 @@
 (
+ '* 15.0.0 ⋄ 2026-07-17     '
+ '  * Two new style sheets added: "Modern" (the new default) and "Classic".'
+ '  * " ==mark this== " is now converted into " <mark>mark this</mark> ". '
+ '  * The "Dark_screen" style sheet got improved.'
+ '  * All printing style sheets got improved.                            '
+ '  * Retired: the style sheets "BlackAndWhite" and "MarkAPL".'
+ '  * A document "Test-Themes" got added. '
  '* 14.2.0 ⋄ 2025-08-24'
  '  * Bug fix: `GetCommandLineParms` stumbled over empty settings like `RIDE_INIT=`'
  '  * Packages updated'
