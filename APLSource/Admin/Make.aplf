@@ -1,4 +1,4 @@
- {r}←{refToMakeHelpers}Make flag;M;C;path;zipFilename;res;parms;cfg;noOf;answer;q
+ {r}←{refToMakeHelpers}Make flag;M;C;path;zipFilename;res;parms;cfg;noOf;answer
 ⍝ "Make"s this projects.
 ⍝ You may pass a ref pointing to `MakeHelpers` as `⍺`.
 ⍝ If you don't, the function checks whether it's available in `⎕SE`.
@@ -12,12 +12,10 @@
          :If 9=⎕SE.⎕NC'MakeHelpers'
              flag←¯1
              :Repeat
-                 answer←⍞,0/⍞←q←'Do you want to use "MakeHelpers" ',⎕SE.MakeHelpers.Version,' in ⎕SE (n=re-load) (Y/n)?'
-                 answer←(≢q)↓answer
-                 :If 0=≢answer
-                 :OrIf 'Yy'∊⍨¯1↑answer
+                 answer←1 ⎕SE.MakeHelpers.##.CommTools.YesOrNo'Do you want to use "MakeHelpers" ',⎕SE.MakeHelpers.Version,' in ⎕SE (n=re-load)?'
+                 :If answer
                      flag←1
-                 :ElseIf 'Nn'∊⍨¯1↑answer
+                 :Else
                      flag←0
                  :EndIf
              :Until flag∊0 1
