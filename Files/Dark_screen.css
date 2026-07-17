@@ -573,7 +573,7 @@ p {
 pre {
     position: relative;
     overflow: auto;
-    padding: 0.55em 0.35em 0.55em 0.35em;
+    padding: 0.6em 0.5em;
     margin: 0.55em 0 0.55em 0 !important;
     background-color: #1A1A1A;
     -moz-tab-size: 4;
@@ -632,35 +632,31 @@ code {
 }
 
 tbody tr:nth-child(even) {
-    background-color: #DAA520;
-/*    border-bottom: 1px solid #474747; */
-    border-bottom: 0px solid silver;
+    background-color: #3a3a3a;
 }
 
 tbody tr:nth-child(odd) {
-    background-color: #E6BD56;
-    border-bottom: 0px solid silver;
+    background-color: #323232;
 }
 
 th {
-    background-color: #C3941D;
-    color: black;
-    border-bottom: 0px solid silver;
+    background-color: #4c4c4c;
+    color: #DDD;
 }
 
 th, td {
     padding: 0.3em 0.8em;
     font-weight: normal;
+    color: #DDD;
+    border-bottom: 1px solid #474747;
 }
 
 table td + td {
-    border-left:0px solid silver;
-    border-bottom: 0px solid silver;
+    border-left: 1px solid #474747;
 }
 
 table th + th {
-    border-left:0px solid silver;
-    border-bottom: 0px solid silver;
+    border-left: 1px solid #474747;
 }
 
 table {
@@ -669,29 +665,29 @@ table {
     font-family: APLFont;
     font-size: 1em;
     line-height: 1.0;
-    border: 2px solid Black;
+    border: 1px solid #5a5a5a;
 }
 
 table a {
-    color: blue;
+    color: #A3A3FF;
 }
 
 table a:visited {
-    color: blue;
+    color: hsl(270,70%,85%);
 }
 
 thead th {
-    color: black;
-    background-color: #B68A1B;
+    color: #DDD;
+    background-color: #4c4c4c;
 }
 
 td {
-    color: black;
+    color: #DDD;
 }
 
 tfoot td {
-    color: black;
-    background-color: #B68A1B;
+    color: #DDD;
+    background-color: #4c4c4c;
 }
 
 li > table {
@@ -894,6 +890,7 @@ div.leanpub {
     display: grid;
     grid-template-columns: auto 1fr;
     grid-gap: 10px;
+    align-items: center;   /* vertically centre the icon with the adjacent text */
 }
 
 div.leanpub p:first-child,
@@ -906,8 +903,8 @@ div.leanpub ol:first-child {
 }
 
 div.leanpub_A {
-    border: 1px solid black;
-    background-color: #4C004C;
+    border: 1px solid silver;
+    background-color: #3c3c3c;
     padding: 0.55em;
     margin: 1.11em 0 0.83em 0;
     color: #DDD;
@@ -964,7 +961,12 @@ div.leanpub p {
 }
 
 span.leanpub_code {
-    color: Red;
+    font-family: APLFont, monospace;
+    color: #FFC266;
+    background-color: #1A1A1A;
+    padding: 0.02em 0.3em;
+    border-radius: 5px;
+    white-space: nowrap;
 }
 
 div.leanpub p {
@@ -994,7 +996,7 @@ div.accordion {
     border: 1px solid silver;
     padding: 0;
     margin: 0.5em 0;
-    background-color: #4C004C;
+    background-color: #3c3c3c;
 }
 
 div.accordion > div {
@@ -1015,7 +1017,7 @@ div.collapsible {
     border: 1px solid silver;
     padding: 0.5em;
     margin: 0.5em 0;
-    background-color: #4C004C;
+    background-color: #3c3c3c;
 }
 
 div.collapsible p,
@@ -1048,7 +1050,9 @@ pre > button {
   right: 5px;
   font-size: 0.8em;
   padding: 0.15em;
-  border: 1.25px solid #232326;
+  color: #DDD;
+  background-color: #1A1A1A;
+  border: 1.25px solid #1A1A1A;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
@@ -1057,7 +1061,14 @@ pre > button {
 
 pre button:hover {
   cursor: pointer;
-  background-color: #BCBABB;
+  background-color: #333;
+}
+
+/* The copy-button icon uses currentColor, so it must not get the light backing */
+/* that the global svg rule adds for the (black-drawn) LeanPub icon.             */
+pre > button svg {
+  background-color: transparent;
+  padding: 0;
 }
 
 #main_nav {
@@ -1091,5 +1102,15 @@ sup, sub {
 svg {
     padding: 0.5em;
     background-color: #CCCCFF;
+}
+
+/* The LeanPub icon is drawn in black; recolour it light so it needs no light box. */
+div.leanpub > svg {
+    padding: 0;
+    background-color: transparent;
+}
+
+div.leanpub > svg g {
+    fill: #DDD;
 }
 

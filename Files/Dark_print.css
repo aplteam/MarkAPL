@@ -161,7 +161,7 @@ code {
     font-family: APLFont, monospace;
     line-height: 1.2;
     font-size: 1em;
-    color: #950000;
+    color: black;
     padding: 0 2pt;
     border: 1pt solid silver;
     white-space: nowrap;
@@ -305,10 +305,10 @@ label {
     padding-left: 10pt;
 }
 
-a.external_link::before {content: " 🔗 ";}
-a.bookmark_link::before {content: " ➯";}
+a.external_link::before {content: " 🔗\FE0E\0020";}   /* VS15 forces the monochrome glyph so it prints black */
+a.bookmark_link::before {content: " ➯ ";}
 
-a.mailto_link::before {content:" ✉"}
+a.mailto_link::before {content:" ✉ "}
 
 nav a.bookmark_link {font-style: normal;}
 
@@ -369,7 +369,7 @@ div.leanpub {
     display: grid;
     grid-template-columns: auto 1fr;
     grid-gap: 10pt;
-    align-items: top;
+    align-items: center;   /* vertically centre the icon with the adjacent text */
 }
 
 div.leanpub_A {
@@ -430,7 +430,13 @@ div.leanpub img {
 }
 
 span.leanpub_code {
-    font-weight: bold;
+    font-family: APLFont, monospace;
+    font-weight: normal;
+    color: black;
+    padding: 0 2pt;
+    border: 1pt solid silver;
+    border-radius: 5px;
+    white-space: nowrap;
 }
 
 div.leanpub p {
@@ -495,6 +501,10 @@ summary {
     display: block;
 }
 
+summary::before {
+    content: "\25BE  ";   /* leading down-triangle: collapsibles are printed expanded */
+}
+
 div.collapsible {
         border: 1pt solid silver;
         padding: 0.5em;
@@ -534,5 +544,4 @@ pre > button {display: none;}
     margin: 0;
     padding: 0.5em 1em;
     border-bottom: 1pt solid silver;
-}
 }

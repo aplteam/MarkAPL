@@ -1,4 +1,5 @@
-﻿/* MarkAPL style sheet version 4.0.1 from 2024-08-09 */
+/* This was MarkAPL's default screen style sheet until version 12.0 */
+/* Version 3.0.1 from 2024-08-09 */
 
 /* Note that there are some variables embedded as comments which will be replaced
    by MarkAPL. The names are embraced by "<<", so for a variable "foo" it is
@@ -359,23 +360,25 @@ template {
    ##########################################################################
    ########################################################################## */
 
-/* MarkAPL: Additional syles */
+/* MarkAPL: "Classic" screen style sheet                                        */
+/* A timeless, book-like look: warm ivory paper, elegant serif typography,      */
+/* small-caps headings with traditional rules, and scholarly maroon links.      */
 
 body  {
     margin: 0;
-    font-family: Verdana, "Bitstream Vera Sans", "DejaVu Sans", Tahoma, Geneva, Arial, Sans-serif;
-    background-color: #FDFDFD;
-    font-size: 18px;
-    line-height: 1.4;
-    max-width: 920px; /* <<maxwidth>> */
-    padding: 0.83em;
-    color: #171717;
-    overflow-wrap: break-word;
+    font-family: Georgia, "Palatino Linotype", "Book Antiqua", Palatino, Garamond, "Times New Roman", serif;
+    background-color: #f8f4ea;
+    background-image: linear-gradient(#f8f4ea, #f5f0e2);
+    background-attachment: fixed;
+    font-size: 19px;
+    line-height: 1.55;
+    max-width: 780px; /* <<maxwidth>> */
+    padding: 1.5em 1.2em 3em 1.2em;
+    color: #2e2a24;
     margin-left: auto;
     margin-right: auto;
+    overflow-wrap: break-word;
 }
-
-h1 {text-align:center;}
 
 h1,
 h2,
@@ -383,17 +386,18 @@ h3,
 h4,
 h5,
 h6 {
+    color: #402a20;
+    font-weight: 700;
     padding-left: 0;
+    font-family: "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif;
+    line-height: 1.25;
 }
 
 h1,
 h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: "Arial Black", Arial, Helvetica, sans-serif;
-    color: black;
+h3 {
+    font-variant: small-caps;
+    letter-spacing: 0.02em;
 }
 
 h1,
@@ -401,12 +405,17 @@ h2,
 h3,
 h4,
 p {
-    margin-bottom: 0.75em;
+    margin-bottom: 0.88em;
 }
 
 h1 {
-    font-size: 1.7em;
-    margin: 0.5em 0;
+    font-size: 2.1em;
+    font-weight: 700;
+    text-align: center;
+    margin: 0.4em 0 0.9em 0;
+    padding-bottom: 0.35em;
+    border-bottom: 3px double #b08d57;
+    letter-spacing: 0.04em;
 }
 
 h1 > code,
@@ -415,124 +424,85 @@ h3 > code,
 h4 > code,
 h5 > code,
 h6 > code {
-    font-size: 1em;
+    font-size: 0.9em;
     background-color: inherit;
+    font-variant: normal;
 }
 
 h2 {
-    font-size: 1.45em;
-    margin: 0.5em 0 0.5em 0;
-    padding: 0.5em 0 0.25em 0;
-    border-bottom: 1px solid Black;
+    font-size: 1.5em;
+    margin: 1.1em 0 0.5em 0;
+    padding-bottom: 0.15em;
+    border-bottom: 1px solid #cdbb95;
 }
 
 h3 {
-    margin: 1.3em 0 0.27em 0;
-    font-size: 1.22em;
+    margin: 0;
+    margin-top: 0.9em;
+    font-size: 1.28em;
+}
+
+nav h3 {
+    font-size: 1.2em;
+    margin: 0 0 0.75em 0;
 }
 
 h4 {
-    font-size: 1.15em;
-    margin: 1.11em 0 0 0;
+    font-size: 1.1em;
+    margin: 0;
+    margin-top: 0.85em;
 }
 
 h5 {
     font-size: 1em;
-    margin: 0.66em 0 0 0;
-    padding:0;
+    margin: 0;
+    margin-top: 0.65em;
+    padding: 0;
 }
 
 h6 {
     font-size: 0.95em;
-    margin: 0.66em 0 0 0;
+    color: #6a5a48;
+    margin: 0;
+    margin-top: 0.6em;
     padding: 0;
 }
 
 a {
-    color: #0099ff;
+    color: #8b2635;
+    text-decoration: underline;
+    text-decoration-color: #c99aa0;
+    text-underline-offset: 2px;
     margin: 0;
     padding: 0;
     vertical-align: baseline;
 }
 
+a:hover {
+    color: #a83544;
+    text-decoration-color: #a83544;
+}
+
 a:visited {
-    color: purple;
+    color: #5c4a6b;
 }
 
 a.autoheader_anchor {
     text-decoration: none;
 }
 
+img {
+    margin-top: 0.55em;
+    margin-bottom: 0.27em;
+    max-width: 100%;
+}
+
 ul {
     list-style-type: disc;
 }
 
-p {
-    line-height: 1.3;
-    padding: 0.2em 0;
-    margin: 0;
-}
-
-div.toc-container h3 {
-    margin-left: 1em;;
-}
-
-img {
-    margin-top: 0.55em;
-    margin-bottom: 0.27em;
-}
-
-nav {
-    border: 2px solid Gray;
-}
-
-nav.sub-toc {
-    margin: 1em 0;
-}
-
-nav ul {
-    list-style: none;
-    margin: 0;
-}
-
-nav.sub-toc ul {
-    list-style: none;
-    margin: 0 0 0.5em 0;
-}
-
-nav.sub-toc p {
-    margin: 0.2em 0 0.3em 1em;
-}
-
-nav p {
-    margin-top: 0.75em;
-    padding-bottom: 0;
-}
-
-ul,
-ol {
-    line-height: 1.5;
-    padding: 0.25em 0;
-    margin: 0.25em 0;
-}
-
-ul ul,
-ul ol,
-ol ol,
-ol ul {
-    margin: 0;
-    padding: 0;
-}
-
 dd {
     padding-top: 0.25em;
-}
-
-ul pre,
-ol pre,
-ul p,
-ol p {
-    margin: 0.15em 0;
 }
 
 p.first_dd {
@@ -541,17 +511,21 @@ p.first_dd {
 
 li > ul,
 li > ol {
-    padding-bottom:0;
+    padding-bottom: 0;
 }
 
 li {
-    line-height: 1.3;
-    margin-left: 2em;
-
+    line-height: 1.45;
+    margin-left: 1.38em;
+    margin-bottom: 0.3em;
 }
 
 ul > li {
-    margin-left: 1.11em;
+    margin-left: 1.5em;
+}
+
+ol > li {
+    margin-left: 1.5em;
 }
 
 li ul {
@@ -565,25 +539,46 @@ li ul {
 li p {
     padding: 1px 0 0 0;
     margin: 0.55em 0 0.27em 0;
-    line-height: 1.3;
-    text-indent: 0;
+    line-height: 1.45;
+}
+
+ul, ol {
+    line-height: 1.45;
+    padding: 0;
+    margin: 0.5em;
+}
+
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+    margin-top: 0.25em;
+}
+
+p {
+    line-height: 1.55;
+    padding: 0.2em 0 0 0;
+    margin: 0;
 }
 
 pre {
     position: relative;
     overflow: auto;
-    padding: 0.50em 0.25em;
-    margin: 0.5em 0;
-    background-color: black;
-    color: #00d202;
-    border: 1px Silver solid;
+    padding: 0.25em 0.5em;
+    margin: 0.9em 0 0.9em 0 !important;
+    background-color: #f2ead8;
+    color: #3a352c;
+    border: 1px solid #d8caa8;
+    border-left: 4px solid #b08d57;
+    box-shadow: inset 0 0 0.5em rgba(176, 141, 87, 0.12);
     display: block;
+    line-height: 1.25;
     font-family: APLFont, monospace;
-    white-space: pre-wrap;
+    font-weight: normal;
 }
 
 pre > code {
-    line-height: 1.2;
+    line-height: 1.25;
     border: 0;
     padding: 0;
     margin: 0;
@@ -597,16 +592,8 @@ td code {
     padding: 0;
 }
 
-li a code {
+a code {
     padding: 0;
-}
-
-h1 code,
-h2 code,
-h3 code,
-h4 code,
-h5 code,
-h6 code {
     font-size: 1em;
 }
 
@@ -618,67 +605,49 @@ nav code {
 
 code {
     font-family: APLFont, monospace;
-    background-color: #e7e7e7;
-    color: Black;
-    font-weight: 800;
+    font-weight: 400;
+    color: #8a2b1b;
+    background-color: #efe7d3;
     line-height: 1.1;
+    font-size: 88%;
     white-space: nowrap;
     margin: 0;
-    padding: 0.2em 0.4em;
-    border-radius: 6px;
-}
-
-div.leanpub table p > code {
-     background-color: #e7e7e7 !important;
-}
-
-tbody th, tfoot tr {
-    background-color: silver;
+    padding: 0.12em 0.4em;
+    border: 1px solid #e0d4b6;
+    border-radius: 2px;
 }
 
 tbody tr:nth-child(even) {
-    background-color: #EBEBEB;
+    background-color: #f3ecdb;
 }
 
 th {
-    background-color: Black;
-    color: white;
-    font-weight: bold;
+    background-color: #e7dcbf;
+    color: #402a20;
 }
 
 th, td {
-    padding: 0.16em 0.55em;
+    padding: 0.28em 0.7em;
     vertical-align: top;
 }
 
-th > code {
-    color: White;
-    background-color: Black;
-}
-
-td > code {
-    background-color: transparent;
-}
-
-td > a > code {
-    background-color: transparent;
-}
-
-table td + td { border-left:1px solid Black; }
-
-table th + th { border-left:1px solid Black; }
+table td + td { border-left: 1px solid #cdbb95; }
+table th + th { border-left: 1px solid #cdbb95; }
 
 table {
+    border-color: #b08d57;
     margin: 1em 0;
     border-collapse: collapse;
     font-family: APLFont;
-    font-size: 0.88em;
-    line-height: 1.2;
-    border: 2px solid Black;
+    font-size: 0.9em;
+    line-height: 1.35;
+    border: 1px solid #b08d57;
 }
-td > code {
-    background-color: transparent;
+
+thead {
+    border-bottom: 2px solid #b08d57;
 }
+
 li > table {
     margin: 0.55em 0 0.55em 0;
 }
@@ -687,47 +656,154 @@ tr  {
     margin: 1.11em;
 }
 
-tfoot td {font-weight: bold;}
+th { font-weight: bold; }
+
+tfoot td {
+    font-weight: bold;
+    border-top: 2px solid #b08d57;
+}
 
 blockquote {
-    border-left: 0.27em solid silver;
-    padding-left: 0.27em;
-    margin: 0.83em 0.27em 0.83em 0.55em;
+    border-left: 3px solid #b08d57;
+    padding: 0.1em 1em;
+    margin: 1em 0.25em 1em 0.5em;
+    color: #4a4235;
+    font-style: italic;
 }
 
 blockquote p {
     padding: 0 0.25em;
 }
 
+blockquote code {
+    font-style: normal;
+}
+
 blockquote ul li {
-    margin-left: 1.38em;
+    padding-left: 0;
 }
 
 blockquote ol li {
-    margin-left: 1.38em;
+    padding-left: 0;
 }
 
-li > blockquote {margin-left: 0;}
+li > blockquote { margin-left: 0; }
+
+nav {
+    background-color: #f2ead8;
+    border: 1px solid #cdbb95;
+    padding: 0.7em 1em;
+    margin: 0.5em 0.3em 2em 0.3em;
+    margin-right: 0;
+    box-shadow: 0.25em 0.25em 0.4em rgba(120, 100, 70, 0.25);
+    overflow: hidden;
+}
+
+nav#main_nav {
+    width: auto;
+}
+
+nav ul  {
+    list-style-type: None;
+    margin: 0 1em 0.11em 0;
+    padding: 0;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+nav a:visited {
+    color: #5c4a6b;
+}
+
+nav ul li {
+    margin: 0 0 0.16em 0;
+}
+
+nav li p {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+}
+
+nav li {
+    line-height: 1.5;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 2em;
+}
+
+nav p {
+    font-weight: bold;
+    font-size: 1em;
+    padding-top: 0;
+    margin-bottom: 0.5em;
+}
 
 dl {
-    margin-top: 0;
-    margin-bottom: 1em;
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
 }
 
 dt {
-    margin-top: 0.83em;
-    margin-bottom: 0.27em;
-    font-weight: 800;
+    margin-top: 0.75em;
+    margin-bottom: 0.1em;
+    font-weight: 700;
+}
+
+.toc-container {
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+nav h2 {
+    font-size: 1.4em;
+    font-variant: small-caps;
+    margin: 0.27em 1em 0.27em 1em;
+    border-bottom: none;
+}
+
+div.toc-container ul {
+    margin-right: 1em;
+    padding-left: 1em;
+}
+
+[type="checkbox"] {
+    position: absolute;
+    left: -9999px;
+}
+
+label {
+    display: block;
+    width: 100%;
+    height: 1.1em;
+    cursor: pointer;
+    top: 0;
+    padding-left: 1em;
+}
+
+div#footnotes_div {
+    border-top: 1px solid #cdbb95;
+    margin-top: 2em;
+    padding-top: 0.5em;
+    font-size: 0.92em;
 }
 
 div#footnotes_div p {
-    line-height:1;
-    padding-bottom:0;
-    padding-top:0;
+    line-height: 1.2;
+    padding-bottom: 0;
+    padding-top: 0;
 }
 
 div#footnotes_div ol {
-    padding-top:0;
+    padding-top: 0;
 }
 
 @font-face {
@@ -737,66 +813,73 @@ div#footnotes_div ol {
     url("https://misc.aplteam.com/apl385.ttf") format("truetype");
 }
 
+
 /* User classes */
 
-.no_screen {display: none;}  /* deprecated: use .hide instead */
+.no_screen {  /* deprecated: use .hide instead */
+  transition: opacity 400ms, display 400ms;
+  opacity: 0;
+  display: none;
+}
 
-.hide {display: none;}
+.hide {
+  transition: opacity 400ms, display 400ms;
+  opacity: 0;
+  display: none;
+}
 
-.red {color: red;}
+.red { color: #8b2635; }
 
 .center {
     text-align: center;     /* for inline elements */
     margin-left: auto;      /* for Block ... */
-    margin-right:auto;      /* ...elements */
+    margin-right: auto;     /* ...elements */
 }
 
 .left {
-    text-align: left;     /* for inline elements */
-    margin-right: auto;   /* for Block elements */
+    text-align: left;       /* for inline elements */
+    margin-right: 0;        /* for Block elements */
 }
 
 .right {
-    text-align: right;     /* for inline elements */
-    margin-left: auto;     /* for Block elements */
+    text-align: right;      /* for inline elements */
+    margin-left: 0;         /* for Block elements */
 }
 
 .print_only {
     display: none;
 }
 
+
 /* LeanPub extensions */
 
 div.leanpub {
-    padding: 0 0.55em 0 0px;
-    margin: 1.11em 0.55em 1.11em 0.55em;
+    padding: 0.83em 0.55em 1.11em 0;
+    margin: 0.55em 0 0 0.27em;
     overflow: auto;
     display: grid;
     grid-template-columns: auto 1fr;
     grid-gap: 10px;
+    align-items: center;   /* vertically centre the icon with the adjacent text */
 }
 
 div.leanpub_A {
-    border: 1px solid black;
-    background-color: #f1f1f1;
+    border: 1px solid #cdbb95;
+    background-color: #f2ead8;
     padding: 0.55em;
-    margin: 1.66em 0 1.66em 0;
-}
-
-div.leanpub_A pre {
-    margin: 0.55em 0 0.27em 0;
+    margin: 1.11em 0 0.83em 0;
 }
 
 div.leanpub h3,
 div.leanpub_A h3 {
-    font-size: 1.20em;
+    font-size: 1.2em;
     padding: 0;
     margin: 0;
 }
 
 div.leanpub h4,
 div.leanpub_A h4 {
-    font-size: 1.10em;
+    font-size: 1.1em;
     padding: 0.27em 0 0 0;
     margin: 0;
 }
@@ -820,14 +903,6 @@ div.leanpub img {
     margin: 0 1.11em 0.27em 0;
 }
 
-div.leanpub tbody * {
-    background-color: transparent;
-}
-
-span.leanpub_code {
-    color:Yellow;
-}
-
 div.leanpub_A > p:first-child {
     padding-top: 0;
     margin-top: 0;
@@ -835,18 +910,37 @@ div.leanpub_A > p:first-child {
 
 div.leanpub img {
     float: left;
+    padding: 0;
     margin: 0.55em 1.11em 0 0;
-    clear:both;
+    clear: both;
 }
 
-div.leanpub_A p, div.leanpub p {
+div.leanpub tbody * {
+    background-color: transparent;
+}
+
+div.leanpub p {
+    padding: 0.17em 0 0 0;
+    margin: 0;
+}
+
+span.leanpub_code {
+    color: #8b2635;
+}
+
+div.leanpub p {
     display: block;
-    padding: 0.55em 0 0 0;
-    text-indent: 0;
+    padding: 0.44em 0 0 0;
 }
 
 div.leanpub > div {
-    margin-left: 2.27em;  /* margin (20) plus width of icon (21) */
+    margin-left: 2.27em;  /* margin (20px) plus width of icon (21px) */
+}
+
+pre[class*="language-"] {
+  position: relative;
+  margin: 5px 0 ;
+  padding: 1.75em 0 1.75em 1em;
 }
 
 details summary {
@@ -858,19 +952,20 @@ details summary > * {
 }
 
 div.accordion {
-    border: 1px solid black;
+    border: 1px solid #cdbb95;
     padding: 0;
     margin: 0.5em 0;
-    background-color
-    : #FAEBD7;
+    background-color: #f2ead8;
 }
+
 div.accordion > div {
+    border: 1px solid #cdbb95;
     padding: 0.5em;
     margin: 0 0;
 }
 
-div.accordion > div p, div.accordion > div
-ul,
+div.accordion > div p,
+div.accordion > div ul,
 div.accordion > div ol,
 div.accordion > div img,
 div.accordion > div table {
@@ -878,10 +973,10 @@ div.accordion > div table {
 }
 
 div.collapsible {
-    border: 1px solid black;
-    padding: 1em;
+    border: 1px solid #cdbb95;
+    padding: 0.5em;
     margin: 0.5em 0;
-    background-color: #FAEBD7;
+    background-color: #f2ead8;
 }
 
 div.collapsible p,
@@ -899,13 +994,19 @@ ul.checkboxes {
 }
 
 li {
-  padding: 0.15em 1em 0.15em 0;
-  text-indent: 0em;
+  text-indent: 0;
+  padding-left: 0;
 }
 
-ul.checkboxes > li::before {content: "☐ ";}
+ul.checkboxes > li::before {
+    content: "☐";
+    margin-right: 0.5em;
+}
 
-ul.checkboxes > li.checked::before {content: "☒ ";}
+ul.checkboxes > li.checked::before {
+    content: "☒";
+    margin-right: 0.5em;
+}
 
 ul.checkboxes > li {
     margin-left: 0;
@@ -914,21 +1015,23 @@ ul.checkboxes > li {
 
 pre > button {
   position: absolute;
-  top: 5px;
-  right: 5px;
-  font-size: 0.6em;
-  padding: 0.15em;
-  border: 1.25px solid Gray;
-  background-color: White;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
-  border-bottom-left-radius: 6px;
+  top: 8px;
+  right: 10px;
+  padding: 0;
+  line-height: 0;
+  color: #a2896a;              /* muted sepia icon that sits quietly on the parchment */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 150ms, color 150ms;
 }
 
 pre button:hover {
   cursor: pointer;
-  background-color: Gray;
+  background-color: transparent;
+  color: #8b2635;             /* classic maroon on hover */
+  opacity: 1;
 }
 
 #main_nav {
@@ -936,24 +1039,18 @@ pre button:hover {
 }
 
 #main_nav h2 {
-    font-size: 1.45em;
+    font-size: 1.4em;
+    font-variant: small-caps;
     margin: 0;
-    padding: 0.5em 1em;
-    border-bottom: 1px solid Black;
+    padding: 0.5em;
+    border-bottom: 1px solid #b08d57;
 }
 
 #toc-toggle {
   position: absolute;
-  top: 1em;
+  top: 1.5em;
   right: 1em;
 }
-
 #toc-list {
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-}
-
-svg {
-    padding: .5em;
-    background-color: #D3D3D3;
+    margin: 1em 1em 0.25em 0;
 }
