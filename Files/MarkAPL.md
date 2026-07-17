@@ -6,6 +6,12 @@
 [parm]:reportLinks     = 1
 [parm]:smoothScrolling = 1
 [parm]:saveHTML        = 1
+[parm]:screenCSS       = 'Modern_screen.css'
+[parm]:cssURL          = 'file://C:/Users/kai/Projects/APLTree/MarkAPL/Files/'
+[parm]:linkToCSS       = 1
+
+
+
 
 
 # MarkAPL Reference
@@ -881,6 +887,8 @@ No matter how you defines headers, they may have between zero and up to three le
 > #### Level 4 header
 > ##### Level 5 header
 > ###### Level 6 header
+
+Note that the actual layout is defined by the CSS!
 
 
 #### HTML blocks
@@ -2285,12 +2293,12 @@ Changing/debugging CSS can be cumbersome. `MarkAPL` offers help, refer to the "S
 
 #### `copyCaption`
 
-Text vector that defaults to "Copy". Used as the caption of the button shown in every code block, if `copy2ClipboardBtn` is 1.
+Text vector that defaults to an inline SVG of the standard two-sheets "copy" icon. It is inserted as the content (`innerHTML`) of the button shown in every code block, if `copy2ClipboardBtn` is 1, so you may set it to any HTML (an icon, an image) or to plain text like `Copy`.
 
 
 #### `copiedCaption`
 
-Text vector that defaults to "Copied". Used as the caption of the button shown in every code block, if `copy2ClipboardBtn` is 1.
+Text vector that defaults to the check mark ✓ (`⎕UCS 10003`). Shown briefly in place of the button caption after a successful copy, if `copy2ClipboardBtn` is 1.
 
 
 #### `copy2ClipboardBtn`
@@ -2687,9 +2695,9 @@ If you cannot work out why it goes wrong report it to me -- see the previous top
 Version information
 -------------------
 
-This document refers to version 14.2 of `MarkAPL`.
+This document refers to version 14.3 of `MarkAPL`.
 
-Kai Jaeger ⋄ 2025-03-04
+Kai Jaeger ⋄ 2026-07-16
 
 ⍝ Footnotes:
 [^meddy]: The Markdown editor Meddy on GitHub:<br><https://github.com/aplteam/Meddy>
@@ -2704,3 +2712,5 @@ Kai Jaeger ⋄ 2025-03-04
 [git]: https://help.github.com/articles/working-with-advanced-formatting/ "GIT's formatting rules"{target="_blank"}
 [markdown_extra]: https://www.wikiwand.com/en/Markdown_Extra{target="_blank"}
 [pandoc]: http://pandoc.org/README.html{target="_blank"}
+
+
