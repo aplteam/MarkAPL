@@ -16,7 +16,7 @@ By now you are likely aware that `MarkAPL` converts Markdown to HTML5.
 
 All you need is the [Tatin package](https://tatin.dev "Link to the principal Tatin registry") `MarkAPL`.
 
-I> Tatin comes with Dyalog 19.0 but needs to be activated with the `]activate` user command. In older versions it must be installed.
+I> Tatin comes with Dyalog 19.0 but needs to be activated with the `]activate` user command. In 18.2 it must be installed.
 
 
 Quick start
@@ -102,10 +102,11 @@ Documentation
 Misc
 ----
 
-Please send comments, suggestions and bug reports to kai@aplteam.com.   
+Please send comments, suggestions and bug reports to <mailto:kai@aplteam.com>
 
 Kai Jaeger ⋄ 2016-02-17
 
-Last update: 2023-12-06
+Last update: 2026-07-18
+
 
 

@@ -5,8 +5,8 @@
 
  parms←MarkAPL.CreateParms
  parms.cssURL←FilesAndDirs.PWD
- parms.screenCSS←'BlackOnWhite_screen.css'
- parms.printCSS←'BlackOnWhite_print.css'
+ parms.screenCSS←'Modern_screen.css'
+ parms.printCSS←'Modern_print.css'
  parms.linkToCSS←1
 
  md←,⊂'This is a para.'

@@ -155,6 +155,12 @@ pre code {
      white-space: pre-wrap;
 }
 
+mark {
+    background-color: transparent;
+    font-weight: bold;
+    font-style: italic;
+}
+
 code {
     font-family: APLFont, monospace;
     line-height: 1.2;
@@ -516,7 +522,7 @@ pre > button {display: none;}
 #toc-toggle {display: none;}
 
 /* TOC is always printed; every level at the paragraph font size; depth shown by indentation only */
-#toc-list {display: block;}
+#toc-list {display: block !important;}  /* beat a collapsed screen state's inline display:none */
 
 #toc-list,
 #toc-list li,

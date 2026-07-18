@@ -5,8 +5,8 @@
 
  parms←MarkAPL.CreateParms
  parms.cssURL←''
- parms.screenCSS←'"C:\BlackOnWhite_screen.css"'
- parms.printCSS←'"C:\BlackOnWhite_print.css"'
+ parms.screenCSS←'"C:\Modern_screen.css"'
+ parms.printCSS←'"C:\Modern_print.css"'
  parms.linkToCSS←1
 
  md←,⊂'This is a para.'
@@ -16,10 +16,10 @@
  ns←MarkAPL.Process ns
  ns.html←parms MarkAPL.MakeHTML_Doc ns.html
 
- expected←'href="file://C:/BlackOnWhite_screen.css"'
+ expected←'href="file://C:/Modern_screen.css"'
  →T.PassesIf∨/expected⍷∊ns.html
 
- expected←'href="file://C:/BlackOnWhite_print.css"'
+ expected←'href="file://C:/Modern_print.css"'
  →T.PassesIf∨/expected⍷∊ns.html
 
  R←T._OK

@@ -24,8 +24,8 @@
  ⎕←'create!'FilesAndDirs.CheckPath folder
  {}StartExplorer folder
  'MarkAPL_CheatSheet.md'FilesAndDirs.CopyTo folder,'/'
- 'MarkAPL_screen.css'FilesAndDirs.CopyTo folder,'/'
- 'MarkAPL_print.css'FilesAndDirs.CopyTo folder,'/'
+ 'Dark_screen.css'FilesAndDirs.CopyTo folder,'/'
+ 'Dark_print.css'FilesAndDirs.CopyTo folder,'/'
  parms←MarkAPL.CreateParms
  parms.homeFolder←folder
  parms.cssURL←'file://',folder

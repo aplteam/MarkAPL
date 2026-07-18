@@ -408,6 +408,16 @@ Available options:
 | `<==`  | <==     | Left arrow
 | `<==>` | <==>    | Left-and-right arrow
 
+### Mark
+
+Since version 15.0, you can use `==`:
+
+~~~
+You should ==mark== this word.
+~~~
+
+You should ==mark== this word.
+
 
 ### Double quotes
 
@@ -659,14 +669,15 @@ For details refer to the [`MarkAPL` reference document](http://download.aplteam.
 
 ## Version
 
-This document refers to version 14.2 of `MarkAPL`.
+This document refers to version 15.0 of `MarkAPL`.
 
-Kai Jaeger ⋄ Last update 2025-04-04
+Kai Jaeger ⋄ Last update 2026-07-18
 
 ⍝ The link references:
 [1]:      https://aplwiki.com
 [git]:    https://github.com "Linus' brain child"{target="_blank"}
 [vector]: https://sites.google.com/site/baavector/ "The once well-respected Journal of the British APL Association"
+
 
 
 

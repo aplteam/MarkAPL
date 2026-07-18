@@ -157,6 +157,12 @@ pre code {
      overflow: hidden;
 }
 
+mark {
+    background-color: transparent;
+    font-weight: bold;
+    font-style: italic;
+}
+
 code {
     font-family: APLFont, monospace;
     line-height: 1.2;
@@ -539,6 +545,7 @@ ul.checkboxes > li {
 pre > button {display: none;}
 
 #toc-toggle {display: none;}
+#toc-list {display: block !important;}  /* beat a collapsed screen state's inline display:none */
 
 #main_nav h2 {
     margin: 0;

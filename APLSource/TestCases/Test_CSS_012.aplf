@@ -1,0 +1,20 @@
+ R←Test_CSS_012(stopFlag batchFlag);⎕TRAP;path;list;filename;html
+⍝ Check all documentation pages for injected (rather linked) CSS!
+ ⎕TRAP←(999 'C' '. ⍝ Deliberate error')(0 'N')
+ R←T._Failed
+
+ :If 0<##.⎕NC'CiderConfig.HOME'
+     path←##.CiderConfig.HOME,'/Files/'
+ :Else
+     path←'/Files/'
+ :EndIf
+ list←(≢path)↓¨FilesAndDirs.ListFiles2 path,'*.html'
+ list~←⊂'Test-Themes.html'
+ 'No docs found?!'Assert 0<≢list
+
+ :For filename :In list
+     html←⊃⎕NGET path,filename
+     →T.PassesIf∧/∨/¨'<style media="screen">' '<style media="print">'⍷¨⊂html
+ :EndFor
+
+ R←T._OK

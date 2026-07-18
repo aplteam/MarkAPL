@@ -17,8 +17,8 @@
 `MarkAPL` comes with several sets of style sheets:
 
 * Dark_screen.css and Dark_print.css (default since 12.0)
-* MarkAPL_screen.css and MarkAPL_print.css (default until 12.0)
-* BlackOnWhite_screen.css and BlackOnWhite_print.css
+* Classic_screen.css and Classic_print.css
+* Modern_screen.css and Modern_print.css
 
 All sets include style definitions required by the LeanPub extensions.
 
@@ -69,7 +69,7 @@ You can achieve the same _with_ `cssURL`:
 [parm]:printCSS     = 'MySyles_print.css'
 ~~~
 
-Don't forget that all `[parm]` lines must be defined at the top of the document in order to be recognized as a parameter definition lines starting with an APL lamp symbol (`⍝`) do not count).
+Don't forget that all `[parm]` lines must be defined at the top of the document in order to be recognized as a parameter definition. Lines starting with an APL lamp symbol (`⍝`) do not count.
 
 When you now make changes to the CSS file then --- after pressing Ctrl+F5 --- the changes are reflected in the "Preview" area of Meddy, Microsoft's WebBrowser control, which is used for the preview, but that comes with a number of limitations, most importantly it does not offer access to the developer tools all modern browsers are offering.
 
@@ -83,7 +83,7 @@ W> Note that this will only work when the HTML is saved on disk with the Markdow
 
 ### "Print" style sheets
 
-In case something is not going to your liking the development tools all modern browsers come with are of great help, but when it comes to printing they are pretty useless: even Chrome, the only browser which offers a "Print Preview", does not allow you to invoke them on the print preview, at least not in a useful way.
+In case something is not going to your liking, the development tools all modern browsers come with are of great help, but when it comes to printing they are pretty useless: even Chrome, the only browser which offers a "Print Preview", does not allow you to invoke them on the print preview, at least not in a useful way.
 
 Having two different files for the CSS allows you to use the print style sheet temporarily for display purposes (screen) as shown here:
 
@@ -310,6 +310,7 @@ Example:
 
 
 [^normalyze]: The "Normalize" project<br><https://necolas.github.io/normalize.css/>
+
 
 
 

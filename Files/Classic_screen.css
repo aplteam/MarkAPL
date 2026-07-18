@@ -603,6 +603,11 @@ nav code {
     color: inherit;
 }
 
+mark {
+    background-color: yellow;
+    color: black;
+}
+
 code {
     font-family: APLFont, monospace;
     font-weight: 400;
@@ -817,15 +822,11 @@ div#footnotes_div ol {
 /* User classes */
 
 .no_screen {  /* deprecated: use .hide instead */
-  transition: opacity 400ms, display 400ms;
-  opacity: 0;
   display: none;
 }
 
 .hide {
-  transition: opacity 400ms, display 400ms;
-  opacity: 0;
-  display: none;
+  display: none;   /* instant: animating this class janks the mouse on large TOCs */
 }
 
 .red { color: #8b2635; }
@@ -1036,6 +1037,7 @@ pre button:hover {
 
 #main_nav {
   position: relative;
+  overflow: visible;   /* let the TOC overlay escape the nav box */
 }
 
 #main_nav h2 {
@@ -1053,4 +1055,36 @@ pre button:hover {
 }
 #toc-list {
     margin: 1em 1em 0.25em 0;
+}
+
+/* Default is in normal flow (open on load, clean intro). Once the user toggles
+   the TOC, JS adds `.floating` so it becomes an out-of-flow overlay and further
+   toggles don't re-composite the whole page (which janked large docs badly). */
+#toc-list.floating {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    z-index: 100;
+    max-height: 80vh;
+    overflow: auto;
+    margin: 0;
+    padding: 0.5em 1em;
+    box-sizing: border-box;
+    background-color: #f2ead8;
+    border: 1px solid #cdbb95;
+    box-shadow: 0.25em 0.25em 0.6em rgba(120, 100, 70, 0.35);
+}
+
+/* Narrow viewports (phones): the layout is already fluid, so only tame the few
+   things that can be wider than the screen. */
+@media (max-width: 600px) {
+    table {
+        display: block;
+        overflow-x: auto;
+        max-width: 100%;
+    }
+    pre {
+        overflow-x: auto;
+    }
 }

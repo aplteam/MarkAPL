@@ -37,12 +37,6 @@
  parms←MarkAPL.CreateParms
  parms.linkToCSS←1
  parms.cssURL←'C:\T\Projects\APLTree\MarkAPL\Files'
- parms.screenCSS←'BlackOnWhite_screen.css'
- parms.printCSS←'BlackOnWhite_print.css'
-
- parms.screenCSS←'MarkAPL_screen.css'
- parms.printCSS←'MarkAPL_print.css'
-
  parms.cssURL←'C:\T\Projects\APLTree\MarkAPL\Files\MoreCSS'
  parms.screenCSS←'Dark_screen.css'
  parms.printCSS←'Dark_print.css'

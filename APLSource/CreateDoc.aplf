@@ -1,13 +1,13 @@
  r←{printAsScreen}CreateDoc y;M;parms;ns;opCode;css;documents;EndIf
 ⍝ Creates any of the documents MarkAPL comes with, defined by the "opCode"
 ⍝ Useful for working on the CSS because the CSS files are linked, so changes are reflected straight away.
-⍝ Uses either the "Dark" theme (css=1) or "MarkAPL" (css=2) or "BlackAndWhite" (css=3).
+⍝ Uses either the "Dark" theme (css=1) or "Modern" (css=2) or "Classic" (css=3).
 ⍝ "printAsScreen" defaults to 0, meaning that the "screen" CSS file is used for display and "print" for print.
-⍝ Both default to 1 if not specified.
 ⍝ In case "printAsScreen" is 1 the print CSS file is used for both, display and print.
 ⍝ * If ⍵ is one of "?" or "-help" or "/help" help is provided.
 ⍝ * If ⍵ is empty the user is interrogated.
 ⍝ Otherwise y must be a two-element vector picking the document and the theme.
+⍝ This is probably not really useful anymore: all work on the CSS should be done by an AI now.
  :If (,'?')≡,y
  :OrIf '-help'≡⎕C y
  :OrIf '/help'≡⎕C y
@@ -39,7 +39,7 @@
      opCode←'Select document'TestCases.CommTools.Select'Full Ref' 'Cheat sheet' 'LeanPub Extension' 'MarkAPL for programmers' 'Quick Intro' 'Styles'
      →(0=≢opCode)/0
      printAsScreen←0 TestCases.CommTools.YesOrNo'Would you like to take "Print" the role of "Screen"?'
-     css←'Select theme'TestCases.CommTools.Select'Dark' 'MarkAPL' 'BlackOnWhite'
+     css←'Select theme'TestCases.CommTools.Select'Dark' 'Modern' 'Classic'
      →(0=≢css)/0
  :Else
      (opCode css)←2↑y,1 1
@@ -55,16 +55,16 @@
          parms.screenCSS←'Dark_print.css'
      :EndIf
  :ElseIf (,2)≡,css
-     parms.screenCSS←'MarkAPL_screen.css'
-     parms.printCSS←'MarkAPL_print.css'
+     parms.screenCSS←'Modern_screen.css'
+     parms.printCSS←'Modern_print.css'
      :If printAsScreen
-         parms.screenCSS←'BlackOnWhite_print.css'
+         parms.screenCSS←'Modern_print.css'
      :EndIf
  :ElseIf (,3)≡,css
-     parms.screenCSS←'BlackOnWhite_screen.css'
-     parms.printCSS←'BlackOnWhite_print.css'
+     parms.screenCSS←'Classic_screen.css'
+     parms.printCSS←'Classic_print.css'
      :If printAsScreen
-         parms.screenCSS←'BlackOnWhite_print.css'
+         parms.screenCSS←'Classic_print.css'
      :EndIf
  :EndIf
  ns←M.Init parms''

@@ -1,0 +1,36 @@
+ {r}←{targetPath}CreateTestDocs flag;M;noOf;C;targetPath;path;MarkAPL;parms;markdownFiles;markdownFile;style;styles
+⍝ Creates "MarkAPL_{theme}.html for all themese found in Files/
+ r←0
+ targetPath←{0<⎕NC ⍵:⍎⍵ ⋄ './TestDocs'}'targetPath'
+ :If flag
+     :If 0=⎕SE.⎕NC'MakeHelpers'
+         noOf←⎕SE.Tatin.LoadPackages'MakeHelpers'⎕SE
+         'Could not load the package "MakeHelpers"'⎕SIGNAL 6/⍨0=noOf
+     :EndIf
+     M←⎕SE.MakeHelpers
+     ⎕←'Using "MakeHelpers" version ',⎕SE.MakeHelpers.Version
+     C←##.CiderConfig
+     MarkAPL←M.##.MarkAPL←##.MarkAPL  ⍝ Make sure that the docs are created with the most recent version of MarkAPL!
+     M.RecreateFolder targetPath
+     path←C.HOME,'/Files'
+     markdownFiles←(1+≢path)↓¨MarkAPL.FilesAndDirs.ListFiles2 path,'/*.md'
+     parms←MarkAPL.CreateParms
+     parms.leanpubExtensions←1
+     parms.createFullHtmlPage←1
+     parms.verbose←0
+     styles←{⍵↑⍨¯1+⍵⍳'_'}¨(1+≢path)↓¨MarkAPL.FilesAndDirs.ListFiles2 path,'/*_screen.css'
+     MarkAPL.FilesAndDirs.MkDir¨(⊂targetPath,'/'),¨styles
+     :For markdownFile :In markdownFiles
+         :For style :In styles
+             parms.title←(2⊃⎕NPARTS markdownFile),' - ',style
+             parms.screenCSS←'./',style,'_screen.css'
+             parms.printnCSS←'./',style,'_print.css'
+             parms.inputFilename←path,'/',markdownFile
+             parms.outputFilename←targetPath,'/',style,'/',(2⊃⎕NPARTS markdownFile),'.html'
+             parms MarkAPL.ConvertMarkdownFile''
+         :EndFor
+     :EndFor
+     ⎕←'*** Documents created'
+     r←1
+ :EndIf
+⍝Done

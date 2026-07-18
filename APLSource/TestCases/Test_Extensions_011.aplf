@@ -41,8 +41,8 @@
  parms←MarkAPL.CreateParms
  parms.linkToCSS←1
  parms.cssURL←'C:\T\Projects\APLTree\MarkAPL\Files'
- parms.screenCSS←'MarkAPL_screen.css'
- parms.printCSS←'MarkAPL_print.css'
+ parms.screenCSS←'Modern_screen.css'
+ parms.printCSS←'Modern_print.css'
 
  parms ##.v ns.html
 

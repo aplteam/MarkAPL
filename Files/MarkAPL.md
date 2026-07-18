@@ -6,12 +6,6 @@
 [parm]:reportLinks     = 1
 [parm]:smoothScrolling = 1
 [parm]:saveHTML        = 1
-[parm]:screenCSS       = 'Modern_screen.css'
-[parm]:cssURL          = 'file://C:/Users/kai/Projects/APLTree/MarkAPL/Files/'
-[parm]:linkToCSS       = 1
-
-
-
 
 
 # MarkAPL Reference
@@ -2695,9 +2689,9 @@ If you cannot work out why it goes wrong report it to me -- see the previous top
 Version information
 -------------------
 
-This document refers to version 14.3 of `MarkAPL`.
+This document refers to version 15.0 of `MarkAPL`.
 
-Kai Jaeger ⋄ 2026-07-16
+Kai Jaeger ⋄ 2026-07-18
 
 ⍝ Footnotes:
 [^meddy]: The Markdown editor Meddy on GitHub:<br><https://github.com/aplteam/Meddy>
@@ -2712,5 +2706,7 @@ Kai Jaeger ⋄ 2026-07-16
 [git]: https://help.github.com/articles/working-with-advanced-formatting/ "GIT's formatting rules"{target="_blank"}
 [markdown_extra]: https://www.wikiwand.com/en/Markdown_Extra{target="_blank"}
 [pandoc]: http://pandoc.org/README.html{target="_blank"}
+
+
 
 

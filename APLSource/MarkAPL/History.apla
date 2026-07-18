@@ -1,8 +1,9 @@
 (
- '* 15.0.0 ⋄ 2026-07-17     '
- '  * Two new style sheets added: "Modern" (the new default) and "Classic".'
+ '* 15.0.0 ⋄ 2026-07-18     '
+ '  * Two new style sheets added: "Modern" and "Classic".'
  '  * " ==mark this== " is now converted into " <mark>mark this</mark> ". '
- '  * The "Dark_screen" style sheet got improved.'
+ '  * The "Dark_screen" style sheet got improved.             '
+ '  * All three style sheets behave well on mobiles and tablets now.'
  '  * All printing style sheets got improved.                            '
  '  * Retired: the style sheets "BlackAndWhite" and "MarkAPL".'
  '  * A document "Test-Themes" got added. '

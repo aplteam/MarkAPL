@@ -6,8 +6,8 @@
  md←''
  md,←⊂'[parm]:cssURL    ='''''
  md,←⊂'[parm]:linkToCSS = 1'
- md,←⊂'[parm]:screenCSS = ''C:\BlackOnWhite_screen.css'''
- md,←⊂'[parm]:printCSS  = ''C:\BlackOnWhite_print.css'''
+ md,←⊂'[parm]:screenCSS = ''C:\Modern_screen.css'''
+ md,←⊂'[parm]:printCSS  = ''C:\Modern_print.css'''
  md,←⊂''
  md,←⊂'This is a para.'
 
@@ -18,10 +18,10 @@
  ns←MarkAPL.Process ns
  ns.html←ns.parms MarkAPL.MakeHTML_Doc ns.html
 
- expected←'href="file://C:/BlackOnWhite_screen.css"'
+ expected←'href="file://C:/Modern_screen.css"'
  →T.PassesIf∨/expected⍷∊ns.html
 
- expected←'href="file://C:/BlackOnWhite_print.css"'
+ expected←'href="file://C:/Modern_print.css"'
  →T.PassesIf∨/expected⍷∊ns.html
 
  R←T._OK
